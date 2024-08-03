@@ -1,75 +1,48 @@
-# Nuxt 3 Minimal Starter
+# Laravel Nuxt Template Boilerplate
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Introduction
 
-## Setup
+Boilerplate with Laravel framework and NuxtJS. These instructions will guide you through setting up the project on your local development environment.
 
-Make sure to install the dependencies:
+### Prerequisites
 
-```bash
-# npm
+Ensure you have the following software installed on your system:
+
+- [Composer](https://getcomposer.org/)
+- [Node.js](https://nodejs.org/)
+- [XAMPP](https://www.apachefriends.org/index.html) or any other local server environment
+- [PHP 8.2](https://www.php.net/) or a compatible version
+- [GitHub CLI](https://cli.github.com/) (optional)
+- [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm) (optional)
+
+### 1. Clone the project
+```
+git clone https://github.com/maktezi/APP.git
+```
+
+### 2. Goto project directory
+```
+cd APP
+```
+
+### 3. Copy the .env.example to .env then Install Composer
+```
+cp .env.example .env
+composer install
+```
+### 4. Run migrations and db seed
+```
+php artisan migrate:fresh
+php artisan db:seed
+```
+
+### 5. Then install npm
+```
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+npm install --save-dev concurrently
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+### 6. Then run the server
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+ npm start
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
