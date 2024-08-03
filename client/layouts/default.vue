@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <Head>
-            <Title>APP</Title>
-        </Head>
+  <div>
+    <Head>
+      <Title>POS</Title>
+    </Head>
 
-        <slot />
-    </div>
+    <slot />
+  </div>
 </template>

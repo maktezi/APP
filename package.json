@@ -7,16 +7,17 @@
         "dev": "nuxt dev",
         "start": "concurrently \"bun dev\" \"php artisan serve\"",
         "generate": "nuxt generate",
-        "preview": "nuxt preview",
-        "postinstall": "nuxt prepare"
+        "preview": "nuxt preview"
     },
     "dependencies": {
         "@headlessui/vue": "^1.7.22",
-        "@iconify/vue": "^4.1.2",
         "@iconify-json/radix-icons": "^1.1.14",
+        "@iconify/vue": "^4.1.2",
+        "@nuxt/icon": "^1.4.4",
         "@nuxt/image": "^1.7.0",
+        "@nuxt/ui": "^2.18.3",
         "@nuxtjs/apollo": "^5.0.0-alpha.14",
-        "@nuxtjs/color-mode": "^3.4.1",
+        "@nuxtjs/color-mode": "^3.4.2",
         "@nuxtjs/eslint-module": "^4.1.0",
         "@nuxtjs/tailwindcss": "^6.12.1",
         "@radix-icons/vue": "^1.0.0",
@@ -30,11 +31,9 @@
         "tailwind-merge": "^2.4.0",
         "tailwindcss-animate": "^1.0.7",
         "vue": "latest",
-        "vue3-toastify": "^0.2.2",
-        "typescript": "^5.4.5"
+        "vue3-toastify": "^0.2.2"
     },
     "devDependencies": {
-        "@headlessui/vue": "^1.6.5",
         "@heroicons/vue": "^2.1.3",
         "@tanstack/vue-table": "^8.16.0",
         "@unovis/ts": "^1.4.1",
@@ -42,18 +41,12 @@
         "@vueuse/core": "^10.9.0",
         "apexcharts": "^3.49.1",
         "autoprefixer": "^10.4.19",
-        "class-variance-authority": "^0.7.0",
-        "clsx": "^2.1.1",
-        "lucide-vue-next": "^0.378.0",
+        "lucide-vue-next": "^0.424.0",
         "nuxt-icon": "^0.6.10",
         "postcss": "^8.4.40",
-        "radix-vue": "^1.7.4",
-        "tailwind-merge": "^2.3.0",
-        "tailwindcss": "^3.4.7",
-        "tailwindcss-animate": "^1.0.7",
-        "typescript": "^5.5.4",
         "vaul-vue": "^0.1.2",
         "vue3-apexcharts": "^1.5.2",
-        "vue3-toastify": "^0.2.1"
+        "tailwindcss": "^3.4.7",
+        "typescript": "^5.5.4"
     }
 }
