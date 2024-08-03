@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     srcDir: 'client/',
     imports: { dirs: ['./stores', './composables/*/*.{ts,js}'] },
     css: ['~/assets/css/main.css'],
-    modules: ['@nuxtjs/tailwindcss', '@nuxtjs/apollo'],
+    modules: ['@nuxtjs/tailwindcss', '@nuxtjs/apollo', "shadcn-nuxt"],
     postcss: {
         plugins: {
             tailwindcss: {},
