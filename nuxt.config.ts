@@ -6,11 +6,18 @@ export default defineNuxtConfig({
     srcDir: 'client/',
     imports: { dirs: ['./stores', './composables/*/*.{ts,js}'] },
     css: ['~/assets/css/main.css'],
-    modules: ['@nuxtjs/tailwindcss'],
+    modules: ['@nuxtjs/tailwindcss', '@nuxtjs/apollo'],
     postcss: {
         plugins: {
             tailwindcss: {},
             autoprefixer: {},
+        },
+    },
+    apollo: {
+        clients: {
+            default: {
+                httpEndpoint: import.meta.env.LARAVEL_URL,
+            }
         },
     },
 })

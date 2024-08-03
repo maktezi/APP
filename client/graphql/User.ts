@@ -1,12 +1,13 @@
+import gql from "graphql-tag";
 import { userFragment } from "~/graphql/Fragment";
 
 export const users = gql`
     query users {
-        id
-        name
+        ...user
         roles {
             id
             name
         }
     }
+    ${userFragment}
 `

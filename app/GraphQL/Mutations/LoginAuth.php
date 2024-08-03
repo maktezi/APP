@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class Login
+class LoginAuth
 {
     /**
      * @param mixed $_
@@ -57,7 +57,7 @@ class Login
                 }
             }
         }
-        
+
         return $result;
     }
 }
