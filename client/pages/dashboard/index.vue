@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout name="app-layout">
         <Head>
-            <Title>APP - Dashboard</Title>
+            <Title>Dashboard</Title>
         </Head>
 
         <main>

@@ -11,7 +11,16 @@ export default defineNuxtConfig({
         'shadcn-nuxt',
         '@nuxtjs/color-mode',
         "@nuxt/icon",
+        "@nuxt/eslint"
     ],
+    eslint: {
+        config: {
+            stylistic: {
+                indent: 'tab',
+                semi: true,
+            }
+        }
+    },
     colorMode: {
         classSuffix: ''
     },

@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout name="app-layout">
         <Head>
-            <Title>POS - Customers</Title>
+            <Title>Customers</Title>
         </Head>
       <main class="max-w-screen-lg mx-auto">
         <div class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-5 rounded">

@@ -4,21 +4,21 @@ const route = useRoute();
 const verified = !!route.query.verified;
 
 onMounted(() => {
-  if (!verified) return;
+    if (!verified) return;
 
-  router.replace({
-    query: { ...route.query, verified: undefined },
-  });
+    router.replace({
+        query: { ...route.query, verified: undefined },
+    });
 });
 </script>
 
 <template>
-  <!-- Email Verification Success Message -->
-  <div v-if="verified" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-    <div
-      class="my-12 p-6 bg-gray-900 text-white font-semibold shadow-sm sm:rounded-lg"
-    >
-      Your email has been verified, thank you!
+    <!-- Email Verification Success Message -->
+    <div v-if="verified" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div
+            class="my-12 p-6 bg-gray-900 text-white font-semibold shadow-sm sm:rounded-lg"
+        >
+            Your email has been verified, thank you!
+        </div>
     </div>
-  </div>
 </template>

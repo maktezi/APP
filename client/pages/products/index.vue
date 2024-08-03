@@ -1,44 +1,7 @@
-<script setup lang="ts">
-// definePageMeta({ middleware: ["auth"] });
-
-import { Button } from '~/components/ui/button'
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '~/components/ui/table'
-import {Card} from "~/components/ui/card";
-
-const products = [
-  {
-    barcode: '1203901',
-    name: 'Intel Core i9',
-    stocks: 100,
-    price: '$250.00',
-  },
-  {
-    barcode: '1201231',
-    name: 'Intel Core i7',
-    stocks: 100,
-    price: '$180.00',
-  },
-  {
-    barcode: '1204561',
-    name: 'Intel Core i5',
-    stocks: 100,
-    price: '$150.00',
-  }
-]
-</script>
-
 <template>
     <NuxtLayout name="app-layout">
         <Head>
-            <Title>POS - Products</Title>
+            <Title>Products</Title>
         </Head>
         <main class="max-w-screen-lg mx-auto">
             <div class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-5 rounded">
@@ -94,3 +57,40 @@ const products = [
         </main>
     </NuxtLayout>
 </template>
+
+<script setup lang="ts">
+// definePageMeta({ middleware: ["auth"] });
+
+import { Button } from '~/components/ui/button'
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '~/components/ui/table'
+import {Card} from "~/components/ui/card";
+
+const products = [
+    {
+        barcode: '1203901',
+        name: 'Intel Core i9',
+        stocks: 100,
+        price: '$250.00',
+    },
+    {
+        barcode: '1201231',
+        name: 'Intel Core i7',
+        stocks: 100,
+        price: '$180.00',
+    },
+    {
+        barcode: '1204561',
+        name: 'Intel Core i5',
+        stocks: 100,
+        price: '$150.00',
+    }
+]
+</script>
