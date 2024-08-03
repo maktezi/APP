@@ -36,38 +36,38 @@ import {
     DrawerContent,
     DrawerHeader,
     DrawerTrigger,
-} from "@/components/ui/drawer";
+} from '@/components/ui/drawer';
 
 const links = ref([
     {
-        title: "Dashboard",
-        path: "/dashboard",
-        icon: "material-symbols:dashboard-rounded",
+        title: 'Dashboard',
+        path: '/dashboard',
+        icon: 'material-symbols:dashboard-rounded',
     },
     {
-        title: "Products",
-        path: "/products",
-        icon: "ic:baseline-inventory",
+        title: 'Products',
+        path: '/products',
+        icon: 'ic:baseline-inventory',
     },
     {
-        title: "Customers",
-        path: "/customers",
-        icon: "fluent:people-team-24-filled",
+        title: 'Customers',
+        path: '/customers',
+        icon: 'fluent:people-team-24-filled',
     },
     {
-        title: "POS",
-        path: "/pos",
-        icon: "mdi:monitor-dashboard",
+        title: 'POS',
+        path: '/pos',
+        icon: 'mdi:monitor-dashboard',
     },
     {
-        title: "Inventory",
-        path: "#",
-        icon: "ic:twotone-inventory",
+        title: 'Inventory',
+        path: '#',
+        icon: 'ic:twotone-inventory',
     },
     {
-        title: "Users",
-        path: "#",
-        icon: "mdi:users",
+        title: 'Users',
+        path: '/users',
+        icon: 'mdi:users',
     },
 ]);
 </script>

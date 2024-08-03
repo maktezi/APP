@@ -10,19 +10,19 @@ export default defineNuxtConfig({
         '@nuxtjs/apollo',
         'shadcn-nuxt',
         '@nuxtjs/color-mode',
-        "@nuxt/icon",
-        "@nuxt/eslint"
+        '@nuxt/icon',
+        '@nuxt/eslint',
     ],
     eslint: {
         config: {
             stylistic: {
                 indent: 'tab',
                 semi: true,
-            }
-        }
+            },
+        },
     },
     colorMode: {
-        classSuffix: ''
+        classSuffix: '',
     },
     postcss: {
         plugins: {
@@ -33,8 +33,13 @@ export default defineNuxtConfig({
     apollo: {
         clients: {
             default: {
-                httpEndpoint: import.meta.env.LARAVEL_URL,
-            }
+                httpEndpoint: import.meta.env.APP_URL,
+                httpLinkOptions: {
+                    headers: {
+                        authorization: `Bearer ${process.env.AUTH_TOKEN}`,
+                    },
+                },
+            },
         },
     },
-})
+});

@@ -1,14 +1,14 @@
 <template>
     <NuxtLayout name="app-layout">
         <Head>
-            <Title>Products</Title>
+            <Title>Users</Title>
         </Head>
         <main class="max-w-screen-lg mx-auto">
             <div
                 class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-5 rounded"
             >
                 <p class="text-black dark:text-gray-300 text-2xl font-bold">
-                    Products
+                    Users
                 </p>
                 <div>
                     <Button
@@ -35,27 +35,25 @@
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead class="w-[100px]"> Barcode </TableHead>
-                            <TableHead>Product</TableHead>
-                            <TableHead class="text-center"> Stocks </TableHead>
-                            <TableHead class="text-center"> Price </TableHead>
+                            <TableHead class="w-[100px]"> ID </TableHead>
+                            <TableHead>Name</TableHead>
+                            <TableHead class="text-center"> Email </TableHead>
                             <TableHead class="text-right"> Action </TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <TableRow
-                            v-for="product in products"
-                            :key="product.barcode"
-                        >
-                            <TableCell class="font-medium">
-                                {{ product.barcode }}
-                            </TableCell>
-                            <TableCell>{{ product.name }}</TableCell>
+                        <TableRow v-for="user in usersData" :key="user.email">
+                            <TableCell>{{ user.email }}</TableCell>
+                            <TableCell>{{ user.name }}</TableCell>
                             <TableCell class="text-center">
-                                {{ product.stocks }}
-                            </TableCell>
-                            <TableCell class="text-center">
-                                {{ product.price }}
+                                <ul>
+                                    <li
+                                        v-for="job in user.jobs.data"
+                                        :key="job.title"
+                                    >
+                                        {{ job.title }} - {{ job.status }}
+                                    </li>
+                                </ul>
                             </TableCell>
                             <TableCell class="text-right">
                                 <Button
@@ -103,38 +101,37 @@
 </template>
 
 <script setup lang="ts">
-// definePageMeta({ middleware: ["auth"] });
-
-import { Button } from '~/components/ui/button';
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
     TableRow,
 } from '~/components/ui/table';
+import { Button } from '~/components/ui/button';
 import { Card } from '~/components/ui/card';
+import { users } from '~/graphql/User';
 
-const products = [
-    {
-        barcode: '1203901',
-        name: 'Intel Core i9',
-        stocks: 100,
-        price: '$250.00',
-    },
-    {
-        barcode: '1201231',
-        name: 'Intel Core i7',
-        stocks: 100,
-        price: '$180.00',
-    },
-    {
-        barcode: '1204561',
-        name: 'Intel Core i5',
-        stocks: 100,
-        price: '$150.00',
-    },
-];
+type User = {
+    name: string;
+    email: string;
+    jobs: {
+        data: Job[];
+    };
+};
+
+type Job = {
+    title: string;
+    status: string;
+};
+
+const { result, loading } = useQuery(users);
+const usersData = ref<User[]>([]);
+
+onMounted(() => {
+    if (!loading.value && result.value) {
+        usersData.value = result.value.users;
+    }
+});
 </script>
