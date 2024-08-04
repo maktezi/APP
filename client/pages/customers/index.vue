@@ -23,7 +23,7 @@
             <DataTable
                 :headers="headers"
                 :data="customers"
-                :primary-key="'barcode'"
+                :primary-key="'customer_code'"
                 :actions="actions"
             />
         </main>

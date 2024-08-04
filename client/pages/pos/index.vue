@@ -7,12 +7,9 @@
         <div
             class="relative h-[718px] block xl:flex justify-center m-auto items-center gap-1 w-full"
         >
-            <Card
-                class="flex bg-background h-full flex-grow items-center justify-center font-extrabold text-2xl"
+            <div
+                class="xl:max-w-2xl m-auto flex-grow flex xl:order-2 order-1 mb-4"
             >
-                Products
-            </Card>
-            <div class="xl:max-w-2xl m-auto flex-grow flex">
                 <Card id="cart" class="w-full border-gray-300 p-0.5">
                     <CartHeader class="mb-0.5" />
                     <CartTable class="mb-0.5" :products="products" />
@@ -21,6 +18,11 @@
                     <CartAction />
                 </Card>
             </div>
+            <Card
+                class="flex bg-background h-full flex-grow items-center justify-center font-extrabold text-2xl xl:order-1 order-2"
+            >
+                Products
+            </Card>
         </div>
     </NuxtLayout>
 </template>
