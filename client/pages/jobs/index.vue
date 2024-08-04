@@ -1,14 +1,14 @@
 <template>
     <NuxtLayout name="app-layout">
         <Head>
-            <Title>Users</Title>
+            <Title>Jobs</Title>
         </Head>
         <main class="max-w-screen-lg mx-auto">
             <div
                 class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-5 rounded-t"
             >
                 <p class="text-black dark:text-gray-300 text-2xl font-bold">
-                    Users
+                    Jobs
                 </p>
                 <div class="py-1">
                     <Button
@@ -22,9 +22,9 @@
             </div>
             <DataTable
                 :headers="headers"
-                :data="usersData"
+                :data="jobsData"
                 :actions="actions"
-                primary-key="id"
+                primary-key="title"
             />
         </main>
     </NuxtLayout>
@@ -34,42 +34,58 @@
 import { Button } from '~/components/ui/button';
 import DataTable from '~/components/Table/DataTable.vue';
 
-type User = {
+type Job = {
     id: string;
-    name: string;
-    email: string;
+    title: string;
+    status: string;
 };
 
-const usersData = ref<any[]>([]);
-const fetchUsers = async () => {
+enum JobStatus {
+    QUEUED = 0,
+    PROCESSING = 1,
+    COMPLETED = 2,
+}
+
+const statusLabels: Record<JobStatus, string> = {
+    [JobStatus.QUEUED]: 'Queued',
+    [JobStatus.PROCESSING]: 'Processing',
+    [JobStatus.COMPLETED]: 'Completed',
+};
+
+const jobsData = ref<any[]>([]);
+
+const fetchJobs = async () => {
     try {
-        const response = await axios.get('/users');
-        usersData.value = response.data;
+        const response = await axios.get('/jobs');
+        jobsData.value = response.data.map((job: any) => ({
+            ...job,
+            status: JobStatus[job.status as keyof typeof JobStatus],
+        }));
     } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error('Error fetching jobs:', error);
     }
 };
 onMounted(() => {
-    fetchUsers();
+    fetchJobs();
 });
 
 const headers = [
     { key: 'id', label: 'ID' },
-    { key: 'name', label: 'Name' },
-    { key: 'email', label: 'Email' },
+    { key: 'title', label: 'Title' },
+    { key: 'status', label: 'Status' },
 ];
 
 const actions = [
     {
         icon: 'mdi:edit',
-        handler: (user: User) => {
+        handler: (job: Job) => {
             alert('edit');
         },
         class: 'bg-green-700',
     },
     {
         icon: 'mdi:delete',
-        handler: (user: User) => {
+        handler: (job: Job) => {
             alert('delete');
         },
         class: 'bg-red-700',

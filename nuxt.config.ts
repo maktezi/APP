@@ -33,10 +33,13 @@ export default defineNuxtConfig({
     apollo: {
         clients: {
             default: {
-                httpEndpoint: import.meta.env.APP_URL,
+                httpEndpoint:
+                    import.meta.env.APP_URL || 'http://localhost:8000/graphiql',
                 httpLinkOptions: {
                     headers: {
-                        authorization: `Bearer ${process.env.AUTH_TOKEN}`,
+                        authorization: process.env.AUTH_TOKEN
+                            ? `Bearer ${process.env.AUTH_TOKEN}`
+                            : '',
                     },
                 },
             },
