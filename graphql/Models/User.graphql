@@ -2,6 +2,7 @@ type User {
     id: ID!
     name: String
     email: String
+    password: String
     email_verified_at: DateTime
     jobs(status: JobStatus): [Job!]! @hasMany(type: PAGINATOR, scopes: ["userType"])
     created_at: DateTime
@@ -23,6 +24,6 @@ type Query {
 }
 
 extend type Mutation {
-    upsertUser(input: UserInput @spread): User @upsert #@can(ability: "upsert")
+    upsertUser(input: UserInput! @spread): User @upsert #@can(ability: "upsert")
     deleteUser(id: [ID!] @eq): [User] @delete #@can(ability: "delete", find: "id")
 }

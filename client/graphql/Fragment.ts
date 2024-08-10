@@ -5,12 +5,11 @@ export const userFragment = gql`
         id
         name
         email
+        password
         #        jobs {
         #            title
         #            status
         #        }
-        created_at
-        updated_at
     }
 `;
 

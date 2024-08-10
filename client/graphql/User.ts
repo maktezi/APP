@@ -26,7 +26,7 @@ export const usersPaginate = gql`
 `;
 
 export const upsertUser = gql`
-    mutation upsertUser($input: UserInput) {
+    mutation upsertUser($input: UserInput!) {
         upsertUser(input: $input) {
             ...user
         }
