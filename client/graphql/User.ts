@@ -11,8 +11,8 @@ export const users = gql`
 `;
 
 export const usersPaginate = gql`
-    query usersPaginate($first: Int!, $page: Int, $orderBy: UserOrderByInput) {
-        usersPaginate(first: $first, page: $page, orderBy: $orderBy) {
+    query usersPaginate($first: Int!, $page: Int) {
+        usersPaginate(first: $first, page: $page) {
             data {
                 ...user
             }
