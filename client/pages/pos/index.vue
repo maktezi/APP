@@ -7,10 +7,10 @@
         <TableHeader title="Point of Sales" class="rounded mb-2 py-2" />
 
         <div
-            class="relative h-[718px] block xl:flex justify-center m-auto items-center gap-1 w-full"
+            class="relative h-[718px] block md:flex justify-center m-auto items-center gap-1 w-full"
         >
             <div
-                class="xl:max-w-2xl m-auto flex-grow flex xl:order-2 order-1 mb-4"
+                class="xl:max-w-2xl m-auto flex-grow flex md:order-2 order-1 mb-4"
             >
                 <Card id="cart" class="w-full border-gray-300 p-0.5">
                     <CartHeader class="mb-0.5" />
@@ -21,7 +21,7 @@
                 </Card>
             </div>
             <Card
-                class="flex bg-background h-full flex-grow items-center justify-center font-extrabold text-2xl xl:order-1 order-2"
+                class="flex bg-background h-full flex-grow items-center justify-center font-extrabold text-2xl md:order-1 order-2"
             >
                 Products
             </Card>

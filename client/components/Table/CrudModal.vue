@@ -11,9 +11,9 @@
                     {{ title }}
                 </h3>
                 <Button
-                    variant="ghost"
-                    class="rounded-full hover:bg-red-800"
-                    icon
+                    variant="destructive"
+                    class="rounded-full px-2"
+                    size="sm"
                     @click="closeModal"
                 >
                     <Icon name="mdi:close" size="20" />

@@ -120,14 +120,12 @@ const handleCrudSubmit = async (formData: {
 
     try {
         await upsertUserMutation({ input });
-        alert(
-            `User ${selectedUser.value ? 'updated' : 'created'} successfully`,
-        );
+        toasts(`User ${selectedUser.value ? 'updated' : 'created'}.`, 'succes');
         closeCrudModal();
         fetchUsersPaginate(10, 1);
     } catch (err) {
         console.error('Error updating user:', err);
-        alert('Failed to save user. Please try again.');
+        toasts('Failed to save user. Please try again.', 'error');
     }
 };
 
@@ -167,7 +165,7 @@ const actions: Action[] = [
         handler: (user: User) => {
             openEditUserModal(user);
         },
-        class: 'text-green-800',
+        class: 'text-blue-500',
     },
     {
         icon: 'mdi:delete',
@@ -182,13 +180,13 @@ const actions: Action[] = [
                     usersData.value = usersData.value.filter(
                         (u) => u.id !== user.id,
                     );
-                    alert(`User ${user.name} deleted successfully.`);
+                    toasts(`User ${user.name} deleted.`, 'success');
                 } catch (error) {
                     console.error('Error deleting user:', error);
-                    alert('Failed to delete user. Please try again.');
+                    toasts('Failed to delete user. Please try again.', 'error');
                 }
             } else {
-                console.log('User deletion canceled.');
+                toasts('User deletion canceled.', 'warning');
             }
         },
         class: 'text-red-800',

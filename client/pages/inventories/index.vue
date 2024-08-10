@@ -94,7 +94,7 @@ const actions = [
         handler: (inventory: any) => {
             console.log('Edit Inventory:', inventory);
         },
-        class: 'text-green-800',
+        class: 'text-blue-500',
     },
     {
         icon: 'delete',

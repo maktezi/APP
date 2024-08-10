@@ -60,7 +60,7 @@ const actions = [
             // Define your edit action handler here
             console.log('Edit item:', products);
         },
-        class: 'text-green-800',
+        class: 'text-blue-500',
     },
     {
         icon: 'delete',

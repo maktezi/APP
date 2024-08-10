@@ -27,9 +27,9 @@ const props = defineProps({
 
 const crudButtons = [
     {
-        iconName: 'mdi:archive-add',
+        iconName: 'mdi:add',
         iconSize: 20,
-        iconClass: 'text-green-800',
+        iconClass: 'text-blue-500',
         action: props.onCreate,
     },
     {

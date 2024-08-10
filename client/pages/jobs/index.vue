@@ -60,7 +60,7 @@ const actions = [
         handler: (job: Job) => {
             alert('edit');
         },
-        class: 'text-green-800',
+        class: 'text-blue-500',
     },
     {
         icon: 'mdi:delete',

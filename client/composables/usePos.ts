@@ -1,14 +1,4 @@
-import { toast } from 'vue3-toastify';
-import 'vue3-toastify/dist/index.css';
-
-function toasts(message: string, type: any) {
-  toast(message, {
-    autoClose: 2000,
-    theme: "auto",
-    type: type,
-    transition: "slide"
-  });
-}
+import { toasts } from "./useToast" }
 
 export const deleteCartItem = () => { toasts("Successfully Deleted!", "error") }
 export const cartClear = () => { toasts("Cart cleared!", "error") }
