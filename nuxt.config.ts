@@ -31,18 +31,9 @@ export default defineNuxtConfig({
         },
     },
     apollo: {
+        autoImports: true,
         clients: {
-            default: {
-                httpEndpoint:
-                    import.meta.env.APP_URL || 'http://localhost:8000/graphiql',
-                httpLinkOptions: {
-                    headers: {
-                        authorization: process.env.AUTH_TOKEN
-                            ? `Bearer ${process.env.AUTH_TOKEN}`
-                            : '',
-                    },
-                },
-            },
+            default: { httpEndpoint: 'http://localhost:8000/graphql' },
         },
     },
 });

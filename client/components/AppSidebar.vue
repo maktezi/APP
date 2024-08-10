@@ -24,13 +24,13 @@
             <div class="px-4 grow mt-5 w-full">
                 <div class="grid gap-1">
                     <NuxtLink
-                        v-for="(link, index) in links"
+                        v-for="(link, index) in Object.values(links)"
                         :key="index"
                         :to="link.path"
-                        class="flex w-full items-center gap-2 px-6 py-3 transition rounded-md bg-gray-200 dark:bg-gray-800 cursor-pointer hover:bg-red-500 dark:hover:bg-red-800"
+                        class="flex w-full items-center gap-4 px-6 py-3 transition rounded-md cursor-pointer hover:bg-red-400 dark:hover:bg-red-900"
                     >
-                        <Icon size="30" :name="link.icon" />
-                        <span class="font-medium text-lg">{{
+                        <Icon size="18" :name="link.icon" />
+                        <span class="text-sm font-semibold">{{
                             link.title
                         }}</span>
                     </NuxtLink>
@@ -49,55 +49,11 @@ import {
 } from '@/components/ui/drawer';
 import { Button } from '~/components/ui/button';
 
-const isDrawerOpen = ref(false);
 const router = useRouter();
+const { links } = useLinks();
 
+const isDrawerOpen = ref(false);
 const toggleDrawer = () => {
     isDrawerOpen.value = !isDrawerOpen.value;
 };
-
-watchEffect(() => {
-    const unwatch = router.afterEach(() => {
-        isDrawerOpen.value = false;
-        unwatch(); // Stop watching after the first route change
-    });
-});
-
-const links = ref([
-    {
-        title: 'Dashboard',
-        path: '/dashboard',
-        icon: 'material-symbols:dashboard-rounded',
-    },
-    {
-        title: 'Products',
-        path: '/products',
-        icon: 'ic:baseline-inventory',
-    },
-    {
-        title: 'Customers',
-        path: '/customers',
-        icon: 'fluent:people-team-24-filled',
-    },
-    {
-        title: 'POS',
-        path: '/pos',
-        icon: 'mdi:monitor-dashboard',
-    },
-    {
-        title: 'Inventory',
-        path: '/inventories',
-        icon: 'ic:twotone-inventory',
-    },
-    {
-        title: 'Users',
-        path: '/users',
-        icon: 'mdi:users',
-    },
-    {
-        title: 'Jobs',
-        path: '/jobs',
-        icon: 'hugeicons:job-search',
-    },
-]);
 </script>

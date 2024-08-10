@@ -25,6 +25,7 @@
                         <Button
                             v-for="(action, index) in actions"
                             :key="index"
+                            variant="ghost"
                             class="mx-0.5 rounded-full"
                             :class="action.class"
                             size="icon"
@@ -49,7 +50,6 @@ import {
     TableRow,
 } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
-import { Card } from '~/components/ui/card';
 
 const props = defineProps<{
     headers: { key: string; label: string; class?: string }[];

@@ -15,4 +15,5 @@ extend type Query {
     jobsByStatus(
         status: JobStatus! @scope(name: "byStatus")
     ): [Job!]! @paginate
+    jobsPaginate: [Job!]! @paginate
 }

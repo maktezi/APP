@@ -4,23 +4,21 @@
             <Title>Users</Title>
         </Head>
         <main class="max-w-screen-lg mx-auto">
+            <TableHeader title="Users">
+                <template #actions>
+                    <TableCRUD />
+                </template>
+            </TableHeader>
+
             <div
-                class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-5 rounded-t"
+                v-if="!usersData.length"
+                class="flex justify-center items-center h-64"
             >
-                <p class="text-black dark:text-gray-300 text-2xl font-bold">
-                    Users
-                </p>
-                <div class="py-1">
-                    <Button
-                        variant="secondary"
-                        size="icon"
-                        class="rounded-full hover:bg-gray-300"
-                    >
-                        <Icon name="mdi:add" size="22" class="text-green-700" />
-                    </Button>
-                </div>
+                <p class="text-gray-500 dark:text-gray-300">No data.</p>
             </div>
+
             <DataTable
+                v-else
                 :headers="headers"
                 :data="usersData"
                 :actions="actions"
@@ -31,26 +29,31 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from '~/components/ui/button';
 import DataTable from '~/components/Table/DataTable.vue';
+import { usersPaginate } from '~/graphql/User';
 
-type User = {
-    id: string;
-    name: string;
-    email: string;
-};
+const usersData = ref([]);
 
-const usersData = ref<any[]>([]);
-const fetchUsers = async () => {
-    try {
-        const response = await axios.get('/users');
-        usersData.value = response.data;
-    } catch (error) {
-        console.error('Error fetching users:', error);
-    }
+const fetchUsersPaginate = (first: number, page: number) => {
+    const { result } = useQuery(usersPaginate, {
+        first,
+        page,
+    });
+
+    watch(
+        () => ({
+            result: result.value,
+        }),
+        ({ result }) => {
+            if (result) {
+                usersData.value = result.usersPaginate.data;
+            }
+        },
+        { immediate: true },
+    );
 };
 onMounted(() => {
-    fetchUsers();
+    fetchUsersPaginate(10, 1);
 });
 
 const headers = [
@@ -65,14 +68,14 @@ const actions = [
         handler: (user: User) => {
             alert('edit');
         },
-        class: 'bg-green-700',
+        class: 'text-green-800',
     },
     {
         icon: 'mdi:delete',
         handler: (user: User) => {
             alert('delete');
         },
-        class: 'bg-red-700',
+        class: 'text-red-800',
     },
 ];
 </script>

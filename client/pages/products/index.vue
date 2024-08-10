@@ -4,22 +4,12 @@
             <Title>Products</Title>
         </Head>
         <main class="max-w-screen-lg mx-auto">
-            <div
-                class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-5 rounded-t"
-            >
-                <p class="text-black dark:text-gray-300 text-2xl font-bold">
-                    Products
-                </p>
-                <div class="py-1">
-                    <Button
-                        variant="secondary"
-                        size="icon"
-                        class="rounded-full hover:bg-gray-300"
-                    >
-                        <Icon name="mdi:add" size="22" class="text-green-700" />
-                    </Button>
-                </div>
-            </div>
+            <TableHeader title="Products">
+                <template #actions>
+                    <CRUD />
+                </template>
+            </TableHeader>
+
             <DataTable
                 :headers="headers"
                 :data="products"
@@ -33,6 +23,7 @@
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
 import DataTable from '~/components/Table/DataTable.vue';
+import CRUD from '~/components/Table/CRUD.vue';
 
 const headers = [
     { key: 'barcode', label: 'Barcode' },
@@ -65,19 +56,19 @@ const products = [
 const actions = [
     {
         icon: 'edit',
-        handler: (item: any) => {
+        handler: (products: any) => {
             // Define your edit action handler here
-            console.log('Edit item:', item);
+            console.log('Edit item:', products);
         },
-        class: 'bg-blue-500 text-white',
+        class: 'text-green-800',
     },
     {
         icon: 'delete',
-        handler: (item: any) => {
+        handler: (products: any) => {
             // Define your delete action handler here
-            console.log('Delete item:', item);
+            console.log('Delete item:', products);
         },
-        class: 'bg-red-500 text-white',
+        class: 'text-red-800',
     },
 ];
 </script>

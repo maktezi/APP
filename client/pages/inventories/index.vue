@@ -4,22 +4,12 @@
             <Title>Inventories</Title>
         </Head>
         <main class="max-w-screen-lg mx-auto">
-            <div
-                class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-5 rounded-t"
-            >
-                <p class="text-black dark:text-gray-300 text-2xl font-bold">
-                    Inventories
-                </p>
-                <div class="py-1">
-                    <Button
-                        variant="secondary"
-                        size="icon"
-                        class="rounded-full hover:bg-gray-300"
-                    >
-                        <Icon name="mdi:add" size="22" class="text-green-700" />
-                    </Button>
-                </div>
-            </div>
+            <TableHeader title="Inventories">
+                <template #actions>
+                    <TableCRUD />
+                </template>
+            </TableHeader>
+
             <DataTable
                 :headers="headers"
                 :data="inventories"
@@ -31,7 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from '~/components/ui/button';
 import DataTable from '~/components/Table/DataTable.vue';
 
 const headers = [
@@ -105,14 +94,14 @@ const actions = [
         handler: (inventory: any) => {
             console.log('Edit Inventory:', inventory);
         },
-        class: 'bg-blue-500 text-white',
+        class: 'text-green-800',
     },
     {
         icon: 'delete',
         handler: (inventory: any) => {
             console.log('Delete Inventory:', inventory);
         },
-        class: 'bg-red-500 text-white',
+        class: 'text-red-800',
     },
 ];
 </script>

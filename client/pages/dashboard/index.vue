@@ -4,10 +4,8 @@
             <Title>Dashboard</Title>
         </Head>
 
-        <main>
-            <div>
-                <p class="text-3xl font-bold">Dashboard</p>
-            </div>
+        <main class="max-w-screen-lg mx-auto">
+            <TableHeader title="Dashboard" />
             <Card class="px-2 py-5 mt-6 w-96 flex m-auto">
                 <div class="flex flex-col">
                     <p>Total Sales</p>
@@ -18,5 +16,5 @@
 </template>
 
 <script setup lang="ts">
-import {Card} from "~/components/ui/card";
+import { Card } from '~/components/ui/card';
 </script>

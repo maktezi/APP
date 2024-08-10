@@ -4,6 +4,8 @@
             <Title>POS</Title>
         </Head>
 
+        <TableHeader title="Point of Sales" class="rounded mb-2 py-2" />
+
         <div
             class="relative h-[718px] block xl:flex justify-center m-auto items-center gap-1 w-full"
         >

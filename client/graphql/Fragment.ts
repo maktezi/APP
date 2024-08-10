@@ -5,11 +5,18 @@ export const userFragment = gql`
         id
         name
         email
-        jobs {
-            title
-            status
-        }
+        #        jobs {
+        #            title
+        #            status
+        #        }
         created_at
         updated_at
+    }
+`;
+
+export const jobFragment = gql`
+    fragment job on Job {
+        id
+        title
     }
 `;

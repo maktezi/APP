@@ -4,26 +4,16 @@
             <Title>Customers</Title>
         </Head>
         <main class="max-w-screen-lg mx-auto">
-            <div
-                class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-5 rounded-t"
-            >
-                <p class="text-black dark:text-gray-300 text-2xl font-bold">
-                    Customers
-                </p>
-                <div class="py-1">
-                    <Button
-                        variant="secondary"
-                        size="icon"
-                        class="rounded-full hover:bg-gray-300"
-                    >
-                        <Icon name="mdi:add" size="22" class="text-green-700" />
-                    </Button>
-                </div>
-            </div>
+            <TableHeader title="Customers">
+                <template #actions>
+                    <TableCRUD />
+                </template>
+            </TableHeader>
+
             <DataTable
                 :headers="headers"
-                :data="customers"
-                :primary-key="'customer_code'"
+                :data="usersData"
+                :primary-key="'id'"
                 :actions="actions"
             />
         </main>
@@ -33,49 +23,52 @@
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
 import DataTable from '~/components/Table/DataTable.vue';
+import { usersPaginate } from '~/graphql/User';
+
+const usersData = ref([]);
+
+const fetchUsersPaginate = (first: number, page: number) => {
+    const { result } = useQuery(usersPaginate, {
+        first,
+        page,
+    });
+
+    watch(
+        () => ({
+            result: result.value,
+        }),
+        ({ result }) => {
+            if (result) {
+                usersData.value = result.usersPaginate.data;
+            }
+        },
+        { immediate: true },
+    );
+};
+onMounted(() => {
+    fetchUsersPaginate(10, 1);
+});
 
 const headers = [
-    { key: 'customer_code', label: 'Customer code' },
+    { key: 'id', label: 'ID' },
     { key: 'name', label: 'Name' },
-    { key: 'points', label: 'Points' },
-    { key: 'is_active', label: 'Is Active' },
-];
-
-const customers = [
-    {
-        customer_code: '120391201',
-        name: 'Yow Wan Zow',
-        points: 100,
-        is_active: 'No',
-    },
-    {
-        customer_code: '120112231',
-        name: 'Zuan Merks',
-        points: 100,
-        is_active: 'Yes',
-    },
-    {
-        customer_code: '120451261',
-        name: 'Juan Walow',
-        points: 100,
-        is_active: 'Yes',
-    },
+    { key: 'email', label: 'Email' },
 ];
 
 const actions = [
     {
-        icon: 'edit',
-        handler: (customer: any) => {
-            console.log('Edit Customer:', customer);
+        icon: 'mdi:edit',
+        handler: (user: User) => {
+            alert('edit');
         },
-        class: 'bg-blue-500 text-white',
+        class: 'text-green-800',
     },
     {
-        icon: 'delete',
-        handler: (customer: any) => {
-            console.log('Delete Customer:', customer);
+        icon: 'mdi:delete',
+        handler: (user: User) => {
+            alert('delete');
         },
-        class: 'bg-red-500 text-white',
+        class: 'text-red-800',
     },
 ];
 </script>
