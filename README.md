@@ -39,7 +39,6 @@ php artisan db:seed
 ### 5. Then install npm
 ```
 npm install
-npm install --save-dev concurrently
 ```
 
 ### 6. Then run the server
