@@ -1,0 +1,28 @@
+type Product {
+    id: ID!
+    name: String!
+    inventories: [Inventory] @hasMany
+    description: String
+    sku: String
+    price: Float
+    created_at: DateTime
+    updated_at: DateTime
+}
+
+input ProductInput {
+    id: ID
+    name: String!
+    inventories: [InventoryInput]
+    description: String
+    sku: String
+    price: Float
+}
+
+extend type Query {
+    productsPaginate: [Product!]! @paginate
+}
+
+extend type Mutation {
+    upsertProduct(input: ProductInput! @spread): Product @upsert #@can(ability: "upsert")
+    deleteProduct(id: [ID!] @eq): [Product] @delete #@can(ability: "delete", find: "id")
+}

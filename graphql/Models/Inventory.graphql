@@ -1,0 +1,24 @@
+type Inventory {
+    id: ID!
+    product: Product @belongsTo
+    qty: Int
+    location: String
+    created_at: DateTime
+    updated_at: DateTime
+}
+
+input InventoryInput {
+    id: ID
+    product_id: ID
+    qty: Int
+    location: String
+}
+
+extend type Query {
+    inventoriesPaginate: [Inventory!]! @paginate
+}
+
+extend type Mutation {
+    upsertInventory(input: InventoryInput! @spread): Inventory @upsert #@can(ability: "upsert")
+    deleteInventory(id: [ID!] @eq): [Inventory] @delete #@can(ability: "delete", find: "id")
+}
