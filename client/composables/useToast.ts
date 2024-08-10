@@ -1,11 +1,13 @@
+import type { ToastOptions } from 'vue3-toastify';
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 
-export function toasts(message: string, type: any) {
+export function toasts(message: string, options?: ToastOptions) {
     toast(message, {
-        theme: 'auto',
-        type: 'success',
-        position: 'bottom-right',
-        autoClose: 2000,
+        theme: options?.theme || 'auto',
+        position: options?.position || 'bottom-right',
+        autoClose: options?.autoClose !== undefined ? options.autoClose : 2000,
+        type: options?.type,
+        ...options,
     });
 }

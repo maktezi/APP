@@ -1,17 +1,21 @@
 import { toasts } from './useToast';
 
 export const deleteCartItem = () => {
-    toasts('Successfully Deleted!', 'error');
+    toasts('Successfully Deleted!', { type: 'error' });
 };
+
 export const cartClear = () => {
-    toasts('Cart cleared!', 'error');
+    toasts('Cart cleared!', { type: 'error' });
 };
+
 export const paymentSelect = () => {
-    toasts('Successfully Paid!', 'info');
+    toasts('Successfully Paid!', { type: 'success' });
 };
+
 export const addProductToCart = () => {
-    toasts('Added Item!', 'success');
+    toasts('Added Item!', { type: 'success' });
 };
-export const removeProductToCart = () => {
-    toasts('Item Removed!', 'warning');
+
+export const removeProductFromCart = () => {
+    toasts('Item Removed!', { type: 'warning' });
 };

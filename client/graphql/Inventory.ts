@@ -1,4 +1,7 @@
-import { InventoryFragment } from "./Fragment"; }
+import { InventoryFragment } from "./Fragment";
+import gql from 'graphql-tag';
+
+}
 
 export const inventoriesPaginate = gql`
     query inventoriesPaginate($first: Int!, $page: Int) {
@@ -19,3 +22,11 @@ export const upsertInventory = gql`
     }
     ${InventoryFragment}
 `
+
+export const deleteInventory = gql`
+    mutation deleteInventory($id: [ID!]) {
+        deleteInventory(id: $id) {
+            id
+        }
+    }
+`;

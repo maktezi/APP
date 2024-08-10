@@ -28,7 +28,7 @@
                     <TableCell>₱ {{ currencyFormat(product.price) }}</TableCell>
                     <TableCell>
                         <div class="flex items-center justify-between">
-                            <button @click="removeProductToCart()">
+                            <button @click="removeProductFromCart()">
                                 <RemoveIcon />
                             </button>
                             {{ qtyFormat(product.qty) }}
@@ -61,7 +61,7 @@ import { currencyFormat, qtyFormat } from '~/utils/pos';
 import {
     deleteCartItem,
     addProductToCart,
-    removeProductToCart,
+    removeProductFromCart,
 } from '~/composables/usePos';
 import AddIcon from '~/components/pos/icons/AddIcon.vue';
 import RemoveIcon from '~/components/pos/icons/RemoveIcon.vue';

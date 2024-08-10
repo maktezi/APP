@@ -6,10 +6,8 @@ export const userFragment = gql`
         name
         email
         password
-        #        jobs {
-        #            title
-        #            status
-        #        }
+        created_at
+        updated_at
     }
 `;
 
@@ -29,6 +27,8 @@ export const InventoryFragment = gql`
         }
         qty
         location
+        created_at
+        updated_at
     }
 `;
 
@@ -39,5 +39,7 @@ export const ProductFragment = gql`
         description
         sku
         price
+        created_at
+        updated_at
     }
 `;

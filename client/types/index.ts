@@ -1,7 +1,16 @@
 export type User = {
-    id?: string;
+    id?: any;
     name?: string;
     email?: string;
+    password?: string;
+};
+
+export type Product = {
+    id?: any;
+    name?: string;
+    description?: string;
+    sku?: string;
+    price?: number;
 };
 
 export type CrudModalField = {
@@ -28,20 +37,15 @@ export type UsersPaginateResult = {
     };
 };
 
-export type UpsertUserInput = {
-    id?: string | null;
-    name?: string;
-    email?: string;
-    password?: string;
-};
-
-export type DeleteUserInput = {
-    id?: string[];
+export type ProductsPaginateResult = {
+    productsPaginate?: {
+        data?: User[];
+    };
 };
 
 export type Field = {
     name?: string;
     label?: string;
-    type?: 'text' | 'email' | 'textarea';
+    type?: 'text' | 'email' | 'textarea' | 'float' | 'number';
     required?: boolean;
 };

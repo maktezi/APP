@@ -1,3 +1,4 @@
+import gql from 'graphql-tag';
 import { ProductFragment } from '~/graphql/Fragment';
 
 export const productsPaginate = gql`
@@ -18,4 +19,12 @@ export const upsertProduct = gql`
         }
     }
     ${ProductFragment}
+`;
+
+export const deleteProduct = gql`
+    mutation deleteProduct($id: [ID!]) {
+        deleteProduct(id: $id) {
+            id
+        }
+    }
 `;

@@ -1,7 +1,7 @@
 <template>
     <div
         v-if="visible"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+        class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center"
     >
         <div
             class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-lg p-6"
@@ -29,7 +29,11 @@
                         {{ field.label }}
                     </label>
                     <input
-                        v-if="field.type === 'text' || field.type === 'email'"
+                        v-if="
+                            field.type === 'text' ||
+                            field.type === 'email' ||
+                            field.type === 'number'
+                        "
                         :id="field.name"
                         v-model="form[field.name]"
                         :type="field.type"

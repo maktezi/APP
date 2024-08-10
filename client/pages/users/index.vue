@@ -52,8 +52,6 @@ import type {
     Action,
     Headers,
     UsersPaginateResult,
-    UpsertUserInput,
-    DeleteUserInput,
 } from '~/types';
 
 const usersData = ref<User[]>([]);
@@ -70,22 +68,16 @@ const crudModalFields = ref<CrudModalField[]>([
 ]);
 
 // Mutations
-const { mutate: upsertUserMutation } = useMutation<UpsertUserInput>(
-    upsertUser,
-    {
-        refetchQueries: [
-            { query: usersPaginate, variables: { first: 10, page: 1 } },
-        ],
-    },
-);
-const { mutate: deleteUserMutation } = useMutation<DeleteUserInput>(
-    deleteUser,
-    {
-        refetchQueries: [
-            { query: usersPaginate, variables: { first: 10, page: 1 } },
-        ],
-    },
-);
+const { mutate: upsertUserMutation } = useMutation<User>(upsertUser, {
+    refetchQueries: [
+        { query: usersPaginate, variables: { first: 10, page: 1 } },
+    ],
+});
+const { mutate: deleteUserMutation } = useMutation<User>(deleteUser, {
+    refetchQueries: [
+        { query: usersPaginate, variables: { first: 10, page: 1 } },
+    ],
+});
 
 // CRUD Functions
 const openCreateUserModal = () => {
@@ -111,7 +103,7 @@ const handleCrudSubmit = async (formData: {
     if (formData.password) {
         hashedPassword = await bcrypt.hash(formData.password, 10);
     }
-    const input: UpsertUserInput = {
+    const input: User = {
         id: selectedUser.value ? selectedUser.value.id : null,
         name: formData.name,
         email: formData.email,
@@ -120,12 +112,13 @@ const handleCrudSubmit = async (formData: {
 
     try {
         await upsertUserMutation({ input });
-        toasts(`User ${selectedUser.value ? 'updated' : 'created'}.`, 'succes');
+        toasts(`User ${selectedUser.value ? 'updated' : 'created'}.`, {
+            type: 'success',
+        });
         closeCrudModal();
         fetchUsersPaginate(10, 1);
     } catch (err) {
-        console.error('Error updating user:', err);
-        toasts('Failed to save user. Please try again.', 'error');
+        toasts(`Error updating user.\n${err}`, { type: 'error' });
     }
 };
 
@@ -180,13 +173,16 @@ const actions: Action[] = [
                     usersData.value = usersData.value.filter(
                         (u) => u.id !== user.id,
                     );
-                    toasts(`User ${user.name} deleted.`, 'success');
-                } catch (error) {
-                    console.error('Error deleting user:', error);
-                    toasts('Failed to delete user. Please try again.', 'error');
+                    toasts(`User ${user.name} deleted.`, { type: 'success' });
+                } catch (err) {
+                    console.error('Error deleting user:', err);
+                    toasts(
+                        `Failed to delete user. Please try again.\n ${err}`,
+                        { type: 'success' },
+                    );
                 }
             } else {
-                toasts('User deletion canceled.', 'warning');
+                toasts('User deletion canceled.', { type: 'warning' });
             }
         },
         class: 'text-red-800',
