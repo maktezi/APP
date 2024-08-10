@@ -1,8 +1,8 @@
-# Laravel Nuxt Template Boilerplate
+# Laravel Nuxt APP
 
 ## Introduction
 
-Boilerplate with Laravel framework and NuxtJS. These instructions will guide you through setting up the project on your local development environment.
+Laravel framework and NuxtJS simple application. These instructions will guide you through setting up the project on your local development environment.
 
 ### Prerequisites
 
