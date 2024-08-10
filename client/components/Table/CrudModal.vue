@@ -61,13 +61,7 @@
 <script setup lang="ts">
 import { ref, watch, defineProps, defineEmits } from 'vue';
 import { Button } from '~/components/ui/button';
-
-type Field = {
-    name: string;
-    label: string;
-    type: 'text' | 'email' | 'textarea';
-    required?: boolean;
-};
+import type { Field } from '~/types';
 
 const props = defineProps({
     visible: Boolean,

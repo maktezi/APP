@@ -54,7 +54,7 @@ import type {
     UsersPaginateResult,
     UpsertUserInput,
     DeleteUserInput,
-} from '~/types/types';
+} from '~/types';
 
 const usersData = ref<User[]>([]);
 const selectedUser = ref<User | null>(null);
@@ -68,14 +68,6 @@ const crudModalFields = ref<CrudModalField[]>([
     { name: 'email', label: 'Email', type: 'email', required: true },
     { name: 'password', label: 'Password', type: 'text' },
 ]);
-
-const { result, loading, error } = useQuery<UsersPaginateResult>(
-    usersPaginate,
-    {
-        first: 10,
-        page: 1,
-    },
-);
 
 // Mutations
 const { mutate: upsertUserMutation } = useMutation<UpsertUserInput>(

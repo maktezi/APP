@@ -38,3 +38,10 @@ export type UpsertUserInput = {
 export type DeleteUserInput = {
     id?: string[];
 };
+
+export type Field = {
+    name?: string;
+    label?: string;
+    type?: 'text' | 'email' | 'textarea';
+    required?: boolean;
+};
