@@ -13,6 +13,13 @@ export type Product = {
     price?: number;
 };
 
+export type Inventory = {
+    id?: any;
+    product_id?: string;
+    qty?: string;
+    location?: string;
+};
+
 export type CrudModalField = {
     name?: string;
     label?: string;

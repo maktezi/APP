@@ -63,7 +63,7 @@ const {
     showCrudModal,
     crudModalTitle,
     crudModalButtonText,
-    crudModalFields: crudFields,
+    crudModalFields,
     openCreateModal,
     openEditModal,
     handleCrudSubmit,

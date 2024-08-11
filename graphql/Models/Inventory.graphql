@@ -1,6 +1,7 @@
 type Inventory {
     id: ID!
     product: Product @belongsTo
+    product_id: Int,
     qty: Int
     location: String
     created_at: DateTime
@@ -15,7 +16,7 @@ input InventoryInput {
 }
 
 extend type Query {
-    inventoriesPaginate: [Inventory!]! @paginate
+    inventorysPaginate: [Inventory!]! @paginate
 }
 
 extend type Mutation {

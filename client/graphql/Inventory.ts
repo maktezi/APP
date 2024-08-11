@@ -3,9 +3,9 @@ import gql from 'graphql-tag';
 
 }
 
-export const inventoriesPaginate = gql`
-    query inventoriesPaginate($first: Int!, $page: Int) {
-        inventoriesPaginate(first: $first, page: $page) {
+export const inventorysPaginate = gql`
+    query inventorysPaginate($first: Int!, $page: Int) {
+        inventorysPaginate(first: $first, page: $page) {
             data {
                 ...inventory
             }
