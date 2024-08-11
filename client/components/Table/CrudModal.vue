@@ -21,7 +21,11 @@
             </div>
 
             <form @submit.prevent="handleSubmit">
-                <div v-for="(field, index) in fields" :key="index" class="mb-4">
+                <div
+                    v-for="(field, index) in fields"
+                    :key="index"
+                    class="mb-4 px-4"
+                >
                     <label
                         :for="field.name"
                         class="block text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -38,22 +42,25 @@
                         v-model="form[field.name]"
                         :type="field.type"
                         :required="field.required"
-                        class="mt-1 block w-full rounded-md border-gray-300 p-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
+                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300"
                     />
                     <textarea
                         v-if="field.type === 'textarea'"
                         :id="field.name"
                         v-model="form[field.name]"
                         :required="field.required"
-                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
+                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300"
                     />
                 </div>
 
-                <div class="flex justify-end space-x-2">
+                <div class="flex justify-end space-x-2 px-4">
                     <Button variant="ghost" @click="closeModal">
                         Cancel
                     </Button>
-                    <Button type="submit">
+                    <Button
+                        type="submit"
+                        class="bg-green-700 hover:bg-green-500 rounded-full"
+                    >
                         {{ submitButtonText }}
                     </Button>
                 </div>

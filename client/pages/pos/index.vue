@@ -1,11 +1,9 @@
 <template>
-    <NuxtLayout name="app-layout">
+    <NuxtLayout name="pos">
         <Head>
             <Title>POS</Title>
         </Head>
-
-        <TableHeader title="Point of Sales" class="rounded mb-2 py-2" />
-
+        <TableHeader title="Point of Sales" class="mb-2 py-2" />
         <div
             class="relative h-[718px] block md:flex justify-center m-auto items-center gap-1 w-full"
         >
