@@ -1,4 +1,7 @@
 export function getPluralEntityName(entityName: string): string {
+    if (entityName.endsWith('y')) {
+        return entityName.slice(0, -1) + 'ies';
+    }
     return entityName.endsWith('s') ? entityName : `${entityName}s`;
 }
 

@@ -4,7 +4,7 @@
         class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center"
     >
         <div
-            class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-lg p-6"
+            class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-lg p-6 relative"
         >
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-xl font-bold text-gray-900 dark:text-gray-200">
@@ -24,7 +24,7 @@
                 <div
                     v-for="(field, index) in fields"
                     :key="index"
-                    class="mb-4 px-4"
+                    class="relative mb-4 px-4"
                 >
                     <label
                         :for="field.name"
@@ -32,18 +32,26 @@
                     >
                         {{ field.label }}
                     </label>
+
+                    <!-- Input Field -->
                     <input
                         v-if="
                             field.type === 'text' ||
                             field.type === 'email' ||
-                            field.type === 'number'
+                            field.type === 'number' ||
+                            field.type === 'password' ||
+                            field.type === 'float'
                         "
                         :id="field.name"
                         v-model="form[field.name]"
-                        :type="field.type"
+                        :type="getInputType(field)"
                         :required="field.required"
+                        :min="field.min"
+                        :max="field.max"
+                        :step="field.step"
                         class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300"
                     />
+
                     <textarea
                         v-if="field.type === 'textarea'"
                         :id="field.name"
@@ -51,6 +59,27 @@
                         :required="field.required"
                         class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300"
                     />
+
+                    <!-- Checkbox Field -->
+                    <input
+                        v-if="field.type === 'checkbox'"
+                        :id="field.name"
+                        v-model="form[field.name]"
+                        type="checkbox"
+                        :required="field.required"
+                        class="mt-1 mr-2 rounded-md border-none outline-none shadow-sm sm:text-sm"
+                    />
+
+                    <!-- Toggle button for password visibility -->
+                    <button
+                        v-if="field.type === 'password'"
+                        type="button"
+                        class="absolute right-0 top-0 mt-3 mr-4 text-gray-500 dark:text-gray-300"
+                        @click="togglePasswordVisibility(field.name)"
+                    >
+                        <span v-if="!showPassword[field.name]">👁️</span>
+                        <span v-else>👁️‍🗨️</span>
+                    </button>
                 </div>
 
                 <div class="flex justify-end space-x-2 px-4">
@@ -70,7 +99,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, defineProps, defineEmits } from 'vue';
+import { ref, watch } from 'vue';
 import { Button } from '~/components/ui/button';
 import type { Field } from '~/types';
 
@@ -94,6 +123,7 @@ const props = defineProps({
     },
 });
 
+const showPassword = ref<Record<string, boolean>>({});
 const emit = defineEmits(['submit', 'close']);
 const form = ref<Record<string, any>>({});
 
@@ -111,5 +141,19 @@ const handleSubmit = () => {
 
 const closeModal = () => {
     emit('close');
+};
+
+const togglePasswordVisibility = (fieldName: string) => {
+    showPassword.value[fieldName] = !showPassword.value[fieldName];
+};
+
+const getInputType = (field: Field) => {
+    if (field.type === 'password') {
+        return showPassword.value[field.name] ? 'text' : 'password';
+    }
+    if (field.type === 'float') {
+        return 'number';
+    }
+    return field.type;
 };
 </script>

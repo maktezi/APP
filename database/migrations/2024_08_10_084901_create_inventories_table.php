@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('qty')->nullable();
             $table->string('location')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -28,3 +28,11 @@ export const deleteProduct = gql`
         }
     }
 `;
+
+export const restoreProduct = gql`
+    mutation restoreProduct($id: [ID!]) {
+        restoreProduct(id: $id) {
+            id
+        }
+    }
+`;

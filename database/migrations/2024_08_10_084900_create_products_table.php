@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('sku')->nullable();
             $table->decimal('price')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

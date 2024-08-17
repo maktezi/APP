@@ -8,6 +8,7 @@ export const userFragment = gql`
         password
         created_at
         updated_at
+        deleted_at
     }
 `;
 
@@ -15,6 +16,9 @@ export const jobFragment = gql`
     fragment job on Job {
         id
         title
+        created_at
+        updated_at
+        deleted_at
     }
 `;
 
@@ -29,6 +33,7 @@ export const InventoryFragment = gql`
         location
         created_at
         updated_at
+        deleted_at
     }
 `;
 
@@ -41,5 +46,6 @@ export const ProductFragment = gql`
         price
         created_at
         updated_at
+        deleted_at
     }
 `;

@@ -6,6 +6,7 @@ type Inventory {
     location: String
     created_at: DateTime
     updated_at: DateTime
+    deleted_at: DateTime
 }
 
 input InventoryInput {
@@ -16,7 +17,7 @@ input InventoryInput {
 }
 
 extend type Query {
-    inventorysPaginate: [Inventory!]! @paginate
+    inventoriesPaginate: [Inventory!]! @paginate
 }
 
 extend type Mutation {

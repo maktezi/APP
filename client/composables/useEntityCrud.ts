@@ -13,7 +13,7 @@ export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
     const crudModalButtonText = ref('Create');
     const crudModalFields = ref(fields);
 
-    // GraphQL queries and mutations
+    // Dynamic GraphQL queries and mutations
     const PAGINATE_QUERY = gql`
         query ${pluralEntityName}Paginate($first: Int!, $page: Int!) {
             ${pluralEntityName}Paginate(first: $first, page: $page) {
@@ -35,7 +35,9 @@ export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
 
     const DELETE_MUTATION = gql`
         mutation delete${capitalizedSingularName}($id: [ID!]!) {
-            delete${capitalizedSingularName}(id: $id)
+            delete${capitalizedSingularName}(id: $id){
+                id
+            }
         }
     `;
 
@@ -70,7 +72,6 @@ export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
                 key === '__typename' ? undefined : value,
             ),
         );
-
         try {
             await upsertMutation({ input });
             toasts(
@@ -92,7 +93,7 @@ export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
 
     const deleteEntity = async (id: string) => {
         try {
-            await deleteMutation({ id: [id] });
+            await deleteMutation({ id: id });
             entityData.value = entityData.value.filter((e: any) => e.id !== id);
             toasts(`${titleEntityName} deleted.`, { type: 'success' });
         } catch (err) {

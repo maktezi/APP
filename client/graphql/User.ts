@@ -1,10 +1,12 @@
 import gql from 'graphql-tag';
 import { userFragment } from '~/graphql/Fragment';
 
-export const users = gql`
+export const userFilter = gql`
     query users {
         users {
-            ...user
+            id
+            name
+            email
         }
     }
     ${userFragment}
@@ -37,6 +39,14 @@ export const upsertUser = gql`
 export const deleteUser = gql`
     mutation deleteUser($id: [ID!]) {
         deleteUser(id: $id) {
+            id
+        }
+    }
+`;
+
+export const restoreUser = gql`
+    mutation restoreUser($id: [ID!]) {
+        restoreUser(id: $id) {
             id
         }
     }

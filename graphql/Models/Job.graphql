@@ -3,6 +3,9 @@ type Job {
     title: String!
     status: JobStatus!
     user: User @belongsTo
+    created_at: DateTime
+    updated_at: DateTime
+    deleted_at: DateTime
 }
 
 enum JobStatus {

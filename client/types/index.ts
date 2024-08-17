@@ -53,6 +53,13 @@ export type ProductsPaginateResult = {
 export type Field = {
     name?: string;
     label?: string;
-    type?: 'text' | 'email' | 'textarea' | 'float' | 'number';
+    type?:
+        | 'text'
+        | 'email'
+        | 'textarea'
+        | 'float'
+        | 'number'
+        | 'password'
+        | 'checkbox';
     required?: boolean;
 };

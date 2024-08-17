@@ -10,7 +10,7 @@
                 </template>
             </TableHeader>
 
-            <DataTable
+            <TableData
                 :headers="headers"
                 :data="jobsData"
                 :actions="actions"
@@ -21,8 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from '~/components/ui/button';
-import DataTable from '~/components/Table/DataTable.vue';
 import { jobsPaginate } from '~/graphql/Job';
 
 const jobsData = ref([]);

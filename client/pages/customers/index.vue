@@ -10,7 +10,7 @@
                 </template>
             </TableHeader>
 
-            <DataTable
+            <TableData
                 :headers="headers"
                 :data="usersData"
                 :primary-key="'id'"
@@ -22,7 +22,6 @@
 
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
-import DataTable from '~/components/Table/DataTable.vue';
 import { usersPaginate } from '~/graphql/User';
 
 const usersData = ref([]);

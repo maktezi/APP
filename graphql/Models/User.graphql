@@ -7,6 +7,7 @@ type User {
     jobs(status: JobStatus): [Job!]! @hasMany(type: PAGINATOR, scopes: ["userType"])
     created_at: DateTime
     updated_at: DateTime
+    deleted_at: DateTime
 }
 
 input UserInput {
@@ -26,4 +27,5 @@ type Query {
 extend type Mutation {
     upsertUser(input: UserInput! @spread): User @upsert #@can(ability: "upsert")
     deleteUser(id: [ID!] @eq): [User] @delete #@can(ability: "delete", find: "id")
+    restoreUser(id: [ID!] @eq): [User] @restore #@can(ability: "restore", find: "id")
 }

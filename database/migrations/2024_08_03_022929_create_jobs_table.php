@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->tinyInteger('status')->default(0)->comment('0-QUEUED, 1-PROCESSING, 2-COMPLETED');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

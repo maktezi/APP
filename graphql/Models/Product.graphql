@@ -7,6 +7,7 @@ type Product {
     price: Float
     created_at: DateTime
     updated_at: DateTime
+    deleted_at: DateTime
 }
 
 input ProductInput {
@@ -25,4 +26,5 @@ extend type Query {
 extend type Mutation {
     upsertProduct(input: ProductInput! @spread): Product @upsert #@can(ability: "upsert")
     deleteProduct(id: [ID!] @eq): [Product] @delete #@can(ability: "delete", find: "id")
+    restoreProduct(id: [ID!] @eq): [Product] @restore #@can(ability: "restore", find: "id")
 }

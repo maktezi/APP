@@ -21,32 +21,30 @@
             </div>
 
             <template v-else>
-                <DataTable
+                <TableData
                     :headers="entityHeaders"
                     :data="entityData"
                     :actions="actions"
                     primary-key="id"
                 />
-
-                <TableCrudModal
-                    v-if="showCrudModal"
-                    :visible="showCrudModal"
-                    :title="crudModalTitle"
-                    :fields="crudModalFields"
-                    :initial-values="selectedEntity"
-                    :submit-button-text="crudModalButtonText"
-                    @submit="handleCrudSubmit"
-                    @close="closeCrudModal"
-                />
             </template>
+
+            <TableCrudModal
+                v-if="showCrudModal"
+                :visible="showCrudModal"
+                :title="crudModalTitle"
+                :fields="crudModalFields"
+                :initial-values="selectedEntity"
+                :submit-button-text="crudModalButtonText"
+                @submit="handleProductSubmit"
+                @close="closeCrudModal"
+            />
         </main>
     </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-import DataTable from '~/components/Table/DataTable.vue';
 import type { Action, Headers, CrudModalField, Product } from '~/types';
-import { useEntityCrud } from '~/composables/useEntityCrud';
 
 const entityName = 'product';
 const titleCaseEntityName = toTitleCase(entityName);
@@ -98,14 +96,11 @@ const actions: Action[] = [
     },
     {
         icon: 'mdi:delete',
-        handler: async (product: Product) => {
-            if (
-                window.confirm(
-                    `Are you sure you want to delete product ${product.name}?`,
-                )
-            ) {
-                await deleteEntity(product.id);
-            }
+        handler: async (entity: any) => {
+            const confirmed = window.confirm(`Delete ${entity.name}?`);
+            confirmed
+                ? await deleteEntity(entity.id)
+                : toasts('Deletion canceled.', { type: 'warning' });
         },
         class: 'text-red-800',
     },

@@ -21,32 +21,30 @@
             </div>
 
             <template v-else>
-                <DataTable
+                <TableData
                     :headers="entityHeaders"
                     :data="entityData"
                     :actions="actions"
                     primary-key="id"
                 />
-
-                <TableCrudModal
-                    v-if="showCrudModal"
-                    :visible="showCrudModal"
-                    :title="crudModalTitle"
-                    :fields="crudModalFields"
-                    :initial-values="selectedEntity"
-                    :submit-button-text="crudModalButtonText"
-                    @submit="handleCrudSubmit"
-                    @close="closeCrudModal"
-                />
             </template>
+
+            <TableCrudModal
+                v-if="showCrudModal"
+                :visible="showCrudModal"
+                :title="crudModalTitle"
+                :fields="crudModalFields"
+                :initial-values="selectedEntity"
+                :submit-button-text="crudModalButtonText"
+                @submit="handleUserSubmit"
+                @close="closeCrudModal"
+            />
         </main>
     </NuxtLayout>
 </template>
 
 <script setup lang="ts">
 import bcrypt from 'bcryptjs';
-import DataTable from '~/components/Table/DataTable.vue';
-import { useEntityCrud } from '~/composables/useEntityCrud';
 import type { CrudModalField, Action, Headers } from '~/types';
 
 const entityName = 'user';
@@ -55,7 +53,7 @@ const titleCaseEntityName = toTitleCase(entityName);
 const entityFields: CrudModalField[] = [
     { name: 'name', label: 'Name', type: 'text', required: true },
     { name: 'email', label: 'Email', type: 'email', required: true },
-    { name: 'password', label: 'Password', type: 'text' },
+    { name: 'password', label: 'Password', type: 'password' },
 ];
 
 // Use the generic CRUD composable
@@ -96,15 +94,10 @@ const actions: Action[] = [
     {
         icon: 'mdi:delete',
         handler: async (entity: any) => {
-            if (
-                window.confirm(
-                    `Are you sure you want to delete ${entity.name}?`,
-                )
-            ) {
-                await deleteEntity(entity.id);
-            } else {
-                toasts('Deletion canceled.', { type: 'warning' });
-            }
+            const confirmed = window.confirm(`Delete ${entity.name}?`);
+            confirmed
+                ? await deleteEntity(entity.id)
+                : toasts('Deletion canceled.', { type: 'warning' });
         },
         class: 'text-red-800',
     },
