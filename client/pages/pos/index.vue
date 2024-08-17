@@ -3,7 +3,7 @@
         <Head>
             <Title>POS</Title>
         </Head>
-        <TableHeader title="Point of Sales" class="mb-2 py-2" />
+        <PosHeader />
         <div
             class="relative h-[718px] block md:flex justify-center m-auto items-center gap-1 w-full"
         >
@@ -11,11 +11,11 @@
                 class="xl:max-w-2xl m-auto flex-grow flex md:order-2 order-1 mb-4"
             >
                 <Card id="cart" class="w-full border-gray-300 p-0.5">
-                    <CartHeader class="mb-0.5" />
-                    <CartTable class="mb-0.5" :products="products" />
-                    <CartTotal class="mb-0.5" />
-                    <CartTax class="mb-0.5" />
-                    <CartAction />
+                    <PosCartHeader class="mb-0.5" />
+                    <PosCartTable class="mb-0.5" :products="products" />
+                    <PosCartTotal class="mb-0.5" />
+                    <PosCartTax class="mb-0.5" />
+                    <PosCartAction />
                 </Card>
             </div>
             <Card
@@ -29,13 +29,9 @@
 
 <script setup lang="ts">
 // definePageMeta({ middleware: ["auth"] });
-
-import CartHeader from '~/components/pos/CartHeader.vue';
-import CartTable from '~/components/pos/CartTable.vue';
-import CartTotal from '~/components/pos/CartTotal.vue';
-import CartAction from '~/components/pos/CartAction.vue';
 import { Card } from '~/components/ui/card';
-import CartTax from '~/components/pos/CartTax.vue';
+
+const router = useRouter();
 
 const products = [
     {

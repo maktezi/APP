@@ -6,14 +6,6 @@
                 <div class="flex ml-3">
                     <AppSidebar />
                 </div>
-                <!--        <div class="flex mt-auto mb-auto ml-20 text-white font-bold text-2xl">-->
-                <!--          <p class="hidden lg:flex w-[250px]">-->
-                <!--            Point of Sales-->
-                <!--          </p>-->
-                <!--          <p class="lg:hidden sm:flex w-[100px]">-->
-                <!--            POS-->
-                <!--          </p>-->
-                <!--        </div>-->
                 <!-- Settings Dropdown  -->
                 <div
                     class="flex items-center bg-red-900 pl-6 pr-4 rounded-l-full"
@@ -23,7 +15,7 @@
                             <button
                                 class="flex items-center text-sm font-medium text-white hover:text-gray-700 focus:outline-none transition duration-250 ease-in-out"
                             >
-                                <!--                 <div>{{ user?.name }}</div>-->
+                                <!--                 <div>{{ user?.name }}</div> -->
                                 <div>Super A. Admin</div>
 
                                 <div class="ml-1">
@@ -42,9 +34,9 @@
                             </button>
                         </template>
                         <!-- Authentication  -->
-                        <!--            <DropdownButton @click="logout">-->
-                        <!--              Logout-->
-                        <!--            </DropdownButton>-->
+                        <!--            <DropdownButton @click="logout"> -->
+                        <!--              Logout -->
+                        <!--            </DropdownButton> -->
                         <DropdownButton>
                             <a href="/">Logout</a>
                         </DropdownButton>
@@ -71,7 +63,7 @@ import {
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from '@/components/ui/tooltip';
 
 const user = ref();
 const open = ref(false);

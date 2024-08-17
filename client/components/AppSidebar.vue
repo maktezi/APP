@@ -22,14 +22,14 @@
                 </div>
             </DrawerHeader>
             <div class="px-4 grow mt-5 w-full">
-                <div class="grid gap-1">
+                <div class="grid">
                     <NuxtLink
                         v-for="(link, index) in Object.values(links)"
                         :key="index"
                         :to="link.path"
                         class="flex w-full items-center gap-4 px-6 py-3 transition rounded-md cursor-pointer hover:bg-red-400 dark:hover:bg-red-900"
                     >
-                        <Icon size="18" :name="link.icon" />
+                        <Icon size="20" :name="link.icon" />
                         <span class="text-sm font-semibold">{{
                             link.title
                         }}</span>
