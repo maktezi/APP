@@ -30,6 +30,7 @@
 <script setup lang="ts">
 // definePageMeta({ middleware: ["auth"] });
 import { Card } from '~/components/ui/card';
+import DataTable from '~/components/Table/DataTable.vue';
 
 const router = useRouter();
 

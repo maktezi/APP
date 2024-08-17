@@ -20,24 +20,25 @@
                 <p class="text-gray-500 dark:text-gray-300">No data.</p>
             </div>
 
-            <DataTable
-                v-else
-                :headers="entityHeaders"
-                :data="entityData"
-                :actions="actions"
-                primary-key="id"
-            />
+            <template v-else>
+                <DataTable
+                    :headers="entityHeaders"
+                    :data="entityData"
+                    :actions="actions"
+                    primary-key="id"
+                />
 
-            <TableCrudModal
-                v-if="showCrudModal"
-                :visible="showCrudModal"
-                :title="crudModalTitle"
-                :fields="crudModalFields"
-                :initial-values="selectedEntity"
-                :submit-button-text="crudModalButtonText"
-                @submit="handleCrudSubmit"
-                @close="closeCrudModal"
-            />
+                <TableCrudModal
+                    v-if="showCrudModal"
+                    :visible="showCrudModal"
+                    :title="crudModalTitle"
+                    :fields="crudModalFields"
+                    :initial-values="selectedEntity"
+                    :submit-button-text="crudModalButtonText"
+                    @submit="handleCrudSubmit"
+                    @close="closeCrudModal"
+                />
+            </template>
         </main>
     </NuxtLayout>
 </template>

@@ -49,7 +49,6 @@ import {
 } from '@/components/ui/drawer';
 import { Button } from '~/components/ui/button';
 
-const router = useRouter();
 const { links } = useLinks();
 
 const isDrawerOpen = ref(false);
