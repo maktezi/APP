@@ -16,7 +16,7 @@
             </Button>
             <p class="text-gray-100 text-2xl font-bold">
                 <span class="block sm:hidden">POS</span>
-                <span class="hidden sm:block">Point of Sales</span>
+                <span class="hidden sm:block">Point of Sale</span>
             </p>
         </div>
         <div class="flex items-center gap-2 justify-between">

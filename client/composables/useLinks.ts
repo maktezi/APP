@@ -31,19 +31,14 @@ const sidebarLinks: LinkItem[] = [
         icon: 'ic:baseline-inventory',
     },
     {
-        title: 'Customers',
-        path: '/customers',
-        icon: 'fluent:people-team-24-filled',
-    },
-    {
-        title: 'POS',
-        path: '/pos',
-        icon: 'mdi:monitor-dashboard',
-    },
-    {
         title: 'Inventory',
         path: '/inventories',
         icon: 'ic:twotone-inventory',
+    },
+    {
+        title: 'Point of Sale',
+        path: '/pos',
+        icon: 'mdi:monitor-dashboard',
     },
     {
         title: 'Users',
@@ -51,9 +46,34 @@ const sidebarLinks: LinkItem[] = [
         icon: 'mdi:users',
     },
     {
+        title: 'Customers',
+        path: '/customers',
+        icon: 'fluent:people-team-24-filled',
+    },
+    {
         title: 'Jobs',
         path: '/jobs',
-        icon: 'hugeicons:job-search',
+        icon: 'mdi:calendar-check',
+    },
+    {
+        title: 'Messages',
+        path: '#',
+        icon: 'mdi:message-text',
+    },
+    {
+        title: 'Online Forms',
+        path: '#',
+        icon: 'fluent:form-24-filled',
+    },
+    {
+        title: 'Reports',
+        path: '#',
+        icon: 'mdi:file-chart',
+    },
+    {
+        title: 'Settings',
+        path: '#',
+        icon: 'fluent:settings-24-filled',
     },
 ];
 

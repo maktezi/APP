@@ -21,7 +21,7 @@
                     </Button>
                 </div>
             </DrawerHeader>
-            <div class="px-4 grow mt-5 w-full">
+            <div class="px-4 grow mt-3 w-full">
                 <div class="grid">
                     <NuxtLink
                         v-for="(link, index) in Object.values(links)"

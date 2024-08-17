@@ -72,13 +72,24 @@
 
                     <!-- Toggle button for password visibility -->
                     <button
-                        v-if="field.type === 'password'"
+                        v-if="field.type === 'password' && form[field.name]"
                         type="button"
-                        class="absolute right-0 top-0 mt-3 mr-4 text-gray-500 dark:text-gray-300"
+                        class="absolute top-5 right-3 mt-3 mr-4 text-gray-500 dark:text-gray-300"
                         @click="togglePasswordVisibility(field.name)"
                     >
-                        <span v-if="!showPassword[field.name]">👁️</span>
-                        <span v-else>👁️‍🗨️</span>
+                        <Icon
+                            :class="
+                                showPassword[field.name]
+                                    ? 'text-red-500'
+                                    : 'text-gray-500'
+                            "
+                            :name="
+                                showPassword[field.name]
+                                    ? 'mdi:eye-off'
+                                    : 'mdi:eye'
+                            "
+                            size="20"
+                        />
                     </button>
                 </div>
 
