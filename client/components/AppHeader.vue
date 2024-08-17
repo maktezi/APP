@@ -16,7 +16,7 @@
                                 class="flex items-center text-sm font-medium text-white hover:text-gray-700 focus:outline-none transition duration-250 ease-in-out"
                             >
                                 <!--                 <div>{{ user?.name }}</div> -->
-                                <div>Super A. Admin</div>
+                                <div>Super User</div>
 
                                 <div class="ml-1">
                                     <svg
@@ -38,7 +38,12 @@
                         <!--              Logout -->
                         <!--            </DropdownButton> -->
                         <DropdownButton>
-                            <a href="/">Logout</a>
+                            <Button
+                                class="flex items-center gap-1 justify-center"
+                            >
+                                <Icon name="ri:logout-circle-line" size="25" />
+                                <a href="/">Logout</a>
+                            </Button>
                         </DropdownButton>
                     </Dropdown>
                     <TooltipProvider>

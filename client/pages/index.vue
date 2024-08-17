@@ -19,12 +19,12 @@
         </div>
     </div>
     <div class="flex m-auto justify-center">
-        <img alt="img" src="../assets/working.gif"/>
+        <img alt="img" src="../assets/working.gif" />
     </div>
 </template>
 
 <script setup lang="ts">
-import {Button} from "~/components/ui/button";
+import { Button } from '~/components/ui/button';
 
 definePageMeta({
     layout: false,
