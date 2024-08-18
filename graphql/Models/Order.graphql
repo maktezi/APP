@@ -1,0 +1,48 @@
+type Order {
+    id: ID!
+    customer: Customer @belongsTo
+    customer_id: ID!
+    order_date: DateTime!
+    total_amount: Float!
+    status: OrderStatus!
+    created_at: DateTime
+    updated_at: DateTime
+    deleted_at: DateTime
+}
+
+input OrderInput {
+    id: ID
+    customer_id: ID
+    customer: ConnectOrderRelation
+    order_date: DateTime
+    total_amount: Float
+    status: OrderStatus
+}
+
+input ConnectOrderRelation {
+    connect: ID
+    create: [OrderInput!]
+    update: [OrderInput!]
+    delete: [ID]
+}
+
+enum OrderStatus {
+    PENDING @enum(value: 0)
+    COMPLETED @enum(value: 1)
+    CANCELLED @enum(value: 2)
+}
+
+extend type Query {
+    orders(
+        search: String @scope(name: "search")
+    ): [Order!]! @all #@can(ability: "read")
+    ordersPaginate(
+        search: String @scope(name: "search")
+    ): [Order!]! @paginate #@can(ability: "read")
+}
+
+extend type Mutation {
+    upsertOrder(input: OrderInput! @spread): Order @upsert #@can(ability: "upsert")
+    deleteOrder(id: [ID!] @eq): [Order] @delete #@can(ability: "delete", find: "id")
+    restoreOrder(id: [ID!] @eq): [Order] @restore #@can(ability: "restore", find: "id")
+}

@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-2 rounded-t"
+        class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-4 rounded-t"
     >
         <p class="text-black dark:text-gray-300 text-2xl font-bold">
             {{ title }}

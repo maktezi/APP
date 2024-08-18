@@ -1,20 +1,37 @@
 export type User = {
-    id?: any;
+    id?: string;
     name?: string;
     email?: string;
     password?: string;
 };
 
 export type Product = {
-    id?: any;
+    id?: string;
     name?: string;
     description?: string;
     sku?: string;
     price?: number;
 };
 
+export type Order = {
+    id?: string;
+    name?: string;
+    description?: string;
+    sku?: string;
+    price?: number;
+};
+
+export type Customer = {
+    id?: string;
+    first_name?: string;
+    last_name?: string;
+    email?: string;
+    phone_number?: string;
+    loyalty_points?: number;
+};
+
 export type Inventory = {
-    id?: any;
+    id?: string;
     product_id?: string;
     qty?: string;
     location?: string;

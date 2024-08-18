@@ -45,16 +45,14 @@
 </template>
 
 <script setup lang="ts">
-import type { Action, Headers, CrudModalField, Product } from '~/types';
+import type { Action, Headers, CrudModalField, Order } from '~/types';
 
-const entityName = 'product';
+const entityName = 'order';
 const titleCaseEntityName = toTitleCase(entityName);
 
 const entityFields: CrudModalField[] = [
-    { name: 'name', label: 'Name', type: 'text', required: true },
-    { name: 'description', label: 'Description', type: 'textarea' },
-    { name: 'sku', label: 'SKU', type: 'text' },
-    { name: 'price', label: 'Price', type: 'number' },
+    { name: 'customer_id', label: 'Customer', type: 'text', required: true },
+    { name: 'total_amount', label: 'Total Amount', type: 'number' },
 ];
 
 const {
@@ -81,17 +79,17 @@ const handleProductSubmit = async (formData: any) => {
 
 const entityHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
-    { key: 'name', label: 'Name' },
-    { key: 'description', label: 'Description' },
-    { key: 'sku', label: 'SKU' },
-    { key: 'price', label: 'Price' },
+    { key: 'customer_id', label: 'Customer' },
+    { key: 'total_amount', label: 'Total Amount' },
+    { key: 'order_date', label: 'Order Date' },
+    { key: 'status', label: 'Status' },
 ];
 
 const actions: Action[] = [
     {
         icon: 'mdi:edit',
-        handler: (product: Product) => {
-            openEditModal(product);
+        handler: (order: Order) => {
+            openEditModal(order);
         },
         class: 'text-blue-500',
     },

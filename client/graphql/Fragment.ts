@@ -49,3 +49,40 @@ export const ProductFragment = gql`
         deleted_at
     }
 `;
+
+export const CustomerFragment = gql`
+    fragment customer on Customer {
+        id
+        first_name
+        last_name
+        email
+        phone_number
+        loyalty_points
+        created_at
+        updated_at
+        deleted_at
+    }
+`;
+
+export const OrderFragment = gql`
+    fragment order on Order {
+        id
+        customer {
+            id
+            first_name
+            last_name
+            email
+            phone_number
+            loyalty_points
+            created_at
+            updated_at
+            deleted_at
+        }
+        order_date
+        total_amount
+        status
+        created_at
+        updated_at
+        deleted_at
+    }
+`;

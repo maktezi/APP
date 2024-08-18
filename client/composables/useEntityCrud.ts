@@ -62,14 +62,14 @@ export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
 
     const openCreateModal = () => {
         selectedEntity.value = null;
-        crudModalTitle.value = `Create ${singularName}`;
+        crudModalTitle.value = `Create ${capitalizedName}`;
         crudModalButtonText.value = 'Create';
         showCrudModal.value = true;
     };
 
     const openEditModal = (entity: any) => {
         selectedEntity.value = entity;
-        crudModalTitle.value = `Edit ${singularName}`;
+        crudModalTitle.value = `Edit ${capitalizedName}`;
         crudModalButtonText.value = 'Update';
         showCrudModal.value = true;
     };

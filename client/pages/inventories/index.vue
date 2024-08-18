@@ -15,7 +15,9 @@
 
             <div class="flex justify-center items-center">
                 <template v-if="!entityData.length">
-                    <p class="text-gray-500 dark:text-gray-300">No data.</p>
+                    <p class="text-gray-500 dark:text-gray-300 mt-60 text-xl">
+                        No data.
+                    </p>
                 </template>
 
                 <template v-else>

@@ -1,0 +1,36 @@
+type Customer {
+    id: ID!
+    first_name: String!
+    last_name: String!
+    email: String!
+    phone_number: String
+    loyalty_points: Int!
+    orders: [Order] @hasMany
+    created_at: DateTime
+    updated_at: DateTime
+    deleted_at: DateTime
+}
+
+input CustomerInput {
+    id: ID
+    first_name: String
+    last_name: String
+    email: String
+    phone_number: String
+    loyalty_points: Int
+}
+
+extend type Query {
+    customers(
+        search: String @scope(name: "search")
+    ): [Customer!]! @all #@can(ability: "read")
+    customersPaginate(
+        search: String @scope(name: "search")
+    ): [Customer!]! @paginate #@can(ability: "read")
+}
+
+extend type Mutation {
+    upsertCustomer(input: CustomerInput! @spread): Customer @upsert #@can(ability: "upsert")
+    deleteCustomer(id: [ID!] @eq): [Customer] @delete #@can(ability: "delete", find: "id")
+    restoreCustomer(id: [ID!] @eq): [Customer] @restore #@can(ability: "restore", find: "id")
+}
