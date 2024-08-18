@@ -57,12 +57,12 @@ const sidebarLinks: LinkItem[] = [
     },
     {
         title: 'Messages',
-        path: '#',
+        path: '/messages',
         icon: 'mdi:message-text',
     },
     {
         title: 'Online Forms',
-        path: '#',
+        path: '/online-forms',
         icon: 'fluent:form-24-filled',
     },
     {

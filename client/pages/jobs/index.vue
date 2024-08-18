@@ -3,7 +3,7 @@
         <Head>
             <Title>Jobs</Title>
         </Head>
-        <main class="max-w-screen-lg mx-auto">
+        <main class="max-w-screen-xl mx-auto">
             <TableHeader title="Jobs">
                 <template #actions>
                     <TableCRUD />

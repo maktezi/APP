@@ -3,7 +3,7 @@
         <Head>
             <Title>{{ titleCaseEntityName }}</Title>
         </Head>
-        <main class="max-w-screen-lg mx-auto">
+        <main class="max-w-screen-xl mx-auto">
             <TableHeader :title="titleCaseEntityName">
                 <template #actions>
                     <TableCRUD
@@ -13,21 +13,20 @@
                 </template>
             </TableHeader>
 
-            <div
-                v-if="!entityData.length"
-                class="flex justify-center items-center h-64"
-            >
-                <p class="text-gray-500 dark:text-gray-300">No data.</p>
-            </div>
+            <div class="flex justify-center items-center">
+                <template v-if="!entityData.length">
+                    <p class="text-gray-500 dark:text-gray-300">No data.</p>
+                </template>
 
-            <template v-else>
-                <TableData
-                    :headers="entityHeaders"
-                    :data="entityData"
-                    :actions="actions"
-                    primary-key="id"
-                />
-            </template>
+                <template v-else>
+                    <TableData
+                        :headers="entityHeaders"
+                        :data="entityData"
+                        :actions="actions"
+                        primary-key="id"
+                    />
+                </template>
+            </div>
 
             <TableCrudModal
                 v-if="showCrudModal"
