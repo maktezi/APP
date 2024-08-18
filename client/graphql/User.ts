@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 import { userFragment } from '~/graphql/Fragment';
 
 export const userFilter = gql`
-    query users {
-        users {
+    query userFilter($search: String) {
+        users(search: $search) {
             id
             name
             email

@@ -40,8 +40,6 @@
 // definePageMeta({ middleware: ["auth"] });
 import { Card } from '~/components/ui/card';
 
-const router = useRouter();
-
 const products = [
     {
         qty: 100,

@@ -20,7 +20,9 @@ input UserInput {
 type Query {
     me: User @auth(guards: "api")
     user(id: ID! @eq): User @find
-    users: [User!]! @all
+    users(
+        search: String @scope(name: "search")
+    ): [User!]! @all
     usersPaginate: [User!]! @paginate
 }
 

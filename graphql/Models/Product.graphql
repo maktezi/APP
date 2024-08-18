@@ -20,6 +20,9 @@ input ProductInput {
 }
 
 extend type Query {
+    products(
+        search: String @scope(name: "search")
+    ): [Product!]! @paginate
     productsPaginate: [Product!]! @paginate
 }
 

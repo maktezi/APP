@@ -5,10 +5,10 @@
         <div>
             <Button
                 type="button"
-                class="rounded hover:bg-red-900 dark:hover:bg-red-700 bg-red-700 dark:bg-red-900"
+                class="flex p-2 rounded hover:bg-red-900 dark:hover:bg-red-700 bg-red-700 dark:bg-red-900"
                 @click="cartClear"
             >
-                <TrashBin />
+                <Icon name="mdi-trash" size="1.5rem" />
                 <p class="ml-1 text-white">Cart</p>
             </Button>
         </div>
@@ -19,8 +19,6 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from '@/components/ui/button';
-import TrashBin from '~/components/pos/icons/TrashBinIcon.vue';
 import { cartClear } from '~/composables/usePos';
 import { currencyFormat } from '~/utils/pos';
 

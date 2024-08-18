@@ -3,7 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -47,8 +49,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function jobs()
+    public function jobs(): HasMany
     {
         return $this->hasMany(Job::class);
+    }
+
+    public function scopeSearch(Builder $query, ?string $search): Builder
+    {
+        return empty($search) ? $query : $query->where('name', 'like', "%{$search}%");
     }
 }

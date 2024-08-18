@@ -1,22 +1,30 @@
 import type { CrudModalField } from '~/types';
 
 export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
-    const pluralEntityName = getPluralEntityName(entityName);
-    const singularEntityName = getSingularEntityName(entityName);
-    const capitalizedSingularName = getCapitalizedSingularName(entityName);
+    const pluralName = getPluralEntityName(entityName);
+    const singularName = getSingularEntityName(entityName);
+    const capitalizedName = getCapitalizedSingularName(entityName);
 
-    const titleEntityName = toTitleCase(singularEntityName);
     const entityData = ref([]);
     const selectedEntity = ref(null);
     const showCrudModal = ref(false);
-    const crudModalTitle = ref(`Create ${titleEntityName}`);
+    const crudModalTitle = ref(`Create ${toTitleCase(singularName)}`);
     const crudModalButtonText = ref('Create');
     const crudModalFields = ref(fields);
 
     // Dynamic GraphQL queries and mutations
+    const FILTER_QUERY = gql`
+        query ${pluralName}Filter($search: String) {
+            ${pluralName}Filter(search: $search) {
+                id
+                ${fields.map((field) => field.name).join('\n')}
+            }
+        }
+    `;
+
     const PAGINATE_QUERY = gql`
-        query ${pluralEntityName}Paginate($first: Int!, $page: Int!) {
-            ${pluralEntityName}Paginate(first: $first, page: $page) {
+        query ${pluralName}Paginate($first: Int!, $page: Int!) {
+            ${pluralName}Paginate(first: $first, page: $page) {
                 data {
                     id
                     ${fields.map((field) => field.name).join('\n')}
@@ -26,16 +34,16 @@ export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
     `;
 
     const UPSERT_MUTATION = gql`
-        mutation upsert${capitalizedSingularName}($input: ${capitalizedSingularName}Input!) {
-            upsert${capitalizedSingularName}(input: $input) {
+        mutation upsert${capitalizedName}($input: ${capitalizedName}Input!) {
+            upsert${capitalizedName}(input: $input) {
                 id
             }
         }
     `;
 
     const DELETE_MUTATION = gql`
-        mutation delete${capitalizedSingularName}($id: [ID!]!) {
-            delete${capitalizedSingularName}(id: $id){
+        mutation delete${capitalizedName}($id: [ID!]!) {
+            delete${capitalizedName}(id: $id){
                 id
             }
         }
@@ -54,14 +62,14 @@ export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
 
     const openCreateModal = () => {
         selectedEntity.value = null;
-        crudModalTitle.value = `Create ${singularEntityName}`;
+        crudModalTitle.value = `Create ${singularName}`;
         crudModalButtonText.value = 'Create';
         showCrudModal.value = true;
     };
 
     const openEditModal = (entity: any) => {
         selectedEntity.value = entity;
-        crudModalTitle.value = `Edit ${singularEntityName}`;
+        crudModalTitle.value = `Edit ${singularName}`;
         crudModalButtonText.value = 'Update';
         showCrudModal.value = true;
     };
@@ -75,13 +83,13 @@ export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
         try {
             await upsertMutation({ input });
             toasts(
-                `${titleEntityName} ${selectedEntity.value ? 'updated' : 'created'}.`,
+                `${toTitleCase(singularName)} ${selectedEntity.value ? 'updated' : 'created'}.`,
                 { type: 'success' },
             );
             closeCrudModal();
             fetchDataPaginate(10, 1);
         } catch (err) {
-            toasts(`Error updating ${titleEntityName}.\n${err}`, {
+            toasts(`Error updating ${toTitleCase(singularName)}.\n${err}`, {
                 type: 'error',
             });
         }
@@ -95,11 +103,13 @@ export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
         try {
             await deleteMutation({ id: id });
             entityData.value = entityData.value.filter((e: any) => e.id !== id);
-            toasts(`${titleEntityName} deleted.`, { type: 'success' });
+            toasts(`${toTitleCase(singularName)} deleted.`, {
+                type: 'success',
+            });
         } catch (err) {
-            console.error(`Error deleting ${titleEntityName}:`, err);
+            console.error(`Error deleting ${toTitleCase(singularName)}:`, err);
             toasts(
-                `Failed to delete ${titleEntityName}. Please try again.\n${err}`,
+                `Failed to delete ${toTitleCase(singularName)}. Please try again.\n${err}`,
                 { type: 'error' },
             );
         }
@@ -109,8 +119,7 @@ export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
         () => result.value,
         (newResult) => {
             if (newResult) {
-                entityData.value =
-                    newResult[`${pluralEntityName}Paginate`].data;
+                entityData.value = newResult[`${pluralName}Paginate`].data;
             }
         },
         { immediate: true },
