@@ -1,13 +1,13 @@
 <template>
     <div>
-        <Table>
+        <PosUiTable>
             <TableHeader>
                 <TableRow>
                     <TableHead class="min-w-40">
                         <strong>ITEM</strong>
                     </TableHead>
                     <TableHead><strong>Price</strong></TableHead>
-                    <TableHead class="w-[80px] text-center">
+                    <TableHead class="min-w-[100px] text-center">
                         <strong>QTY</strong>
                     </TableHead>
                     <TableHead class="text-right">
@@ -19,22 +19,33 @@
                 <TableRow v-for="product in products" :key="product.item">
                     <TableCell class="font-bold">
                         <div class="flex items-center">
-                            <button @click="deleteCartItem()">
-                                <TrashBinIcon />
-                            </button>
+                            <Button
+                                class="flex items-center"
+                                @click="deleteCartItem()"
+                            >
+                                <Icon name="mdi-trash" size="1.5rem" />
+                            </Button>
                             {{ product.item }}
                         </div>
                     </TableCell>
-                    <TableCell>₱ {{ currencyFormat(product.price) }}</TableCell>
                     <TableCell>
-                        <div class="flex items-center justify-between">
-                            <button @click="removeProductFromCart()">
-                                <RemoveIcon />
-                            </button>
+                        ₱ {{ currencyFormat(product.price) }}
+                    </TableCell>
+                    <TableCell>
+                        <div class="flex items-center gap-2 justify-center">
+                            <Button
+                                class="flex items-center"
+                                @click="removeProductFromCart()"
+                            >
+                                <Icon name="mdi-minus" size="1rem" />
+                            </Button>
                             {{ qtyFormat(product.qty) }}
-                            <button @click="addProductToCart()">
-                                <AddIcon />
-                            </button>
+                            <Button
+                                class="flex items-center"
+                                @click="addProductToCart()"
+                            >
+                                <Icon name="mdi-plus" size="1rem" />
+                            </Button>
                         </div>
                     </TableCell>
                     <TableCell class="text-right">
@@ -42,29 +53,24 @@
                     </TableCell>
                 </TableRow>
             </TableBody>
-        </Table>
+        </PosUiTable>
     </div>
 </template>
 
 <script setup lang="ts">
 import {
-    Table,
     TableBody,
     TableCell,
     TableHead,
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { Card } from '~/components/ui/card';
-import TrashBinIcon from '~/components/pos/icons/TrashBinIcon.vue';
 import { currencyFormat, qtyFormat } from '~/utils/pos';
 import {
     deleteCartItem,
     addProductToCart,
     removeProductFromCart,
 } from '~/composables/usePos';
-import AddIcon from '~/components/pos/icons/AddIcon.vue';
-import RemoveIcon from '~/components/pos/icons/RemoveIcon.vue';
 
 const props = defineProps({
     products: Object,

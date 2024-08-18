@@ -3,27 +3,36 @@
         <Head>
             <Title>POS</Title>
         </Head>
-        <PosHeader />
-        <div
-            class="relative h-[718px] block md:flex justify-center m-auto items-center gap-1 w-full"
-        >
+        <main class="h-dvh-screen">
+            <PosHeader />
             <div
-                class="xl:max-w-2xl m-auto flex-grow flex md:order-2 order-1 mb-4"
+                class="relative h-[800px] block md:flex justify-center gap-1 w-full"
             >
-                <Card id="cart" class="w-full border-gray-300 p-0.5">
-                    <PosCartHeader class="mb-0.5" />
-                    <PosCartTable class="mb-0.5" :products="products" />
-                    <PosCartTotal class="mb-0.5" />
-                    <PosCartTax class="mb-0.5" />
-                    <PosCartAction />
+                <div
+                    class="xl:max-w-2xl h-full flex-grow flex md:order-2 order-1 mb-2"
+                >
+                    <Card
+                        id="cart"
+                        class="relative w-full border-gray-300 p-0.5"
+                    >
+                        <div>
+                            <PosCartHeader class="mb-0.5" />
+                            <PosCartTable class="mb-0.5" :products="products" />
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0">
+                            <PosCartTotal class="mb-0.5" />
+                            <PosCartTax class="mb-0.5" />
+                            <PosCartAction />
+                        </div>
+                    </Card>
+                </div>
+                <Card
+                    class="flex bg-background h-full flex-grow items-center justify-center font-extrabold text-2xl md:order-1 order-2"
+                >
+                    Products
                 </Card>
             </div>
-            <Card
-                class="flex bg-background h-full flex-grow items-center justify-center font-extrabold text-2xl md:order-1 order-2"
-            >
-                Products
-            </Card>
-        </div>
+        </main>
     </NuxtLayout>
 </template>
 
@@ -93,6 +102,84 @@ const products = [
         item: 'AMD Athlon',
         amount: 2160,
         price: 120,
+    },
+    {
+        qty: 50,
+        item: 'Intel Pentium',
+        amount: 5000,
+        price: 100,
+    },
+    {
+        qty: 50,
+        item: 'Intel Pentium',
+        amount: 5000,
+        price: 100,
+    },
+    {
+        qty: 50,
+        item: 'Intel Pentium',
+        amount: 5000,
+        price: 100,
+    },
+    {
+        qty: 50,
+        item: 'Intel Pentium',
+        amount: 5000,
+        price: 100,
+    },
+    {
+        qty: 100,
+        item: 'Intel Core i9',
+        amount: 2500,
+        price: 250,
+    },
+    {
+        qty: 100,
+        item: 'Intel Core i7',
+        amount: 1800,
+        price: 180,
+    },
+    {
+        qty: 140,
+        item: 'Intel Core i5',
+        amount: 1500,
+        price: 150,
+    },
+    {
+        qty: 100,
+        item: 'Intel Core i9',
+        amount: 2500,
+        price: 250,
+    },
+    {
+        qty: 100,
+        item: 'Intel Core i7',
+        amount: 1800,
+        price: 180,
+    },
+    {
+        qty: 140,
+        item: 'Intel Core i5',
+        amount: 1500,
+        price: 150,
+    },
+    {
+        qty: 100,
+        item: 'Intel Core i9',
+        amount: 2500,
+        price: 250,
+    },
+    {
+        qty: 100,
+        item: 'Intel Core i7',
+        amount: 1800,
+        price: 180,
+    },
+    {
+        qty: 140,
+        item: 'Intel Core i5',
+        amount: 1500,
+        price: 150,
     },
 ];
 </script>
