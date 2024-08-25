@@ -3,7 +3,7 @@
         <PosUiTable>
             <TableHeader>
                 <TableRow>
-                    <TableHead class="min-w-40">
+                    <TableHead class="min-w-30 overflow-hidden">
                         <strong>ITEM</strong>
                     </TableHead>
                     <TableHead><strong>Price</strong></TableHead>
@@ -23,7 +23,11 @@
                                 class="flex items-center"
                                 @click="deleteCartItem()"
                             >
-                                <Icon name="mdi-trash" size="1.5rem" />
+                                <Icon
+                                    name="mdi-remove"
+                                    size="1.5rem"
+                                    class="text-red-800 ml"
+                                />
                             </Button>
                             {{ product.item }}
                         </div>

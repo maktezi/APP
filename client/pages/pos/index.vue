@@ -8,6 +8,7 @@
             <div
                 class="relative h-[800px] block md:flex justify-center gap-1 w-full"
             >
+                <!--        CART        -->
                 <div
                     class="xl:max-w-2xl h-full flex-grow flex md:order-2 order-1 mb-2"
                 >
@@ -17,7 +18,10 @@
                     >
                         <div>
                             <PosCartHeader class="mb-0.5" />
-                            <PosCartTable class="mb-0.5" :products="products" />
+                            <PosCartTable
+                                class="mb-0.5"
+                                :products="cartProducts"
+                            />
                         </div>
                         <div class="absolute bottom-0 left-0 right-0">
                             <PosCartTotal class="mb-0.5" />
@@ -26,10 +30,46 @@
                         </div>
                     </Card>
                 </div>
-                <Card
-                    class="flex bg-background h-full flex-grow items-center justify-center font-extrabold text-2xl md:order-1 order-2"
-                >
-                    Products
+                <!--        Products        -->
+                <Card class="h-full p-1 md:order-1 order-2">
+                    <div class="flex flex-wrap justify-start gap-2 w-full">
+                        <div
+                            v-for="product in entityData"
+                            :key="product.id"
+                            class="bg-gray-200 rounded-md dark:bg-gray-800 p-2 w-[100px] md:w-[150px] h-auto pb-0 font-medium"
+                        >
+                            <div class="border-b-2 mb-1">
+                                <img
+                                    src="/assets/no-image.jpg"
+                                    alt="prod-image"
+                                />
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <div
+                                        class="text-sm text-wrap overflow-hidden -mb-1"
+                                    >
+                                        {{ product.name }}
+                                    </div>
+                                    <div class="text-sm mb-1">
+                                        P
+                                        {{ formatPrice(product.price) }}
+                                    </div>
+                                </div>
+                                <button
+                                    variant="secondary"
+                                    class="flex items-center justify-center"
+                                    @click="addProductToCart()"
+                                >
+                                    <Icon
+                                        name="mdi:cart"
+                                        class="text-blue-900 dark:text-blue-500 hover:animate-pulse"
+                                        size="22"
+                                    />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </Card>
             </div>
         </main>
@@ -38,9 +78,28 @@
 
 <script setup lang="ts">
 // definePageMeta({ middleware: ["auth"] });
+import { formatPrice } from '../../utils/numberHelpers';
 import { Card } from '~/components/ui/card';
+import { useEntityCrud } from '~/composables/useEntityCrud';
 
-const products = [
+const entityName = 'product';
+const entityFields = [
+    { name: 'name' },
+    { name: 'description' },
+    { name: 'sku' },
+    { name: 'price' },
+];
+
+const { entityData, fetchDataPaginate } = useEntityCrud(
+    entityName,
+    entityFields,
+);
+
+onMounted(() => {
+    fetchDataPaginate(10, 1);
+});
+
+const cartProducts = [
     {
         qty: 100,
         item: 'Intel Core i9',

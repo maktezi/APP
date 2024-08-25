@@ -5,10 +5,10 @@
         <div>
             <Button
                 type="button"
-                class="flex p-2 rounded hover:bg-red-900 dark:hover:bg-red-700 bg-red-700 dark:bg-red-900"
+                class="flex p-2 px-3 rounded hover:bg-red-900 dark:hover:bg-red-700 bg-red-800 dark:bg-red-900"
                 @click="cartClear"
             >
-                <Icon name="mdi-trash" size="1.5rem" />
+                <Icon name="mdi-trash" size="1.5rem" class="text-white" />
                 <p class="ml-1 text-white">Cart</p>
             </Button>
         </div>
