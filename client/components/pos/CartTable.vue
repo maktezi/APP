@@ -3,21 +3,23 @@
         <PosUiTable>
             <TableHeader>
                 <TableRow>
-                    <TableHead class="min-w-30 overflow-hidden">
+                    <TableHead class="md:w-[500px]">
                         <strong>ITEM</strong>
                     </TableHead>
-                    <TableHead><strong>Price</strong></TableHead>
-                    <TableHead class="min-w-[100px] text-center">
+                    <TableHead class="md:w-[150px]">
+                        <strong>Price</strong>
+                    </TableHead>
+                    <TableHead class="md:w-[200px] text-center">
                         <strong>QTY</strong>
                     </TableHead>
-                    <TableHead class="text-right">
+                    <TableHead class="text-right md:w-[180px]">
                         <strong>AMOUNT</strong>
                     </TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
                 <TableRow v-for="product in products" :key="product.item">
-                    <TableCell class="font-bold">
+                    <TableCell class="font-bold overflow-hidden">
                         <div class="flex items-center">
                             <Button
                                 class="flex items-center"
@@ -36,7 +38,7 @@
                         ₱ {{ currencyFormat(product.price) }}
                     </TableCell>
                     <TableCell>
-                        <div class="flex items-center gap-2 justify-center">
+                        <div class="flex items-center gap-0 justify-center">
                             <Button
                                 class="flex items-center"
                                 @click="removeProductFromCart()"

@@ -31,7 +31,7 @@
                     </Card>
                 </div>
                 <!--        Products        -->
-                <Card class="h-full p-1 md:order-1 order-2">
+                <Card class="h-full p-1 md:order-1 order-2 flex-grow">
                     <div class="flex flex-wrap justify-start gap-2 w-full">
                         <div
                             v-for="product in entityData"
