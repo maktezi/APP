@@ -8,7 +8,7 @@ export const cartClear = () => {
     toasts('Cart cleared!', { type: 'error' });
 };
 
-export const paymentSelect = () => {
+export const paymentSuccess = () => {
     toasts('Successfully Paid!', { type: 'success' });
 };
 

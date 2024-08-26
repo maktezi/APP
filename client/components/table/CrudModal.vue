@@ -99,7 +99,7 @@
                     </Button>
                     <Button
                         type="submit"
-                        class="bg-green-700 hover:bg-green-500 rounded-full"
+                        class="bg-green-700 hover:bg-green-500"
                     >
                         {{ submitButtonText }}
                     </Button>
@@ -110,7 +110,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
 import { Button } from '~/components/ui/button';
 import type { Field } from '~/types';
 
