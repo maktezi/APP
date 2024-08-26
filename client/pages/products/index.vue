@@ -52,6 +52,7 @@ const titleCaseEntityName = toTitleCase(entityName);
 
 const entityFields: CrudModalField[] = [
     { name: 'name', label: 'Name', type: 'text', required: true },
+    { name: 'image', label: 'Image URL', type: 'text' },
     { name: 'description', label: 'Description', type: 'textarea' },
     { name: 'sku', label: 'SKU', type: 'text' },
     { name: 'price', label: 'Price', type: 'number' },

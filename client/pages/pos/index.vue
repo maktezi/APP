@@ -36,22 +36,30 @@
                         <div
                             v-for="product in entityData"
                             :key="product.id"
-                            class="bg-gray-200 rounded-md dark:bg-gray-800 p-2 w-[100px] md:w-[150px] h-auto pb-0 font-medium"
+                            class="relative bg-gray-200 rounded-md dark:bg-gray-800 p-2 w-[100px] md:w-[150px] h-auto pb-1 font-medium"
                         >
-                            <div class="border-b-2 mb-1">
+                            <div class="pb-10 flex justify-center">
                                 <img
-                                    src="/assets/no-image.jpg"
                                     alt="prod-image"
+                                    :src="
+                                        product.image
+                                            ? product.image
+                                            : '/assets/no-image.jpg'
+                                    "
+                                    class="rounded-xl h-24 w-auto"
                                 />
                             </div>
-                            <div class="flex justify-between items-center">
-                                <div>
+
+                            <div
+                                class="flex absolute bottom-0 left-0 justify-between rounded-b-md w-full px-2 items-center bg-gray-100 dark:bg-gray-700"
+                            >
+                                <div class="flex-1 overflow-hidden">
                                     <div
-                                        class="text-sm text-wrap overflow-hidden -mb-1"
+                                        class="text-sm -mb-1 whitespace-nowrap overflow-hidden text-ellipsis"
                                     >
                                         {{ product.name }}
                                     </div>
-                                    <div class="text-sm mb-1">
+                                    <div class="text-sm">
                                         P
                                         {{ formatPrice(product.price) }}
                                     </div>
@@ -83,12 +91,9 @@ import { Card } from '~/components/ui/card';
 import { useEntityCrud } from '~/composables/useEntityCrud';
 
 const entityName = 'product';
-const entityFields = [
-    { name: 'name' },
-    { name: 'description' },
-    { name: 'sku' },
-    { name: 'price' },
-];
+const entityFields = ['name', 'image', 'description', 'sku', 'price'].map(
+    (name) => ({ name }),
+);
 
 const { entityData, fetchDataPaginate } = useEntityCrud(
     entityName,

@@ -1,6 +1,7 @@
 type Product {
     id: ID!
     name: String!
+    image: String
     inventories: [Inventory] @hasMany
     description: String
     sku: String
@@ -13,6 +14,7 @@ type Product {
 input ProductInput {
     id: ID
     name: String!
+    image: String
     inventories: [InventoryInput]
     description: String
     sku: String
