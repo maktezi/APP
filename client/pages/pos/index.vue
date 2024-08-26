@@ -60,8 +60,7 @@
                                         {{ product.name }}
                                     </div>
                                     <div class="text-sm">
-                                        P
-                                        {{ formatPrice(product.price) }}
+                                        ₱ {{ formatPrice(product.price) }}
                                     </div>
                                 </div>
                                 <button
