@@ -9,10 +9,6 @@ export interface LinkItem {
     model?: string;
 }
 
-interface Links {
-    [module: string]: LinkItem & { fullNavigation?: boolean };
-}
-
 function filterLinks(links: LinkItem[], is_admin?: any): LinkItem[] {
     return links.filter((link) => {
         return true;

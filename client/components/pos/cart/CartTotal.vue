@@ -22,5 +22,5 @@
 import { cartClear } from '~/composables/usePos';
 import { currencyFormat } from '~/utils/pos';
 
-const totalAmount = ref(10120321);
+const totalAmount = ref(40000);
 </script>

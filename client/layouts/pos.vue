@@ -1,6 +1,6 @@
 <template>
     <div class="grid items-start">
-        <div class="p-2">
+        <div class="p-0.5">
             <slot />
         </div>
     </div>

@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { currencyFormat } from '~/utils/pos';
 
-const totalTax = ref(500000);
-const promoCode = ref('POTATO101');
+const totalTax = ref(4000);
+const promoCode = ref('GamingDev');
 const discount = ref(20);
 </script>

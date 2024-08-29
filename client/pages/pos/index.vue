@@ -33,10 +33,11 @@
                 <!--        Products        -->
                 <Card class="h-full p-1 md:order-1 order-2 flex-grow">
                     <div class="flex flex-wrap justify-start gap-2 w-full">
-                        <div
+                        <Button
                             v-for="product in entityData"
                             :key="product.id"
                             class="relative bg-gray-200 rounded-md dark:bg-gray-800 p-2 w-[100px] md:w-[150px] h-auto pb-1 font-medium"
+                            @click="addProductToCart()"
                         >
                             <div class="pb-10 flex justify-center">
                                 <img
@@ -63,19 +64,19 @@
                                         ₱ {{ formatPrice(product.price) }}
                                     </div>
                                 </div>
-                                <button
-                                    variant="secondary"
-                                    class="flex items-center justify-center"
-                                    @click="addProductToCart()"
-                                >
-                                    <Icon
-                                        name="mdi:cart"
-                                        class="text-blue-900 dark:text-blue-500 hover:animate-pulse"
-                                        size="22"
-                                    />
-                                </button>
                             </div>
-                        </div>
+
+                            <!-- Cart icon (hidden by default) -->
+                            <div
+                                class="absolute inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity hover:bg-gray-300/50 rounded"
+                            >
+                                <Icon
+                                    name="mdi:cart-plus"
+                                    size="50"
+                                    class="text-red-950"
+                                />
+                            </div>
+                        </Button>
                     </div>
                 </Card>
             </div>
@@ -104,10 +105,10 @@ onMounted(() => {
 
 const cartProducts = [
     {
-        qty: 100,
+        qty: 1,
         item: 'Intel Core i9',
-        amount: 2500,
-        price: 250,
+        amount: 40000,
+        price: 40000,
     },
 ];
 </script>
