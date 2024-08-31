@@ -2,16 +2,21 @@ import { toasts } from './useToast';
 import type { CartProduct, Product } from '~/types';
 
 export const cartProducts = ref<CartProduct[]>([]);
+
 export const addProductToCart = (product: Product) => {
-    const existingProduct: any = cartProducts.value.find(
+    const existingProductIndex = cartProducts.value.findIndex(
         (item: CartProduct) => item.item === product.name,
     );
 
-    if (existingProduct) {
+    if (existingProductIndex !== -1) {
+        const existingProduct = cartProducts.value[existingProductIndex];
         existingProduct.qty += 1;
         existingProduct.amount = existingProduct.qty * existingProduct.price;
+
+        cartProducts.value.splice(existingProductIndex, 1);
+        cartProducts.value.unshift(existingProduct);
     } else {
-        cartProducts.value.push({
+        cartProducts.value.unshift({
             qty: 1,
             item: product.name,
             price: product.price,
@@ -78,5 +83,5 @@ export const cartClear = () => {
 };
 
 export const paymentSuccess = () => {
-    toasts('Successfully Paid!', { type: 'success' });
+    toasts('Successfully Paid!', { type: 'success', position: 'top-center' });
 };

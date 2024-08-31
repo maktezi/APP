@@ -45,26 +45,29 @@
                         class="block text-sm font-medium text-gray-700 dark:text-gray-300"
                         >Select Payment Method</label
                     >
-                    <div class="mt-2 grid grid-cols-3 gap-2">
+                    <div class="mt-2 grid grid-cols-1 gap-2">
                         <Button
-                            class="flex items-center justify-center gap-2"
+                            variant="outline"
+                            class="flex items-center justify-center py-8 gap-2"
                             @click="setPaymentMethod('Gcash')"
                         >
-                            <Icon name="mdi:cellphone-link" size="24" />
+                            <Icon name="mdi:cellphone-link" size="40" />
                             Gcash
                         </Button>
                         <Button
-                            class="flex items-center justify-center gap-2"
+                            variant="outline"
+                            class="flex items-center justify-center py-8 gap-2"
                             @click="setPaymentMethod('Bank Transfer')"
                         >
-                            <Icon name="mdi:bank" size="24" />
-                            Bank Transfer
+                            <Icon name="mdi:bank" size="40" />
+                            Bank
                         </Button>
                         <Button
-                            class="flex items-center justify-center gap-2"
+                            variant="outline"
+                            class="flex items-center justify-center py-8 gap-2"
                             @click="setPaymentMethod('Cash')"
                         >
-                            <Icon name="mdi:cash" size="24" />
+                            <Icon name="mdi:cash" size="40" />
                             Cash
                         </Button>
                     </div>
@@ -77,26 +80,21 @@
                     >
                     <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
                         <p
-                            class="text-sm font-medium text-gray-800 dark:text-gray-200"
+                            class="text-gray-800 dark:text-gray-200 text-2xl font-bold"
                         >
                             Total: ₱ {{ transactionTotal }}
                         </p>
-                        <p class="text-sm text-gray-600 dark:text-gray-400">
+                        <p class="text-gray-600 dark:text-gray-400 text-xl">
                             Payment Method: {{ selectedPaymentMethod }}
                         </p>
                     </div>
                 </div>
 
-                <div class="flex justify-end space-x-2 px-4">
-                    <Button variant="ghost" @click="closeModal">
-                        Cancel
-                    </Button>
-                    <Button
-                        type="submit"
-                        class="bg-green-700 hover:bg-green-500"
-                        @click="paymentSuccess()"
-                    >
-                        {{ submitButtonText }}
+                <div class="flex justify-center space-x-2">
+                    <Button type="submit" class="p-10">
+                        <span class="text-xl font-bold">{{
+                            submitButtonText
+                        }}</span>
                     </Button>
                 </div>
             </form>
@@ -107,7 +105,7 @@
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
 
-const emit = defineEmits(['submit', 'close']);
+const emit = defineEmits(['submit', 'close', 'update:selectedPaymentMethod']);
 const form = ref<Record<string, any>>({});
 
 const props = defineProps({
@@ -142,16 +140,16 @@ const closeModal = () => {
     emit('close');
 };
 
+const setPaymentMethod = (method: string) => {
+    form.value.paymentMethod = method;
+    props.selectedPaymentMethod, emit('update:selectedPaymentMethod', method);
+};
+
 const handleSubmit = () => {
     emit('submit', {
         ...form.value,
         paymentMethod: props.selectedPaymentMethod,
     });
     emit('close');
-};
-
-const setPaymentMethod = (method: string) => {
-    form.value.paymentMethod = method;
-    emit('update:selectedPaymentMethod', method);
 };
 </script>

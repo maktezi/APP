@@ -33,7 +33,8 @@
             </div>
             <Button
                 type="button"
-                class="rounded p-10 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-900"
+                class="rounded p-10 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
+                :disabled="!cartProducts.length"
                 @click="openPosModal"
             >
                 <p class="text-white dark:text-white font-bold text-xl">PAY</p>
@@ -47,7 +48,7 @@
             :title="modalTitle"
             :initial-values="selectedEntity"
             :submit-button-text="modalButtonText"
-            :transaction-total="transactionTotal"
+            :transaction-total="currencyFormat(totalAmountWithTax)"
             :selected-payment-method="selectedPaymentMethod"
             @submit="handleCartSubmit"
             @close="closePosModal"
@@ -59,12 +60,12 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { handleInput, formattedCashTendered } from '~/utils/pos';
+import { cartProducts } from '~/composables/usePos';
 
 const showModal = ref(false);
 const modalTitle = ref('');
 const modalButtonText = ref('');
 const selectedEntity = ref(null);
-const transactionTotal = ref(0);
 const selectedPaymentMethod = ref('');
 
 const openPosModal = () => {
@@ -75,9 +76,23 @@ const openPosModal = () => {
 
 const handleCartSubmit = (formData: any) => {
     // TODO
+    cartProducts.value = [];
+    toasts('Successfully Paid!', { type: 'success', position: 'top-center' });
 };
 
 const closePosModal = () => {
     showModal.value = false;
 };
+
+const totalAmount = computed(() => {
+    return cartProducts.value.reduce((total, item) => total + item.amount, 0);
+});
+
+const totalTax = computed(() => {
+    return totalAmount.value * 0.12; // 12% tax
+});
+
+const totalAmountWithTax = computed(() => {
+    return totalAmount.value + totalTax.value;
+});
 </script>
