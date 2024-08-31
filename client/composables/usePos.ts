@@ -18,7 +18,7 @@ export const addProductToCart = (product: Product) => {
             amount: product.price,
         });
     }
-    toasts('Item Added to Cart!', { type: 'success' });
+    toasts('Item Added to Cart!', { type: 'success', position: 'top-left' });
 };
 
 export const deleteCartItem = (productToDelete: string) => {

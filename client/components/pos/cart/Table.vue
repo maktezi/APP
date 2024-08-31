@@ -28,7 +28,7 @@
                                 <Icon
                                     name="mdi-remove"
                                     size="1.5rem"
-                                    class="text-red-800 ml"
+                                    class="text-red-700 ml"
                                 />
                             </Button>
                             {{ product.item }}
@@ -43,19 +43,31 @@
                                 class="flex items-center"
                                 @click="() => reduceQuantity(product)"
                             >
-                                <Icon name="mdi-minus" size="1rem" />
+                                <Icon
+                                    name="mdi-minus"
+                                    class="text-red-700"
+                                    size="1rem"
+                                />
                             </Button>
-                            {{ qtyFormat(product.qty) }}
+                            <span class="font-bold">{{
+                                qtyFormat(product.qty)
+                            }}</span>
                             <Button
                                 class="flex items-center"
                                 @click="() => addQuantity(product)"
                             >
-                                <Icon name="mdi-plus" size="1rem" />
+                                <Icon
+                                    name="mdi-plus"
+                                    class="text-blue-700"
+                                    size="1rem"
+                                />
                             </Button>
                         </div>
                     </TableCell>
                     <TableCell class="text-right">
-                        ₱ {{ currencyFormat(product.amount) }}
+                        <span class="font-bold"
+                            >₱ {{ currencyFormat(product.amount) }}</span
+                        >
                     </TableCell>
                 </TableRow>
             </TableBody>
