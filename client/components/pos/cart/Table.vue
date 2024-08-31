@@ -23,7 +23,7 @@
                         <div class="flex items-center">
                             <Button
                                 class="flex items-center"
-                                @click="deleteCartItem()"
+                                @click="() => deleteCartItem(product.item)"
                             >
                                 <Icon
                                     name="mdi-remove"
@@ -38,17 +38,17 @@
                         ₱ {{ currencyFormat(product.price) }}
                     </TableCell>
                     <TableCell>
-                        <div class="flex items-center gap-0 justify-center">
+                        <div class="flex items-center gap-1 justify-center">
                             <Button
                                 class="flex items-center"
-                                @click="removeProductFromCart()"
+                                @click="() => reduceQuantity(product)"
                             >
                                 <Icon name="mdi-minus" size="1rem" />
                             </Button>
                             {{ qtyFormat(product.qty) }}
                             <Button
                                 class="flex items-center"
-                                @click="addProductToCart()"
+                                @click="() => addQuantity(product)"
                             >
                                 <Icon name="mdi-plus" size="1rem" />
                             </Button>
@@ -72,13 +72,8 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { currencyFormat, qtyFormat } from '~/utils/pos';
-import {
-    deleteCartItem,
-    addProductToCart,
-    removeProductFromCart,
-} from '~/composables/usePos';
 
-const props = defineProps({
+defineProps({
     products: Object,
 });
 </script>

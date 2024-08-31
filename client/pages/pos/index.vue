@@ -31,13 +31,17 @@
                     </Card>
                 </div>
                 <!--        Products        -->
-                <Card class="h-full p-1 md:order-1 order-2 flex-grow">
-                    <div class="flex flex-wrap justify-start gap-2 w-full">
+                <Card
+                    class="h-full p-1 md:order-1 order-2 flex-grow overflow-y-hidden"
+                >
+                    <div
+                        class="flex-wrap flex gap-2 w-full overflow-y-auto max-h-full"
+                    >
                         <Button
                             v-for="product in entityData"
                             :key="product.id"
-                            class="relative bg-gray-200 rounded-md dark:bg-gray-800 p-2 w-[100px] md:w-[150px] h-auto pb-1 font-medium"
-                            @click="addProductToCart()"
+                            class="relative bg-gray-200 rounded-md dark:bg-gray-800 p-2 flex-grow size-[130px] md:size-[190px] max-w-[250px] pb-1 font-medium overflow-hidden"
+                            @click="addProductToCart(product)"
                         >
                             <div class="pb-10 flex justify-center">
                                 <img
@@ -47,12 +51,12 @@
                                             ? product.image
                                             : '/assets/no-image.jpg'
                                     "
-                                    class="rounded-xl h-24 w-auto"
+                                    class="rounded-xl size-26"
                                 />
                             </div>
 
                             <div
-                                class="flex absolute bottom-0 left-0 justify-between rounded-b-md w-full px-2 items-center bg-gray-100 dark:bg-gray-700"
+                                class="flex absolute bottom-0 left-0 rounded-b-md w-full py-0.5 px-2 bg-gray-100 dark:bg-gray-700"
                             >
                                 <div class="flex-1 overflow-hidden">
                                     <div
@@ -60,7 +64,7 @@
                                     >
                                         {{ product.name }}
                                     </div>
-                                    <div class="text-sm">
+                                    <div class="text-xs">
                                         ₱ {{ formatPrice(product.price) }}
                                     </div>
                                 </div>
@@ -102,13 +106,4 @@ const { entityData, fetchDataPaginate } = useEntityCrud(
 onMounted(() => {
     fetchDataPaginate(10, 1);
 });
-
-const cartProducts = [
-    {
-        qty: 1,
-        item: 'Intel Core i9',
-        amount: 40000,
-        price: 40000,
-    },
-];
 </script>

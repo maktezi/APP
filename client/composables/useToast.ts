@@ -5,8 +5,8 @@ import 'vue3-toastify/dist/index.css';
 export function toasts(message: string, options?: ToastOptions) {
     toast(message, {
         theme: options?.theme || 'auto',
-        position: options?.position || 'bottom-right',
-        autoClose: options?.autoClose !== undefined ? options.autoClose : 2000,
+        position: options?.position || 'top-right',
+        autoClose: options?.autoClose !== undefined ? options.autoClose : 1000,
         type: options?.type,
         ...options,
     });

@@ -12,6 +12,14 @@ export type Product = {
     description?: string;
     sku?: string;
     price?: number;
+    item?: string;
+};
+
+export type CartProduct = {
+    qty: number | undefined;
+    item: string | undefined;
+    price: number | undefined;
+    amount: number | undefined;
 };
 
 export type Order = {
