@@ -48,6 +48,7 @@
                     <div class="mt-2 grid grid-cols-1 gap-2">
                         <Button
                             variant="outline"
+                            disabled
                             class="flex items-center justify-center py-8 gap-2"
                             @click="setPaymentMethod('Gcash')"
                         >
@@ -56,6 +57,7 @@
                         </Button>
                         <Button
                             variant="outline"
+                            disabled
                             class="flex items-center justify-center py-8 gap-2"
                             @click="setPaymentMethod('Bank Transfer')"
                         >
@@ -85,7 +87,8 @@
                             Total: ₱ {{ transactionTotal }}
                         </p>
                         <p class="text-gray-600 dark:text-gray-400 text-xl">
-                            Payment Method: {{ selectedPaymentMethod }}
+                            <!--                            Payment Method: {{ selectedPaymentMethod }} -->
+                            Payment Method: <span class="font-bold">Cash</span>
                         </p>
                     </div>
                 </div>
@@ -132,7 +135,7 @@ const props = defineProps({
     },
     selectedPaymentMethod: {
         type: String,
-        default: '',
+        default: 'Cash',
     },
 });
 
