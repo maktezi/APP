@@ -24,19 +24,35 @@ export type CartProduct = {
 
 export type Order = {
     id?: string;
-    name?: string;
-    description?: string;
-    sku?: string;
-    price?: number;
+    customer_id?: number;
+    order_date?: string;
+    total_amount?: number;
+    status?: string;
 };
 
 export type Customer = {
     id?: string;
-    first_name?: string;
-    last_name?: string;
+    name?: string;
     email?: string;
-    phone_number?: string;
-    loyalty_points?: number;
+    phone?: string;
+    address?: string;
+    points?: number;
+};
+
+export type OrderItem = {
+    id?: string;
+    order_id?: string;
+    product_id?: string;
+    qty?: string;
+    price?: number;
+    total?: number;
+};
+
+export type Payment = {
+    id?: string;
+    order_id?: string;
+    amount?: number;
+    payment_method?: string;
 };
 
 export type Inventory = {
@@ -51,6 +67,7 @@ export type CrudModalField = {
     label?: string;
     type?: string;
     required?: boolean;
+    relationshipFields?: string[] | undefined;
 };
 
 export type Action = {

@@ -51,11 +51,11 @@ const entityName = 'customer';
 const titleCaseEntityName = toTitleCase(entityName);
 
 const entityFields: CrudModalField[] = [
-    { name: 'first_name', label: 'First Name', type: 'text', required: true },
-    { name: 'last_name', label: 'Last Name', type: 'text', required: true },
+    { name: 'name', label: 'Name', type: 'text', required: true },
     { name: 'email', label: 'Email', type: 'email', required: true },
-    { name: 'phone_number', label: 'Phone Number', type: 'text' },
-    { name: 'loyalty_points', label: 'Loyalty Points', type: 'number' },
+    { name: 'phone', label: 'Phone Number', type: 'text' },
+    { name: 'address', label: 'Address', type: 'text' },
+    { name: 'points', label: 'Loyalty Points', type: 'number' },
 ];
 
 const {
@@ -82,11 +82,11 @@ const handleProductSubmit = async (formData: any) => {
 
 const entityHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
-    { key: 'first_name', label: 'First Name' },
-    { key: 'last_name', label: 'Last Name' },
+    { key: 'name', label: 'Full Name' },
     { key: 'email', label: 'Email' },
-    { key: 'phone_number', label: 'Phone Number' },
-    { key: 'loyalty_points', label: 'Loyalty Points' },
+    { key: 'phone', label: 'Phone Number' },
+    { key: 'address', label: 'Address' },
+    { key: 'points', label: 'Points' },
 ];
 
 const actions: Action[] = [

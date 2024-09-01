@@ -52,8 +52,8 @@ const entityName = 'inventory';
 const titleCaseEntityName = toTitleCase(entityName);
 
 const entityFields: CrudModalField[] = [
-    { name: 'product_id', label: 'Product', type: 'text', required: true },
-    { name: 'qty', label: 'Stocks', type: 'number' },
+    { name: 'product_id', label: 'Product *', type: 'text', required: true },
+    { name: 'qty', label: 'Stocks *', type: 'number', required: true },
     { name: 'location', label: 'Location', type: 'text' },
 ];
 
