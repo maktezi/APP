@@ -85,3 +85,15 @@ export const cartClear = () => {
 export const paymentSuccess = () => {
     toasts('Successfully Paid!', { type: 'success', position: 'top-center' });
 };
+
+export const totalAmount = computed(() => {
+    return cartProducts.value.reduce((total, item) => total + item.amount, 0);
+});
+
+export const totalTax = computed(() => {
+    return totalAmount.value * 0.12; // 12% tax
+});
+
+export const totalAmountWithTax = computed(() => {
+    return totalAmount.value + totalTax.value;
+});

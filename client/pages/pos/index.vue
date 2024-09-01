@@ -14,7 +14,7 @@
                 >
                     <Card
                         id="cart"
-                        class="relative w-full border-gray-300 p-0.5"
+                        class="relative w-full border-gray-300 p-0.5 md:min-w-[500px]"
                     >
                         <div>
                             <PosCartHeader class="mb-0.5" />
@@ -31,7 +31,7 @@
                 </div>
                 <!--        Products        -->
                 <Card
-                    class="h-full p-1 md:order-1 order-2 flex-grow overflow-y-hidden"
+                    class="h-full max-w-[1200px] p-1 md:order-1 order-2 flex-grow overflow-y-hidden"
                 >
                     <div
                         class="flex-wrap flex gap-2 w-full overflow-y-auto max-h-full"
@@ -93,6 +93,7 @@
 // definePageMeta({ middleware: ["auth"] });
 import { Card } from '~/components/ui/card';
 import { useEntityCrud } from '~/composables/useEntityCrud';
+import testData from '~/pages/pos/testData.json';
 
 const entityName = 'product';
 const entityFields = ['name', 'image', 'description', 'sku', 'price'].map(
@@ -104,38 +105,7 @@ const { entityData, fetchDataPaginate } = useEntityCrud(
     entityFields,
 );
 
-const fallbackData = [
-    {
-        name: 'Gaming Mouse',
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQecJDLbF6WHCuv86GUEi8_GX43DpWo6ebvqA&s',
-        price: 1290.99,
-    },
-    {
-        name: 'Gaming Headset',
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcTRuhxTJl1iOCAfcOlNkJi7MLjxyItVjetA&s',
-        price: 3989.99,
-    },
-    {
-        name: 'RGB Mouse Pad',
-        image: 'https://i.ebayimg.com/images/g/9yAAAOSw6OZlo8n~/s-l400.jpg',
-        price: 1229.99,
-    },
-    {
-        name: 'Mechanical Gaming Keyboard',
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjX-9CsYrMaLMoZpx7rzzv7HFTuJ2dczHx9A&s',
-        price: 2129.99,
-    },
-    {
-        name: 'Gaming Chair',
-        image: 'https://rukminim2.flixcart.com/image/850/1000/l1mh7rk0/gaming-chair/i/s/x/gaming-chair-ergonomic-seat-with-headrest-leather-gaming-chair-original-imagd55esqgfpzvc.jpeg?q=20&crop=false',
-        price: 3199.99,
-    },
-    {
-        name: 'Razer Blade 15',
-        image: 'https://assets2.razerzone.com/images/pnx.assets/f4cba4f86d3d423d823e325f46826481/thumbnail-blade15-base-model.webp',
-        price: 120199.99,
-    },
-];
+const fallbackData = testData.products;
 
 const products = ref(fallbackData);
 

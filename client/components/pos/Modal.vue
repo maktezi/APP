@@ -91,14 +91,14 @@
                         >Transaction Summary</label
                     >
                     <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="text-gray-600 dark:text-gray-400 text-xl">
+                            <!--                            Payment Method: {{ selectedPaymentMethod }} -->
+                            Payment Method: <span class="font-bold">Cash</span>
+                        </p>
                         <p
                             class="text-gray-800 dark:text-gray-200 text-2xl font-bold"
                         >
                             Total: ₱ {{ transactionTotal }}
-                        </p>
-                        <p class="text-gray-600 dark:text-gray-400 text-xl">
-                            <!--                            Payment Method: {{ selectedPaymentMethod }} -->
-                            Payment Method: <span class="font-bold">Cash</span>
                         </p>
                     </div>
                 </div>
@@ -108,6 +108,7 @@
                 >
                     <div class="relative items-center">
                         <Input
+                            v-model="cashTendered"
                             type="number"
                             placeholder="Cash Tendered"
                             class="pl-10 text-xl font-bold py-8 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
@@ -117,22 +118,25 @@
                             >₱</span
                         >
                     </div>
-                    <div class="relative items-center">
+                    <div class="relative items-center text-xl">
                         <Input
-                            type="text"
-                            class="pl-15 py-8 border-b-black border-b-4 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                            v-model="change"
+                            type="number"
+                            :class="{ 'text-transparent': change < 0 }"
+                            class="pl-32 text-2xl font-bold py-8 border-b-black border-b-4 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
                             disabled
                         />
                         <span
-                            class="absolute start-0 inset-y-0 flex items-center justify-center px-5"
-                            >Change:</span
+                            class="absolute start-0 font-bold inset-y-0 flex items-center justify-center px-5"
+                            >CHANGE:</span
                         >
                     </div>
                 </div>
 
                 <div class="flex justify-center space-x-2">
-                    <Button type="submit" class="p-10">
-                        <span class="text-xl font-bold">{{
+                    <Button type="submit" class="p-10" :disabled="change < 0">
+                        <Icon name="mdi:cart-arrow-up" size="30" />
+                        <span class="ml-2 text-xl font-bold">{{
                             submitButtonText
                         }}</span>
                     </Button>
@@ -148,6 +152,11 @@ import { Input } from '~/components/ui/input';
 
 const emit = defineEmits(['submit', 'close', 'update:selectedPaymentMethod']);
 const form = ref<Record<string, any>>({});
+
+const cashTendered = ref(0);
+const change: ComputedRef<number | string | any> = computed(() =>
+    parseFloat(cashTendered.value - totalAmountWithTax.value).toFixed(2),
+);
 
 const props = defineProps({
     visible: Boolean,

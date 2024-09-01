@@ -17,17 +17,3 @@
         </div>
     </div>
 </template>
-
-<script setup lang="ts">
-const totalAmount = computed(() => {
-    return cartProducts.value.reduce((total, item) => total + item.amount, 0);
-});
-
-const totalTax = computed(() => {
-    return totalAmount.value * 0.12; // 12% tax
-});
-
-const totalAmountWithTax = computed(() => {
-    return totalAmount.value + totalTax.value;
-});
-</script>

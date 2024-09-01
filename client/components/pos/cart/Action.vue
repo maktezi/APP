@@ -10,7 +10,12 @@
                 :disabled="!cartProducts.length"
                 @click="openPosModal"
             >
-                <p class="text-white dark:text-white font-bold text-xl">PAY</p>
+                <Icon
+                    name="mdi:cash-register"
+                    size="30"
+                    class="mr-2 text-white"
+                />
+                <p class="text-white dark:text-white text-xl">Pay</p>
             </Button>
         </div>
 
@@ -48,22 +53,10 @@ const openPosModal = () => {
 const handleCartSubmit = (formData: any) => {
     // TODO
     cartProducts.value = [];
-    toasts('Successfully Paid!', { type: 'success', position: 'top-center' });
+    toasts('Successfully Paid!', { type: 'success', position: 'top-right' });
 };
 
 const closePosModal = () => {
     showModal.value = false;
 };
-
-const totalAmount = computed(() => {
-    return cartProducts.value.reduce((total, item) => total + item.amount, 0);
-});
-
-const totalTax = computed(() => {
-    return totalAmount.value * 0.12; // 12% tax
-});
-
-const totalAmountWithTax = computed(() => {
-    return totalAmount.value + totalTax.value;
-});
 </script>
