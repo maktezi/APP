@@ -10,8 +10,11 @@
                 :disabled="!cartProducts.length"
                 @click="cartClear"
             >
-                <Icon name="mdi-trash" size="1.5rem" class="text-white" />
-                <p class="ml-1 text-white">Clear</p>
+                <Icon
+                    name="mdi-cart-remove"
+                    size="1.5rem"
+                    class="text-white px-6"
+                />
             </Button>
         </div>
     </div>

@@ -1,9 +1,18 @@
 <template>
     <div>
+        <div
+            v-if="!cartProducts.length"
+            class="text-center flex-col items-center absolute left-0 right-0 top-56"
+        >
+            <span class="font-bold text-xl">No products in cart</span>
+            <div>
+                <Icon name="mdi-cart-plus" size="50" class="text-white px-6" />
+            </div>
+        </div>
         <PosUiTable>
             <TableHeader>
                 <TableRow>
-                    <TableHead class="md:w-[500px]">
+                    <TableHead class="md:w-[480px]">
                         <strong>ITEM</strong>
                     </TableHead>
                     <TableHead class="md:w-[150px]">

@@ -51,7 +51,7 @@ export const reduceQuantity = (product: {
         if (cartItem.qty > 1) {
             cartItem.qty -= 1;
             cartItem.amount = cartItem.qty * cartItem.price;
-            toasts('Item quantity decreased!', { type: 'info' });
+            // toasts('Item quantity decreased!', { type: 'info' });
         } else {
             toasts(
                 'Quantity cannot be reduced further. Remove item if needed.',
@@ -71,7 +71,7 @@ export const addQuantity = (product: { item: string; price: number }) => {
     if (cartItem) {
         cartItem.qty += 1;
         cartItem.amount = cartItem.qty * cartItem.price;
-        toasts('Item quantity increased!', { type: 'success' });
+        // toasts('Item quantity increased!', { type: 'success' });
     } else {
         toasts('Item not found in cart!', { type: 'warning' });
     }

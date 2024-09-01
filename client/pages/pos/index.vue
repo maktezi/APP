@@ -157,7 +157,7 @@ onMounted(() => {
 
 <style scoped>
 .pos-main {
-    height: 100vh;
+    height: 96vh;
     overflow-y: auto;
 }
 </style>
