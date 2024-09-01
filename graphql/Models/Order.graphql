@@ -1,6 +1,8 @@
 type Order {
     id: ID!
     customer: Customer @belongsTo
+    order_items: [OrderItem] @hasMany
+    payments: [Payment] @hasMany
     customer_id: ID!
     order_date: DateTime!
     total_amount: Float!
@@ -13,6 +15,8 @@ type Order {
 input OrderInput {
     id: ID
     customer_id: ID
+    order_items: [OrderItemInput]
+    payments: [PaymentInput]
     customer: ConnectOrderRelation
     order_date: DateTime
     total_amount: Float

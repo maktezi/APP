@@ -3,8 +3,10 @@ type Product {
     name: String!
     image: String
     inventories: [Inventory] @hasMany
+    prices: [Price] @hasMany
+    orderItems: [OrderItem] @hasMany
     description: String
-    sku: String
+    sku: String!
     price: Float
     created_at: DateTime
     updated_at: DateTime
@@ -16,8 +18,10 @@ input ProductInput {
     name: String!
     image: String
     inventories: [InventoryInput]
+    prices: [PriceInput]
+    orderItems: [OrderItemInput]
     description: String
-    sku: String
+    sku: String!
     price: Float
 }
 

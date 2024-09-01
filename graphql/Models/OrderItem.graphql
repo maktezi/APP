@@ -1,0 +1,41 @@
+type OrderItem {
+    id: ID!
+    order: Order @belongsTo
+    order_id: ID!
+    product: Product @belongsTo
+    product_id: Int!
+    qty: Int!
+    price: Float!
+    total: Float!
+    created_at: DateTime
+    updated_at: DateTime
+    deleted_at: DateTime
+}
+
+input OrderItemInput {
+    id: ID
+    order_id: ID!
+    order: ConnectOrderItemRelation
+    product_id: ID!
+    product: ConnectOrderItemRelation
+    qty: Int!
+    price: Float!
+    total: Float!
+}
+
+input ConnectOrderItemRelation {
+    connect: ID
+    create: [OrderItemInput!]
+    update: [OrderItemInput!]
+    delete: [ID]
+}
+
+extend type Query {
+    orderItemsPaginate: [OrderItem!]! @paginate
+}
+
+extend type Mutation {
+    upsertOrderItem(input: OrderItemInput! @spread): OrderItem @upsert #@can(ability: "upsert")
+    restoreOrderItem(id: [ID!] @eq): [OrderItem] @restore #@can(ability: "restore", find: "id")
+    deleteOrderItem(id: [ID!] @eq): [OrderItem] @delete #@can(ability: "delete", find: "id")
+}

@@ -1,0 +1,37 @@
+type Price {
+    id: ID!
+    product: Product @belongsTo
+    product_id: Int!
+    price: Float!
+    start_date: DateTime
+    end_date: DateTime
+    created_at: DateTime
+    updated_at: DateTime
+    deleted_at: DateTime
+}
+
+input PriceInput {
+    id: ID
+    product_id: ID!
+    product: ConnectPriceRelation
+    price: Float!
+    start_date: DateTime
+    end_date: DateTime
+}
+
+input ConnectPriceRelation {
+    connect: ID
+    create: [PriceInput!]
+    update: [PriceInput!]
+    delete: [ID]
+}
+
+extend type Query {
+    pricesPaginate: [Price!]! @paginate
+}
+
+extend type Mutation {
+    upsertPrice(input: PriceInput! @spread): Price @upsert #@can(ability: "upsert")
+    restorePrice(id: [ID!] @eq): [Price] @restore #@can(ability: "restore", find: "id")
+    deletePrice(id: [ID!] @eq): [Price] @delete #@can(ability: "delete", find: "id")
+}
