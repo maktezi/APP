@@ -31,7 +31,7 @@
                 </div>
                 <!--        Products        -->
                 <Card
-                    class="h-full max-w-[1200px] p-1 md:order-1 order-2 flex-grow overflow-y-hidden"
+                    class="h-full max-w-[1230px] p-1 md:order-1 order-2 flex-grow overflow-y-hidden"
                 >
                     <div
                         class="flex-wrap flex gap-2 w-full overflow-y-auto max-h-full"
