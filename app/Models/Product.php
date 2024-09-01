@@ -17,6 +17,16 @@ class Product extends Model
         return $this->hasMany(Inventory::class);
     }
 
+    public function prices(): HasMany
+    {
+        return $this->hasMany(Price::class);
+    }
+
+    public function orderItems(): HasMany
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
     public function scopeSearch(Builder $query, ?string $search): Builder
     {
         return empty($search) ? $query : $query->where('name', 'like', "%{$search}%");
