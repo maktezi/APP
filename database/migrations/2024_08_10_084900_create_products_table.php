@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('image')->nullable();
             $table->text('description')->nullable();
-            $table->string('sku')->nullable();
+            $table->string('sku')->unique()->nullable();
             $table->decimal('price')->nullable();
             $table->timestamps();
             $table->softDeletes();

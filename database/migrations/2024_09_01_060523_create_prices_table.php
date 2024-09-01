@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('prices', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-            $table->smallInteger('points')->default(0);
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->decimal('price', 10, 2); // Price at a specific time
+            $table->timestamp('start_date');
+            $table->timestamp('end_date')->nullable(); // Null if it's the current price
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('prices');
     }
 };
