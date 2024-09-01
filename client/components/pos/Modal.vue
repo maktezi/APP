@@ -45,7 +45,16 @@
                         class="block text-sm font-medium text-gray-700 dark:text-gray-300"
                         >Select Payment Method</label
                     >
-                    <div class="mt-2 grid grid-cols-1 gap-2">
+                    <div class="mt-2 grid grid-cols-2 gap-2">
+                        <Button
+                            variant="outline"
+                            class="flex items-center justify-center py-8 gap-2"
+                            disabled
+                            @click="setPaymentMethod('Cash')"
+                        >
+                            <Icon name="mdi:cash" size="40" />
+                            Cash
+                        </Button>
                         <Button
                             variant="outline"
                             disabled
@@ -59,25 +68,26 @@
                             variant="outline"
                             disabled
                             class="flex items-center justify-center py-8 gap-2"
+                            @click="setPaymentMethod('Paypal')"
+                        >
+                            <Icon name="mdi:paypal" size="40" />
+                            Paypal
+                        </Button>
+                        <Button
+                            variant="outline"
+                            disabled
+                            class="flex items-center justify-center py-8 gap-2"
                             @click="setPaymentMethod('Bank Transfer')"
                         >
                             <Icon name="mdi:bank" size="40" />
                             Bank
-                        </Button>
-                        <Button
-                            variant="outline"
-                            class="flex items-center justify-center py-8 gap-2"
-                            @click="setPaymentMethod('Cash')"
-                        >
-                            <Icon name="mdi:cash" size="40" />
-                            Cash
                         </Button>
                     </div>
                 </div>
 
                 <div class="mb-4 px-4">
                     <label
-                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                         >Transaction Summary</label
                     >
                     <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
@@ -90,6 +100,33 @@
                             <!--                            Payment Method: {{ selectedPaymentMethod }} -->
                             Payment Method: <span class="font-bold">Cash</span>
                         </p>
+                    </div>
+                </div>
+
+                <div
+                    class="flex-col m-auto items-center justify-center mb-4 w-full px-4"
+                >
+                    <div class="relative items-center">
+                        <Input
+                            type="number"
+                            placeholder="Cash Tendered"
+                            class="pl-10 text-xl font-bold py-8 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                        />
+                        <span
+                            class="absolute start-0 text-xl inset-y-0 flex items-center justify-center px-5"
+                            >₱</span
+                        >
+                    </div>
+                    <div class="relative items-center">
+                        <Input
+                            type="text"
+                            class="pl-15 py-8 border-b-black border-b-4 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                            disabled
+                        />
+                        <span
+                            class="absolute start-0 inset-y-0 flex items-center justify-center px-5"
+                            >Change:</span
+                        >
                     </div>
                 </div>
 
@@ -107,6 +144,7 @@
 
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
+import { Input } from '~/components/ui/input';
 
 const emit = defineEmits(['submit', 'close', 'update:selectedPaymentMethod']);
 const form = ref<Record<string, any>>({});
@@ -135,7 +173,7 @@ const props = defineProps({
     },
     selectedPaymentMethod: {
         type: String,
-        default: 'Cash',
+        default: '',
     },
 });
 
