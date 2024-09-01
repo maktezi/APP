@@ -9,7 +9,7 @@
                 <Icon
                     name="mdi-cart-off"
                     size="50"
-                    class="text-white px-6 mt-4"
+                    class="text-black dark:text-white px-6 mt-4"
                 />
             </div>
         </div>
