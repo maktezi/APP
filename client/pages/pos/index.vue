@@ -100,7 +100,7 @@ const entityFields = ['name', 'image', 'description', 'sku', 'price'].map(
     (name) => ({ name }),
 );
 
-const { entityData, fetchDataPaginate } = useEntityCrud(
+const { entityData, fetchDataPaginate } = await useEntityCrud(
     entityName,
     entityFields,
 );

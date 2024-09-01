@@ -1,6 +1,9 @@
 import type { CrudModalField } from '~/types';
 
-export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
+export async function useEntityCrud(
+    entityName: string,
+    fields: CrudModalField[],
+) {
     const pluralName = getPluralEntityName(entityName);
     const singularName = getSingularEntityName(entityName);
     const capitalizedName = getCapitalizedSingularName(entityName);
@@ -12,42 +15,27 @@ export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
     const crudModalButtonText = ref('Create');
     const crudModalFields = ref(fields);
 
-    // Dynamic GraphQL queries and mutations
-    const FILTER_QUERY = gql`
-        query ${pluralName}Filter($search: String) {
-            ${pluralName}Filter(search: $search) {
-                id
-                ${fields.map((field) => field.name).join('\n')}
-            }
-        }
-    `;
+    // Dynamically import GraphQL queries and mutations
+    let PAGINATE_QUERY, UPSERT_MUTATION, DELETE_MUTATION;
 
-    const PAGINATE_QUERY = gql`
-        query ${pluralName}Paginate($first: Int!, $page: Int!) {
-            ${pluralName}Paginate(first: $first, page: $page) {
-                data {
-                    id
-                    ${fields.map((field) => field.name).join('\n')}
-                }
-            }
-        }
-    `;
+    try {
+        const graphqlModule = await import(`~/graphql/${capitalizedName}.ts`);
+        PAGINATE_QUERY = graphqlModule[`${pluralName}Paginate`];
+        UPSERT_MUTATION = graphqlModule[`upsert${capitalizedName}`];
+        DELETE_MUTATION = graphqlModule[`delete${capitalizedName}`];
 
-    const UPSERT_MUTATION = gql`
-        mutation upsert${capitalizedName}($input: ${capitalizedName}Input!) {
-            upsert${capitalizedName}(input: $input) {
-                id
-            }
+        if (!PAGINATE_QUERY || !UPSERT_MUTATION || !DELETE_MUTATION) {
+            throw new Error(
+                `Required GraphQL operations not found for entity: ${entityName}`,
+            );
         }
-    `;
-
-    const DELETE_MUTATION = gql`
-        mutation delete${capitalizedName}($id: [ID!]!) {
-            delete${capitalizedName}(id: $id){
-                id
-            }
-        }
-    `;
+    } catch (error) {
+        console.error(
+            `Error importing GraphQL operations for ${entityName}:`,
+            error,
+        );
+        throw error;
+    }
 
     const { result, refetch } = useQuery(PAGINATE_QUERY, {
         first: 10,
@@ -101,7 +89,7 @@ export function useEntityCrud(entityName: string, fields: CrudModalField[]) {
 
     const deleteEntity = async (id: string) => {
         try {
-            await deleteMutation({ id: id });
+            await deleteMutation({ id: [id] });
             entityData.value = entityData.value.filter((e: any) => e.id !== id);
             toasts(`${toTitleCase(singularName)} deleted.`, {
                 type: 'success',

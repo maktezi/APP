@@ -68,7 +68,7 @@ const {
     closeCrudModal,
     fetchDataPaginate,
     deleteEntity,
-} = useEntityCrud(entityName, entityFields);
+} = await useEntityCrud(entityName, entityFields);
 
 const handleProductSubmit = async (formData: any) => {
     if (formData.price) {
