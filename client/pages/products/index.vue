@@ -109,6 +109,6 @@ const actions: Action[] = [
 ];
 
 onMounted(() => {
-    fetchDataPaginate(10, 1);
+    fetchDataPaginate(20, 1);
 });
 </script>

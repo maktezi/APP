@@ -6,9 +6,6 @@ export const userFragment = gql`
         name
         email
         password
-        created_at
-        updated_at
-        deleted_at
     }
 `;
 
@@ -16,9 +13,6 @@ export const jobFragment = gql`
     fragment job on Job {
         id
         title
-        created_at
-        updated_at
-        deleted_at
     }
 `;
 
@@ -32,9 +26,6 @@ export const InventoryFragment = gql`
         product_id
         qty
         location
-        created_at
-        updated_at
-        deleted_at
     }
 `;
 
@@ -42,48 +33,63 @@ export const ProductFragment = gql`
     fragment product on Product {
         id
         name
+        image
         description
         sku
         price
-        created_at
-        updated_at
-        deleted_at
     }
 `;
 
 export const CustomerFragment = gql`
     fragment customer on Customer {
         id
-        first_name
-        last_name
+        name
         email
-        phone_number
-        loyalty_points
-        created_at
-        updated_at
-        deleted_at
+        phone
+        address
+        points
     }
 `;
 
 export const OrderFragment = gql`
     fragment order on Order {
         id
-        customer {
-            id
-            first_name
-            last_name
-            email
-            phone_number
-            loyalty_points
-            created_at
-            updated_at
-            deleted_at
-        }
+        ...customer
         order_date
         total_amount
         status
-        created_at
-        updated_at
-        deleted_at
+    }
+`;
+
+export const OrderItemFragment = gql`
+    fragment orderItem on OrderItem {
+        id
+        ...order
+        product {
+            id
+            name
+        }
+        qty
+        price
+        total
+    }
+`;
+
+export const PriceFragment = gql`
+    fragment price on Price {
+        id
+        ...product
+        price
+        start_date
+        end_date
+    }
+`;
+
+export const PaymentFragment = gql`
+    fragment payment on Payment {
+        id
+        ...order
+        amount
+        payment_method
     }
 `;

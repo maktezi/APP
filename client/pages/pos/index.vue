@@ -96,9 +96,7 @@ import { useEntityCrud } from '~/composables/useEntityCrud';
 import testData from '~/pages/pos/testData.json';
 
 const entityName = 'product';
-const entityFields = ['name', 'image', 'description', 'sku', 'price'].map(
-    (name) => ({ name }),
-);
+const entityFields = ['name', 'image', 'price'].map((name) => ({ name }));
 
 const { entityData, fetchDataPaginate } = await useEntityCrud(
     entityName,

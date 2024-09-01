@@ -71,7 +71,7 @@ const {
     closeCrudModal,
     fetchDataPaginate,
     deleteEntity,
-} = useEntityCrud(entityName, entityFields);
+} = await useEntityCrud(entityName, entityFields);
 
 const handleUserSubmit = async (formData: any) => {
     if (formData.password) {

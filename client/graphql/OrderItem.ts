@@ -1,0 +1,46 @@
+import gql from 'graphql-tag';
+import { OrderItemFragment } from '~/graphql/Fragment';
+
+export const orderItemFilter = gql`
+    query orderItemFilter($search: String) {
+        orderItems(search: $search) {
+            id
+        }
+    }
+`;
+
+export const orderItemsPaginate = gql`
+    query orderItemsPaginate($first: Int!, $page: Int) {
+        orderItemsPaginate(first: $first, page: $page) {
+            data {
+                ...orderItem
+            }
+        }
+    }
+    ${OrderItemFragment}
+`;
+
+export const upsertOrderItem = gql`
+    mutation upsertOrderItem($input: OrderItemInput!) {
+        upsertOrderItem(input: $input) {
+            ...orderItem
+        }
+    }
+    ${OrderItemFragment}
+`;
+
+export const deleteOrderItem = gql`
+    mutation deleteOrderItem($id: [ID!]) {
+        deleteOrderItem(id: $id) {
+            id
+        }
+    }
+`;
+
+export const restoreOrderItem = gql`
+    mutation restoreOrderItem($id: [ID!]) {
+        restoreOrderItem(id: $id) {
+            id
+        }
+    }
+`;
