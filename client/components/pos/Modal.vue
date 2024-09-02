@@ -153,7 +153,7 @@ import { Input } from '~/components/ui/input';
 const emit = defineEmits(['submit', 'close', 'update:selectedPaymentMethod']);
 const form = ref<Record<string, any>>({});
 
-const cashTendered = ref(0);
+const cashTendered = ref();
 const change: ComputedRef<number | string | any> = computed(() =>
     parseFloat(cashTendered.value - totalAmountWithTax.value).toFixed(2),
 );
