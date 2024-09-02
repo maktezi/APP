@@ -13,7 +13,7 @@
                 />
             </div>
         </div>
-        <PosUiTable>
+        <PosTable>
             <TableHeader>
                 <TableRow>
                     <TableHead class="md:w-[480px]">
@@ -84,7 +84,7 @@
                     </TableCell>
                 </TableRow>
             </TableBody>
-        </PosUiTable>
+        </PosTable>
     </div>
 </template>
 

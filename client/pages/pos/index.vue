@@ -109,7 +109,7 @@ const products = ref(fallbackData);
 
 onMounted(() => {
     try {
-        fetchDataPaginate(10, 1);
+        fetchDataPaginate(20, 1);
         if (entityData.value.length > 0) {
             products.value = entityData.value;
         }

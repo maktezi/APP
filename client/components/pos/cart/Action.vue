@@ -4,19 +4,30 @@
     >
         <PosCartScanner />
         <div class="flex items-center justify-between gap-1">
-            <Button
-                type="button"
-                class="rounded p-10 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
-                :disabled="!cartProducts.length"
-                @click="openPosModal"
-            >
-                <Icon
-                    name="mdi:cash-register"
-                    size="30"
-                    class="mr-2 text-white"
-                />
-                <p class="text-white dark:text-white text-xl">Pay</p>
-            </Button>
+            <TooltipProvider>
+                <Tooltip>
+                    <TooltipTrigger>
+                        <Button
+                            type="button"
+                            class="rounded p-10 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
+                            :disabled="!cartProducts.length"
+                            @click="openPosModal"
+                        >
+                            <Icon
+                                name="mdi:cash-register"
+                                size="30"
+                                class="mr-2 text-white"
+                            />
+                            <p class="text-white dark:text-white text-xl">
+                                Pay
+                            </p>
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                        <p>Proceed to Payment</p>
+                    </TooltipContent>
+                </Tooltip>
+            </TooltipProvider>
         </div>
 
         <!-- PosModal Component -->
@@ -37,6 +48,12 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button';
 import { cartProducts } from '~/composables/usePos';
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from '~/components/ui/tooltip';
 
 const showModal = ref(false);
 const modalTitle = ref('');

@@ -3,17 +3,26 @@
         class="flex m-auto items-center justify-between bg-red-950 px-3 p-2 rounded mb-1.5"
     >
         <div class="flex items-center gap-2 justify-center">
-            <Button
-                class="rounded-full bg-gray-100 hover:bg-gray-300 p-1.5 flex items-center justify-center"
-                @click="router.push('/dashboard')"
-            >
-                <Icon
-                    name="mdi:exit-to-app"
-                    size="25"
-                    style="rotate: 180deg"
-                    class="text-gray-900"
-                />
-            </Button>
+            <TooltipProvider>
+                <Tooltip>
+                    <TooltipTrigger>
+                        <Button
+                            class="rounded-full bg-gray-100 hover:bg-gray-300 p-1.5 flex items-center justify-center"
+                            @click="router.push('/dashboard')"
+                        >
+                            <Icon
+                                name="mdi:exit-to-app"
+                                size="25"
+                                style="rotate: 180deg"
+                                class="text-gray-900"
+                            />
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                        <p>Exit POS</p>
+                    </TooltipContent>
+                </Tooltip>
+            </TooltipProvider>
             <p class="text-gray-100 text-2xl font-bold">
                 <span class="block sm:hidden">POS</span>
                 <span class="hidden sm:block">Point of Sale</span>
