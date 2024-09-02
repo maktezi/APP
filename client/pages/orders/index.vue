@@ -18,11 +18,11 @@
                     <div
                         class="flex-col flex mt-60 justify-center items-center"
                     >
-                        <Icon name="line-md:loading-twotone-loop" size="50" />
+                        <SpinnerTadpole />
                         <p
-                            class="animate-pulse text-gray-500 dark:text-gray-300 text-xl"
+                            class="animate-pulse text-gray-500 dark:text-gray-300 mt-2 text-xl"
                         >
-                            Loading data
+                            Fetching data
                         </p>
                     </div>
                 </template>

@@ -6,12 +6,19 @@
             variant="ghost"
             size="icon"
             class="rounded-full hover:bg-gray-300"
-            @click="btn.action"
+            @click="handleClick(index, btn.action)"
         >
             <Icon
                 :name="btn.iconName"
                 :size="btn.iconSize"
-                :class="btn.iconClass"
+                :class="[
+                    btn.iconClass,
+                    {
+                        'rotate-animation':
+                            clickedIndex === index &&
+                            btn.iconName === 'mdi:refresh',
+                    },
+                ]"
             />
         </Button>
     </div>
@@ -25,6 +32,19 @@ const props = defineProps({
     onRefresh: Function,
 });
 
+const clickedIndex = ref<number | null>(null);
+
+const handleClick = (index: number, action: Function) => {
+    if (crudButtons[index].iconName === 'mdi:refresh') {
+        clickedIndex.value = index;
+    }
+    action();
+
+    setTimeout(() => {
+        clickedIndex.value = null;
+    }, 1000);
+};
+
 const crudButtons = [
     {
         iconName: 'mdi:add',
@@ -33,7 +53,7 @@ const crudButtons = [
         action: props.onCreate,
     },
     {
-        iconName: 'material-symbols:refresh',
+        iconName: 'mdi:refresh',
         iconSize: 20,
         iconClass: 'text-black dark:text-white',
         action: props.onRefresh,
@@ -46,3 +66,18 @@ const crudButtons = [
     },
 ];
 </script>
+
+<style scoped>
+.rotate-animation {
+    animation: rotate-icon 1s ease-in-out;
+}
+
+@keyframes rotate-icon {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+</style>
