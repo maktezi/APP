@@ -14,8 +14,21 @@
             </TableHeader>
 
             <div class="flex justify-center items-center">
-                <template v-if="!entityData.length">
-                    <p class="text-gray-500 dark:text-gray-300 mt-60 text-xl">
+                <template v-if="isLoading">
+                    <div
+                        class="flex-col flex mt-60 justify-center items-center"
+                    >
+                        <Icon name="line-md:loading-twotone-loop" size="50" />
+                        <p
+                            class="animate-pulse text-gray-500 dark:text-gray-300 text-xl"
+                        >
+                            Loading data
+                        </p>
+                    </div>
+                </template>
+
+                <template v-else-if="!entityData.length">
+                    <p class="text-gray-500 dark:text-gray-300 mt-72 text-xl">
                         No data.
                     </p>
                 </template>
@@ -71,6 +84,7 @@ const {
     closeCrudModal,
     fetchDataPaginate,
     deleteEntity,
+    isLoading,
 } = await useEntityCrud(entityName, entityFields);
 
 const handleProductSubmit = async (formData: any) => {

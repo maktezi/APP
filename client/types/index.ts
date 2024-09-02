@@ -13,6 +13,7 @@ export type Product = {
     sku?: string;
     price?: number;
     item?: string;
+    inventories?: Inventory[];
 };
 
 export type CartProduct = {

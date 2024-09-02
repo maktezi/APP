@@ -14,6 +14,7 @@ export async function useEntityCrud(
     const crudModalTitle = ref(`Create ${toTitleCase(singularName)}`);
     const crudModalButtonText = ref('Create');
     const crudModalFields = ref(fields);
+    const isLoading = ref(false);
 
     // Dynamically import GraphQL queries and mutations
     let PAGINATE_QUERY, UPSERT_MUTATION, DELETE_MUTATION;
@@ -37,15 +38,23 @@ export async function useEntityCrud(
         throw error;
     }
 
-    const { result, refetch } = useQuery(PAGINATE_QUERY, {
+    const {
+        result,
+        refetch,
+        loading: queryLoading,
+    } = useQuery(PAGINATE_QUERY, {
         first: 10,
         page: 1,
     });
-    const { mutate: upsertMutation } = useMutation(UPSERT_MUTATION);
-    const { mutate: deleteMutation } = useMutation(DELETE_MUTATION);
+    const { mutate: upsertMutation, loading: upsertLoading } =
+        useMutation(UPSERT_MUTATION);
+    const { mutate: deleteMutation, loading: deleteLoading } =
+        useMutation(DELETE_MUTATION);
 
-    const fetchDataPaginate = (first: number, page: number) => {
-        refetch({ first, page });
+    const fetchDataPaginate = async (first: number, page: number) => {
+        isLoading.value = true;
+        await refetch({ first, page });
+        isLoading.value = false;
     };
 
     const openCreateModal = () => {
@@ -69,6 +78,7 @@ export async function useEntityCrud(
             ),
         );
         try {
+            isLoading.value = true;
             await upsertMutation({ input });
             toasts(
                 `${toTitleCase(singularName)} ${selectedEntity.value ? 'updated' : 'created'}.`,
@@ -80,6 +90,8 @@ export async function useEntityCrud(
             toasts(`Error updating ${toTitleCase(singularName)}.\n${err}`, {
                 type: 'error',
             });
+        } finally {
+            isLoading.value = false;
         }
     };
 
@@ -89,6 +101,7 @@ export async function useEntityCrud(
 
     const deleteEntity = async (id: string) => {
         try {
+            isLoading.value = true;
             await deleteMutation({ id: [id] });
             entityData.value = entityData.value.filter((e: any) => e.id !== id);
             toasts(`${toTitleCase(singularName)} deleted.`, {
@@ -100,6 +113,8 @@ export async function useEntityCrud(
                 `Failed to delete ${toTitleCase(singularName)}. Please try again.\n${err}`,
                 { type: 'error' },
             );
+        } finally {
+            isLoading.value = false;
         }
     };
 
@@ -111,6 +126,14 @@ export async function useEntityCrud(
             }
         },
         { immediate: true },
+    );
+
+    watch(
+        [queryLoading, upsertLoading, deleteLoading],
+        ([newQueryLoading, newUpsertLoading, newDeleteLoading]) => {
+            isLoading.value =
+                newQueryLoading || newUpsertLoading || newDeleteLoading;
+        },
     );
 
     return {
@@ -126,5 +149,6 @@ export async function useEntityCrud(
         closeCrudModal,
         fetchDataPaginate,
         deleteEntity,
+        isLoading,
     };
 }

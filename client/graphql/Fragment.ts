@@ -37,6 +37,22 @@ export const ProductFragment = gql`
         description
         sku
         price
+        inventories {
+            id
+            qty
+            location
+        }
+        prices {
+            id
+            start_date
+            end_date
+        }
+        orderItems {
+            id
+            qty
+            price
+            total
+        }
     }
 `;
 

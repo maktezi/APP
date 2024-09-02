@@ -154,8 +154,8 @@ const emit = defineEmits(['submit', 'close', 'update:selectedPaymentMethod']);
 const form = ref<Record<string, any>>({});
 
 const cashTendered = ref();
-const change: ComputedRef<number | string | any> = computed(() =>
-    parseFloat(cashTendered.value - totalAmountWithTax.value).toFixed(2),
+const change: ComputedRef<number> = computed(() =>
+    parseFloat((cashTendered.value - totalAmountWithTax.value).toFixed(2)),
 );
 
 const props = defineProps({
