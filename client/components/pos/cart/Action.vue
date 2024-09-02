@@ -9,22 +9,26 @@
                     <TooltipTrigger>
                         <Button
                             type="button"
-                            class="rounded p-10 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
+                            class="rounded p-8 py-10 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
                             :disabled="!cartProducts.length"
                             @click="openPosModal"
                         >
                             <Icon
-                                name="mdi:cash-register"
-                                size="30"
-                                class="mr-2 text-white"
+                                :name="
+                                    cartProducts.length
+                                        ? 'mdi:cash-register'
+                                        : 'mdi:cart-arrow-down'
+                                "
+                                size="40"
+                                class="text-white"
                             />
                             <p class="text-white dark:text-white text-xl">
-                                Pay
+                                {{ cartProducts.length ? 'Pay' : '' }}
                             </p>
                         </Button>
                     </TooltipTrigger>
                     <TooltipContent>
-                        <p>Proceed to Payment</p>
+                        <p>Payment</p>
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>

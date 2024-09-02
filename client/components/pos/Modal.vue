@@ -20,7 +20,8 @@
                 </Button>
             </div>
 
-            <form @submit.prevent="handleSubmit">
+            <!--            <form @submit.prevent="handleSubmit"> -->
+            <div>
                 <div
                     v-for="(field, index) in fields"
                     :key="index"
@@ -45,41 +46,32 @@
                         class="block text-sm font-medium text-gray-700 dark:text-gray-300"
                         >Select Payment Method</label
                     >
-                    <div class="mt-2 grid grid-cols-2 gap-2">
+                    <div class="mt-2 grid grid-cols-4 gap-2">
                         <Button
-                            variant="outline"
                             class="flex items-center justify-center py-8 gap-2"
-                            disabled
-                            @click="setPaymentMethod('Cash')"
                         >
                             <Icon name="mdi:cash" size="40" />
                             Cash
                         </Button>
                         <Button
                             variant="outline"
-                            disabled
                             class="flex items-center justify-center py-8 gap-2"
-                            @click="setPaymentMethod('Gcash')"
                         >
                             <Icon name="mdi:cellphone-link" size="40" />
                             Gcash
                         </Button>
                         <Button
                             variant="outline"
-                            disabled
                             class="flex items-center justify-center py-8 gap-2"
-                            @click="setPaymentMethod('Paypal')"
                         >
-                            <Icon name="mdi:paypal" size="40" />
+                            <Icon name="mdi:paypal" size="50" />
                             Paypal
                         </Button>
                         <Button
                             variant="outline"
-                            disabled
                             class="flex items-center justify-center py-8 gap-2"
-                            @click="setPaymentMethod('Bank Transfer')"
                         >
-                            <Icon name="mdi:bank" size="40" />
+                            <Icon name="mdi:bank" size="20" />
                             Bank
                         </Button>
                     </div>
@@ -124,24 +116,65 @@
                             type="number"
                             :class="{ 'text-transparent': change < 0 }"
                             class="pl-32 text-2xl font-bold py-8 border-b-black border-b-4 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
-                            disabled
+                            readonly
                         />
                         <span
                             class="absolute start-0 font-bold inset-y-0 flex items-center justify-center px-5"
                             >CHANGE:</span
                         >
                     </div>
+                    <!-- Number Pad -->
+                    <div class="grid grid-cols-3 gap-3 mt-3">
+                        <Button
+                            v-for="n in numbers"
+                            :key="n"
+                            variant="secondary"
+                            class="text-xl font-bold py-6 rounded-md"
+                            @click="appendNumber(n)"
+                        >
+                            {{ n }}
+                        </Button>
+                        <Button
+                            class="text-xl font-bold py-6 rounded-md"
+                            @click="appendDot"
+                        >
+                            .
+                        </Button>
+                        <Button
+                            variant="secondary"
+                            class="text-xl font-bold py-6 rounded-md"
+                            @click="appendZero"
+                        >
+                            0
+                        </Button>
+                        <Button
+                            class="bg-red-500 text-xl font-bold py-6 rounded-md"
+                            @click="clearInput"
+                        >
+                            C
+                        </Button>
+                    </div>
                 </div>
 
                 <div class="flex justify-center space-x-2">
-                    <Button type="submit" class="p-10" :disabled="change < 0">
-                        <Icon name="mdi:cart-arrow-up" size="30" />
-                        <span class="ml-2 text-xl font-bold">{{
-                            submitButtonText
-                        }}</span>
+                    <Button
+                        type="submit"
+                        class="p-10 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
+                        :disabled="change < 0"
+                        @click="handleSubmit"
+                    >
+                        <Icon
+                            name="mdi:cart-arrow-up"
+                            class="text-white dark:text-white"
+                            size="30"
+                        />
+                        <span
+                            class="ml-2 text-xl font-bold text-white dark:text-white"
+                            >{{ submitButtonText }}</span
+                        >
                     </Button>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </template>
@@ -150,10 +183,10 @@
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 
-const emit = defineEmits(['submit', 'close', 'update:selectedPaymentMethod']);
+const emit = defineEmits(['submit', 'close']);
 const form = ref<Record<string, any>>({});
 
-const cashTendered = ref();
+const cashTendered = ref(0);
 const change: ComputedRef<number> = computed(() =>
     parseFloat((cashTendered.value - totalAmountWithTax.value).toFixed(2)),
 );
@@ -186,19 +219,35 @@ const props = defineProps({
     },
 });
 
-const closeModal = () => {
-    emit('close');
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+const appendZero = () => {
+    if (cashTendered.value.length > 0) {
+        cashTendered.value = cashTendered.value + '0';
+    }
 };
 
-const setPaymentMethod = (method: string) => {
-    form.value.paymentMethod = method;
-    props.selectedPaymentMethod, emit('update:selectedPaymentMethod', method);
+const appendNumber = (num: string) => {
+    cashTendered.value = (cashTendered.value + num).toString();
+};
+
+const clearInput = () => {
+    cashTendered.value = '';
+};
+
+const appendDot = () => {
+    if (!cashTendered.value.includes('.')) {
+        cashTendered.value = cashTendered.value + '.';
+    }
+};
+
+const closeModal = () => {
+    emit('close');
 };
 
 const handleSubmit = () => {
     emit('submit', {
         ...form.value,
-        paymentMethod: props.selectedPaymentMethod,
     });
     emit('close');
 };
