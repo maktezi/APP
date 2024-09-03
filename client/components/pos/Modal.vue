@@ -6,8 +6,8 @@
         <div
             class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-lg p-6 relative"
         >
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-200">
+            <div class="flex justify-between items-center mb-2 px-4">
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-200">
                     {{ title }}
                 </h3>
                 <Button
@@ -25,7 +25,7 @@
                 <div
                     v-for="(field, index) in fields"
                     :key="index"
-                    class="relative mb-4 px-4"
+                    class="relative mb-2 px-4"
                 >
                     <label
                         :for="field.name"
@@ -43,7 +43,7 @@
 
                 <div class="mb-4 px-4">
                     <label
-                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                        class="block text-md font-medium text-gray-700 dark:text-gray-300"
                         >Select Payment Method</label
                     >
                     <div class="mt-2 grid grid-cols-4 gap-2">
@@ -77,12 +77,12 @@
                     </div>
                 </div>
 
-                <div class="mb-4 px-4">
+                <div class="mb-1 px-4">
                     <label
-                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                        class="block text-md font-medium text-gray-700 dark:text-gray-300 mb-2"
                         >Transaction Summary</label
                     >
-                    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
                         <p class="text-gray-600 dark:text-gray-400 text-xl">
                             <!--                            Payment Method: {{ selectedPaymentMethod }} -->
                             Payment Method: <span class="font-bold">Cash</span>
@@ -124,31 +124,31 @@
                         >
                     </div>
                     <!-- Number Pad -->
-                    <div class="grid grid-cols-3 gap-3 mt-3">
+                    <div class="grid grid-cols-3 gap-1 mt-3">
                         <Button
                             v-for="n in numbers"
                             :key="n"
-                            variant="secondary"
-                            class="text-xl font-bold py-6 rounded-md"
+                            variant="outline"
+                            class="text-xl font-bold py-7 rounded-md"
                             @click="appendNumber(n)"
                         >
                             {{ n }}
                         </Button>
                         <Button
-                            class="text-xl font-bold py-6 rounded-md"
+                            class="text-xl font-bold py-7 rounded-md"
                             @click="appendDot"
                         >
                             .
                         </Button>
                         <Button
-                            variant="secondary"
-                            class="text-xl font-bold py-6 rounded-md"
+                            variant="outline"
+                            class="text-xl font-bold py-7 rounded-md"
                             @click="appendZero"
                         >
                             0
                         </Button>
                         <Button
-                            class="bg-red-500 text-xl font-bold py-6 rounded-md"
+                            class="bg-red-500 text-xl font-bold py-7 rounded-md"
                             @click="clearInput"
                         >
                             C
@@ -156,10 +156,10 @@
                     </div>
                 </div>
 
-                <div class="flex justify-center space-x-2">
+                <div class="flex justify-center space-x-2 px-4">
                     <Button
                         type="submit"
-                        class="p-10 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
+                        class="p-8 hover:bg-green-900 dark:hover:bg-green-700 bg-green-700 dark:bg-green-700 w-full"
                         :disabled="change < 0"
                         @click="handleSubmit"
                     >

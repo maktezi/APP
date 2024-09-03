@@ -16,16 +16,6 @@
                     </div>
                 </div>
             </Card>
-            <Card class="px-2 py-5 w-96 flex m-auto mt-2">
-                <div class="flex flex-col relative">
-                    <p class="absolute left-5 text-xl font-bold">
-                        Total Stocks
-                    </p>
-                    <div class="p-3 mt-5">
-                        <Chart class="h-64 w-full" />
-                    </div>
-                </div>
-            </Card>
         </main>
     </NuxtLayout>
 </template>

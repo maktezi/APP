@@ -2,16 +2,17 @@
     <div>
         <div
             v-if="!cartProducts.length"
-            class="text-center flex-col items-center absolute left-0 right-0 top-56"
+            class="text-center flex-col items-center absolute left-0 right-0 top-72"
         >
-            <span class="font-bold text-xl">No products in cart.</span>
-            <div>
+            <div class="relative">
+                <SpinnerBouncingBall class="absolute left-80 size-8" />
                 <Icon
                     name="mdi-cart-off"
                     size="50"
                     class="text-black dark:text-white px-6 mt-4"
                 />
             </div>
+            <span class="font-bold text-xl">Carty is empty.</span>
         </div>
         <PosTable>
             <TableHeader>

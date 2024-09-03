@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div class="flex justify-center py-0.5 gap-1">
         <Button
             v-for="(btn, index) in crudButtons"
             :key="index"
-            variant="ghost"
+            variant="outline"
             size="icon"
-            class="rounded-full hover:bg-gray-300"
+            class="rounded-full hover:bg-gray-500"
             @click="handleClick(index, btn.action)"
         >
             <Icon
@@ -49,13 +49,13 @@ const crudButtons = [
     {
         iconName: 'mdi:add',
         iconSize: 20,
-        iconClass: 'text-blue-500',
+        iconClass: 'text-green-500',
         action: props.onCreate,
     },
     {
         iconName: 'mdi:refresh',
         iconSize: 20,
-        iconClass: 'text-black dark:text-white',
+        iconClass: 'text-blue-500',
         action: props.onRefresh,
     },
     {

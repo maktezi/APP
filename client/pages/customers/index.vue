@@ -13,14 +13,14 @@
                 </template>
             </TableHeader>
 
-            <div class="flex justify-center items-center">
+            <div class="flex relative justify-center items-center">
                 <template v-if="isLoading">
                     <div
-                        class="flex-col flex mt-60 justify-center items-center"
+                        class="absolute flex-col top-64 flex justify-center items-center"
                     >
-                        <SpinnerTadpole />
+                        <SpinnerTadpole class="size-16" />
                         <p
-                            class="animate-pulse text-gray-500 dark:text-gray-300 mt-2 text-xl"
+                            class="animate-pulse text-gray-500 dark:text-gray-300 mt-4 text-xl"
                         >
                             Fetching data
                         </p>
@@ -28,9 +28,12 @@
                 </template>
 
                 <template v-else-if="!entityData.length">
-                    <p class="text-gray-500 dark:text-gray-300 mt-72 text-xl">
-                        No data.
-                    </p>
+                    <div
+                        class="text-gray-500 dark:text-gray-300 mt-72 text-xl flex-col justify-center items-center"
+                    >
+                        <SpinnerBlocksWave class="size-16" />
+                        <span>No data</span>
+                    </div>
                 </template>
 
                 <template v-else>

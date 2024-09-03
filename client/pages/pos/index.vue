@@ -33,7 +33,20 @@
                 <Card
                     class="h-full max-w-[1230px] p-1 md:order-1 order-2 flex-grow overflow-y-hidden"
                 >
+                    <template v-if="isLoading">
+                        <div
+                            class="flex-col flex mt-80 justify-center items-center"
+                        >
+                            <SpinnerBlocksWave class="size-20" />
+                            <p
+                                class="animate-pulse text-gray-500 dark:text-gray-300 mt-2 text-xl"
+                            >
+                                Fetching products
+                            </p>
+                        </div>
+                    </template>
                     <div
+                        v-else
                         class="flex-wrap flex gap-2 w-full overflow-y-auto max-h-full"
                     >
                         <Button
@@ -98,7 +111,7 @@ import testData from '~/pages/pos/testData.json';
 const entityName = 'product';
 const entityFields = ['name', 'image', 'price'].map((name) => ({ name }));
 
-const { entityData, fetchDataPaginate } = await useEntityCrud(
+const { entityData, fetchDataPaginate, isLoading } = await useEntityCrud(
     entityName,
     entityFields,
 );
