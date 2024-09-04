@@ -1,25 +1,27 @@
 <template>
-    <Head>
-        <Title>APP</Title>
-    </Head>
-    <div class="items-center justify-center p-6">
-        <!-- Logo  -->
-        <div class="flex-shrink-0 flex items-center">
-            <NuxtLink to="/">
-                <Logo />
-            </NuxtLink>
-            <DisplayMode />
+    <div>
+        <Head>
+            <Title>APP</Title>
+        </Head>
+        <div class="items-center justify-center p-6">
+            <!-- Logo  -->
+            <div class="flex-shrink-0 flex items-center">
+                <NuxtLink to="/">
+                    <Logo />
+                </NuxtLink>
+                <DisplayMode />
+            </div>
+            <p class="text-2xl pb-2">APP</p>
+            <p class="text-xl pb-2">Under Construction</p>
+            <div>
+                <NuxtLink to="/login" class="text-sm text-gray-700 underline">
+                    <Button>Login</Button>
+                </NuxtLink>
+            </div>
         </div>
-        <p class="text-2xl pb-2">APP</p>
-        <p class="text-xl pb-2">Under Construction</p>
-        <div>
-            <NuxtLink to="/login" class="text-sm text-gray-700 underline">
-                <Button>Login</Button>
-            </NuxtLink>
+        <div class="flex m-auto justify-center">
+            <img alt="img" src="../assets/working.gif" />
         </div>
-    </div>
-    <div class="flex m-auto justify-center">
-        <img alt="img" src="../assets/working.gif" />
     </div>
 </template>
 
