@@ -1,11 +1,6 @@
 <template>
-    <Head>
-        <Link
-            href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap"
-            rel="stylesheet"
-        />
-    </Head>
     <Body class="antialiased">
+        <NuxtLoadingIndicator :height="height" color="maroon" />
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>
@@ -23,4 +18,6 @@ useHead({
         },
     ],
 });
+
+const height = 5;
 </script>
