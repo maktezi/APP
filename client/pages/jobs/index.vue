@@ -1,23 +1,25 @@
 <template>
-    <NuxtLayout name="app-layout">
-        <Head>
-            <Title>Jobs</Title>
-        </Head>
-        <main class="max-w-screen-xl mx-auto">
-            <TableHeader title="Jobs">
-                <template #actions>
-                    <TableCRUD />
-                </template>
-            </TableHeader>
+    <div>
+        <NuxtLayout name="app-layout">
+            <Head>
+                <Title>Jobs</Title>
+            </Head>
+            <main class="max-w-screen-xl mx-auto">
+                <TableHeader title="Jobs">
+                    <template #actions>
+                        <TableCRUD />
+                    </template>
+                </TableHeader>
 
-            <TableData
-                :headers="headers"
-                :data="jobsData"
-                :actions="actions"
-                primary-key="title"
-            />
-        </main>
-    </NuxtLayout>
+                <TableData
+                    :headers="headers"
+                    :data="jobsData"
+                    :actions="actions"
+                    primary-key="title"
+                />
+            </main>
+        </NuxtLayout>
+    </div>
 </template>
 
 <script setup lang="ts">

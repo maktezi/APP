@@ -36,4 +36,8 @@ export default defineNuxtConfig({
             default: { httpEndpoint: 'http://localhost:8000/graphql' },
         },
     },
+    app: {
+        pageTransition: { name: 'page', mode: 'out-in' },
+        layoutTransition: { name: 'layout', mode: 'out-in' },
+    },
 });
