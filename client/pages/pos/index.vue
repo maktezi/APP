@@ -60,10 +60,10 @@
                                     <img
                                         alt="prod-image"
                                         :src="
-                                        product.image
-                                            ? product.image
-                                            : '/assets/no-image.jpg'
-                                    "
+                                            product.image
+                                                ? product.image
+                                                : '/assets/no-image.jpg'
+                                        "
                                         class="rounded-xl size-26"
                                     />
                                 </div>
@@ -107,15 +107,15 @@
 <script setup lang="ts">
 // definePageMeta({ middleware: ["auth"] });
 import { Card } from '~/components/ui/card';
-import { useEntityCrud } from '~/composables/useEntityCrud';
+import { useModelCrud } from '~/composables/useModelCrud';
 import testData from '~/pages/pos/testData.json';
 
-const entityName = 'product';
-const entityFields = ['name', 'image', 'price'].map((name) => ({ name }));
+const modelName = 'product';
+const modelFields = ['name', 'image', 'price'].map((name) => ({ name }));
 
-const { entityData, fetchDataPaginate, isLoading } = await useEntityCrud(
-    entityName,
-    entityFields,
+const { modelData, fetchDataPaginate, isLoading } = await useModelCrud(
+    modelName,
+    modelFields,
 );
 
 const fallbackData = testData.products;
@@ -125,10 +125,10 @@ const products = ref(fallbackData);
 onMounted(() => {
     try {
         fetchDataPaginate(20, 1);
-        if (entityData.value.length > 0) {
-            products.value = entityData.value;
+        if (modelData.value.length > 0) {
+            products.value = modelData.value;
         }
-    } catch (error) {
+    } catch (error: any) {
         if (error.response && error.response.status === 500) {
             console.error('Server error 500: Using fallback data');
         } else {

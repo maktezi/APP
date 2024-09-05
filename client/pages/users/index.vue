@@ -2,10 +2,10 @@
     <div>
         <NuxtLayout name="app-layout">
             <Head>
-                <Title>{{ titleCaseEntityName }}</Title>
+                <Title>{{ titleCaseModelName }}</Title>
             </Head>
             <main class="max-w-screen-xl mx-auto">
-                <TableHeader :title="titleCaseEntityName">
+                <TableHeader :title="titleCaseModelName">
                     <template #actions>
                         <TableCRUD
                             :on-create="openCreateModal"
@@ -28,7 +28,7 @@
                         </div>
                     </template>
 
-                    <template v-else-if="!entityData.length">
+                    <template v-else-if="!modelData.length">
                         <div
                             class="text-gray-500 dark:text-gray-300 mt-72 text-xl flex-col justify-center items-center"
                         >
@@ -39,8 +39,8 @@
 
                     <template v-else>
                         <TableData
-                            :headers="entityHeaders"
-                            :data="entityData"
+                            :headers="modelHeaders"
+                            :data="modelData"
                             :actions="actions"
                             primary-key="id"
                         />
@@ -52,7 +52,7 @@
                     :visible="showCrudModal"
                     :title="crudModalTitle"
                     :fields="crudModalFields"
-                    :initial-values="selectedEntity"
+                    :initial-values="selectedModel"
                     :submit-button-text="crudModalButtonText"
                     @submit="handleUserSubmit"
                     @close="closeCrudModal"
@@ -66,10 +66,11 @@
 import bcrypt from 'bcryptjs';
 import type { CrudModalField, Action, Headers } from '~/types';
 
-const entityName = 'user';
-const titleCaseEntityName = toTitleCase(entityName);
+const modelName = 'user';
+const pluralizedModelName = getPluralModelName(modelName);
+const titleCaseModelName = toTitleCase(pluralizedModelName);
 
-const entityFields: CrudModalField[] = [
+const modelFields: CrudModalField[] = [
     { name: 'name', label: 'Name', type: 'text', required: true },
     { name: 'email', label: 'Email', type: 'email', required: true },
     { name: 'password', label: 'Password', type: 'password' },
@@ -77,8 +78,8 @@ const entityFields: CrudModalField[] = [
 
 // Use the generic CRUD composable
 const {
-    entityData,
-    selectedEntity,
+    modelData,
+    selectedModel,
     showCrudModal,
     crudModalTitle,
     crudModalButtonText,
@@ -88,9 +89,9 @@ const {
     handleCrudSubmit,
     closeCrudModal,
     fetchDataPaginate,
-    deleteEntity,
+    deleteModel,
     isLoading,
-} = await useEntityCrud(entityName, entityFields);
+} = await useModelCrud(modelName, modelFields);
 
 const handleUserSubmit = async (formData: any) => {
     if (formData.password) {
@@ -99,7 +100,7 @@ const handleUserSubmit = async (formData: any) => {
     handleCrudSubmit(formData);
 };
 
-const entityHeaders: Headers[] = [
+const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
     { key: 'name', label: 'Name' },
     { key: 'email', label: 'Email' },
@@ -113,10 +114,10 @@ const actions: Action[] = [
     },
     {
         icon: 'mdi:delete',
-        handler: async (entity: any) => {
-            const confirmed = window.confirm(`Delete ${entity.name}?`);
+        handler: async (model: any) => {
+            const confirmed = window.confirm(`Delete ${model.name}?`);
             confirmed
-                ? await deleteEntity(entity.id)
+                ? await deleteModel(model.id)
                 : toasts('Deletion canceled.', { type: 'warning' });
         },
         class: 'text-red-800',

@@ -1,18 +1,18 @@
-export function getPluralEntityName(entityName: string): string {
-    if (entityName.endsWith('y')) {
-        return entityName.slice(0, -1) + 'ies';
+export function getPluralModelName(modelName: string): string {
+    if (modelName.endsWith('y')) {
+        return modelName.slice(0, -1) + 'ies';
     }
-    return entityName.endsWith('s') ? entityName : `${entityName}s`;
+    return modelName.endsWith('s') ? modelName : `${modelName}s`;
 }
 
-export function getSingularEntityName(entityName: string): string {
-    return entityName.endsWith('s') ? entityName.slice(0, -1) : entityName;
+export function getSingularModelName(modelName: string): string {
+    return modelName.endsWith('s') ? modelName.slice(0, -1) : modelName;
 }
 
-export function getCapitalizedSingularName(entityName: string): string {
-    const singularEntityName = getSingularEntityName(entityName);
+export function getCapitalizedSingularName(modelName: string): string {
+    const singularModelName = getSingularModelName(modelName);
     return (
-        singularEntityName.charAt(0).toUpperCase() + singularEntityName.slice(1)
+        singularModelName.charAt(0).toUpperCase() + singularModelName.slice(1)
     );
 }
 

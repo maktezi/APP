@@ -1,15 +1,12 @@
 import type { CrudModalField } from '~/types';
 
-export async function useEntityCrud(
-    entityName: string,
-    fields: CrudModalField[],
-) {
-    const pluralName = getPluralEntityName(entityName);
-    const singularName = getSingularEntityName(entityName);
-    const capitalizedName = getCapitalizedSingularName(entityName);
+export async function useModelCrud(model: string, fields: CrudModalField[]) {
+    const pluralName = getPluralModelName(model);
+    const singularName = getSingularModelName(model);
+    const capitalizedName = getCapitalizedSingularName(model);
 
-    const entityData = ref([]);
-    const selectedEntity = ref(null);
+    const modelData = ref([]);
+    const selectedModel = ref(null);
     const showCrudModal = ref(false);
     const crudModalTitle = ref(`Create ${toTitleCase(singularName)}`);
     const crudModalButtonText = ref('Create');
@@ -27,12 +24,12 @@ export async function useEntityCrud(
 
         if (!PAGINATE_QUERY || !UPSERT_MUTATION || !DELETE_MUTATION) {
             throw new Error(
-                `Required GraphQL operations not found for entity: ${entityName}`,
+                `Required GraphQL operations not found for model: ${model}`,
             );
         }
     } catch (error) {
         console.error(
-            `Error importing GraphQL operations for ${entityName}:`,
+            `Error importing GraphQL operations for ${model}:`,
             error,
         );
         throw error;
@@ -58,14 +55,14 @@ export async function useEntityCrud(
     };
 
     const openCreateModal = () => {
-        selectedEntity.value = null;
+        selectedModel.value = null;
         crudModalTitle.value = `Create ${capitalizedName}`;
         crudModalButtonText.value = 'Create';
         showCrudModal.value = true;
     };
 
-    const openEditModal = (entity: any) => {
-        selectedEntity.value = entity;
+    const openEditModal = (model: any) => {
+        selectedModel.value = model;
         crudModalTitle.value = `Edit ${capitalizedName}`;
         crudModalButtonText.value = 'Update';
         showCrudModal.value = true;
@@ -81,7 +78,7 @@ export async function useEntityCrud(
             isLoading.value = true;
             await upsertMutation({ input });
             toasts(
-                `${toTitleCase(singularName)} ${selectedEntity.value ? 'updated' : 'created'}.`,
+                `${toTitleCase(singularName)} ${selectedModel.value ? 'updated' : 'created'}.`,
                 { type: 'success' },
             );
             closeCrudModal();
@@ -99,11 +96,11 @@ export async function useEntityCrud(
         showCrudModal.value = false;
     };
 
-    const deleteEntity = async (id: string) => {
+    const deleteModel = async (id: string) => {
         try {
             isLoading.value = true;
             await deleteMutation({ id: [id] });
-            entityData.value = entityData.value.filter((e: any) => e.id !== id);
+            modelData.value = modelData.value.filter((e: any) => e.id !== id);
             toasts(`${toTitleCase(singularName)} deleted.`, {
                 type: 'success',
             });
@@ -122,7 +119,7 @@ export async function useEntityCrud(
         () => result.value,
         (newResult) => {
             if (newResult) {
-                entityData.value = newResult[`${pluralName}Paginate`].data;
+                modelData.value = newResult[`${pluralName}Paginate`].data;
             }
         },
         { immediate: true },
@@ -137,8 +134,8 @@ export async function useEntityCrud(
     );
 
     return {
-        entityData,
-        selectedEntity,
+        modelData,
+        selectedModel,
         showCrudModal,
         crudModalTitle,
         crudModalButtonText,
@@ -148,7 +145,7 @@ export async function useEntityCrud(
         handleCrudSubmit,
         closeCrudModal,
         fetchDataPaginate,
-        deleteEntity,
+        deleteModel,
         isLoading,
     };
 }

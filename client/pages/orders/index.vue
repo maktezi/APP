@@ -2,10 +2,10 @@
     <div>
         <NuxtLayout name="app-layout">
             <Head>
-                <Title>{{ titleCaseEntityName }}</Title>
+                <Title>{{ titleCaseModelName }}</Title>
             </Head>
             <main class="max-w-screen-xl mx-auto">
-                <TableHeader :title="titleCaseEntityName">
+                <TableHeader :title="titleCaseModelName">
                     <template #actions>
                         <TableCRUD
                             :on-create="openCreateModal"
@@ -28,7 +28,7 @@
                         </div>
                     </template>
 
-                    <template v-else-if="!entityData.length">
+                    <template v-else-if="!modelData.length">
                         <div
                             class="text-gray-500 dark:text-gray-300 mt-72 text-xl flex-col justify-center items-center"
                         >
@@ -39,8 +39,8 @@
 
                     <template v-else>
                         <TableData
-                            :headers="entityHeaders"
-                            :data="entityData"
+                            :headers="modelHeaders"
+                            :data="modelData"
                             :actions="actions"
                             primary-key="id"
                         />
@@ -52,7 +52,7 @@
                     :visible="showCrudModal"
                     :title="crudModalTitle"
                     :fields="crudModalFields"
-                    :initial-values="selectedEntity"
+                    :initial-values="selectedModel"
                     :submit-button-text="crudModalButtonText"
                     @submit="handleProductSubmit"
                     @close="closeCrudModal"
@@ -65,17 +65,18 @@
 <script setup lang="ts">
 import type { Action, Headers, CrudModalField, Order } from '~/types';
 
-const entityName = 'order';
-const titleCaseEntityName = toTitleCase(entityName);
+const modelName = 'order';
+const pluralizedModelName = getPluralModelName(modelName);
+const titleCaseModelName = toTitleCase(pluralizedModelName);
 
-const entityFields: CrudModalField[] = [
+const modelFields: CrudModalField[] = [
     { name: 'customer_id', label: 'Customer', type: 'text', required: true },
     { name: 'total_amount', label: 'Total Amount', type: 'number' },
 ];
 
 const {
-    entityData,
-    selectedEntity,
+    modelData,
+    selectedModel,
     showCrudModal,
     crudModalTitle,
     crudModalButtonText,
@@ -85,9 +86,9 @@ const {
     handleCrudSubmit,
     closeCrudModal,
     fetchDataPaginate,
-    deleteEntity,
+    deleteModel,
     isLoading,
-} = await useEntityCrud(entityName, entityFields);
+} = await useModelCrud(modelName, modelFields);
 
 const handleProductSubmit = async (formData: any) => {
     if (formData.price) {
@@ -96,7 +97,7 @@ const handleProductSubmit = async (formData: any) => {
     handleCrudSubmit(formData);
 };
 
-const entityHeaders: Headers[] = [
+const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
     { key: 'customer_id', label: 'Customer' },
     { key: 'total_amount', label: 'Total Amount' },
@@ -114,10 +115,10 @@ const actions: Action[] = [
     },
     {
         icon: 'mdi:delete',
-        handler: async (entity: any) => {
-            const confirmed = window.confirm(`Delete ${entity.name}?`);
+        handler: async (model: any) => {
+            const confirmed = window.confirm(`Delete ${model.name}?`);
             confirmed
-                ? await deleteEntity(entity.id)
+                ? await deleteModel(model.id)
                 : toasts('Deletion canceled.', { type: 'warning' });
         },
         class: 'text-red-800',

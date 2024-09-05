@@ -1,17 +1,36 @@
 <template>
-    <div
-        class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-4 rounded-t"
-    >
-        <p class="text-black dark:text-gray-300 text-2xl font-bold">
-            {{ title }}
-        </p>
-        <div class="py-1">
-            <slot name="actions" />
+    <main class="px-4 pt-4 pb-1 bg-gray-100 dark:bg-gray-900 rounded-t">
+        <div class="flex-col m-auto items-center dark:bg-gray-900 rounded-md">
+            <div
+                class="flex items-center gap-2 bg-gray-200 dark:bg-gray-800 px-6 rounded-md py-4 w-full"
+            >
+                <SpinnerBlocks class="size-8" />
+                <p class="text-black dark:text-gray-300 text-2xl font-bold">
+                    {{ title }}
+                </p>
+            </div>
+            <div
+                class="pt-0.5 flex justify-between items-center rounded-md px-3 mt-1"
+            >
+                <Button
+                    variant="destructive"
+                    icon
+                    class="rounded-full px-2"
+                    @click="router.back()"
+                >
+                    <Icon name="mdi:arrow-left" size="24" />
+                </Button>
+                <slot name="actions" />
+            </div>
         </div>
-    </div>
+    </main>
 </template>
 
 <script setup>
+import { Button } from '~/components/ui/button';
+
+const router = useRouter();
+
 defineProps({
     title: {
         type: String,
