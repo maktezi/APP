@@ -91,9 +91,13 @@ export const totalAmount = computed(() => {
 });
 
 export const totalTax = computed(() => {
-    return totalAmount.value * 0.12; // 12% tax
+    return totalAmount.value * 0.12; // 12% tax sample hard coded
 });
 
-export const totalAmountWithTax = computed(() => {
-    return totalAmount.value + totalTax.value;
+export const promotionAmount = computed(() => {
+    return totalAmount.value * 0.1; // 10% discount sample hard coded
+});
+
+export const totalAmountWithTaxAndDiscount = computed(() => {
+    return totalAmount.value + totalTax.value - promotionAmount.value;
 });

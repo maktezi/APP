@@ -41,7 +41,7 @@
             :title="modalTitle"
             :initial-values="selectedEntity"
             :submit-button-text="modalButtonText"
-            :transaction-total="currencyFormat(totalAmountWithTax)"
+            :transaction-total="currencyFormat(totalAmountWithTaxAndDiscount)"
             :selected-payment-method="selectedPaymentMethod"
             @submit="handleCartSubmit"
             @close="closePosModal"

@@ -47,33 +47,22 @@
                         >Select Payment Method</label
                     >
                     <div class="mt-2 grid grid-cols-4 gap-2">
-                        <Button
-                            class="flex items-center justify-center py-8 gap-2"
+                        <div
+                            v-for="(payment, index) in Object.values(
+                                paymentMethods,
+                            )"
+                            :key="index"
+                            class="flex items-center justify-center"
                         >
-                            <Icon name="mdi:cash" size="40" />
-                            Cash
-                        </Button>
-                        <Button
-                            variant="outline"
-                            class="flex items-center justify-center py-8 gap-2"
-                        >
-                            <Icon name="mdi:cellphone-link" size="40" />
-                            Gcash
-                        </Button>
-                        <Button
-                            variant="outline"
-                            class="flex items-center justify-center py-8 gap-2"
-                        >
-                            <Icon name="mdi:paypal" size="50" />
-                            Paypal
-                        </Button>
-                        <Button
-                            variant="outline"
-                            class="flex items-center justify-center py-8 gap-2"
-                        >
-                            <Icon name="mdi:bank" size="20" />
-                            Bank
-                        </Button>
+                            <Button
+                                :variant="payment.variant"
+                                :disabled="payment.disabled"
+                                class="flex items-center justify-center py-8 gap-2"
+                            >
+                                <Icon :name="payment.icon" size="23" />
+                                {{ payment.name }}
+                            </Button>
+                        </div>
                     </div>
                 </div>
 
@@ -102,8 +91,8 @@
                         <Input
                             v-model="cashTendered"
                             type="number"
-                            placeholder="Cash Tendered"
-                            class="pl-10 text-xl font-bold py-8 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                            placeholder="Enter Cash"
+                            class="pl-10 text-2xl font-bold py-8 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
                         />
                         <span
                             class="absolute start-0 text-xl inset-y-0 flex items-center justify-center px-5"
@@ -114,16 +103,19 @@
                         <Input
                             v-model="change"
                             type="number"
-                            :class="{ 'text-transparent': change < 0 }"
-                            class="pl-32 text-2xl font-bold py-8 border-b-black border-b-4 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                            :class="
+                                change < 0 || change === ''
+                                    ? 'text-transparent'
+                                    : 'text-green-500'
+                            "
+                            class="pl-36 text-2xl font-bold py-8 border-b-black border-b-4 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
                             readonly
                         />
                         <span
-                            class="absolute start-0 font-bold inset-y-0 flex items-center justify-center px-5"
-                            >CHANGE:</span
+                            class="absolute start-0 inset-y-0 flex items-center justify-center px-4"
+                            >CHANGE: ₱</span
                         >
                     </div>
-                    <!-- Number Pad -->
                     <div class="grid grid-cols-3 gap-1 mt-3">
                         <Button
                             v-for="n in numbers"
@@ -184,14 +176,7 @@ import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 
 const emit = defineEmits(['submit', 'close']);
-const form = ref<Record<string, any>>({});
-
-const cashTendered = ref(0);
-const change: ComputedRef<number> = computed(() =>
-    parseFloat((cashTendered.value - totalAmountWithTax.value).toFixed(2)),
-);
-
-const props = defineProps({
+defineProps({
     visible: Boolean,
     title: {
         type: String,
@@ -219,22 +204,26 @@ const props = defineProps({
     },
 });
 
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const form = ref<Record<string, any>>({});
+const cashTendered: Ref<any> = ref('');
+const change: ComputedRef<number> = computed(() =>
+    parseFloat(
+        (cashTendered.value - totalAmountWithTaxAndDiscount.value).toFixed(2),
+    ),
+);
 
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const appendZero = () => {
     if (cashTendered.value.length > 0) {
         cashTendered.value = cashTendered.value + '0';
     }
 };
-
 const appendNumber = (num: string) => {
     cashTendered.value = (cashTendered.value + num).toString();
 };
-
 const clearInput = () => {
     cashTendered.value = '';
 };
-
 const appendDot = () => {
     if (!cashTendered.value.includes('.')) {
         cashTendered.value = cashTendered.value + '.';
@@ -245,10 +234,42 @@ const closeModal = () => {
     emit('close');
 };
 
+// TODO: Handle submit
 const handleSubmit = () => {
+    console.log('Record to orders and logs', cartProducts.value);
     emit('submit', {
         ...form.value,
     });
     emit('close');
 };
+
+const paymentMethods = [
+    {
+        name: 'Cash',
+        icon: 'mdi:cash',
+        color: 'text-green-500',
+        variant: 'default',
+    },
+    {
+        name: 'Gcash',
+        icon: 'mdi:cellphone-link',
+        color: 'text-blue-500',
+        variant: 'outline',
+        disabled: true,
+    },
+    {
+        name: 'Paypal',
+        icon: 'mdi:paypal',
+        color: 'text-red-500',
+        variant: 'outline',
+        disabled: true,
+    },
+    {
+        name: 'Bank',
+        icon: 'mdi:bank',
+        color: 'text-yellow-500',
+        variant: 'outline',
+        disabled: true,
+    },
+];
 </script>
