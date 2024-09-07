@@ -1,13 +1,4 @@
-export interface LinkItem {
-    title: string;
-    icon: string;
-    iconColor?: string;
-    textColor?: string;
-    path?: string;
-    show?: boolean;
-    items?: LinkItem[];
-    model?: string;
-}
+import type { LinkItem } from '~/types';
 
 function filterLinks(links: LinkItem[], is_admin?: any): LinkItem[] {
     return links.filter((link) => {
@@ -22,6 +13,11 @@ const sidebarLinks: LinkItem[] = [
         icon: 'mdi:view-dashboard-outline',
     },
     {
+        title: 'Users',
+        path: '/users',
+        icon: 'mdi:users',
+    },
+    {
         title: 'Products',
         path: '/products',
         icon: 'mdi:storefront',
@@ -32,6 +28,11 @@ const sidebarLinks: LinkItem[] = [
         icon: 'ic:twotone-inventory',
     },
     {
+        title: 'Point of Sale',
+        path: '/pos',
+        icon: 'mdi:monitor-dashboard',
+    },
+    {
         title: 'Customers',
         path: '/customers',
         icon: 'mdi:account-multiple',
@@ -40,37 +41,35 @@ const sidebarLinks: LinkItem[] = [
         title: 'Orders',
         path: '/orders',
         icon: 'mdi:cart-outline',
-    },
-    {
-        title: 'Point of Sale',
-        path: '/pos',
-        icon: 'mdi:monitor-dashboard',
-    },
-    {
-        title: 'Users',
-        path: '/users',
-        icon: 'mdi:users',
+        textColor: 'text-gray-500',
+        iconColor: 'text-gray-500',
     },
     {
         title: 'Jobs',
         path: '/jobs',
         icon: 'mdi:calendar-check',
-    },
-    {
-        title: 'Messages',
-        path: '/messages',
-        icon: 'mdi:message-text',
+        textColor: 'text-gray-500',
+        iconColor: 'text-gray-500',
     },
     {
         title: 'Online Forms',
         path: '/online-forms',
         icon: 'mdi:form-select',
+        textColor: 'text-gray-500',
+        iconColor: 'text-gray-500',
     },
     {
-        title: 'Settings',
-        path: '#',
-        icon: 'mdi:cog',
+        title: 'Messages',
+        path: '/messages',
+        icon: 'mdi:message-text',
+        textColor: 'text-gray-500',
+        iconColor: 'text-gray-500',
     },
+    // {
+    //     title: 'Settings',
+    //     path: '#',
+    //     icon: 'mdi:cog',
+    // },
 ];
 
 export default function useLinks() {
