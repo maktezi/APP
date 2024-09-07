@@ -2,7 +2,7 @@
     <main class="px-4 pt-4 pb-1 bg-gray-100 dark:bg-gray-900 rounded-t">
         <div class="flex-col m-auto items-center dark:bg-gray-900 rounded-md">
             <div
-                class="flex items-center gap-2 bg-gray-200 dark:bg-gray-800 px-6 rounded-md py-4 w-full"
+                class="flex items-center gap-2 bg-gray-200 dark:bg-gray-800 p-4 rounded-md w-full"
             >
                 <SpinnerBlocks class="size-8" />
                 <p class="text-black dark:text-gray-300 text-2xl font-bold">
@@ -10,13 +10,13 @@
                 </p>
             </div>
             <div
-                class="pt-0.5 flex justify-between items-center rounded-md px-3 mt-1"
+                class="pt-0.5 flex justify-between items-center rounded-md px-2 mt-1"
             >
                 <Button
                     variant="destructive"
                     icon
                     class="rounded-full px-2"
-                    @click="router.back()"
+                    @click="router.push('/dashboard')"
                 >
                     <Icon name="mdi:arrow-left" size="24" />
                 </Button>

@@ -2,59 +2,35 @@
     <div>
         <NuxtLayout name="app-layout">
             <Head>
-                <Title>{{ titleCaseModelName }}</Title>
+                <Title>{{ pageTitle }}</Title>
             </Head>
             <main class="max-w-screen-xl mx-auto">
-                <TableHeader :title="titleCaseModelName">
+                <TableHeader :title="pageTitle">
                     <template #actions>
                         <TableCRUD
                             :on-create="openCreateModal"
-                            :on-refresh="() => fetchDataPaginate(10, 1)"
+                            :on-refresh="
+                                () => fetchDataPaginate(numberPerPage, page)
+                            "
                         />
                     </template>
                 </TableHeader>
 
-                <div class="flex relative justify-center items-center">
-                    <template v-if="isLoading">
-                        <div
-                            class="absolute flex-col top-64 flex justify-center items-center"
-                        >
-                            <SpinnerTadpole class="size-16" />
-                            <p
-                                class="animate-pulse text-gray-500 dark:text-gray-300 mt-4 text-xl"
-                            >
-                                Fetching data
-                            </p>
-                        </div>
-                    </template>
-
-                    <template v-else-if="!modelData.length">
-                        <div
-                            class="text-gray-500 dark:text-gray-300 mt-72 text-xl flex-col justify-center items-center"
-                        >
-                            <SpinnerBlocksWave class="size-16" />
-                            <span>No data</span>
-                        </div>
-                    </template>
-
-                    <template v-else>
-                        <TableData
-                            :headers="modelHeaders"
-                            :data="modelData"
-                            :actions="actions"
-                            primary-key="id"
-                        />
-                    </template>
-                </div>
+                <TableContent
+                    :headers="modelHeaders"
+                    :is-loading="isLoading"
+                    :data="modelData"
+                    :actions="actions"
+                />
 
                 <TableCrudModal
-                    v-if="showCrudModal"
-                    :visible="showCrudModal"
-                    :title="crudModalTitle"
-                    :fields="crudModalFields"
+                    v-if="showModal"
+                    :visible="showModal"
+                    :title="modalTitle"
+                    :fields="modalFields"
                     :initial-values="selectedModel"
-                    :submit-button-text="crudModalButtonText"
-                    @submit="handleUserSubmit"
+                    :submit-button-text="modalButtonText"
+                    @submit="handleSubmit"
                     @close="closeCrudModal"
                 />
             </main>
@@ -64,41 +40,13 @@
 
 <script setup lang="ts">
 import bcrypt from 'bcryptjs';
-import type { CrudModalField, Action, Headers } from '~/types';
+import type { CrudModalField, Headers } from '~/types';
 
 const modelName = 'user';
-const pluralizedModelName = getPluralModelName(modelName);
-const titleCaseModelName = toTitleCase(pluralizedModelName);
+const pageTitle = getPluralModelName(toTitleCase(modelName));
 
-const modelFields: CrudModalField[] = [
-    { name: 'name', label: 'Name', type: 'text', required: true },
-    { name: 'email', label: 'Email', type: 'email', required: true },
-    { name: 'password', label: 'Password', type: 'password' },
-];
-
-// Use the generic CRUD composable
-const {
-    modelData,
-    selectedModel,
-    showCrudModal,
-    crudModalTitle,
-    crudModalButtonText,
-    crudModalFields,
-    openCreateModal,
-    openEditModal,
-    handleCrudSubmit,
-    closeCrudModal,
-    fetchDataPaginate,
-    deleteModel,
-    isLoading,
-} = await useModelCrud(modelName, modelFields);
-
-const handleUserSubmit = async (formData: any) => {
-    if (formData.password) {
-        formData.password = await bcrypt.hash(formData.password, 10);
-    }
-    handleCrudSubmit(formData);
-};
+const numberPerPage = 10; // Todo: dynamic pagination
+const page = 1;
 
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
@@ -106,25 +54,35 @@ const modelHeaders: Headers[] = [
     { key: 'email', label: 'Email' },
 ];
 
-const actions: Action[] = [
-    {
-        icon: 'mdi:edit',
-        handler: openEditModal,
-        class: 'text-blue-500',
-    },
-    {
-        icon: 'mdi:delete',
-        handler: async (model: any) => {
-            const confirmed = window.confirm(`Delete ${model.name}?`);
-            confirmed
-                ? await deleteModel(model.id)
-                : toasts('Deletion canceled.', { type: 'warning' });
-        },
-        class: 'text-red-800',
-    },
+const modelFields: CrudModalField[] = [
+    { name: 'name', label: 'Name', type: 'text', required: true },
+    { name: 'email', label: 'Email', type: 'email', required: true },
+    { name: 'password', label: 'Password', type: 'password' },
 ];
 
+const {
+    modelData,
+    selectedModel,
+    showModal,
+    modalTitle,
+    modalButtonText,
+    modalFields,
+    openCreateModal,
+    handleCrudSubmit,
+    closeCrudModal,
+    fetchDataPaginate,
+    isLoading,
+    actions,
+} = await useModelCrud(modelName, modelFields);
+
+const handleSubmit = async (formData: any) => {
+    if (formData.password) {
+        formData.password = await bcrypt.hash(formData.password, 10);
+    }
+    handleCrudSubmit(formData);
+};
+
 onMounted(() => {
-    fetchDataPaginate(10, 1);
+    fetchDataPaginate(numberPerPage, page);
 });
 </script>

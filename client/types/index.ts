@@ -107,3 +107,14 @@ export type Field = {
         | 'checkbox';
     required?: boolean;
 };
+
+export type LinkItem = {
+    title: string;
+    icon: string;
+    iconColor?: string;
+    textColor?: string;
+    path?: string;
+    show?: boolean;
+    items?: LinkItem[];
+    model?: string;
+};

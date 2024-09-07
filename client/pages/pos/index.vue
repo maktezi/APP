@@ -119,14 +119,18 @@ const { modelData, fetchDataPaginate, isLoading } = await useModelCrud(
 );
 
 const fallbackData = testData.products;
-
 const products = ref(fallbackData);
 
-onMounted(() => {
+onMounted(async () => {
     try {
-        fetchDataPaginate(20, 1);
+        await fetchDataPaginate(50, 1);
         if (modelData.value.length > 0) {
             products.value = modelData.value;
+        } else {
+            console.warn(
+                'No products found in fetched data, using fallback data',
+            );
+            products.value = fallbackData;
         }
     } catch (error: any) {
         if (error.response && error.response.status === 500) {
@@ -134,13 +138,14 @@ onMounted(() => {
         } else {
             console.error('Fetch failed, using fallback data:', error);
         }
+        products.value = fallbackData;
     }
 });
 </script>
 
 <style scoped>
 .pos-main {
-    height: 96vh;
+    height: 98vh;
     overflow-y: auto;
 }
 </style>
