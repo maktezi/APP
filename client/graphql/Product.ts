@@ -24,13 +24,10 @@ export const productsPaginate = gql`
 export const upsertProduct = gql`
     mutation upsertProduct($input: ProductInput!) {
         upsertProduct(input: $input) {
-            id
-            name
-            description
-            sku
-            price
+            ...product
         }
     }
+    ${ProductFragment}
 `;
 
 export const deleteProduct = gql`

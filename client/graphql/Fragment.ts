@@ -19,13 +19,45 @@ export const jobFragment = gql`
 export const InventoryFragment = gql`
     fragment inventory on Inventory {
         id
+        #        product {
+        #            id
+        #            name
+        #        }
+        product_id
+        qty
+        location
+    }
+`;
+
+export const OrderItemFragment = gql`
+    fragment orderItem on OrderItem {
+        id
+        order {
+            id
+            status
+            total_amount
+            order_date
+        }
         product {
             id
             name
         }
-        product_id
         qty
-        location
+        price
+        total
+    }
+`;
+
+export const PriceFragment = gql`
+    fragment price on Price {
+        id
+        product {
+            id
+            name
+        }
+        price
+        start_date
+        end_date
     }
 `;
 
@@ -37,22 +69,15 @@ export const ProductFragment = gql`
         description
         sku
         price
-        inventories {
-            id
-            qty
-            location
-        }
-        prices {
-            id
-            start_date
-            end_date
-        }
-        orderItems {
-            id
-            qty
-            price
-            total
-        }
+        #        inventories {
+        #            ...inventory
+        #        }
+        #        prices {
+        #            ...price
+        #        }
+        #        orderItems {
+        #            ...orderItem
+        #        }
     }
 `;
 
@@ -75,30 +100,7 @@ export const OrderFragment = gql`
         total_amount
         status
     }
-`;
-
-export const OrderItemFragment = gql`
-    fragment orderItem on OrderItem {
-        id
-        ...order
-        product {
-            id
-            name
-        }
-        qty
-        price
-        total
-    }
-`;
-
-export const PriceFragment = gql`
-    fragment price on Price {
-        id
-        ...product
-        price
-        start_date
-        end_date
-    }
+    ${CustomerFragment}
 `;
 
 export const PaymentFragment = gql`
@@ -108,4 +110,5 @@ export const PaymentFragment = gql`
         amount
         payment_method
     }
+    ${OrderFragment}
 `;

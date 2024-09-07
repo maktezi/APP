@@ -7,10 +7,10 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
 
     const modelData = ref([]);
     const selectedModel = ref(null);
-    const showCrudModal = ref(false);
-    const crudModalTitle = ref(`Create ${toTitleCase(singularName)}`);
-    const crudModalButtonText = ref('Create');
-    const crudModalFields = ref(fields);
+    const showModal = ref(false);
+    const modalTitle = ref(`Create ${toTitleCase(singularName)}`);
+    const modalButtonText = ref('Create');
+    const modalFields = ref(fields);
     const isLoading = ref(false);
 
     // Dynamically import GraphQL queries and mutations
@@ -56,16 +56,16 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
 
     const openCreateModal = () => {
         selectedModel.value = null;
-        crudModalTitle.value = `Create ${capitalizedName}`;
-        crudModalButtonText.value = 'Create';
-        showCrudModal.value = true;
+        modalTitle.value = `Create ${capitalizedName}`;
+        modalButtonText.value = 'Create';
+        showModal.value = true;
     };
 
     const openEditModal = (model: any) => {
         selectedModel.value = model;
-        crudModalTitle.value = `Edit ${capitalizedName}`;
-        crudModalButtonText.value = 'Update';
-        showCrudModal.value = true;
+        modalTitle.value = `Edit ${capitalizedName}`;
+        modalButtonText.value = 'Update';
+        showModal.value = true;
     };
 
     const handleCrudSubmit = async (formData: any) => {
@@ -93,7 +93,7 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     };
 
     const closeCrudModal = () => {
-        showCrudModal.value = false;
+        showModal.value = false;
     };
 
     const deleteModel = async (id: string) => {
@@ -114,6 +114,32 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
             isLoading.value = false;
         }
     };
+
+    const crudActions = (
+        openEditModal: (model: any) => void,
+        deleteModel: (id: string) => Promise<void>,
+        toasts: (msg: string, opts: any) => void,
+    ) => {
+        return [
+            {
+                icon: 'mdi:note-edit',
+                handler: openEditModal,
+                class: 'text-blue-500',
+            },
+            {
+                icon: 'mdi:delete',
+                handler: async (model: any) => {
+                    const confirmed = window.confirm(`Delete ${model.name}?`);
+                    confirmed
+                        ? await deleteModel(model.id)
+                        : toasts('Deletion canceled.', { type: 'warning' });
+                },
+                class: 'text-red-800',
+            },
+        ];
+    };
+
+    const actions = crudActions(openEditModal, deleteModel, toasts);
 
     watch(
         () => result.value,
@@ -136,16 +162,15 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     return {
         modelData,
         selectedModel,
-        showCrudModal,
-        crudModalTitle,
-        crudModalButtonText,
-        crudModalFields,
+        showModal,
+        modalTitle,
+        modalButtonText,
+        modalFields,
         openCreateModal,
-        openEditModal,
         handleCrudSubmit,
         closeCrudModal,
         fetchDataPaginate,
-        deleteModel,
         isLoading,
+        actions,
     };
 }
