@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Headers, CrudModalField, TransformConfig } from '~/types';
+import type { Headers, CrudModalField } from '~/types';
 import { useModelCrud } from '~/composables/useModelCrud';
 
 const modelName = 'inventory';

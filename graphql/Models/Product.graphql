@@ -25,6 +25,16 @@ input ProductInput {
     price: Float
 }
 
+input ConnectProductRelation {
+    id: ID
+    name: String
+    connect: ID
+    create: ProductInput
+    update: ProductInput
+    upsert: ProductInput
+    delete: ID
+}
+
 extend type Query {
     products(
         search: String @scope(name: "search")
