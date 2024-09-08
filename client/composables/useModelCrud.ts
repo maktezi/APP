@@ -141,47 +141,6 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
 
     const actions = crudActions(openEditModal, deleteModel, toasts);
 
-    const optionsCache = ref<Record<string, { label: string; value: any }[]>>(
-        {},
-    );
-
-    const fetchOptions = async (field: CrudModalField) => {
-        if (field.type === 'select' && field.model) {
-            try {
-                const graphqlModule = await import(
-                    `~/graphql/${getCapSingularName(field.model)}.ts`
-                );
-                const FILTER_QUERY =
-                    graphqlModule[`${toCamelCase(field.model)}Filter`];
-
-                if (FILTER_QUERY) {
-                    const { result } = useQuery(FILTER_QUERY, { search: '' });
-                    optionsCache.value[field.name] =
-                        result.value?.[field.model]?.map((item: any) => ({
-                            label: item.name,
-                            value: item.id,
-                        })) || [];
-                }
-            } catch (error) {
-                console.error(
-                    `Error loading filter for ${field.model}:`,
-                    error,
-                );
-            }
-        }
-    };
-
-    watch(
-        () => fields,
-        (newFields) => {
-            newFields.forEach((field) => {
-                if (field.type === 'select') {
-                    fetchOptions(field);
-                }
-            });
-        },
-        { immediate: true },
-    );
     watch(
         () => result.value,
         (newResult) => {
@@ -213,6 +172,5 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
         fetchDataPaginate,
         isLoading,
         actions,
-        optionsCache,
     };
 }

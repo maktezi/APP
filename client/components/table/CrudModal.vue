@@ -71,21 +71,24 @@
                     />
 
                     <!-- Select Field -->
-                    <!--                    <select -->
-                    <!--                        v-if="field.type === 'select'" -->
-                    <!--                        :id="field.name" -->
-                    <!--                        v-model="form[field.name]" -->
-                    <!--                        :required="field.required" -->
-                    <!--                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300" -->
-                    <!--                    > -->
-                    <!--                        <option -->
-                    <!--                            v-for="option in optionsCache[field.name] || []" -->
-                    <!--                            :key="option.value" -->
-                    <!--                            :value="option.value" -->
-                    <!--                        > -->
-                    <!--                            {{ option.label }} -->
-                    <!--                        </option> -->
-                    <!--                    </select> -->
+                    <select
+                        v-if="field.type === 'select'"
+                        :id="field.name"
+                        v-model="form[field.name]"
+                        :required="field.required"
+                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300"
+                    >
+                        <option disabled value="">
+                            Select {{ field.model }}
+                        </option>
+                        <option
+                            v-for="option in sampleOptions || []"
+                            :key="option.value"
+                            :value="option.value"
+                        >
+                            {{ option.name }}
+                        </option>
+                    </select>
 
                     <!-- Toggle button for password visibility -->
                     <button
@@ -128,8 +131,7 @@
 
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
-import type { Field } from '~/types';
-import { useModelCrud } from '~/composables/useModelCrud';
+import type { Field, CrudModalField } from '~/types';
 
 const props = defineProps({
     visible: Boolean,
@@ -149,13 +151,24 @@ const props = defineProps({
         type: String,
         default: 'Submit',
     },
-    model: {
-        type: String,
-        required: true,
-    },
+    modalFields: Array,
+    form: Object,
 });
 
-// const { optionsCache } = await useModelCrud(props.model, props.fields);
+// TODO: dynamic options
+const sampleOptions = [
+    { value: '1', name: 'Product 1' },
+    { value: '2', name: 'Product 2' },
+    { value: '3', name: 'Product 3' },
+    { value: '4', name: 'Product 4' },
+    { value: '5', name: 'Product 5' },
+    { value: '6', name: 'Product 6' },
+    { value: '7', name: 'Product 7' },
+    { value: '8', name: 'Product 8' },
+    { value: '9', name: 'Product 9' },
+    { value: '10', name: 'Product 10' },
+];
+
 const showPassword = ref<Record<string, boolean>>({});
 const emit = defineEmits(['submit', 'close']);
 const form = ref<Record<string, any>>({});

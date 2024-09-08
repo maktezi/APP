@@ -68,8 +68,8 @@ export type CrudModalField = {
     label?: string;
     type?: string;
     required?: boolean;
-    relationshipFields?: string[] | undefined;
     model?: string;
+    queryName?: string;
 };
 
 export type Action = {
@@ -112,6 +112,7 @@ export type Field = {
     max?: number;
     step?: number;
     required?: boolean;
+    model?: string;
 };
 
 export type LinkItem = {

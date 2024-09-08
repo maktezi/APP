@@ -71,6 +71,7 @@ export const ProductFragment = gql`
 export const InventoryFragment = gql`
     fragment inventory on Inventory {
         id
+        product_id
         product {
             id
             name

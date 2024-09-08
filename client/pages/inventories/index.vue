@@ -58,11 +58,12 @@ const modelHeaders: Headers[] = [
 
 const modelFields: CrudModalField[] = [
     {
-        name: 'product.name',
+        name: 'product_id',
         label: 'Product *',
         type: 'select',
         required: true,
-        model: 'product',
+        model: 'Product',
+        queryName: 'productFilter',
     },
     { name: 'qty', label: 'Stocks *', type: 'number', required: true },
     { name: 'location', label: 'Location', type: 'text' },
