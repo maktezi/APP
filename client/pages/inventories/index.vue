@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Headers, CrudModalField } from '~/types';
+import type { Headers, CrudModalField, TransformConfig } from '~/types';
 import { useModelCrud } from '~/composables/useModelCrud';
 
 const modelName = 'inventory';
@@ -51,7 +51,7 @@ const page = 1;
 
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
-    { key: 'product_id', label: 'Product' },
+    { key: 'product.name', label: 'Product' },
     { key: 'qty', label: 'Stocks' },
     { key: 'location', label: 'Location' },
 ];

@@ -12,6 +12,8 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     const modalButtonText = ref('Create');
     const modalFields = ref(fields);
     const isLoading = ref(false);
+    const numberPerPage = 10;
+    const page = 1;
 
     // Dynamically import GraphQL queries and mutations
     let PAGINATE_QUERY, UPSERT_MUTATION, DELETE_MUTATION;
@@ -39,10 +41,8 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
         result,
         refetch,
         loading: queryLoading,
-    } = useQuery(PAGINATE_QUERY, {
-        first: 10,
-        page: 1,
-    });
+    } = useQuery(PAGINATE_QUERY, { first: numberPerPage, page: page });
+
     const { mutate: upsertMutation, loading: upsertLoading } =
         useMutation(UPSERT_MUTATION);
     const { mutate: deleteMutation, loading: deleteLoading } =

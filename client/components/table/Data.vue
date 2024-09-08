@@ -19,7 +19,7 @@
                 <TableBody>
                     <TableRow v-for="item in data" :key="item[primaryKey]">
                         <TableCell v-for="header in headers" :key="header.key">
-                            {{ item[header.key] }}
+                            {{ getNestedValue(item, header.key) }}
                         </TableCell>
                         <TableCell
                             v-if="actions"

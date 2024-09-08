@@ -16,19 +16,6 @@ export const jobFragment = gql`
     }
 `;
 
-export const InventoryFragment = gql`
-    fragment inventory on Inventory {
-        id
-        #        product {
-        #            id
-        #            name
-        #        }
-        product_id
-        qty
-        location
-    }
-`;
-
 export const OrderItemFragment = gql`
     fragment orderItem on OrderItem {
         id
@@ -78,6 +65,19 @@ export const ProductFragment = gql`
         #        orderItems {
         #            ...orderItem
         #        }
+    }
+`;
+
+export const InventoryFragment = gql`
+    fragment inventory on Inventory {
+        id
+        product {
+            id
+            name
+        }
+        product_id
+        qty
+        location
     }
 `;
 
