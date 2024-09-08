@@ -42,7 +42,7 @@
 import type { Headers, CrudModalField } from '~/types';
 
 const modelName = 'product';
-const pageTitle = getPluralModelName(toTitleCase(modelName));
+const pageTitle = getPluralName(toTitleCase(modelName));
 
 // Todo: dynamic pagination
 const numberPerPage = 10;

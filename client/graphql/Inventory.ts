@@ -2,14 +2,13 @@ import gql from 'graphql-tag';
 import { InventoryFragment } from './Fragment';
 
 export const inventoryFilter = gql`
-    query inventoryFilter($product_id: ID) {
-        inventoriesFilter(product_id: $product_id) {
-            data {
-                ...inventory
-            }
+    query inventoryFilter($search: String) {
+        inventories(search: $search) {
+            id
+            qty
+            location
         }
     }
-    ${InventoryFragment}
 `;
 
 export const inventoriesPaginate = gql`

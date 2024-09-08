@@ -70,6 +70,23 @@
                         class="mt-1 mr-2 rounded-md border-none outline-none shadow-sm sm:text-sm"
                     />
 
+                    <!-- Select Field -->
+                    <!--                    <select -->
+                    <!--                        v-if="field.type === 'select'" -->
+                    <!--                        :id="field.name" -->
+                    <!--                        v-model="form[field.name]" -->
+                    <!--                        :required="field.required" -->
+                    <!--                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300" -->
+                    <!--                    > -->
+                    <!--                        <option -->
+                    <!--                            v-for="option in optionsCache[field.name] || []" -->
+                    <!--                            :key="option.value" -->
+                    <!--                            :value="option.value" -->
+                    <!--                        > -->
+                    <!--                            {{ option.label }} -->
+                    <!--                        </option> -->
+                    <!--                    </select> -->
+
                     <!-- Toggle button for password visibility -->
                     <button
                         v-if="field.type === 'password' && form[field.name]"
@@ -112,6 +129,7 @@
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
 import type { Field } from '~/types';
+import { useModelCrud } from '~/composables/useModelCrud';
 
 const props = defineProps({
     visible: Boolean,
@@ -131,8 +149,13 @@ const props = defineProps({
         type: String,
         default: 'Submit',
     },
+    model: {
+        type: String,
+        required: true,
+    },
 });
 
+// const { optionsCache } = await useModelCrud(props.model, props.fields);
 const showPassword = ref<Record<string, boolean>>({});
 const emit = defineEmits(['submit', 'close']);
 const form = ref<Record<string, any>>({});

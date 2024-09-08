@@ -2,10 +2,10 @@
     <div>
         <NuxtLayout name="app-layout">
             <Head>
-                <Title>{{ titleCaseModelName }}</Title>
+                <Title>{{ pageTitle }}</Title>
             </Head>
             <main class="max-w-screen-xl mx-auto">
-                <TableHeader :title="titleCaseModelName">
+                <TableHeader :title="pageTitle">
                     <template #actions>
                         <TableCRUD
                             :on-create="openCreateModal"
@@ -66,8 +66,7 @@
 import type { Action, Headers, CrudModalField, Order } from '~/types';
 
 const modelName = 'order';
-const pluralizedModelName = getPluralModelName(modelName);
-const titleCaseModelName = toTitleCase(pluralizedModelName);
+const pageTitle = getPluralName(toTitleCase(modelName));
 
 const modelFields: CrudModalField[] = [
     { name: 'customer_id', label: 'Customer', type: 'text', required: true },

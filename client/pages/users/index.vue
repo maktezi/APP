@@ -43,7 +43,7 @@ import bcrypt from 'bcryptjs';
 import type { CrudModalField, Headers } from '~/types';
 
 const modelName = 'user';
-const pageTitle = getPluralModelName(toTitleCase(modelName));
+const pageTitle = getPluralName(toTitleCase(modelName));
 
 const numberPerPage = 10; // Todo: dynamic pagination
 const page = 1;

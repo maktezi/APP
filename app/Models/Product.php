@@ -29,7 +29,9 @@ class Product extends Model
 
     public function scopeSearch(Builder $query, ?string $search): Builder
     {
-        return empty($search) ? $query : $query->where('name', 'like', "%{$search}%");
+        return empty($search) ? $query :
+            $query->where('name', 'like', "%{$search}%")
+            ->orWhere('sku', 'like', "%{$search}%");
     }
 
 }

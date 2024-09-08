@@ -75,7 +75,6 @@ export const InventoryFragment = gql`
             id
             name
         }
-        product_id
         qty
         location
     }

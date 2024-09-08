@@ -43,7 +43,7 @@ import type { Headers, CrudModalField } from '~/types';
 import { useModelCrud } from '~/composables/useModelCrud';
 
 const modelName = 'inventory';
-const pageTitle = getPluralModelName(toTitleCase(modelName));
+const pageTitle = getPluralName(toTitleCase(modelName));
 
 // Todo: dynamic pagination
 const numberPerPage = 10;
@@ -57,7 +57,13 @@ const modelHeaders: Headers[] = [
 ];
 
 const modelFields: CrudModalField[] = [
-    { name: 'product_id', label: 'Product *', type: 'text', required: true },
+    {
+        name: 'product.name',
+        label: 'Product *',
+        type: 'select',
+        required: true,
+        model: 'product',
+    },
     { name: 'qty', label: 'Stocks *', type: 'number', required: true },
     { name: 'location', label: 'Location', type: 'text' },
 ];

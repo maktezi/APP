@@ -43,7 +43,7 @@ import type { Headers, CrudModalField } from '~/types';
 import { useModelCrud } from '~/composables/useModelCrud';
 
 const modelName = 'customer';
-const pageTitle = getPluralModelName(toTitleCase(modelName));
+const pageTitle = getPluralName(toTitleCase(modelName));
 
 // Todo: dynamic pagination
 const numberPerPage = 10;

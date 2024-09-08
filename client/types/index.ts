@@ -64,11 +64,12 @@ export type Inventory = {
 };
 
 export type CrudModalField = {
-    name?: string;
+    name?: any;
     label?: string;
     type?: string;
     required?: boolean;
     relationshipFields?: string[] | undefined;
+    model?: string;
 };
 
 export type Action = {
@@ -95,7 +96,7 @@ export type ProductsPaginateResult = {
 };
 
 export type Field = {
-    name?: string;
+    name?: any;
     label?: string;
     type?:
         | 'text'
@@ -104,7 +105,12 @@ export type Field = {
         | 'float'
         | 'number'
         | 'password'
-        | 'checkbox';
+        | 'checkbox'
+        | 'select';
+    options?: { value: string; label: string }[];
+    min?: number;
+    max?: number;
+    step?: number;
     required?: boolean;
 };
 
