@@ -39,9 +39,9 @@
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.68",
     "@tanstack/vue-table": "^8.16.0",
-    "@unovis/ts": "^1.4.1",
-    "@unovis/vue": "^1.4.1",
-    "@vueuse/core": "^10.9.0",
+    "@unovis/ts": "^1.4.3-beta.0",
+    "@unovis/vue": "^1.4.3-beta.0",
+    "@vueuse/core": "^11.0.3",
     "apexcharts": "^3.49.1",
     "autoprefixer": "^10.4.19",
     "lucide-vue-next": "^0.424.0",
