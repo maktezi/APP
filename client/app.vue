@@ -24,10 +24,10 @@ const height = 5;
 
 <style>
 .page-leave-active {
-    transition: all 0.3s;
+    transition: all 0.5s;
 }
 .page-leave-to {
     opacity: 0;
-    filter: blur(0.2rem);
+    filter: blur(0.3rem);
 }
 </style>
