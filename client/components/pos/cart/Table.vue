@@ -30,7 +30,7 @@
                     </TableHead>
                 </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody v-auto-animate>
                 <TableRow v-for="product in products" :key="product.item">
                     <TableCell class="font-bold overflow-hidden">
                         <div class="flex items-center">

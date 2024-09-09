@@ -1,5 +1,10 @@
 <template>
-    <div class="flex-grow">
+    <div>
+        <AreaChart
+            :data="areaData"
+            index="name"
+            :categories="['total', 'predicted']"
+        />
         <BarChart
             :data="data"
             index="name"
@@ -11,12 +16,6 @@
                         : '';
                 }
             "
-        />
-
-        <AreaChart
-            :data="areaData"
-            index="name"
-            :categories="['total', 'predicted']"
         />
     </div>
 </template>
