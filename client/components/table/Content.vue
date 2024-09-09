@@ -17,7 +17,7 @@
             <div
                 class="text-gray-500 dark:text-gray-300 mt-72 text-xl flex flex-col justify-center items-center"
             >
-                <SpinnerBlocksWave class="size-16" />
+                <Icon name="mdi:warning" size="30" />
                 <span>No data</span>
             </div>
         </template>
