@@ -12,8 +12,8 @@
                 <div
                     class="relative flex m-auto items-center justify-center gap-5"
                 >
-                    <Card class="absolute top-0 left-0">
-                        <Chart class="w-[500px]" />
+                    <Card>
+                        <Chart class="w-[400px]" />
                     </Card>
                 </div>
             </main>
@@ -23,4 +23,5 @@
 
 <script setup lang="ts">
 // definePageMeta({ middleware: ["auth"] });
+import { Card } from '~/components/ui/card';
 </script>
