@@ -23,7 +23,10 @@ export const addProductToCart = (product: Product) => {
             amount: product.price,
         });
     }
-    toasts('Item Added to Cart!', { type: 'success', position: 'top-left' });
+    toasts(`${product.name} added to Cart!`, {
+        type: 'success',
+        position: 'top-left',
+    });
 };
 
 export const deleteCartItem = (productToDelete: string) => {
@@ -32,7 +35,7 @@ export const deleteCartItem = (productToDelete: string) => {
     );
     if (index > -1) {
         cartProducts.value.splice(index, 1);
-        toasts('Successfully Deleted!', { type: 'success' });
+        toasts('Successfully Removed!', { type: 'success' });
     } else {
         toasts('Item not found in cart!', { type: 'warning' });
     }
@@ -83,7 +86,9 @@ export const cartClear = () => {
 };
 
 export const paymentSuccess = () => {
-    toasts('Successfully Paid!', { type: 'success', position: 'top-center' });
+    // TODO
+    cartProducts.value = [];
+    toasts('Successfully Paid!', { type: 'success', position: 'top-right' });
 };
 
 export const totalAmount = computed(() => {
@@ -91,11 +96,11 @@ export const totalAmount = computed(() => {
 });
 
 export const totalTax = computed(() => {
-    return totalAmount.value * 0.12; // 12% tax sample hard coded
+    return totalAmount.value * 0.12; // TODO: 12% tax sample hard coded
 });
 
 export const promotionAmount = computed(() => {
-    return totalAmount.value * 0.1; // 10% discount sample hard coded
+    return totalAmount.value * 0.1; // TODO: 10% discount sample hard coded
 });
 
 export const totalAmountWithTaxAndDiscount = computed(() => {

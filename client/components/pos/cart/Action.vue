@@ -43,7 +43,7 @@
             :submit-button-text="modalButtonText"
             :transaction-total="currencyFormat(totalAmountWithTaxAndDiscount)"
             :selected-payment-method="selectedPaymentMethod"
-            @submit="handleCartSubmit"
+            @submit="paymentSuccess"
             @close="closePosModal"
         />
     </main>
@@ -69,12 +69,6 @@ const openPosModal = () => {
     modalTitle.value = 'Checkout';
     modalButtonText.value = 'Complete Payment';
     showModal.value = true;
-};
-
-const handleCartSubmit = (formData: any) => {
-    // TODO
-    cartProducts.value = [];
-    toasts('Successfully Paid!', { type: 'success', position: 'top-right' });
 };
 
 const closePosModal = () => {

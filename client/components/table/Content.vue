@@ -1,24 +1,19 @@
 <template>
     <div class="relative flex justify-center items-center w-full">
-        <template v-if="isLoading">
+        <template v-if="isLoading || !data.length">
             <div
-                class="absolute flex-col top-64 flex justify-center items-center"
+                class="absolute flex-col top-64 flex justify-center items-center text-xl text-gray-500 dark:text-gray-300 mt-4"
             >
-                <SpinnerTadpole class="size-16" />
-                <p
-                    class="animate-pulse text-gray-500 dark:text-gray-300 mt-4 text-xl"
-                >
-                    Fetching data
-                </p>
-            </div>
-        </template>
+                <SpinnerTadpole
+                    v-if="isLoading"
+                    class="size-16 text-green-500"
+                />
+                <p v-if="isLoading" class="animate-pulse">Fetching data</p>
 
-        <template v-else-if="!data.length">
-            <div
-                class="text-gray-500 dark:text-gray-300 mt-72 text-xl flex flex-col justify-center items-center"
-            >
-                <Icon name="mdi:warning" size="30" />
-                <span>No data</span>
+                <div v-else class="flex flex-col items-center">
+                    <Icon name="mdi:warning" class="text-red-500" size="65" />
+                    <span>No data</span>
+                </div>
             </div>
         </template>
 
