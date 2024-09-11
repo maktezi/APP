@@ -6,7 +6,7 @@
 
         <SheetContent
             side="left"
-            class="sm:w-80 w-full border-gray-700 sm:border-0 md:rounded-r-lg"
+            class="sm:w-80 w-full border-transparent sm:border-0 rounded-none md:rounded-r-lg"
         >
             <SheetHeader>
                 <div class="flex items-center justify-between">

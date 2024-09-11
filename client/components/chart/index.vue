@@ -1,29 +1,32 @@
 <template>
-    <div>
-        <AreaChart
-            :data="areaData"
-            index="name"
-            :categories="['total', 'predicted']"
-        />
-        <BarChart
-            :data="data"
-            index="name"
-            :categories="['total', 'predicted']"
-            :y-formatter="
+    <div class="flex relative flex-col gap-2">
+        <div class="absolute top-0 left-0 w-full h-full">
+            <AreaChart
+                :data="areaData"
+                index="name"
+                :categories="['total', 'predicted']"
+            />
+        </div>
+       <div class="absolute top-96 left-0 w-full h-full">
+           <BarChart
+               :data="data"
+               index="name"
+               :categories="['total', 'predicted']"
+               :y-formatter="
                 (tick, i) => {
                     return typeof tick === 'number'
                         ? `$ ${new Intl.NumberFormat('us').format(tick).toString()}`
                         : '';
                 }
             "
-        />
+           />
+       </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { BarChart } from '@/components/ui/chart-bar';
 import { AreaChart } from '@/components/ui/chart-area';
-
 const areaData = [
     {
         name: 'Jan',
