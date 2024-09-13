@@ -25,7 +25,7 @@ const sidebarLinks: LinkItem[] = [
     {
         title: 'Inventories',
         path: '/inventories',
-        icon: 'ic:twotone-inventory',
+        icon: 'mdi:package-variant-closed',
     },
     {
         title: 'Point of Sale',
@@ -48,22 +48,22 @@ const sidebarLinks: LinkItem[] = [
         title: 'Jobs',
         path: '/jobs',
         icon: 'mdi:calendar-check',
-        // textColor: 'text-gray-500',
-        // iconColor: 'text-gray-500',
+        textColor: 'text-gray-500',
+        iconColor: 'text-gray-500',
     },
     {
         title: 'Online Forms',
         path: '/online-forms',
         icon: 'mdi:form-select',
-        // textColor: 'text-gray-500',
-        // iconColor: 'text-gray-500',
+        textColor: 'text-gray-500',
+        iconColor: 'text-gray-500',
     },
     {
         title: 'Messages',
         path: '/messages',
         icon: 'mdi:message-text',
-        // textColor: 'text-gray-500',
-        // iconColor: 'text-gray-500',
+        textColor: 'text-gray-500',
+        iconColor: 'text-gray-500',
     },
     // {
     //     title: 'Settings',
