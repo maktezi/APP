@@ -12,7 +12,7 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     const modalButtonText = ref('Create');
     const modalFields = ref(fields);
     const isLoading = ref(false);
-    const numberPerPage = 10;
+    const numberPerPage = 50;
     const page = 1;
 
     // Dynamically import GraphQL queries and mutations

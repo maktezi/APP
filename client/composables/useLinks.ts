@@ -40,7 +40,7 @@ const sidebarLinks: LinkItem[] = [
     {
         title: 'Orders',
         path: '/orders',
-        icon: 'mdi:cart-outline',
+        icon: 'mdi:order-bool-ascending-variant',
         // textColor: 'text-gray-500',
         // iconColor: 'text-gray-500',
     },
@@ -48,28 +48,28 @@ const sidebarLinks: LinkItem[] = [
         title: 'Jobs',
         path: '/jobs',
         icon: 'mdi:calendar-check',
-        textColor: 'text-gray-500',
-        iconColor: 'text-gray-500',
+        // textColor: 'text-gray-500',
+        // iconColor: 'text-gray-500',
     },
     {
         title: 'Online Forms',
         path: '/online-forms',
         icon: 'mdi:form-select',
-        textColor: 'text-gray-500',
-        iconColor: 'text-gray-500',
+        // textColor: 'text-gray-500',
+        // iconColor: 'text-gray-500',
     },
     {
         title: 'Messages',
         path: '/messages',
         icon: 'mdi:message-text',
-        textColor: 'text-gray-500',
-        iconColor: 'text-gray-500',
+        // textColor: 'text-gray-500',
+        // iconColor: 'text-gray-500',
     },
-    // {
-    //     title: 'Settings',
-    //     path: '#',
-    //     icon: 'mdi:cog',
-    // },
+    {
+        title: 'Settings',
+        path: '#',
+        icon: 'mdi:cog',
+    },
 ];
 
 export default function useLinks() {

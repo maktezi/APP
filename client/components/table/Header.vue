@@ -18,7 +18,7 @@
                     icon
                     size="sm"
                     class="rounded-full px-2"
-                    @click="router.push('/dashboard')"
+                    @click="router.back()"
                 >
                     <Icon name="mdi:arrow-left" size="20" />
                 </Button>
