@@ -5,56 +5,32 @@
                 <Title>{{ pageTitle }}</Title>
             </Head>
             <main class="max-w-screen-xl mx-auto">
-                <TableHeader :title="pageTitle">
+                <TableHeader :title="pageTitle" :icon="icon">
                     <template #actions>
                         <TableCRUD
                             :on-create="openCreateModal"
-                            :on-refresh="() => fetchDataPaginate(10, 1)"
+                            :on-refresh="
+                                () => fetchDataPaginate(numberPerPage, page)
+                            "
                         />
                     </template>
                 </TableHeader>
 
-                <div class="flex relative justify-center items-center">
-                    <template v-if="isLoading">
-                        <div
-                            class="absolute flex-col top-64 flex justify-center items-center"
-                        >
-                            <SpinnerTadpole class="size-16" />
-                            <p
-                                class="animate-pulse text-gray-500 dark:text-gray-300 mt-4 text-xl"
-                            >
-                                Fetching data
-                            </p>
-                        </div>
-                    </template>
-
-                    <template v-else-if="!modelData.length">
-                        <div
-                            class="text-gray-500 dark:text-gray-300 mt-72 text-xl flex-col justify-center items-center"
-                        >
-                            <SpinnerBlocksWave class="size-16" />
-                            <span>No data</span>
-                        </div>
-                    </template>
-
-                    <template v-else>
-                        <TableData
-                            :headers="modelHeaders"
-                            :data="modelData"
-                            :actions="actions"
-                            primary-key="id"
-                        />
-                    </template>
-                </div>
+                <TableContent
+                    :headers="modelHeaders"
+                    :is-loading="isLoading"
+                    :data="modelData"
+                    :actions="actions"
+                />
 
                 <TableCrudModal
-                    v-if="showCrudModal"
-                    :visible="showCrudModal"
-                    :title="crudModalTitle"
-                    :fields="crudModalFields"
+                    v-if="showModal"
+                    :visible="showModal"
+                    :title="modalTitle"
+                    :fields="modalFields"
                     :initial-values="selectedModel"
-                    :submit-button-text="crudModalButtonText"
-                    @submit="handleProductSubmit"
+                    :submit-button-text="modalButtonText"
+                    @submit="handleCrudSubmit"
                     @close="closeCrudModal"
                 />
             </main>
@@ -63,68 +39,36 @@
 </template>
 
 <script setup lang="ts">
-import type { Action, Headers, CrudModalField, Order } from '~/types';
+import type { Headers, CrudModalField } from '~/types';
 
 const modelName = 'order';
 const pageTitle = getPluralName(toTitleCase(modelName));
+const icon = 'mdi:cart-outline';
 
-const modelFields: CrudModalField[] = [
-    { name: 'customer_id', label: 'Customer', type: 'text', required: true },
-    { name: 'total_amount', label: 'Total Amount', type: 'number' },
-];
+// Todo: dynamic pagination
+const numberPerPage = 10;
+const page = 1;
+
+const modelHeaders: Headers[] = [];
+
+const modelFields: CrudModalField[] = [];
 
 const {
     modelData,
     selectedModel,
-    showCrudModal,
-    crudModalTitle,
-    crudModalButtonText,
-    crudModalFields,
+    showModal,
+    modalTitle,
+    modalButtonText,
+    modalFields,
     openCreateModal,
-    openEditModal,
     handleCrudSubmit,
     closeCrudModal,
     fetchDataPaginate,
-    deleteModel,
     isLoading,
+    actions,
 } = await useModelCrud(modelName, modelFields);
 
-const handleProductSubmit = async (formData: any) => {
-    if (formData.price) {
-        formData.price = parseFloat(formData.price);
-    }
-    handleCrudSubmit(formData);
-};
-
-const modelHeaders: Headers[] = [
-    { key: 'id', label: 'ID' },
-    { key: 'customer_id', label: 'Customer' },
-    { key: 'total_amount', label: 'Total Amount' },
-    { key: 'order_date', label: 'Order Date' },
-    { key: 'status', label: 'Status' },
-];
-
-const actions: Action[] = [
-    {
-        icon: 'mdi:edit',
-        handler: (order: Order) => {
-            openEditModal(order);
-        },
-        class: 'text-blue-500',
-    },
-    {
-        icon: 'mdi:delete',
-        handler: async (model: any) => {
-            const confirmed = window.confirm(`Delete ${model.name}?`);
-            confirmed
-                ? await deleteModel(model.id)
-                : toasts('Deletion canceled.', { type: 'warning' });
-        },
-        class: 'text-red-800',
-    },
-];
-
 onMounted(() => {
-    fetchDataPaginate(10, 1);
+    fetchDataPaginate(numberPerPage, page);
 });
 </script>

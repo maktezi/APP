@@ -2,11 +2,13 @@
     <div>
         <NuxtLayout name="app-layout">
             <Head>
-                <Title>Online Forms</Title>
+                <Title>{{ pageTitle }}</Title>
             </Head>
             <main class="max-w-screen-xl mx-auto">
-                <TableHeader title="Online Forms" class="py-2" />
-                <div class="flex flex-wrap gap-4 my-4 items-center justify-center">
+                <TableHeader :title="pageTitle" :icon="icon" />
+                <div
+                    class="flex flex-wrap gap-4 my-4 items-center justify-center"
+                >
                     <Button class="p-4 bg-gray-400 w-40 rounded-full">
                         Form 1
                     </Button>
@@ -26,4 +28,8 @@
 </template>
 
 <script setup lang="ts">
+import { Button } from '~/components/ui/button';
+
+const pageTitle = 'Online Forms';
+const icon = 'mdi:form-select';
 </script>

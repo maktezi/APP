@@ -5,7 +5,7 @@
                 <Title>{{ pageTitle }}</Title>
             </Head>
             <main class="max-w-screen-xl mx-auto">
-                <TableHeader :title="pageTitle">
+                <TableHeader :title="pageTitle" :icon="icon">
                     <template #actions>
                         <TableCRUD
                             :on-create="openCreateModal"
@@ -44,6 +44,7 @@ import { useModelCrud } from '~/composables/useModelCrud';
 
 const modelName = 'inventory';
 const pageTitle = getPluralName(toTitleCase(modelName));
+const icon = 'mdi:package-variant-closed';
 
 // Todo: dynamic pagination
 const numberPerPage = 10;

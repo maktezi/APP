@@ -5,7 +5,7 @@
                 <Title>{{ pageTitle }}</Title>
             </Head>
             <main class="max-w-screen-xl mx-auto">
-                <TableHeader :title="pageTitle">
+                <TableHeader :title="pageTitle" :icon="icon">
                     <template #actions>
                         <TableCRUD
                             :on-create="openCreateModal"
@@ -44,6 +44,7 @@ import type { CrudModalField, Headers } from '~/types';
 
 const modelName = 'user';
 const pageTitle = getPluralName(toTitleCase(modelName));
+const icon = 'mdi:users';
 
 const numberPerPage = 10; // Todo: dynamic pagination
 const page = 1;

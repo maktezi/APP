@@ -7,26 +7,27 @@
                 :categories="['total', 'predicted']"
             />
         </div>
-       <div class="absolute top-96 left-0 w-full h-full">
-           <BarChart
-               :data="data"
-               index="name"
-               :categories="['total', 'predicted']"
-               :y-formatter="
-                (tick, i) => {
-                    return typeof tick === 'number'
-                        ? `$ ${new Intl.NumberFormat('us').format(tick).toString()}`
-                        : '';
-                }
-            "
-           />
-       </div>
+        <div class="absolute top-96 left-0 w-full h-full">
+            <BarChart
+                :data="data"
+                index="name"
+                :categories="['total', 'predicted']"
+                :y-formatter="
+                    (tick, i) => {
+                        return typeof tick === 'number'
+                            ? `$ ${new Intl.NumberFormat('us').format(tick).toString()}`
+                            : '';
+                    }
+                "
+            />
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { BarChart } from '@/components/ui/chart-bar';
 import { AreaChart } from '@/components/ui/chart-area';
+
 const areaData = [
     {
         name: 'Jan',
@@ -45,21 +46,6 @@ const areaData = [
     },
     {
         name: 'Apr',
-        total: Math.floor(Math.random() * 2000) + 500,
-        predicted: Math.floor(Math.random() * 2000) + 500,
-    },
-    {
-        name: 'May',
-        total: Math.floor(Math.random() * 2000) + 500,
-        predicted: Math.floor(Math.random() * 2000) + 500,
-    },
-    {
-        name: 'Jun',
-        total: Math.floor(Math.random() * 2000) + 500,
-        predicted: Math.floor(Math.random() * 2000) + 500,
-    },
-    {
-        name: 'Jul',
         total: Math.floor(Math.random() * 2000) + 500,
         predicted: Math.floor(Math.random() * 2000) + 500,
     },
@@ -86,20 +72,14 @@ const data = [
         total: Math.floor(Math.random() * 2000) + 500,
         predicted: Math.floor(Math.random() * 2000) + 500,
     },
-    {
-        name: 'May',
-        total: Math.floor(Math.random() * 2000) + 500,
-        predicted: Math.floor(Math.random() * 2000) + 500,
-    },
-    {
-        name: 'Jun',
-        total: Math.floor(Math.random() * 2000) + 500,
-        predicted: Math.floor(Math.random() * 2000) + 500,
-    },
-    {
-        name: 'Jul',
-        total: Math.floor(Math.random() * 2000) + 500,
-        predicted: Math.floor(Math.random() * 2000) + 500,
-    },
 ];
+
+onBeforeMount(() => {
+    setTimeout(() => {
+        areaData.forEach((item) => {
+            item.total = Math.floor(Math.random() * 2000) + 500;
+            item.predicted = Math.floor(Math.random() * 2000) + 500;
+        });
+    }, 1000);
+});
 </script>
