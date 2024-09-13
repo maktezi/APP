@@ -99,6 +99,36 @@
       "name": "Gaming Webcam",
       "image": "https://m.media-amazon.com/images/I/61-TJMkG7LL.jpg",
       "price": 3499.99
+    },
+    {
+      "name": "Gaming Mouse",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQecJDLbF6WHCuv86GUEi8_GX43DpWo6ebvqA&s",
+      "price": 1490.99
+    },
+    {
+      "name": "Gaming Headset",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcTRuhxTJl1iOCAfcOlNkJi7MLjxyItVjetA&s",
+      "price": 3189.99
+    },
+    {
+      "name": "RGB Mouse Pad",
+      "image": "https://i.ebayimg.com/images/g/9yAAAOSw6OZlo8n~/s-l400.jpg",
+      "price": 829.99
+    },
+    {
+      "name": "Mechanical Keyboard",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjX-9CsYrMaLMoZpx7rzzv7HFTuJ2dczHx9A&s",
+      "price": 1129.99
+    },
+    {
+      "name": "Gaming Chair X12",
+      "image": "https://rukminim2.flixcart.com/image/850/1000/l1mh7rk0/gaming-chair/i/s/x/gaming-chair-ergonomic-seat-with-headrest-leather-gaming-chair-original-imagd55esqgfpzvc.jpeg?q=20&crop=false",
+      "price": 2199.99
+    },
+    {
+      "name": "Razer Blade 17",
+      "image": "https://assets2.razerzone.com/images/pnx.assets/f4cba4f86d3d423d823e325f46826481/thumbnail-blade15-base-model.webp",
+      "price": 150199.99
     }
   ]
 }

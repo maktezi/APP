@@ -11,9 +11,9 @@
                 >
                     <!--        CART        -->
                     <div
-                        class="xl:max-w-2xl h-full flex-grow flex md:order-2 order-1 mb-2"
+                        class="max-w-7xl h-full flex-grow flex md:order-2 order-1 mb-2 border-2 rounded-md border-gray-300 dark:border-gray-800"
                     >
-                        <Card
+                        <div
                             id="cart"
                             class="relative w-full border-gray-300 p-0.5 md:min-w-[500px]"
                         >
@@ -28,11 +28,11 @@
                                 <PosCartTotal class="mb-0.5" />
                                 <PosCartAction />
                             </div>
-                        </Card>
+                        </div>
                     </div>
                     <!--        Products        -->
-                    <Card
-                        class="h-full max-w-[1230px] p-1 md:order-1 order-2 flex-grow overflow-y-hidden"
+                    <div
+                        class="h-full max-w-7xl p-1 md:order-1 order-2 flex-grow overflow-y-hidden border-2 rounded-md border-gray-300 dark:border-gray-800"
                     >
                         <template v-if="isLoading">
                             <div
@@ -48,7 +48,7 @@
                         </template>
                         <div
                             v-else
-                            class="flex-wrap flex gap-2 w-full overflow-y-auto max-h-full"
+                            class="flex-wrap flex gap-1 w-full overflow-y-auto max-h-full"
                         >
                             <Button
                                 v-for="product in products"
@@ -95,10 +95,15 @@
                                 </div>
                             </Button>
                         </div>
-                    </Card>
+                    </div>
                 </div>
                 <div class="mb-1" />
-                <PosTools />
+                <div class="relative">
+                    <PosFooter
+                        :class="{ hidden: isMobile }"
+                        class="absolute top-0 left-0 w-full"
+                    />
+                </div>
             </main>
         </NuxtLayout>
     </div>
@@ -106,9 +111,13 @@
 
 <script setup lang="ts">
 // definePageMeta({ middleware: ["auth"] });
-import { Card } from '~/components/ui/card';
 import { useModelCrud } from '~/composables/useModelCrud';
 import testData from '~/pages/pos/testData.json';
+
+const isMobile = ref(false);
+const checkIsMobile = () => {
+    isMobile.value = window.innerWidth <= 768;
+};
 
 const modelName = 'product';
 const modelFields = ['name', 'image', 'price'].map((name) => ({ name }));
@@ -140,6 +149,11 @@ onMounted(async () => {
         }
         products.value = fallbackData;
     }
+});
+
+onMounted(() => {
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
 });
 </script>
 
