@@ -6,7 +6,7 @@ export function toasts(message: string, options?: ToastOptions) {
     toast(message, {
         theme: options?.theme || 'auto',
         position: options?.position || 'top-right',
-        autoClose: options?.autoClose !== undefined ? options.autoClose : 1000,
+        autoClose: options?.autoClose !== undefined ? options.autoClose : 2000,
         type: options?.type,
         ...options,
     });

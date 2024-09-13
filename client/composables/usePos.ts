@@ -88,7 +88,13 @@ export const cartClear = () => {
 export const paymentSuccess = () => {
     // TODO
     cartProducts.value = [];
-    toasts('Successfully Paid!', { type: 'success', position: 'top-right' });
+    toasts('Order Completed!', {
+        type: 'success',
+        position: 'top-center',
+        theme: 'colored',
+        transition: 'bounce',
+        autoClose: 3000,
+    });
 };
 
 export const totalAmount = computed(() => {

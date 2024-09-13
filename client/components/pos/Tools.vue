@@ -3,7 +3,7 @@
         <div class="text-gray-500 m-auto flex justify-center items-center mt-4">
             <Drawer>
                 <DrawerTrigger>
-                    <Button variant="secondary" class="flex items-center gap-2">
+                    <Button class="flex items-center gap-2">
                         <Icon name="mdi:toolbox" size="30" />
                         Open Toolbox
                     </Button>
