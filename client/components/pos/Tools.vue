@@ -1,27 +1,27 @@
 <template>
     <div :class="isMobile ? 'h-[800px]' : 'h-vh'">
-        <div class="text-gray-500 m-auto flex justify-center items-center mt-4">
+        <div class="text-gray-500 m-auto flex justify-center items-center">
             <Drawer>
                 <DrawerTrigger>
                     <Button class="flex items-center gap-2">
                         <Icon name="mdi:toolbox" size="30" />
-                        Open Toolbox
+                        Toolbox
                     </Button>
                 </DrawerTrigger>
                 <DrawerContent>
                     <DrawerHeader>
                         <DrawerTitle>Toolbox</DrawerTitle>
-                        <DrawerDescription> Items here... </DrawerDescription>
+                        <DrawerDescription> Tools </DrawerDescription>
                     </DrawerHeader>
                     <DrawerFooter
                         class="flex justify-center items-center gap-2"
                     >
-                        <Button class="w-[100px]"> Save </Button>
-                        <DrawerClose>
-                            <Button class="w-[100px]" variant="outline">
-                                Cancel
-                            </Button>
-                        </DrawerClose>
+                        <!--                        <Button class="w-[100px]"> Save </Button> -->
+                        <!--                        <DrawerClose> -->
+                        <!--                            <Button class="w-[100px]" variant="outline"> -->
+                        <!--                                Cancel -->
+                        <!--                            </Button> -->
+                        <!--                        </DrawerClose> -->
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>

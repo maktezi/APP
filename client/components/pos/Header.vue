@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex m-auto items-center justify-between bg-red-950 px-3 p-2 rounded mb-1.5"
+        class="flex m-auto items-center justify-between bg-red-950 p-2 rounded mb-1.5"
     >
         <div class="flex items-center gap-2 justify-center">
             <TooltipProvider>
@@ -38,7 +38,7 @@
                 /></span>
                 <input
                     placeholder="Search Products"
-                    class="pl-8 py-2 w-full text-gray-900 rounded-full outline-none"
+                    class="pl-9 py-2 w-full text-gray-900 rounded-full outline-none"
                 />
             </div>
             <TooltipProvider>

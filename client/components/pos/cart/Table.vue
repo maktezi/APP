@@ -20,13 +20,13 @@
                         <strong>ITEM</strong>
                     </TableHead>
                     <TableHead class="md:w-[150px]">
-                        <strong>Price</strong>
+                        <strong>PRICE</strong>
                     </TableHead>
                     <TableHead class="md:w-[200px] text-center">
                         <strong>QTY</strong>
                     </TableHead>
                     <TableHead class="text-right md:w-[180px]">
-                        <strong>AMOUNT</strong>
+                        <strong>TOTAL</strong>
                     </TableHead>
                 </TableRow>
             </TableHeader>
@@ -48,7 +48,7 @@
                         </div>
                     </TableCell>
                     <TableCell>
-                        ₱ {{ currencyFormat(product.price) }}
+                        {{ currencyFormat(product.price) }}
                     </TableCell>
                     <TableCell>
                         <div class="flex items-center gap-1 justify-center">
