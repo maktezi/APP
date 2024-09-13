@@ -1,6 +1,7 @@
 <template>
     <div
         class="flex justify-end items-center m-auto bg-gray-200 dark:bg-gray-800 px-3 py-1 rounded"
+        :class="currencyFormat(totalAmount) === 0 ? 'hidden' : ''"
     >
         <div class="flex flex-col justify-center items-end">
             <p class="text-black dark:text-gray-300 text-sm font-medium">
@@ -8,7 +9,7 @@
                 <span>₱ {{ currencyFormat(promotionAmount) }}</span>
             </p>
             <p class="text-black dark:text-gray-300 text-md font-medium">
-                Amount:
+                Sub Total:
                 <span>₱ {{ currencyFormat(totalAmount) }}</span>
             </p>
             <p class="text-black dark:text-gray-300 text-sm font-medium">
