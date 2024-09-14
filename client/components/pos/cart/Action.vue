@@ -1,37 +1,45 @@
 <template>
     <main
-        class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-3 py-1 rounded"
+        class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-900 px-3 py-3 rounded-b"
     >
         <PosCartScanner />
-        <div class="flex items-center justify-between gap-1">
-            <TooltipProvider>
-                <Tooltip>
-                    <TooltipTrigger>
-                        <Button
-                            type="button"
-                            class="rounded p-8 py-10 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
-                            :disabled="!cartProducts.length"
-                            @click="openPosModal"
-                        >
-                            <Icon
-                                :name="
-                                    cartProducts.length
-                                        ? 'mdi:cash-register'
-                                        : 'mdi:cart-arrow-down'
-                                "
-                                size="40"
-                                class="text-white"
-                            />
-                            <p class="text-white dark:text-white text-xl">
-                                {{ cartProducts.length ? 'Pay' : '' }}
-                            </p>
-                        </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                        <p>Payment</p>
-                    </TooltipContent>
-                </Tooltip>
-            </TooltipProvider>
+        <div class="flex items-center justify-between gap-2">
+            <Button
+                class="rounded-md p-4 py-8 hover:bg-yellow-900 dark:hover:bg-yellow-900 bg-yellow-700"
+                :class="
+                    cartProducts.length
+                        ? ''
+                        : 'opacity-0 disabled cursor-default'
+                "
+            >
+                <Icon
+                    name="mdi:gesture-tap-hold"
+                    size="30"
+                    class="text-white"
+                />
+                <p class="text-white dark:text-white text-xl">
+                    {{ cartProducts.length ? 'Hold' : '' }}
+                </p>
+            </Button>
+            <Button
+                type="button"
+                class="rounded-md p-6 py-8 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
+                :disabled="!cartProducts.length"
+                @click="openPosModal"
+            >
+                <Icon
+                    :name="
+                        cartProducts.length
+                            ? 'mdi:cash-register'
+                            : 'mdi:cart-arrow-down'
+                    "
+                    size="30"
+                    class="text-white"
+                />
+                <p class="text-white dark:text-white text-xl">
+                    {{ cartProducts.length ? 'Pay' : '' }}
+                </p>
+            </Button>
         </div>
 
         <!-- PosModal Component -->
@@ -52,12 +60,6 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button';
 import { cartProducts } from '~/composables/usePos';
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from '~/components/ui/tooltip';
 
 const showModal = ref(false);
 const modalTitle = ref('');

@@ -40,11 +40,13 @@
                             >
                                 <Icon
                                     name="mdi-remove"
-                                    size="1.5rem"
+                                    size="1.2rem"
                                     class="text-red-700 ml"
                                 />
                             </Button>
-                            {{ product.item }}
+                            <span class="text-overflow-hidden">{{
+                                product.item
+                            }}</span>
                         </div>
                     </TableCell>
                     <TableCell>
@@ -54,6 +56,8 @@
                         <div class="flex items-center gap-1 justify-center">
                             <Button
                                 class="flex items-center"
+                                :disabled="product.qty <= 1"
+                                :class="{ 'opacity-0': product.qty <= 1 }"
                                 @click="() => reduceQuantity(product)"
                             >
                                 <Icon

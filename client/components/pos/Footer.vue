@@ -6,7 +6,7 @@
             <NuxtLink
                 v-for="(link, index) in posLinks"
                 :key="index"
-                class="p-2 flex items-center gap-1"
+                class="p-2 flex items-center gap-1 hover:bg-red-400/80 dark:hover:bg-red-900/80 rounded"
                 :to="link.path"
             >
                 <Icon :name="link.icon" size="25" />
