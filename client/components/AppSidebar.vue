@@ -1,7 +1,8 @@
 <template>
     <Sheet>
         <SheetTrigger class="flex items-center justify-center">
-            <Icon name="mdi:menu" size="30" class="text-gray-100" />
+            <!--            <Icon name="mdi:menu" size="30" class="text-gray-100" /> -->
+            <SpinnerBlocks class="size-8" />
         </SheetTrigger>
 
         <SheetContent

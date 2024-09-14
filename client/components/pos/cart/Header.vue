@@ -1,10 +1,11 @@
 <template>
     <div
-        class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-800 px-4 py-1 rounded"
+        class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-900 px-4 py-1 rounded-t"
     >
-        <p class="text-black dark:text-gray-300 text-2xl font-bold py-1">
-            Cart
-        </p>
+        <div class="flex items-center gap-1 text-black dark:text-gray-300">
+            <Icon name="mdi-cart" size="30" />
+            <p class="text-2xl font-bold py-1">Cart</p>
+        </div>
         <div :class="cartProducts.length ? 'flex' : 'hidden'">
             <Button
                 type="button"

@@ -46,7 +46,9 @@
                         class="block text-md font-medium text-gray-700 dark:text-gray-300"
                         >Select Payment Method</label
                     >
-                    <div class="mt-2 grid grid-cols-4 gap-2">
+                    <div
+                        class="mt-2 flex m-auto justify-items-start items-center gap-2"
+                    >
                         <div
                             v-for="(payment, index) in Object.values(
                                 paymentMethods,
@@ -85,7 +87,7 @@
                 </div>
 
                 <div
-                    class="flex-col m-auto items-center justify-center mb-4 w-full px-4"
+                    class="flex-col m-auto items-center justify-center mb-2 w-full px-4"
                 >
                     <div class="relative items-center">
                         <Input
@@ -122,26 +124,46 @@
                             :key="n"
                             variant="outline"
                             class="text-xl font-bold py-7 rounded-md"
-                            @click="appendNumber(n)"
+                            @click="
+                                (e) => {
+                                    e.preventDefault();
+                                    appendNumber(n);
+                                }
+                            "
                         >
                             {{ n }}
                         </Button>
                         <Button
                             class="text-xl font-bold py-7 rounded-md"
-                            @click="appendDot"
+                            @click="
+                                (e) => {
+                                    e.preventDefault();
+                                    appendDot();
+                                }
+                            "
                         >
                             .
                         </Button>
                         <Button
                             variant="outline"
                             class="text-xl font-bold py-7 rounded-md"
-                            @click="appendZero"
+                            @click="
+                                (e) => {
+                                    e.preventDefault();
+                                    appendZero();
+                                }
+                            "
                         >
                             0
                         </Button>
                         <Button
                             class="bg-red-500 text-xl font-bold py-7 rounded-md"
-                            @click="clearInput"
+                            @click="
+                                (e) => {
+                                    e.preventDefault();
+                                    clearInput();
+                                }
+                            "
                         >
                             C
                         </Button>
@@ -151,19 +173,24 @@
                 <div class="flex justify-center space-x-2 px-4">
                     <Button
                         type="submit"
-                        class="p-8 hover:bg-green-900 dark:hover:bg-green-700 bg-green-700 dark:bg-green-700 w-full"
+                        class="p-8 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700 w-full"
                         :disabled="change < 0"
                         @click="handleSubmit"
                     >
-                        <Icon
-                            name="mdi:cart-arrow-up"
-                            class="text-white dark:text-white"
-                            size="30"
-                        />
-                        <span
-                            class="ml-2 text-xl font-bold text-white dark:text-white"
-                            >{{ submitButtonText }}</span
-                        >
+                        <template v-if="change < 0 || change === ''">
+                            <SpinnerTadpole class="size-10 text-white" />
+                        </template>
+                        <template v-else>
+                            <Icon
+                                name="mdi:cart-arrow-up"
+                                class="text-white dark:text-white"
+                                size="30"
+                            />
+                            <span
+                                class="ml-2 text-xl font-bold text-white dark:text-white"
+                                >{{ submitButtonText }}</span
+                            >
+                        </template>
                     </Button>
                 </div>
             </div>
@@ -212,6 +239,29 @@ const change: ComputedRef<number> = computed(() =>
     ),
 );
 
+const paymentMethods = [
+    {
+        name: 'Cash',
+        icon: 'mdi:cash',
+        color: 'text-green-500',
+        variant: 'default',
+    },
+    {
+        name: 'Gcash',
+        icon: 'mdi:cellphone-link',
+        color: 'text-blue-500',
+        variant: 'outline',
+        disabled: true,
+    },
+    {
+        name: 'Bank',
+        icon: 'mdi:bank',
+        color: 'text-yellow-500',
+        variant: 'outline',
+        disabled: true,
+    },
+];
+
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const appendZero = () => {
     if (cashTendered.value.length > 0) {
@@ -236,40 +286,19 @@ const closeModal = () => {
 
 // TODO: Handle submit
 const handleSubmit = () => {
-    console.log('Record to orders and logs', cartProducts.value);
+    const orderData = cartProducts.value.map((product) => {
+        return {
+            productId: product.item,
+            quantity: product.qty,
+            price: product.price,
+            amount: product.amount,
+        };
+    });
+
+    console.log('Orders and Logs', orderData);
     emit('submit', {
         ...form.value,
     });
     emit('close');
 };
-
-const paymentMethods = [
-    {
-        name: 'Cash',
-        icon: 'mdi:cash',
-        color: 'text-green-500',
-        variant: 'default',
-    },
-    {
-        name: 'Gcash',
-        icon: 'mdi:cellphone-link',
-        color: 'text-blue-500',
-        variant: 'outline',
-        disabled: true,
-    },
-    {
-        name: 'Paypal',
-        icon: 'mdi:paypal',
-        color: 'text-red-500',
-        variant: 'outline',
-        disabled: true,
-    },
-    {
-        name: 'Bank',
-        icon: 'mdi:bank',
-        color: 'text-yellow-500',
-        variant: 'outline',
-        disabled: true,
-    },
-];
 </script>

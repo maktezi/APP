@@ -35,7 +35,7 @@ export const deleteCartItem = (productToDelete: string) => {
     );
     if (index > -1) {
         cartProducts.value.splice(index, 1);
-        toasts('Successfully Removed!', { type: 'success' });
+        toasts('Item Removed!', { type: 'success' });
     } else {
         toasts('Item not found in cart!', { type: 'warning' });
     }
@@ -46,37 +46,22 @@ export const reduceQuantity = (product: {
     qty: number;
     price: number;
 }) => {
-    const cartItem: CartProduct | undefined = cartProducts.value.find(
+    const cartItem: CartProduct | any = cartProducts.value.find(
         (item) => item.item === product.item,
     );
-
     if (cartItem) {
-        if (cartItem.qty > 1) {
-            cartItem.qty -= 1;
-            cartItem.amount = cartItem.qty * cartItem.price;
-            // toasts('Item quantity decreased!', { type: 'info' });
-        } else {
-            toasts(
-                'Quantity cannot be reduced further. Remove item if needed.',
-                { type: 'warning' },
-            );
-        }
-    } else {
-        toasts('Item not found in cart!', { type: 'warning' });
+        cartItem.qty -= 1;
+        cartItem.amount = cartItem.qty * cartItem.price;
     }
 };
 
 export const addQuantity = (product: { item: string; price: number }) => {
-    const cartItem: CartProduct | undefined = cartProducts.value.find(
+    const cartItem: CartProduct | any = cartProducts.value.find(
         (item) => item.item === product.item,
     );
-
     if (cartItem) {
         cartItem.qty += 1;
         cartItem.amount = cartItem.qty * cartItem.price;
-        // toasts('Item quantity increased!', { type: 'success' });
-    } else {
-        toasts('Item not found in cart!', { type: 'warning' });
     }
 };
 
@@ -98,7 +83,10 @@ export const paymentSuccess = () => {
 };
 
 export const totalAmount = computed(() => {
-    return cartProducts.value.reduce((total, item) => total + item.amount, 0);
+    return cartProducts.value.reduce(
+        (total, item: any) => total + item.amount,
+        0,
+    );
 });
 
 export const totalTax = computed(() => {
