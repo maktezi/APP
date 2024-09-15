@@ -1,7 +1,7 @@
 type Category {
     id: ID!
     name: String!
-    slug: String!
+    slug: String
     products: [Product] @hasMany
     created_at: DateTime
     updated_at: DateTime
@@ -11,7 +11,7 @@ type Category {
 input CategoryInput {
     id: ID
     name: String!
-    slug: String!
+    slug: String
     products: ConnectProductsRelation
 }
 

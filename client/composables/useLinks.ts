@@ -18,6 +18,11 @@ const sidebarLinks: LinkItem[] = [
         icon: 'mdi:users',
     },
     {
+        title: 'Categories',
+        path: '/categories',
+        icon: 'mdi:folder-multiple-outline',
+    },
+    {
         title: 'Products',
         path: '/products',
         icon: 'mdi:storefront',
@@ -26,11 +31,6 @@ const sidebarLinks: LinkItem[] = [
         title: 'Inventories',
         path: '/inventories',
         icon: 'mdi:package-variant-closed',
-    },
-    {
-        title: 'Categories',
-        path: '/categories',
-        icon: 'mdi:folder-multiple-outline',
     },
     {
         title: 'Point of Sale',
