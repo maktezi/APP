@@ -45,16 +45,12 @@ const modelName = 'product';
 const pageTitle = getPluralName(toTitleCase(modelName));
 const icon = 'mdi:storefront';
 
-// Todo: dynamic pagination
-const numberPerPage = 10;
-const page = 1;
-
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
     { key: 'name', label: 'Name' },
-    { key: 'description', label: 'Description' },
     { key: 'sku', label: 'SKU' },
-    { key: 'price', label: 'Price' },
+    { key: (item) => `₱ ${currencyFormat(item.price)}`, label: 'Price' },
+    { key: 'description', label: 'Description' },
 ];
 
 const modelFields: CrudModalField[] = [
@@ -76,6 +72,8 @@ const {
     handleCrudSubmit,
     closeCrudModal,
     fetchDataPaginate,
+    numberPerPage,
+    page,
     isLoading,
     actions,
 } = await useModelCrud(modelName, modelFields);

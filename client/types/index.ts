@@ -79,7 +79,7 @@ export type Action = {
 };
 
 export type Headers = {
-    key?: string;
+    key?: string | ((data: any) => string);
     label?: string;
 };
 

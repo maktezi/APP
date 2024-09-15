@@ -12,7 +12,9 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     const modalButtonText = ref('Create');
     const modalFields = ref(fields);
     const isLoading = ref(false);
-    const numberPerPage = 50;
+
+    // Todo: dynamic pagination
+    const numberPerPage = 20;
     const page = 1;
 
     // Dynamically import GraphQL queries and mutations
@@ -82,7 +84,7 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
                 { type: 'success' },
             );
             closeCrudModal();
-            fetchDataPaginate(10, 1);
+            fetchDataPaginate(numberPerPage, page);
         } catch (err) {
             toasts(`Error updating ${toTitleCase(singularName)}.\n${err}`, {
                 type: 'error',
@@ -170,6 +172,8 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
         handleCrudSubmit,
         closeCrudModal,
         fetchDataPaginate,
+        numberPerPage,
+        page,
         isLoading,
         actions,
     };

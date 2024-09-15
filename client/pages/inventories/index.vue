@@ -41,19 +41,16 @@
 <script setup lang="ts">
 import type { Headers, CrudModalField } from '~/types';
 import { useModelCrud } from '~/composables/useModelCrud';
+import { thousandSeparator } from '~/utils/numberHelpers';
 
 const modelName = 'inventory';
 const pageTitle = getPluralName(toTitleCase(modelName));
 const icon = 'mdi:package-variant-closed';
 
-// Todo: dynamic pagination
-const numberPerPage = 10;
-const page = 1;
-
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
     { key: 'product.name', label: 'Product' },
-    { key: 'qty', label: 'Stocks' },
+    { key: (val) => thousandSeparator(val.qty), label: 'Stocks' },
     { key: 'location', label: 'Location' },
 ];
 
@@ -81,6 +78,8 @@ const {
     handleCrudSubmit,
     closeCrudModal,
     fetchDataPaginate,
+    numberPerPage,
+    page,
     isLoading,
     actions,
 } = await useModelCrud(modelName, modelFields);

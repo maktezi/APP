@@ -18,8 +18,15 @@
 
                 <TableBody>
                     <TableRow v-for="item in data" :key="item[primaryKey]">
-                        <TableCell v-for="header in headers" :key="header.key">
-                            {{ getNestedValue(item, header.key) }}
+                        <TableCell
+                            v-for="header in headers"
+                            :key="header.label"
+                        >
+                            {{
+                                typeof header.key === 'function'
+                                    ? header.key(item)
+                                    : getNestedValue(item, header.key)
+                            }}
                         </TableCell>
                         <TableCell
                             v-if="actions"

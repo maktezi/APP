@@ -4,11 +4,10 @@
             <div
                 class="absolute flex-col top-64 flex justify-center items-center text-xl text-gray-500 dark:text-gray-300 mt-4"
             >
-                <SpinnerTadpole
-                    v-if="isLoading"
-                    class="size-16 text-green-500"
-                />
-                <p v-if="isLoading" class="animate-pulse">Fetching data</p>
+                <template v-if="isLoading">
+                    <SpinnerTadpole class="size-16 text-green-500" />
+                    <p class="animate-pulse">Fetching data</p>
+                </template>
 
                 <div v-else class="flex flex-col items-center">
                     <Icon name="mdi:warning" class="text-red-500" size="65" />

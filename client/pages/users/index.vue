@@ -46,9 +46,6 @@ const modelName = 'user';
 const pageTitle = getPluralName(toTitleCase(modelName));
 const icon = 'mdi:users';
 
-const numberPerPage = 10; // Todo: dynamic pagination
-const page = 1;
-
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
     { key: 'name', label: 'Name' },
@@ -72,6 +69,8 @@ const {
     handleCrudSubmit,
     closeCrudModal,
     fetchDataPaginate,
+    numberPerPage,
+    page,
     isLoading,
     actions,
 } = await useModelCrud(modelName, modelFields);
