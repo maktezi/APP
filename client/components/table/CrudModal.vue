@@ -82,9 +82,9 @@
                             Select {{ field.model }}
                         </option>
                         <option
-                            v-for="option in sampleOptions || []"
-                            :key="option.value"
-                            :value="option.value"
+                            v-for="option in data.products || []"
+                            :key="option.id"
+                            :value="option.id"
                         >
                             {{ option.name }}
                         </option>
@@ -131,7 +131,8 @@
 
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
-import type { Field, CrudModalField } from '~/types';
+import type { Field } from '~/types';
+import { productFilter } from '~/graphql/Product';
 
 const props = defineProps({
     visible: Boolean,
@@ -155,19 +156,7 @@ const props = defineProps({
     form: Object,
 });
 
-// TODO: dynamic options
-const sampleOptions = [
-    { value: '1', name: 'Product 1' },
-    { value: '2', name: 'Product 2' },
-    { value: '3', name: 'Product 3' },
-    { value: '4', name: 'Product 4' },
-    { value: '5', name: 'Product 5' },
-    { value: '6', name: 'Product 6' },
-    { value: '7', name: 'Product 7' },
-    { value: '8', name: 'Product 8' },
-    { value: '9', name: 'Product 9' },
-    { value: '10', name: 'Product 10' },
-];
+const { data } = await useAsyncQuery(productFilter);
 
 const showPassword = ref<Record<string, boolean>>({});
 const emit = defineEmits(['submit', 'close']);
