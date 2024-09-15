@@ -2,7 +2,14 @@
     <main
         class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-900 p-3 rounded-b"
     >
-        <span class="relative">
+        <span
+					class="relative"
+					:class="
+                    cartProducts.length
+                        ? ''
+                        : 'opacity-0 disabled cursor-default'
+                "
+				>
             <Icon
                 class="absolute top-2 left-1 text-black"
                 name="mdi-account-multiple"
@@ -13,11 +20,6 @@
                 type="text"
                 placeholder="Customer name"
                 class="border w-[180px] pl-8 p-2 outline-0 border-none text-black rounded-full"
-                :class="
-                    cartProducts.length
-                        ? ''
-                        : 'opacity-0 disabled cursor-default'
-                "
             />
         </span>
         <div class="flex items-center justify-between gap-1">
