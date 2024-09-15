@@ -15,6 +15,16 @@ input CategoryInput {
     products: ConnectProductsRelation
 }
 
+input ConnectCategoryRelation {
+    id: ID
+    name: String
+    connect: ID
+    create: [CategoryInput!]
+    update: [CategoryInput!]
+    upsert: [CategoryInput!]
+    delete: [ID]
+}
+
 extend type Query {
     categories(
         search: String @scope(name: "search")

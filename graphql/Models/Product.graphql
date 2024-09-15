@@ -2,6 +2,8 @@ type Product {
     id: ID!
     name: String!
     image: String
+    category: Category @belongsTo
+    category_id: ID
     inventories: [Inventory] @hasMany
     prices: [Price] @hasMany
     orderItems: [OrderItem] @hasMany
@@ -17,6 +19,8 @@ input ProductInput {
     id: ID
     name: String!
     image: String
+    category: ConnectCategoryRelation
+    category_id: ID
     inventories: [InventoryInput]
     prices: [PriceInput]
     orderItems: [OrderItemInput]
@@ -33,6 +37,14 @@ input ConnectProductRelation {
     update: ProductInput
     upsert: ProductInput
     delete: ID
+}
+
+input ConnectProductsRelation {
+    connect: [ID]
+    create: [ProductInput]
+    update: [ProductInput]
+    upsert: [ProductInput]
+    delete: [ID]
 }
 
 extend type Query {

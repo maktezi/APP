@@ -70,7 +70,7 @@
                         class="mt-1 mr-2 rounded-md border-none outline-none shadow-sm sm:text-sm"
                     />
 
-                    <!-- Select Field -->
+                    <!-- Select Field - TODO: fix dynamic select -->
                     <select
                         v-if="field.type === 'select'"
                         :id="field.name"
@@ -81,13 +81,24 @@
                         <option disabled value="">
                             Select {{ field.model }}
                         </option>
-                        <option
-                            v-for="option in data.products || []"
-                            :key="option.id"
-                            :value="option.id"
-                        >
-                            {{ option.name }}
-                        </option>
+                        <template v-if="route.fullPath.includes('inventories')">
+                            <option
+                                v-for="option in productData.products || []"
+                                :key="option.id"
+                                :value="option.id"
+                            >
+                                {{ option.name }}
+                            </option>
+                        </template>
+                        <template v-if="route.fullPath.includes('products')">
+                            <option
+                                v-for="option in categoryData.categories || []"
+                                :key="option.id"
+                                :value="option.id"
+                            >
+                                {{ option.name }}
+                            </option>
+                        </template>
                     </select>
 
                     <!-- Toggle button for password visibility -->
@@ -133,6 +144,7 @@
 import { Button } from '~/components/ui/button';
 import type { Field } from '~/types';
 import { productFilter } from '~/graphql/Product';
+import { categoryFilter } from '~/graphql/Category';
 
 const props = defineProps({
     visible: Boolean,
@@ -156,7 +168,10 @@ const props = defineProps({
     form: Object,
 });
 
-const { data } = await useAsyncQuery(productFilter);
+// TODO: fix dynamic select
+const route = useRoute();
+const { data: productData } = await useAsyncQuery(productFilter);
+const { data: categoryData } = await useAsyncQuery(categoryFilter);
 
 const showPassword = ref<Record<string, boolean>>({});
 const emit = defineEmits(['submit', 'close']);

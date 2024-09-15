@@ -48,12 +48,20 @@ const icon = 'mdi:storefront';
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
     { key: 'name', label: 'Name' },
+    { key: 'category.name', label: 'Category' },
     { key: 'sku', label: 'SKU' },
     { key: (item) => `₱ ${currencyFormat(item.price)}`, label: 'Price' },
     { key: 'description', label: 'Description' },
 ];
 
 const modelFields: CrudModalField[] = [
+    {
+        name: 'category_id',
+        label: 'Category',
+        type: 'select',
+        model: 'Category',
+        queryName: 'categoryFilter',
+    },
     { name: 'name', label: 'Name', type: 'text', required: true },
     { name: 'image', label: 'Image URL', type: 'text' },
     { name: 'description', label: 'Description', type: 'textarea' },
