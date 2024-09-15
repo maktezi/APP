@@ -1,20 +1,29 @@
 <template>
     <main
-        class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-900 px-3 py-3 rounded-b"
+        class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-900 p-3 rounded-b"
     >
-        <Input
-            v-model="customerName"
-            type="text"
-            placeholder="Customer name"
-            class="border p-2 outline-0 border-none text-black"
-            :class="
-                cartProducts.length ? '' : 'opacity-0 disabled cursor-default'
-            "
-        />
-        <div class="flex items-center justify-between gap-2">
+        <span class="relative">
+            <Icon
+                class="absolute top-2 left-1 text-black"
+                name="mdi-account-multiple"
+                size="25"
+            />
+            <input
+                v-model="customerName"
+                type="text"
+                placeholder="Customer name"
+                class="border w-[180px] pl-8 p-2 outline-0 border-none text-black rounded-full"
+                :class="
+                    cartProducts.length
+                        ? ''
+                        : 'opacity-0 disabled cursor-default'
+                "
+            />
+        </span>
+        <div class="flex items-center justify-between gap-1">
             <div>
                 <Button
-                    class="rounded-md p-4 py-8 hover:bg-yellow-900 dark:hover:bg-yellow-900 bg-yellow-700"
+                    class="rounded p-4 py-6 hover:bg-yellow-900 dark:hover:bg-yellow-900 bg-yellow-700"
                     :class="
                         cartProducts.length
                             ? ''
@@ -35,7 +44,7 @@
 
             <Button
                 type="button"
-                class="rounded-md p-6 py-8 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
+                class="rounded p-6 py-6 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
                 :disabled="!cartProducts.length"
                 @click.prevent="openPosModal"
             >

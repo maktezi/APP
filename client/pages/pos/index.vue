@@ -49,7 +49,7 @@
                         </template>
                         <div
                             v-else
-                            class="flex-wrap flex gap-1 w-full overflow-y-auto max-h-full"
+                            class="flex-wrap flex gap-1 w-full overflow-y-auto max-h-[740px]"
                         >
                             <Button
                                 v-for="product in products"
