@@ -20,6 +20,11 @@
 <script setup lang="ts">
 const posLinks = [
     {
+        title: 'Categories',
+        path: '/categories',
+        icon: 'mdi:folder-multiple-outline',
+    },
+    {
         title: 'Products',
         path: '/products',
         icon: 'mdi:storefront',

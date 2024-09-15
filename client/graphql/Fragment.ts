@@ -48,11 +48,24 @@ export const PriceFragment = gql`
     }
 `;
 
+export const CategoryFragment = gql`
+    fragment category on Category {
+        id
+        name
+        slug
+    }
+`;
+
 export const ProductFragment = gql`
     fragment product on Product {
         id
         name
         image
+        category_id
+        category {
+            id
+            name
+        }
         description
         sku
         price

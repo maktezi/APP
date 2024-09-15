@@ -28,6 +28,11 @@ const sidebarLinks: LinkItem[] = [
         icon: 'mdi:package-variant-closed',
     },
     {
+        title: 'Categories',
+        path: '/categories',
+        icon: 'mdi:folder-multiple-outline',
+    },
+    {
         title: 'Point of Sale',
         path: '/pos',
         icon: 'mdi:monitor-dashboard',
