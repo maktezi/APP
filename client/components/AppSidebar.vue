@@ -2,7 +2,7 @@
     <Sheet>
         <SheetTrigger class="flex items-center justify-center">
             <!--            <Icon name="mdi:menu" size="30" class="text-gray-100" /> -->
-            <SpinnerBlocks class="size-8" />
+            <SpinnerBlocks class="size-7 text-white" />
         </SheetTrigger>
 
         <SheetContent

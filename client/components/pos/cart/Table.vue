@@ -58,7 +58,7 @@
                                 class="flex items-center"
                                 :disabled="product.qty <= 1"
                                 :class="{ 'opacity-0': product.qty <= 1 }"
-                                @click="() => reduceQuantity(product)"
+                                @click.prevent="() => reduceQuantity(product)"
                             >
                                 <Icon
                                     name="mdi-minus"
@@ -71,7 +71,7 @@
                             }}</span>
                             <Button
                                 class="flex items-center"
-                                @click="() => addQuantity(product)"
+                                @click.prevent="() => addQuantity(product)"
                             >
                                 <Icon
                                     name="mdi-plus"

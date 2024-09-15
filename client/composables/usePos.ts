@@ -9,7 +9,8 @@ export const addProductToCart = (product: Product) => {
     );
 
     if (existingProductIndex !== -1) {
-        const existingProduct = cartProducts.value[existingProductIndex];
+        const existingProduct: CartProduct | any =
+            cartProducts.value[existingProductIndex];
         existingProduct.qty += 1;
         existingProduct.amount = existingProduct.qty * existingProduct.price;
 
@@ -70,18 +71,6 @@ export const cartClear = () => {
     toasts('Cart cleared!', { type: 'success' });
 };
 
-export const paymentSuccess = () => {
-    // TODO
-    cartProducts.value = [];
-    toasts('Order Completed!', {
-        type: 'success',
-        position: 'top-center',
-        theme: 'colored',
-        transition: 'bounce',
-        autoClose: 3000,
-    });
-};
-
 export const totalAmount = computed(() => {
     return cartProducts.value.reduce(
         (total, item: any) => total + item.amount,
@@ -100,3 +89,60 @@ export const promotionAmount = computed(() => {
 export const totalAmountWithTaxAndDiscount = computed(() => {
     return totalAmount.value + totalTax.value - promotionAmount.value;
 });
+
+export const holdOrder = (name: string) => {
+    if (name.length > 0) {
+        cartProducts.value = [];
+        toasts(`Order Placed for ${name}!`, {
+            type: 'success',
+            position: 'top-center',
+            theme: 'colored',
+            transition: 'bounce',
+            autoClose: 3000,
+        });
+        name = '';
+    } else {
+        toasts('Enter customer name to hold order!', {
+            type: 'warning',
+            transition: 'bounce',
+            autoClose: 3000,
+            position: 'bottom-right',
+        });
+    }
+    return;
+};
+
+export const paymentSuccess = () => {
+    // TODO
+    cartProducts.value = [];
+    toasts('Order Completed!', {
+        type: 'success',
+        position: 'top-center',
+        theme: 'colored',
+        transition: 'bounce',
+        autoClose: 3000,
+    });
+};
+
+export const paymentMethods = [
+    {
+        name: 'Cash',
+        icon: 'mdi:cash',
+        color: 'text-green-500',
+        variant: 'default',
+    },
+    {
+        name: 'Gcash',
+        icon: 'mdi:cellphone-link',
+        color: 'text-blue-500',
+        variant: 'outline',
+        disabled: true,
+    },
+    {
+        name: 'Bank',
+        icon: 'mdi:bank',
+        color: 'text-yellow-500',
+        variant: 'outline',
+        disabled: true,
+    },
+];
