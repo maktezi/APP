@@ -29,18 +29,6 @@
             </p>
         </div>
         <div class="flex items-center gap-2 justify-between">
-            <div class="w-[230px] md:w-[350px] flex items-center relative">
-                <span
-                    ><Icon
-                        name="mdi-search"
-                        class="absolute left-2 top-2 text-gray-900"
-                        size="25"
-                /></span>
-                <input
-                    placeholder="Search Products"
-                    class="pl-9 py-2 w-full text-gray-900 rounded-full outline-none"
-                />
-            </div>
             <TooltipProvider>
                 <Tooltip>
                     <TooltipTrigger>

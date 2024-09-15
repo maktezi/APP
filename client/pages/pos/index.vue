@@ -32,8 +32,9 @@
                     </div>
                     <!--        Products        -->
                     <div
-                        class="h-full max-w-7xl p-1 md:order-1 order-2 flex-grow overflow-y-hidden border-2 rounded-md border-gray-300 dark:border-gray-800"
+                        class="h-full max-w-7xl xl:min-w-[1000px] p-0.5 md:order-1 order-2 flex-grow overflow-y-hidden border-2 rounded-md border-gray-300 dark:border-gray-800"
                     >
+                        <PosProductHeader class="mb-0.5" />
                         <template v-if="isLoading">
                             <div
                                 class="flex-col flex mt-80 justify-center items-center"

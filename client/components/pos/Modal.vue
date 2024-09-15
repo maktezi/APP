@@ -57,7 +57,7 @@
                             class="flex items-center justify-center"
                         >
                             <Button
-                                :variant="payment.variant"
+                                variant="outline"
                                 :disabled="payment.disabled"
                                 class="flex items-center justify-center py-8 gap-2"
                             >
@@ -124,46 +124,26 @@
                             :key="n"
                             variant="outline"
                             class="text-xl font-bold py-7 rounded-md"
-                            @click="
-                                (e) => {
-                                    e.preventDefault();
-                                    appendNumber(n);
-                                }
-                            "
+                            @click.prevent="appendNumber(n)"
                         >
                             {{ n }}
                         </Button>
                         <Button
                             class="text-xl font-bold py-7 rounded-md"
-                            @click="
-                                (e) => {
-                                    e.preventDefault();
-                                    appendDot();
-                                }
-                            "
+                            @click.prevent="appendDot()"
                         >
                             .
                         </Button>
                         <Button
                             variant="outline"
                             class="text-xl font-bold py-7 rounded-md"
-                            @click="
-                                (e) => {
-                                    e.preventDefault();
-                                    appendZero();
-                                }
-                            "
+                            @click.prevent="appendZero()"
                         >
                             0
                         </Button>
                         <Button
                             class="bg-red-500 text-xl font-bold py-7 rounded-md"
-                            @click="
-                                (e) => {
-                                    e.preventDefault();
-                                    clearInput();
-                                }
-                            "
+                            @click.prevent="clearInput()"
                         >
                             C
                         </Button>
@@ -175,7 +155,7 @@
                         type="submit"
                         class="p-8 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700 w-full"
                         :disabled="change < 0"
-                        @click="handleSubmit"
+                        @click.prevent="handleSubmit"
                     >
                         <template v-if="change < 0 || change === ''">
                             <SpinnerTadpole class="size-10 text-white" />
@@ -201,8 +181,9 @@
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
+import { paymentMethods } from '~/composables/usePos';
 
-const emit = defineEmits(['submit', 'close']);
+const emit = defineEmits(['close']);
 defineProps({
     visible: Boolean,
     title: {
@@ -239,29 +220,6 @@ const change: ComputedRef<number> = computed(() =>
     ),
 );
 
-const paymentMethods = [
-    {
-        name: 'Cash',
-        icon: 'mdi:cash',
-        color: 'text-green-500',
-        variant: 'default',
-    },
-    {
-        name: 'Gcash',
-        icon: 'mdi:cellphone-link',
-        color: 'text-blue-500',
-        variant: 'outline',
-        disabled: true,
-    },
-    {
-        name: 'Bank',
-        icon: 'mdi:bank',
-        color: 'text-yellow-500',
-        variant: 'outline',
-        disabled: true,
-    },
-];
-
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const appendZero = () => {
     if (cashTendered.value.length > 0) {
@@ -288,17 +246,14 @@ const closeModal = () => {
 const handleSubmit = () => {
     const orderData = cartProducts.value.map((product) => {
         return {
-            productId: product.item,
+            product: product.item,
             quantity: product.qty,
             price: product.price,
             amount: product.amount,
         };
     });
-
-    console.log('Orders and Logs', orderData);
-    emit('submit', {
-        ...form.value,
-    });
     emit('close');
+    paymentSuccess();
+    console.log('Orders Completed', orderData);
 };
 </script>
