@@ -1,131 +1,157 @@
 {
   "products": [
     {
+      "id": "1",
       "name": "Gaming Mouse",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQecJDLbF6WHCuv86GUEi8_GX43DpWo6ebvqA&s",
       "price": 1290.99
     },
     {
+      "id": "2",
       "name": "Gaming Headset",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcTRuhxTJl1iOCAfcOlNkJi7MLjxyItVjetA&s",
       "price": 3989.99
     },
     {
+      "id": "3",
       "name": "RGB Mouse Pad",
       "image": "https://i.ebayimg.com/images/g/9yAAAOSw6OZlo8n~/s-l400.jpg",
       "price": 1229.99
     },
     {
+      "id": "4",
       "name": "Mechanical Gaming Keyboard",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjX-9CsYrMaLMoZpx7rzzv7HFTuJ2dczHx9A&s",
       "price": 2129.99
     },
     {
+      "id": "5",
       "name": "Gaming Chair",
       "image": "https://rukminim2.flixcart.com/image/850/1000/l1mh7rk0/gaming-chair/i/s/x/gaming-chair-ergonomic-seat-with-headrest-leather-gaming-chair-original-imagd55esqgfpzvc.jpeg?q=20&crop=false",
       "price": 3199.99
     },
     {
+      "id": "6",
       "name": "Razer Blade 15",
       "image": "https://assets2.razerzone.com/images/pnx.assets/f4cba4f86d3d423d823e325f46826481/thumbnail-blade15-base-model.webp",
       "price": 120199.99
     },
     {
+      "id": "7",
       "name": "Gaming Desk",
       "image": "https://www.ikea.com/ph/en/images/products/fredde-styrspel-gaming-desk-and-chair-black-gray__1128229_pe876495_s5.jpg?f=s",
       "price": 8999.99
     },
     {
+      "id": "8",
       "name": "Wireless Gaming Mouse",
       "image": "https://m.media-amazon.com/images/I/61Mk3YqYHpL.jpg",
       "price": 1599.99
     },
     {
+      "id": "9",
       "name": "Gaming Monitor",
       "image": "https://9to5google.com/wp-content/uploads/sites/4/2022/08/samsung-odyssey-1.jpg?quality=82&strip=all&w=1333",
       "price": 25999.99
     },
     {
+      "id": "10",
       "name": "Gaming Glasses",
       "image": "https://www.zdnet.com/a/img/resize/d92730a93316eedd99df242bb0ccf070b80f0c2f/2021/12/10/214bf098-dc1c-4138-b27b-bfebf6f49fa1/sale-307922-article-image.jpg?auto=webp&width=1280",
       "price": 499.99
     },
     {
+      "id": "11",
       "name": "Gaming Controller",
       "image": "https://cdn.magicdecor.in/com/2024/02/08163057/Vibrant-Gaming-Controller-Wallpaper-for-Gaming-Lovers.jpg",
       "price": 3499.99
     },
     {
+      "id": "12",
       "name": "Gaming Laptop Stand",
       "image": "https://ecommerce.datablitz.com.ph/cdn/shop/products/Glare_4_800x.png?v=1676823972",
       "price": 1299.99
     },
     {
+      "id": "13",
       "name": "Gaming PC",
       "image": "https://pcinternational.co.za/wp-content/uploads/2023/12/gaming-pc-2-600x399.jpg",
       "price": 78999.99
     },
     {
+      "id": "14",
       "name": "Gaming Desk Lamp",
       "image": "https://m.media-amazon.com/images/I/417Ty+rw8bL._AC_.jpg",
       "price": 599.99
     },
     {
+      "id": "15",
       "name": "Wireless Gaming Headset",
       "image": "https://m.media-amazon.com/images/I/711mxbCzvdL.jpg",
       "price": 4899.99
     },
     {
+      "id": "16",
       "name": "Gaming Keyboard Wrist Rest",
       "image": "https://m.media-amazon.com/images/I/51OdfKBepjL._AC_UF1000,1000_QL80_.jpg",
       "price": 899.99
     },
     {
+      "id": "17",
       "name": "Gaming Speakers",
       "image": "https://assets2.razerzone.com/images/pnx.assets/59fd5137580d5a50cc1096f53ce93477/leviathan-v2-og.jpg",
       "price": 6299.99
     },
     {
+      "id": "18",
       "name": "RGB Gaming Case",
       "image": "https://bermorzone.com.ph/wp-content/uploads/2023/04/h7-flow-rgb-black-btz-ph-1-6493c9001d9c6.webp",
       "price": 4999.99
     },
     {
+      "id": "19",
       "name": "Gaming Microphone",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScyIRyXXUqCcs1Pz6ja64FJjzVcKbepUm4PA&shttps://cdn.mos.cms.futurecdn.net/pi53aw4gWPHFeYSJu9oaaU.jpg",
       "price": 2599.99
     },
     {
+      "id": "20",
       "name": "Gaming Webcam",
       "image": "https://m.media-amazon.com/images/I/61-TJMkG7LL.jpg",
       "price": 3499.99
     },
     {
+      "id": "21",
       "name": "Gaming Mouse",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQecJDLbF6WHCuv86GUEi8_GX43DpWo6ebvqA&s",
       "price": 1490.99
     },
     {
+      "id": "22",
       "name": "Gaming Headset",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcTRuhxTJl1iOCAfcOlNkJi7MLjxyItVjetA&s",
       "price": 3189.99
     },
     {
+      "id": "23",
       "name": "RGB Mouse Pad",
       "image": "https://i.ebayimg.com/images/g/9yAAAOSw6OZlo8n~/s-l400.jpg",
       "price": 829.99
     },
     {
+      "id": "24",
       "name": "Mechanical Keyboard",
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjX-9CsYrMaLMoZpx7rzzv7HFTuJ2dczHx9A&s",
       "price": 1129.99
     },
     {
+      "id": "25",
       "name": "Gaming Chair X12",
       "image": "https://rukminim2.flixcart.com/image/850/1000/l1mh7rk0/gaming-chair/i/s/x/gaming-chair-ergonomic-seat-with-headrest-leather-gaming-chair-original-imagd55esqgfpzvc.jpeg?q=20&crop=false",
       "price": 2199.99
     },
     {
+      "id": "26",
       "name": "Razer Blade 17",
       "image": "https://assets2.razerzone.com/images/pnx.assets/f4cba4f86d3d423d823e325f46826481/thumbnail-blade15-base-model.webp",
       "price": 150199.99

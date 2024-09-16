@@ -142,7 +142,7 @@
 
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
-import type { Field } from '~/types';
+import type { CrudModalField, Field } from '~/types';
 import { productFilter } from '~/graphql/Product';
 import { categoryFilter } from '~/graphql/Category';
 
@@ -153,11 +153,11 @@ const props = defineProps({
         default: 'Form',
     },
     fields: {
-        type: Array as () => Field[],
+        type: Array as () => CrudModalField[],
         default: () => [],
     },
     initialValues: {
-        type: Object,
+        type: Object as PropType<Record<string, any> | null>,
         default: () => ({}),
     },
     submitButtonText: {

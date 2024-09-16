@@ -121,6 +121,13 @@ import {
 } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
 
+// TODO: fix pagination
+const totalItems = ref(0);
+const currentPage = ref(1);
+const onPageChange = (page: number) => {
+    currentPage.value = page;
+};
+
 defineProps<{
     headers: { key: string; label: string; class?: string }[];
     data: Record<string, any>[];

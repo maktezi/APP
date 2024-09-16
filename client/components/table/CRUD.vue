@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
+import type { CrudButton } from '~/types';
 
 const props = defineProps({
     onCreate: Function,
@@ -45,7 +46,7 @@ const handleClick = (index: number, action: Function) => {
     }, 1000);
 };
 
-const crudButtons = [
+const crudButtons: CrudButton[] = [
     {
         iconName: 'mdi:add',
         iconSize: 20,

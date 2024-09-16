@@ -16,6 +16,13 @@ export type Product = {
     inventories?: Inventory[];
 };
 
+export type CrudButton = {
+    iconName: string;
+    iconSize: number;
+    iconClass: string;
+    action?: Function;
+};
+
 export type CartProduct = {
     qty: number | undefined;
     item: string | undefined;
@@ -70,6 +77,9 @@ export type CrudModalField = {
     required?: boolean;
     model?: string;
     queryName?: string;
+    min?: number;
+    max?: number;
+    step?: number;
 };
 
 export type Action = {
