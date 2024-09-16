@@ -19,7 +19,10 @@
 
 <script setup lang="ts">
 const totalAmount = computed(() => {
-    return cartProducts.value.reduce((total, item) => total + item.amount, 0);
+    return cartProducts.value.reduce(
+        (total, item) => total + (item.amount ?? 0),
+        0,
+    );
 });
 
 const totalTax = computed(() => {

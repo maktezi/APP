@@ -1,9 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
-    devtools: { enabled: import.meta.env.DEVTOOLS !== 'false' },
+    devtools: { enabled: process.env.DEVTOOLS !== 'false' },
     srcDir: 'client/',
     imports: { dirs: ['./stores', './composables/*/*.{ts,js}'] },
+    typescript: {
+        typeCheck: process.env.TYPECHECK !== 'false',
+        strict: true,
+    },
     css: ['~/assets/css/main.css'],
     modules: [
         '@nuxtjs/tailwindcss',

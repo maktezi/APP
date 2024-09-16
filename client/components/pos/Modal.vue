@@ -106,7 +106,7 @@
                             v-model="change"
                             type="number"
                             :class="
-                                change < 0 || change === ''
+                                change < 0 || change == null
                                     ? 'text-transparent'
                                     : 'text-green-500'
                             "
@@ -157,7 +157,7 @@
                         :disabled="change < 0"
                         @click.prevent="handleSubmit"
                     >
-                        <template v-if="change < 0 || change === ''">
+                        <template v-if="change < 0 || change == null">
                             <SpinnerTadpole class="size-10 text-white" />
                         </template>
                         <template v-else>
@@ -182,6 +182,7 @@
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { paymentMethods } from '~/composables/usePos';
+import type { ModalField } from '~/types';
 
 const emit = defineEmits(['close']);
 defineProps({
@@ -191,11 +192,11 @@ defineProps({
         default: 'POS Checkout',
     },
     fields: {
-        type: Array,
+        type: Array as PropType<ModalField[]>,
         default: () => [],
     },
     initialValues: {
-        type: Object,
+        type: Object as PropType<Record<string, any> | null>,
         default: () => ({}),
     },
     submitButtonText: {
@@ -220,7 +221,7 @@ const change: ComputedRef<number> = computed(() =>
     ),
 );
 
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const numbers: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const appendZero = () => {
     if (cashTendered.value.length > 0) {
         cashTendered.value = cashTendered.value + '0';

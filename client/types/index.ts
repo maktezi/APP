@@ -95,6 +95,12 @@ export type ProductsPaginateResult = {
     };
 };
 
+export type ModalField = {
+    name?: any;
+    label?: string | undefined;
+    type?: string | undefined;
+};
+
 export type Field = {
     name?: any;
     label?: string;
