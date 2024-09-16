@@ -7,7 +7,7 @@
                 <Tooltip>
                     <TooltipTrigger>
                         <Button
-                            class="rounded-full bg-gray-100 hover:bg-gray-300 p-1.5 flex items-center justify-center"
+                            class="rounded-full bg-gray-100 hover:bg-gray-300 p-2 flex items-center justify-center"
                             @click="router.push('/dashboard')"
                         >
                             <Icon
@@ -50,6 +50,7 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from '~/components/ui/tooltip';
+import { Button } from '~/components/ui/button';
 
 const router = useRouter();
 </script>

@@ -51,7 +51,7 @@
                             v-else
                             class="flex-wrap flex gap-1 w-full overflow-y-auto max-h-[740px]"
                         >
-                            <Button
+                            <span
                                 v-for="product in products"
                                 :key="product.id"
                                 class="relative bg-gray-200 rounded-md dark:bg-gray-800 p-2 flex-grow size-[130px] md:size-[190px] max-w-[250px] pb-1 font-medium overflow-hidden"
@@ -70,7 +70,7 @@
                                 </div>
 
                                 <div
-                                    class="flex absolute bottom-0 left-0 rounded-b-md w-full py-0.5 px-2 bg-gray-100 dark:bg-gray-700"
+                                    class="flex items-center justify-between absolute bottom-0 left-0 rounded-b-md w-full py-0.5 px-2 bg-gray-100 dark:bg-gray-700"
                                 >
                                     <div class="flex-1 overflow-hidden">
                                         <div
@@ -82,6 +82,7 @@
                                             ₱ {{ formatPrice(product.price) }}
                                         </div>
                                     </div>
+                                    <div class="text-sm font-light">stocks</div>
                                 </div>
 
                                 <!-- Cart icon (hidden by default) -->
@@ -94,7 +95,7 @@
                                         class="text-red-950"
                                     />
                                 </div>
-                            </Button>
+                            </span>
                         </div>
                     </div>
                 </div>

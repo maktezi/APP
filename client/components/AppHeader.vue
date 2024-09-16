@@ -12,7 +12,7 @@
                 >
                     <Dropdown class="mr-3" align="right">
                         <template #trigger>
-                            <button
+                            <span
                                 class="flex items-center text-sm font-medium text-white hover:text-gray-700 focus:outline-none transition duration-250 ease-in-out"
                             >
                                 <!--                 <div>{{ user?.name }}</div> -->
@@ -31,19 +31,19 @@
                                         />
                                     </svg>
                                 </div>
-                            </button>
+                            </span>
                         </template>
                         <!-- Authentication  -->
                         <!--            <DropdownButton @click="logout"> -->
                         <!--              Logout -->
                         <!--            </DropdownButton> -->
                         <DropdownButton>
-                            <Button
+                            <span
                                 class="flex items-center gap-1 justify-center"
                             >
                                 <Icon name="ri:logout-circle-line" size="25" />
                                 <a href="/">Logout</a>
-                            </Button>
+                            </span>
                         </DropdownButton>
                     </Dropdown>
                     <TooltipProvider>
@@ -69,7 +69,4 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from '@/components/ui/tooltip';
-
-const user = ref();
-const open = ref(false);
 </script>

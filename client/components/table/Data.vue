@@ -21,6 +21,7 @@
                         <TableCell
                             v-for="header in headers"
                             :key="header.label"
+                            class="font-medium"
                         >
                             {{
                                 typeof header.key === 'function'

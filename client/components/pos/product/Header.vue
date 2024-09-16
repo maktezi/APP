@@ -16,7 +16,7 @@
                 /></span>
                 <input
                     placeholder="Search Products"
-                    class="pl-9 py-2 xs:w-1/3 md:w-full text-gray-900 rounded-full outline-none"
+                    class="pl-9 py-2 xs:w-1/3 md:w-full text-gray-900 rounded-xl outline-none"
                 />
             </div>
             <Button

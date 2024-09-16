@@ -34,7 +34,7 @@
                 <TableRow v-for="product in products" :key="product.item">
                     <TableCell class="font-bold overflow-hidden">
                         <div class="flex items-center">
-                            <Button
+                            <span
                                 class="flex items-center"
                                 @click="() => deleteCartItem(product.item)"
                             >
@@ -43,7 +43,7 @@
                                     size="1.2rem"
                                     class="text-red-700 ml"
                                 />
-                            </Button>
+                            </span>
                             <span class="text-overflow-hidden">{{
                                 product.item
                             }}</span>
@@ -54,7 +54,7 @@
                     </TableCell>
                     <TableCell>
                         <div class="flex items-center gap-1 justify-center">
-                            <Button
+                            <span
                                 class="flex items-center"
                                 :disabled="product.qty <= 1"
                                 :class="{ 'opacity-0': product.qty <= 1 }"
@@ -65,11 +65,11 @@
                                     class="text-red-700"
                                     size="1rem"
                                 />
-                            </Button>
+                            </span>
                             <span class="font-bold">{{
                                 qtyFormat(product.qty)
                             }}</span>
-                            <Button
+                            <span
                                 class="flex items-center"
                                 @click.prevent="() => addQuantity(product)"
                             >
@@ -78,7 +78,7 @@
                                     class="text-blue-700"
                                     size="1rem"
                                 />
-                            </Button>
+                            </span>
                         </div>
                     </TableCell>
                     <TableCell class="text-right">

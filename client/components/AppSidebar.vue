@@ -10,6 +10,8 @@
             class="sm:w-80 w-full border-transparent sm:border-0 rounded-none md:rounded-r-lg"
         >
             <SheetHeader>
+                <SheetTitle class="hidden" />
+                <SheetDescription class="hidden" />
                 <div class="flex items-center justify-between">
                     <div class="flex items-end gap-2">
                         <Logo />
@@ -45,11 +47,12 @@
 <script setup lang="ts">
 import {
     Sheet,
+    SheetTitle,
+    SheetDescription,
     SheetContent,
     SheetHeader,
     SheetTrigger,
 } from '@/components/ui/sheet';
-import { Button } from '~/components/ui/button';
 
 const { links } = useLinks();
 </script>
