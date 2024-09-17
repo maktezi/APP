@@ -50,7 +50,7 @@ export const reduceQuantity = (product: {
     const cartItem: CartProduct | any = cartProducts.value.find(
         (item) => item.item === product.item,
     );
-    if (cartItem) {
+    if (cartItem && cartItem.qty > 1) {
         cartItem.qty -= 1;
         cartItem.amount = cartItem.qty * cartItem.price;
     }
