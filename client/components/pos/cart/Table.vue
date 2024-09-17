@@ -56,8 +56,7 @@
                         <div class="flex items-center gap-1 justify-center">
                             <span
                                 class="flex items-center"
-                                :disabled="product.qty <= 1"
-                                :class="{ 'opacity-0': product.qty <= 1 }"
+                                :class="{ hidden: product.qty <= 1 }"
                                 @click.prevent="() => reduceQuantity(product)"
                             >
                                 <Icon
