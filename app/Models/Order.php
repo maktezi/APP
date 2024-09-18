@@ -18,14 +18,9 @@ class Order extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function orderItems(): HasMany
+    public function order_items(): HasMany
     {
         return $this->hasMany(OrderItem::class);
-    }
-
-    public function payments(): HasMany
-    {
-        return $this->hasMany(Payment::class);
     }
 
     public function scopeSearch(Builder $query, ?string $search): Builder

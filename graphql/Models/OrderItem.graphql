@@ -1,12 +1,12 @@
 type OrderItem {
-    id: ID!
+    id: ID
+    order_id: ID
+    product_id: Int
+    price: Float
+    qty: Int
+    total_amount: Float
     order: Order @belongsTo
-    order_id: ID!
     product: Product @belongsTo
-    product_id: Int!
-    qty: Int!
-    price: Float!
-    total: Float!
     created_at: DateTime
     updated_at: DateTime
     deleted_at: DateTime
@@ -14,13 +14,13 @@ type OrderItem {
 
 input OrderItemInput {
     id: ID
-    order_id: ID!
+    order_id: ID
+    product_id: ID
+    price: Float
+    qty: Int
+    total_amount: Float
     order: ConnectOrderItemRelation
-    product_id: ID!
     product: ConnectOrderItemRelation
-    qty: Int!
-    price: Float!
-    total: Float!
 }
 
 input ConnectOrderItemRelation {
@@ -31,7 +31,8 @@ input ConnectOrderItemRelation {
 }
 
 extend type Query {
-    orderItemsPaginate: [OrderItem!]! @paginate
+    orderItems: [OrderItem!]! @all #@can(ability: "read")
+    orderItemsPaginate: [OrderItem!]! @paginate #@can(ability: "read")
 }
 
 extend type Mutation {

@@ -1,12 +1,11 @@
 type Order {
-    id: ID!
+    id: ID
+    customer_id: ID
+    total_amount: Float
+    payment: Int # TODO: PaymentStatus
+    status: Int # TODO: OrderStatus
     customer: Customer @belongsTo
     order_items: [OrderItem] @hasMany
-    payments: [Payment] @hasMany
-    customer_id: ID!
-    order_date: DateTime!
-    total_amount: Float!
-    status: OrderStatus!
     created_at: DateTime
     updated_at: DateTime
     deleted_at: DateTime
@@ -15,12 +14,11 @@ type Order {
 input OrderInput {
     id: ID
     customer_id: ID
-    order_items: [OrderItemInput]
-    payments: [PaymentInput]
-    customer: ConnectOrderRelation
-    order_date: DateTime
     total_amount: Float
-    status: OrderStatus
+    payment: Int # TODO: PaymentStatus
+    status: Int # TODO: OrderStatus
+    order_items: [OrderItemInput]
+    customer: ConnectOrderRelation
 }
 
 input ConnectOrderRelation {
@@ -34,6 +32,12 @@ enum OrderStatus {
     PENDING @enum(value: 0)
     COMPLETED @enum(value: 1)
     CANCELLED @enum(value: 2)
+}
+
+enum PaymentStatus {
+    CASH @enum(value: 0)
+    GCASH @enum(value: 1)
+    BANK @enum(value: 2)
 }
 
 extend type Query {

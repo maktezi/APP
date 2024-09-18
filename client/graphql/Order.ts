@@ -12,7 +12,9 @@ export const orderFilter = gql`
 export const ordersPaginate = gql`
     query OrdersPaginate($page: Int, $first: Int!, $search: String) {
         ordersPaginate(page: $page, first: $first, search: $search) {
-            ...order
+            data {
+                ...order
+            }
         }
     }
     ${OrderFragment}
@@ -24,7 +26,6 @@ export const upsertOrder = gql`
             ...order
         }
     }
-    ${OrderFragment}
 `;
 
 export const deleteOrder = gql`
