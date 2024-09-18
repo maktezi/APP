@@ -204,7 +204,7 @@ defineProps({
         default: 'Submit',
     },
     transactionTotal: {
-        type: Number,
+        type: String,
         default: 0,
     },
     selectedPaymentMethod: {
@@ -213,6 +213,7 @@ defineProps({
     },
 });
 
+const status = ref(0);
 const form = ref<Record<string, any>>({});
 const cashTendered: Ref<any> = ref('');
 const change: ComputedRef<number> = computed(() =>
@@ -247,14 +248,15 @@ const closeModal = () => {
 const handleSubmit = () => {
     const orderData = cartProducts.value.map((product) => {
         return {
-            product: product.item,
-            quantity: product.qty,
+            item: product.item,
+            qty: product.qty,
             price: product.price,
-            amount: product.amount,
+            total_amount: product.amount,
         };
     });
     emit('close');
     paymentSuccess();
     console.log('Orders Completed', orderData);
+    console.log('Status', status.value);
 };
 </script>

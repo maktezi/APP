@@ -50,7 +50,7 @@ const icon = 'mdi:package-variant-closed';
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
     { key: 'product.name', label: 'Product' },
-    { key: (val) => thousandSeparator(val.qty), label: 'Stocks' },
+    { key: (val) => `${thousandSeparator(val.qty)} pc/s`, label: 'Stocks' },
     { key: 'location', label: 'Location' },
 ];
 

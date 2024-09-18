@@ -105,10 +105,10 @@ const closePosModal = () => {
 const handleSubmit = () => {
     const orderData = cartProducts.value.map((product) => {
         return {
-            product: product.item,
-            quantity: product.qty,
+            item: product.item,
+            qty: product.qty,
             price: product.price,
-            amount: product.amount,
+            total_amount: product.amount,
         };
     });
     holdOrder(customerName.value);
