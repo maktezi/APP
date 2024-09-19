@@ -13,16 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::factory()->create([
+            'complete_name' => 'Super Admin',
+            'email' => 'admin@mail.com',
+            'password' => bcrypt('admin1234'),
+        ]);
         $this->call(UserSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(InventorySeeder::class);
-//        $this->call(JobSeeder::class);
-
-        User::factory()->create([
-            'name' => 'Super Admin',
-            'email' => 'admin@mail.com',
-            'password' => bcrypt('admin1234'),
-        ]);
     }
 }

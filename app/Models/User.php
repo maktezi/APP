@@ -54,6 +54,11 @@ class User extends Authenticatable
         return $this->hasMany(Job::class);
     }
 
+    public function customers(): HasMany
+    {
+        return $this->hasMany(Customer::class);
+    }
+
     public function scopeSearch(Builder $query, ?string $search): Builder
     {
         return empty($search) ? $query : $query->where('name', 'like', "%{$search}%");

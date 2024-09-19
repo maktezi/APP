@@ -1,10 +1,11 @@
 type Customer {
     id: ID!
-    name: String!
-    email: String!
+    user_id: ID
+    user: User @belongsTo
+    name: String # used for no account customers
     phone: String
     address: String
-    points: Int
+    points: Float
     orders: [Order] @hasMany
     created_at: DateTime
     updated_at: DateTime
@@ -13,11 +14,18 @@ type Customer {
 
 input CustomerInput {
     id: ID
-    name: String
-    email: String
+    user_id: ID
+    user: ConnectUserRelation
+    name: String # used for no account customers
     phone: String
     address: String
-    points: Int
+    points: Float
+}
+
+input ConnectCustomersRelation {
+    connect: ID
+    upsert: [CustomerInput!]
+    delete: [ID]
 }
 
 extend type Query {

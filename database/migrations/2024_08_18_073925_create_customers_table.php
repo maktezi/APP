@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->smallInteger('points')->default(0);
+            $table->decimal('points', 6, 2)->default(0.00);
             $table->timestamps();
             $table->softDeletes();
         });

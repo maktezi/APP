@@ -12,7 +12,9 @@ export const customerFilter = gql`
 export const customersPaginate = gql`
     query CustomersPaginate($page: Int, $first: Int!, $search: String) {
         customersPaginate(page: $page, first: $first, search: $search) {
-            ...customer
+            data {
+                ...customer
+            }
         }
     }
     ${CustomerFragment}

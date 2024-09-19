@@ -80,11 +80,25 @@ export const InventoryFragment = gql`
 export const CustomerFragment = gql`
     fragment customer on Customer {
         id
+        user {
+            id
+            first_name
+            middle_name
+            last_name
+            complete_name
+        }
+        user_id
         name
-        email
         phone
         address
         points
+        orders {
+            id
+            customer_id
+            total_amount
+            payment
+            status
+        }
     }
 `;
 

@@ -14,7 +14,21 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $categories = [
-            'Keyboards',
+            'Graphics Cards',
+            'Motherboards',
+            'CPUs',
+            'RAM',
+            'Hard Drives',
+            'SSDs',
+            'Cases',
+            'Power Supplies',
+            'Cooling',
+            'Fans',
+            'PSUs',
+            'Networking',
+            'WiFi',
+            'Bluetooth',
+            'Cameras',
             'Mice',
             'Monitors',
             'Printers',
@@ -25,13 +39,25 @@ class CategorySeeder extends Seeder
             'Docking Stations',
             'USB Hubs',
         ];
+        $generatedSlugs = [];
 
         foreach ($categories as $category) {
-            DB::table('categories')->insert([
-                'name' => $category,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            do {
+                $slug = strtoupper(substr(md5(mt_rand()), 0, 8));
+            } while (in_array($slug, $generatedSlugs));
+
+            $generatedSlugs[] = $slug;
+
+            DB::table('categories')->upsert(
+                [
+                    'name' => $category,
+                    'slug' => $slug,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
+                ['name'],
+                ['slug', 'updated_at']
+            );
         }
     }
 }

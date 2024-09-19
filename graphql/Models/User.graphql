@@ -1,10 +1,15 @@
 type User {
     id: ID!
-    name: String
+    customers: [Customer!]! @hasMany
+    first_name: String
+    middle_name: String
+    last_name: String
+    complete_name: String
     email: String
     password: String
     email_verified_at: DateTime
     jobs(status: JobStatus): [Job!]! @hasMany(type: PAGINATOR, scopes: ["userType"])
+    role: Int # TODO: use enum
     created_at: DateTime
     updated_at: DateTime
     deleted_at: DateTime
@@ -12,9 +17,28 @@ type User {
 
 input UserInput {
     id: ID
-    name: String
+    customers: [ConnectCustomersRelation!]
+    first_name: String
+    middle_name: String
+    last_name: String
+    complete_name: String
     email: String
     password: String @hash
+    role: Int # TODO: use enum
+}
+
+input ConnectUserRelation {
+    id: ID
+    connect: ID
+    upsert: [UserInput!]
+    delete: [ID]
+}
+
+enum Role {
+    USER @enum(value: 0)
+    ADMIN @enum(value: 1)
+    STAFF @enum(value: 2)
+    STORE_MANAGER @enum(value: 3)
 }
 
 type Query {
