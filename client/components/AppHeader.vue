@@ -1,5 +1,5 @@
 <template>
-    <nav class="bg-red-950 m-0">
+    <nav class="bg-red-900 dark:bg-red-950 m-0">
         <!-- Primary Navigation Menu  -->
         <div class="max-w-full mx-auto">
             <div class="flex justify-between h-14">
@@ -8,7 +8,7 @@
                 </div>
                 <!-- Settings Dropdown  -->
                 <div
-                    class="flex items-center bg-red-900 pl-6 pr-4 rounded-l-full"
+                    class="flex items-center bg-red-700 dark:bg-red-900 pl-6 pr-4 rounded-l-2xl"
                 >
                     <Dropdown class="mr-3" align="right">
                         <template #trigger>
