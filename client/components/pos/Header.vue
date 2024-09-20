@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex m-auto items-center justify-between bg-red-950 p-2 rounded mb-1.5"
+        class="flex m-auto items-center justify-between bg-red-900 dark:bg-red-950 p-2 rounded mb-1.5"
     >
         <div class="flex items-center gap-2 justify-center">
             <TooltipProvider>
