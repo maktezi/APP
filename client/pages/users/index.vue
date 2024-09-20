@@ -48,12 +48,14 @@ const icon = 'mdi:users';
 
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
-    { key: 'name', label: 'Name' },
+    { key: 'complete_name', label: 'Name' },
     { key: 'email', label: 'Email' },
 ];
 
 const modelFields: CrudModalField[] = [
-    { name: 'name', label: 'Name', type: 'text', required: true },
+    { name: 'first_name', label: 'First Name', type: 'text', required: true },
+    { name: 'middle_name', label: 'Middle Name', type: 'text' },
+    { name: 'last_name', label: 'Last Name', type: 'text', required: true },
     { name: 'email', label: 'Email', type: 'email', required: true },
     { name: 'password', label: 'Password', type: 'password' },
 ];
