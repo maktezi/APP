@@ -3,9 +3,13 @@ import gql from 'graphql-tag';
 export const userFragment = gql`
     fragment user on User {
         id
-        name
+        first_name
+        middle_name
+        last_name
+        complete_name
         email
         password
+        role
     }
 `;
 
@@ -106,6 +110,17 @@ export const OrderFragment = gql`
     fragment order on Order {
         id
         customer_id
+        customer {
+            id
+            name
+            user {
+                id
+                first_name
+                middle_name
+                last_name
+                complete_name
+            }
+        }
         #        order_items {
         #            product_id
         #            price

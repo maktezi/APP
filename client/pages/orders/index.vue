@@ -48,7 +48,13 @@ const icon = 'mdi:cart-outline';
 
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
-    { key: 'customer_id', label: 'Customer' },
+    {
+        key: (val) =>
+            val.customer.user?.complete_name
+                ? val.customer.user.complete_name
+                : val.customer.name,
+        label: 'Customer',
+    },
     { key: 'total_amount', label: 'Total Amount' },
     {
         key: (val) => {
@@ -77,9 +83,8 @@ const modelHeaders: Headers[] = [
 const modelFields: CrudModalField[] = [
     { name: 'customer_id', label: 'Customer', type: 'text' },
     { name: 'total_amount', label: 'Total Amount', type: 'text' },
-    { name: 'status', label: 'Status', type: 'text' },
-    { name: 'payment', label: 'Payment', type: 'text' },
-    { name: 'status', label: 'Status', type: 'text' },
+    { name: 'payment', label: 'Payment', type: 'number' },
+    { name: 'status', label: 'Status', type: 'number' },
 ];
 
 const {

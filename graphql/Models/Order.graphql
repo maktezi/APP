@@ -1,7 +1,7 @@
 type Order {
     id: ID
     customer_id: ID
-    total_amount: Float
+    total_amount: String
     payment: Int # TODO: PaymentStatus
     status: Int # TODO: OrderStatus
     customer: Customer @belongsTo
@@ -14,7 +14,7 @@ type Order {
 input OrderInput {
     id: ID
     customer_id: ID
-    total_amount: Float
+    total_amount: String
     payment: Int # TODO: PaymentStatus
     status: Int # TODO: OrderStatus
     order_items: [OrderItemInput]

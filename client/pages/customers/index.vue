@@ -50,19 +50,16 @@ const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
     {
         key: (val) =>
-            val.user?.complete_name
-                ? val.user.complete_name
-                : '***** No Account *****',
-        label: 'Cusomter Name',
+            val.user?.complete_name ? val.user.complete_name : val.name,
+        label: 'Name',
     },
-    { key: 'name', label: 'Name (for no account)' },
     { key: 'phone', label: 'Phone' },
     { key: 'address', label: 'Address' },
     { key: (val) => formatPrice(val.points), label: 'Points' },
 ];
 
 const modelFields: CrudModalField[] = [
-    { name: 'name', label: 'Name *', type: 'text', required: true },
+    { name: 'name', label: 'Name (for no account)', type: 'text' },
     { name: 'phone', label: 'Phone', type: 'text' },
     { name: 'address', label: 'Address', type: 'text' },
     { name: 'points', label: 'Points', type: 'text' },

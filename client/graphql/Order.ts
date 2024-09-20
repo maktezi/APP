@@ -26,6 +26,7 @@ export const upsertOrder = gql`
             ...order
         }
     }
+    ${OrderFragment}
 `;
 
 export const deleteOrder = gql`

@@ -5,7 +5,7 @@ export const userFilter = gql`
     query userFilter($search: String) {
         users(search: $search) {
             id
-            name
+            complete_name
             email
         }
     }

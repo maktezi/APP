@@ -24,20 +24,6 @@ class CategorySeeder extends Seeder
             'Power Supplies',
             'Cooling',
             'Fans',
-            'PSUs',
-            'Networking',
-            'WiFi',
-            'Bluetooth',
-            'Cameras',
-            'Mice',
-            'Monitors',
-            'Printers',
-            'Speakers',
-            'Headphones',
-            'Webcams',
-            'External Hard Drives',
-            'Docking Stations',
-            'USB Hubs',
         ];
         $generatedSlugs = [];
 
