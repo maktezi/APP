@@ -16,17 +16,6 @@ class User extends Authenticatable
     use HasFactory, Notifiable, HasApiTokens, softDeletes;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
@@ -47,6 +36,32 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    protected static function boot(): void
+    {
+        parent::boot();
+        static::saving(function ($user) {
+            $user->complete_name = self::complete_name($user);
+        });
+    }
+
+    /**
+     * Compose the complete name of the user.
+     *
+     * @param User $user
+     *
+     * @return string
+     */
+    protected static function complete_name(User $user): string
+    {
+        $obj = [
+            $user->first_name,
+            $user->middle_name,
+            $user->last_name,
+        ];
+
+        return implode(' ', array_filter(array_map('trim', $obj)));
     }
 
     public function jobs(): HasMany

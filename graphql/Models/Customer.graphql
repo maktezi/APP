@@ -5,7 +5,7 @@ type Customer {
     name: String # used for no account customers
     phone: String
     address: String
-    points: Float
+    points: String
     orders: [Order] @hasMany
     created_at: DateTime
     updated_at: DateTime
@@ -15,11 +15,12 @@ type Customer {
 input CustomerInput {
     id: ID
     user_id: ID
-    user: ConnectUserRelation
+    user: UserInput
     name: String # used for no account customers
     phone: String
     address: String
-    points: Float
+    points: String
+    orders: OrderInput
 }
 
 input ConnectCustomersRelation {
