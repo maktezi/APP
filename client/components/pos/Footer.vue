@@ -6,7 +6,7 @@
             <NuxtLink
                 v-for="(link, index) in posLinks"
                 :key="index"
-                class="p-2 flex items-center gap-1 hover:bg-red-400/80 dark:hover:bg-red-900/80 rounded"
+                class="p-2 justify-center text-white dark:text-black bg-gray-800 dark:bg-gray-200 w-32 flex items-center gap-1 hover:bg-red-800/80 dark:hover:bg-red-400/80 rounded-md"
                 :to="link.path"
             >
                 <Icon :name="link.icon" size="25" />
@@ -28,6 +28,11 @@ const posLinks = [
         title: 'Products',
         path: '/products',
         icon: 'mdi:storefront',
+    },
+    {
+        title: 'Inventories',
+        path: '/inventories',
+        icon: 'mdi:package-variant',
     },
     {
         title: 'Customers',

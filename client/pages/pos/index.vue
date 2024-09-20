@@ -49,15 +49,36 @@
                         </template>
                         <div
                             v-else
-                            class="flex-wrap flex gap-1 w-full overflow-y-auto max-h-[740px]"
+                            class="flex-wrap flex gap-2 w-full overflow-y-auto max-h-[740px]"
                         >
                             <span
                                 v-for="product in products"
                                 :key="product.id"
-                                class="relative bg-gray-200 rounded-md dark:bg-gray-800 p-2 flex-grow size-[130px] md:size-[190px] max-w-[250px] pb-1 font-medium overflow-hidden"
+                                class="relative bg-gray-100 rounded dark:bg-gray-800 p-3 flex-grow size-[130px] md:size-[190px] max-w-[250px] pb-1 font-medium overflow-hidden"
                                 @click="addProductToCart(product)"
                             >
-                                <div class="pb-10 flex justify-center">
+                                <div
+                                    class="flex m-auto items-center justify-center"
+                                >
+                                    <div
+                                        :hidden="
+                                            product.inventories[0]?.qty > 10
+                                        "
+                                        class="text-red-500"
+                                    >
+                                        <div
+                                            class="absolute top-1 left-1 bg-white rounded-full px-2 py-1 text-xs"
+                                        >
+                                            <span class="animate-pulse"
+                                                >Low Stocks!!!</span
+                                            >
+                                        </div>
+                                        <Icon
+                                            name="mdi:warning"
+                                            class="animate-ping absolute top-2 right-3"
+                                            size="25"
+                                        />
+                                    </div>
                                     <img
                                         alt="prod-image"
                                         :src="
@@ -65,34 +86,39 @@
                                                 ? product.image
                                                 : '/assets/no-image.jpg'
                                         "
-                                        class="rounded-xl size-26"
+                                        class="rounded size-26"
                                     />
                                 </div>
 
                                 <div
-                                    class="flex items-center justify-between absolute bottom-0 left-0 rounded-b-md w-full py-0.5 px-2 bg-gray-100 dark:bg-gray-700"
+                                    class="flex items-center justify-between absolute bottom-0 left-0 rounded-b-md w-full py-0.5 px-2 bg-gray-100 dark:bg-gray-800"
                                 >
                                     <div class="flex-1 overflow-hidden">
                                         <div
-                                            class="text-sm -mb-1 whitespace-nowrap overflow-hidden text-ellipsis"
+                                            class="text-md font-bold text-center whitespace-nowrap overflow-hidden text-ellipsis text-red-950 dark:text-red-200"
                                         >
                                             {{ product.name }}
                                         </div>
-                                        <div class="text-xs">
+                                        <div class="text-sm">
                                             ₱ {{ formatPrice(product.price) }}
                                         </div>
                                     </div>
-                                    <div class="text-sm font-light">stocks</div>
+                                    <div
+                                        class="text-sm font-medium absolute right-1 bottom-0.5"
+                                    >
+                                        stocks:
+                                        {{ product.inventories[0]?.qty }}
+                                    </div>
                                 </div>
 
                                 <!-- Cart icon (hidden by default) -->
                                 <div
-                                    class="absolute inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity hover:bg-gray-300/50 rounded"
+                                    class="absolute cursor-pointer inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity hover:bg-white/60 rounded"
                                 >
                                     <Icon
                                         name="mdi:cart-plus"
                                         size="50"
-                                        class="text-red-950"
+                                        class="text-blue-900"
                                     />
                                 </div>
                             </span>
@@ -122,7 +148,9 @@ const checkIsMobile = () => {
 };
 
 const modelName = 'product';
-const modelFields = ['name', 'image', 'price'].map((name) => ({ name }));
+const modelFields = ['name', 'image', 'price', 'qty'].map((name) => ({
+    name,
+}));
 
 const { modelData, fetchDataPaginate, isLoading } = await useModelCrud(
     modelName,
