@@ -11,12 +11,12 @@
                 <span
                     ><Icon
                         name="mdi-search"
-                        class="absolute left-2 top-2 text-gray-900"
+                        class="absolute left-2 top-2 text-gray-900 dark:text-gray-300"
                         size="25"
                 /></span>
                 <input
-                    placeholder="Search Products"
-                    class="pl-9 py-2 xs:w-1/3 md:w-full text-gray-900 rounded-xl outline-none"
+                    placeholder="Search"
+                    class="pl-9 py-2 xs:w-1/3 md:w-full dark:bg-gray-700 text-gray-900 rounded-xl outline-none"
                 />
             </div>
             <Button

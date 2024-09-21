@@ -9,15 +9,15 @@
                 <div class="flex h-screen">
                     <div class="xl:w-1/4 w-1/2 border-r border-gray-300 p-2">
                         <div class="flex items-center relative">
-                        <span
-                        ><Icon
-                            name="mdi-search"
-                            class="absolute left-2 top-2 text-gray-900"
-                            size="25"
-                        /></span>
+                            <span
+                                ><Icon
+                                    name="mdi-search"
+                                    class="absolute text-gray-900 dark:text-gray-300 left-2 top-2 text-gray-900"
+                                    size="25"
+                            /></span>
                             <input
                                 placeholder="Search Contacts"
-                                class="pl-8 py-2 w-full text-gray-900 rounded-full outline-none"
+                                class="pl-8 py-2 w-full rounded-xl dark:bg-gray-900 text-gray-900 outline-none"
                             />
                         </div>
                         <h2 class="text-xl font-bold mb-4">Contacts</h2>
@@ -26,11 +26,11 @@
                                 v-for="contact in contacts"
                                 :key="contact.id"
                                 :class="[
-                                'cursor-pointer p-2 rounded',
-                                selectedContact?.id === contact.id
-                                    ? 'bg-gray-200'
-                                    : 'hover:bg-gray-100',
-                            ]"
+                                    'cursor-pointer p-2 rounded',
+                                    selectedContact?.id === contact.id
+                                        ? 'bg-gray-200'
+                                        : 'hover:bg-gray-100',
+                                ]"
                                 @click="selectContact(contact)"
                             >
                                 {{ contact.name }}
@@ -54,7 +54,9 @@
                                 :key="message.id"
                                 class="mb-2"
                             >
-                                <span class="font-bold">{{ message.sender }}:</span>
+                                <span class="font-bold"
+                                    >{{ message.sender }}:</span
+                                >
                                 {{ message.text }}
                             </div>
                         </div>
