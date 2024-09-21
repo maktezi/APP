@@ -2,7 +2,7 @@
     <span
         v-for="product in products"
         :key="product.id"
-        class="relative flex bg-gray-100 rounded dark:bg-gray-800 p-3 h-[70px] w-full font-medium overflow-hidden"
+        class="relative flex bg-gray-100 rounded dark:bg-gray-800 px-4 py-3 h-[70px] w-full font-medium overflow-hidden"
         @click="addProductToCart(product)"
     >
         <div
@@ -11,29 +11,31 @@
             <div class="flex-1 overflow-hidden">
                 <div
                     :class="
-                        product.inventories[0]?.qty > 10 ? '' : 'animate-pulse'
+                        product.inventories[0]?.qty > 20 ? '' : 'animate-pulse'
                     "
-                    class="text-md font-medium whitespace-nowrap overflow-hidden text-ellipsis"
+                    class="text-md flex items-center gap-1 font-medium whitespace-nowrap overflow-hidden text-ellipsis"
                 >
                     <Icon
                         :class="
-                            product.inventories[0]?.qty > 10
+                            product.inventories[0]?.qty > 20
                                 ? 'hidden'
                                 : 'animate-pulse text-red-500'
                         "
                         name="mdi:warning"
-                        size="15"
+                        size="20"
                     />
                     {{ product.name }}
                 </div>
-                <div class="text-sm text-gray-500">
-                    ₱ {{ formatPrice(product.price) }}
+                <div
+                    class="text-sm md:text-[1rem] text-green-600 dark:text-green-400"
+                >
+                    ₱{{ formatPrice(product.price) }}
                 </div>
             </div>
             <div
-                class="text-sm absolute right-3 bottom-0.5"
+                class="text-sm flex items-end justify-center"
                 :class="
-                    product.inventories[0]?.qty > 10
+                    product.inventories[0]?.qty > 20
                         ? ''
                         : 'text-red-500 animate-pulse'
                 "

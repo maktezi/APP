@@ -9,19 +9,19 @@
         >
             <p class="text-black dark:text-gray-300 text-sm font-medium">
                 Potato Discount (10%):
-                <span>₱ {{ currencyFormat(promotionAmount) }}</span>
+                <span>₱{{ currencyFormat(promotionAmount) }}</span>
             </p>
             <p class="text-black dark:text-gray-300 text-sm font-medium">
                 Sub Total:
-                <span>₱ {{ currencyFormat(totalAmount) }}</span>
+                <span>₱{{ currencyFormat(totalAmount) }}</span>
             </p>
             <p class="text-black dark:text-gray-300 text-sm font-medium">
-                Tax (12%): <span>₱ {{ currencyFormat(totalTax) }}</span>
+                Tax (12%): <span>₱{{ currencyFormat(totalTax) }}</span>
             </p>
             <p class="text-black dark:text-gray-300 text-xl font-bold">
                 Total:
                 <span
-                    >₱ {{ currencyFormat(totalAmountWithTaxAndDiscount) }}</span
+                    >₱{{ currencyFormat(totalAmountWithTaxAndDiscount) }}</span
                 >
             </p>
         </div>

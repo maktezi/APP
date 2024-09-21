@@ -1,19 +1,21 @@
 <template>
     <div
-        class="flex p-2 m-auto items-center justify-between bg-gray-200 dark:bg-gray-900 rounded"
+        class="flex p-2 m-auto items-center justify-between bg-gray-200 dark:bg-gray-800/50 rounded-b mb-0.5"
     >
-        <div class="flex items-center gap-1 justify-center">
+        <div class="flex items-center gap-2 justify-center">
             <NuxtLink
                 v-for="(link, index) in posLinks"
                 :key="index"
-                class="p-2 justify-center text-white dark:text-black bg-gray-800 dark:bg-gray-200 w-32 flex items-center gap-1 hover:bg-red-800/80 dark:hover:bg-red-400/80 rounded-md"
+                class="p-1 justify-center text-white bg-gray-800 dark:bg-gray-800 flex items-center gap-1 hover:bg-red-800/80 dark:hover:bg-red-900/80 rounded-full md:rounded-xl md:p-2"
                 :to="link.path"
             >
                 <Icon :name="link.icon" size="25" />
-                <span class="text-sm">{{ link.title }}</span>
+                <span class="text-sm hidden md:block">{{ link.title }}</span>
             </NuxtLink>
         </div>
-        <PosTools />
+        <div>
+            <PosTools />
+        </div>
     </div>
 </template>
 
@@ -45,6 +47,4 @@ const posLinks = [
         icon: 'mdi:order-bool-ascending-variant',
     },
 ];
-
-const router = useRouter();
 </script>

@@ -2,12 +2,13 @@
     <span
         v-for="product in products"
         :key="product.id"
-        class="relative bg-gray-100 rounded dark:bg-gray-800 p-3 flex-grow size-[130px] md:size-[190px] max-w-[250px] pb-1 font-medium overflow-hidden"
+        :hidden="product.inventories[0]?.qty < 1"
+        class="relative rounded bg-gray-100/50 dark:bg-gray-800/50 p-3 flex-grow size-[130px] md:size-[190px] max-w-[250px] pb-1 font-medium overflow-hidden"
         @click="addProductToCart(product)"
     >
         <div class="flex m-auto items-center justify-center">
             <div
-                :hidden="product.inventories[0]?.qty > 10"
+                :hidden="product.inventories[0]?.qty > 20"
                 class="text-red-500"
             >
                 <Icon
@@ -19,37 +20,35 @@
             <img
                 alt="prod-image"
                 :src="product.image ? product.image : '/assets/no-image.jpg'"
-                class="rounded size-26"
+                class="rounded-md h-20 md:h-32 w-auto"
             />
         </div>
 
         <div
-            class="flex items-center justify-between absolute bottom-0 left-0 rounded-b-md w-full py-0.5 px-2 bg-gray-100 dark:bg-gray-800"
+            class="flex items-center justify-between absolute bottom-0 left-0 rounded-b-md w-full py-1 px-3 bg-gray-100 dark:bg-gray-800"
         >
             <div class="flex-1 overflow-hidden">
                 <div
-                    class="text-md font-bold text-center whitespace-nowrap overflow-hidden text-ellipsis"
+                    class="text-sm whitespace-nowrap overflow-hidden text-ellipsis"
                 >
                     {{ product.name }}
                 </div>
-                <div class="text-sm text-gray-500">
-                    ₱ {{ formatPrice(product.price) }}
+                <div
+                    class="text-sm md:text-[1rem] text-green-600 dark:text-green-400"
+                >
+                    ₱{{ formatPrice(product.price) }}
                 </div>
             </div>
             <div
-                class="text-sm absolute right-3 bottom-0.5"
+                class="text-sm flex items-center justify-center bg-gray-500/20 p-1 rounded-full"
                 :class="
-                    product.inventories[0]?.qty > 10
+                    product.inventories[0]?.qty > 20
                         ? ''
                         : 'text-red-500 animate-pulse'
                 "
             >
-                <Icon
-                    name="mdi:package-variant-closed"
-                    size="20"
-                    class="-mb-1 text-gray-500"
-                />
-                <span class="text-sm font-medium text-gray-500">{{
+                <Icon name="mdi:package-variant-closed" size="20" />
+                <span class="text-xs font-medium text-gray-500">{{
                     product.inventories[0]?.qty
                 }}</span>
             </div>
@@ -57,9 +56,9 @@
 
         <!-- Cart icon (hidden by default) -->
         <div
-            class="absolute cursor-pointer inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity hover:bg-white/60 rounded"
+            class="absolute cursor-pointer inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity hover:bg-black/50 rounded"
         >
-            <Icon name="mdi:cart-plus" size="50" class="text-blue-900" />
+            <Icon name="mdi:cart-arrow-down" size="50" class="text-green-600" />
         </div>
     </span>
 </template>

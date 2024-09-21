@@ -82,7 +82,7 @@
                     </TableCell>
                     <TableCell class="text-right">
                         <span class="font-bold"
-                            >₱ {{ currencyFormat(product.amount) }}</span
+                            >₱{{ currencyFormat(product.amount) }}</span
                         >
                     </TableCell>
                 </TableRow>
