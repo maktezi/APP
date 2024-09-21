@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-900 px-4 py-1 rounded"
+        class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-900 p-1 rounded"
     >
         <div class="flex items-center gap-1 text-black dark:text-gray-300">
             <Icon name="mdi-cart" size="30" />

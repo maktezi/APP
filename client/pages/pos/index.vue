@@ -34,7 +34,13 @@
                     <div
                         class="h-full max-w-7xl xl:min-w-[1000px] p-0.5 md:order-1 order-2 flex-grow overflow-y-hidden border-2 rounded-md border-gray-300 dark:border-gray-800"
                     >
-                        <PosProductHeader class="mb-0.5" />
+                        <PosProductHeader
+                            class="mb-0.5"
+                            :toggle-view="toggleView"
+                            :name="
+                                isGridView ? 'mdi:view-list' : 'mdi:view-grid'
+                            "
+                        />
                         <template v-if="isLoading">
                             <div
                                 class="flex-col flex mt-80 justify-center items-center"
@@ -49,79 +55,13 @@
                         </template>
                         <div
                             v-else
-                            class="flex-wrap flex gap-2 w-full overflow-y-auto max-h-[740px]"
+                            class="flex-wrap flex gap-1 w-full overflow-y-auto max-h-[740px]"
                         >
-                            <span
-                                v-for="product in products"
-                                :key="product.id"
-                                class="relative bg-gray-100 rounded dark:bg-gray-800 p-3 flex-grow size-[130px] md:size-[190px] max-w-[250px] pb-1 font-medium overflow-hidden"
-                                @click="addProductToCart(product)"
-                            >
-                                <div
-                                    class="flex m-auto items-center justify-center"
-                                >
-                                    <div
-                                        :hidden="
-                                            product.inventories[0]?.qty > 10
-                                        "
-                                        class="text-red-500"
-                                    >
-                                        <div
-                                            class="absolute top-1 left-1 bg-white rounded-full px-2 py-1 text-xs"
-                                        >
-                                            <span class="animate-pulse"
-                                                >Low Stocks!!!</span
-                                            >
-                                        </div>
-                                        <Icon
-                                            name="mdi:warning"
-                                            class="animate-ping absolute top-2 right-3"
-                                            size="25"
-                                        />
-                                    </div>
-                                    <img
-                                        alt="prod-image"
-                                        :src="
-                                            product.image
-                                                ? product.image
-                                                : '/assets/no-image.jpg'
-                                        "
-                                        class="rounded size-26"
-                                    />
-                                </div>
-
-                                <div
-                                    class="flex items-center justify-between absolute bottom-0 left-0 rounded-b-md w-full py-0.5 px-2 bg-gray-100 dark:bg-gray-800"
-                                >
-                                    <div class="flex-1 overflow-hidden">
-                                        <div
-                                            class="text-md font-bold text-center whitespace-nowrap overflow-hidden text-ellipsis text-red-950 dark:text-red-200"
-                                        >
-                                            {{ product.name }}
-                                        </div>
-                                        <div class="text-sm">
-                                            ₱ {{ formatPrice(product.price) }}
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="text-sm font-medium absolute right-1 bottom-0.5"
-                                    >
-                                        stocks:
-                                        {{ product.inventories[0]?.qty }}
-                                    </div>
-                                </div>
-
-                                <!-- Cart icon (hidden by default) -->
-                                <div
-                                    class="absolute cursor-pointer inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity hover:bg-white/60 rounded"
-                                >
-                                    <Icon
-                                        name="mdi:cart-plus"
-                                        size="50"
-                                        class="text-blue-900"
-                                    />
-                                </div>
-                            </span>
+                            <PosViewGrid
+                                v-if="isGridView"
+                                :products="products"
+                            />
+                            <PosViewList v-else :products="products" />
                         </div>
                     </div>
                 </div>
@@ -145,6 +85,10 @@ import testData from '~/pages/pos/testData.json';
 const isMobile = ref(false);
 const checkIsMobile = () => {
     isMobile.value = window.innerWidth <= 768;
+};
+const isGridView = ref(true);
+const toggleView = () => {
+    isGridView.value = !isGridView.value;
 };
 
 const modelName = 'product';
