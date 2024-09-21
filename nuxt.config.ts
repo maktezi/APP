@@ -13,6 +13,7 @@ export default defineNuxtConfig({
         '@nuxt/icon',
         '@nuxt/eslint',
         '@formkit/auto-animate/nuxt',
+        'nuxt-auth-sanctum',
     ],
     eslint: {
         config: {
@@ -25,6 +26,10 @@ export default defineNuxtConfig({
     colorMode: {
         classSuffix: '',
     },
+    app: {
+        pageTransition: { name: 'page', mode: 'out-in' },
+        layoutTransition: { name: 'layout', mode: 'out-in' },
+    },
     postcss: {
         plugins: {
             tailwindcss: {},
@@ -34,11 +39,20 @@ export default defineNuxtConfig({
     apollo: {
         autoImports: true,
         clients: {
-            default: { httpEndpoint: 'http://localhost:8000/graphql' },
+            default: { httpEndpoint: import.meta.env.API_URL + '/graphql' },
         },
     },
-    app: {
-        pageTransition: { name: 'page', mode: 'out-in' },
-        layoutTransition: { name: 'layout', mode: 'out-in' },
+    sanctum: {
+        baseUrl: import.meta.env.API_URL,
+        redirect: {
+            onLogin: '/dashboard',
+            onLogout: '/',
+            onAuthOnly: '/login',
+            // onGuestOnly: '/profile',
+        },
+        globalMiddleware: {
+            enabled: true,
+            allow404WithoutAuth: false,
+        },
     },
 });

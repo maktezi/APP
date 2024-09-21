@@ -67,9 +67,6 @@
 </template>
 
 <script setup lang="ts">
-// definePageMeta({ middleware: ["auth"] });
-import { Card } from '~/components/ui/card';
-
 const pageTitle = 'Dashboard';
 const icon = 'mdi:view-dashboard-outline';
 </script>
