@@ -2,6 +2,7 @@
     <span
         v-for="product in products"
         :key="product.id"
+        :hidden="product.inventories[0]?.qty < 1"
         class="relative flex bg-gray-100 rounded dark:bg-gray-800 px-4 py-3 h-[70px] w-full font-medium overflow-hidden"
         @click="addProductToCart(product)"
     >
