@@ -30,7 +30,7 @@
                     :fields="modalFields"
                     :initial-values="selectedModel"
                     :submit-button-text="modalButtonText"
-                    @submit="handleSubmit"
+                    @submit="handleCrudSubmit"
                     @close="closeCrudModal"
                 />
             </main>
@@ -95,12 +95,12 @@ const {
     actions,
 } = await useModelCrud(modelName, modelFields);
 
-const handleSubmit = async (formData: any) => {
-    if (formData.password) {
-        formData.password = await bcrypt.hash(formData.password, 10);
-    }
-    handleCrudSubmit(formData);
-};
+// const handleSubmit = async (formData: any) => {
+//     if (formData.password) {
+//         formData.password = await bcrypt.hash(formData.password, 10);
+//     }
+//     handleCrudSubmit(formData);
+// };
 
 onMounted(() => {
     fetchDataPaginate(numberPerPage, page);

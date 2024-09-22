@@ -30,10 +30,5 @@ import { Button } from '~/components/ui/button';
 
 definePageMeta({
     layout: false,
-    sanctum: {
-        excluded: true,
-        // guestOnly: true, // Pages that should only be accessible to guests
-        // authOnly: true, // Pages that should only be accessible to authenticated users
-    },
 });
 </script>

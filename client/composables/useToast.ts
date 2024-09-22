@@ -8,6 +8,8 @@ export function toasts(message: string, options?: ToastOptions) {
         position: options?.position || 'top-right',
         autoClose: options?.autoClose !== undefined ? options.autoClose : 2000,
         type: options?.type,
+        hideProgressBar: true,
+        transition: options?.transition || 'zoom',
         ...options,
     });
 }

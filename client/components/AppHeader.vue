@@ -40,9 +40,10 @@
                         <DropdownButton>
                             <span
                                 class="flex items-center gap-1 justify-center"
+                                @click.prevent="logout"
                             >
                                 <Icon name="ri:logout-circle-line" size="25" />
-                                <a href="/">Logout</a>
+                                Logout
                             </span>
                         </DropdownButton>
                     </Dropdown>
@@ -69,4 +70,24 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from '@/components/ui/tooltip';
+
+const router = useRouter();
+
+const logout = () => {
+    try {
+        useUserStore().logout();
+        toasts('Logging out...', {
+            type: 'loading',
+            position: 'top-center',
+            autoClose: 1000,
+            transition: 'zoom',
+            hideProgressBar: true,
+        });
+        setTimeout(() => {
+            router.push('/');
+        }, 2000);
+    } catch (error) {
+        console.log(error);
+    }
+};
 </script>

@@ -102,9 +102,17 @@ const login = async () => {
 
         loading.value = false;
         router.push('/dashboard');
-    } catch (error) {
-        console.log(error);
-        loading.value = false;
+    } catch (error: any) {
+        toasts(error.response.data.message, {
+            type: 'error',
+            position: 'top-center',
+            autoClose: 3000,
+            transition: 'zoom',
+            hideProgressBar: true,
+        });
+        setTimeout(() => {
+            loading.value = false;
+        }, 3000);
     }
 };
 </script>

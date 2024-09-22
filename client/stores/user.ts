@@ -36,6 +36,15 @@ export const useUserStore = defineStore('user', {
         },
         async logout() {
             await $axios.post('/logout');
+            this.resetUser();
+        },
+        resetUser() {
+            this.$state.id = '';
+            this.$state.role = '';
+            this.$state.first_name = '';
+            this.$state.middle_name = '';
+            this.$state.last_name = '';
+            this.$state.complete_name = '';
         },
     },
     persist: true,
