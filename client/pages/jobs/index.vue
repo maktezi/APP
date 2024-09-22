@@ -1,29 +1,31 @@
 <template>
     <div>
-        <NuxtLayout name="app-layout">
-            <Head>
-                <Title>Jobs</Title>
-            </Head>
-            <main class="max-w-screen-xl mx-auto">
-                <TableHeader title="Jobs">
-                    <template #actions>
-                        <TableCRUD />
-                    </template>
-                </TableHeader>
+        <Head>
+            <Title>Jobs</Title>
+        </Head>
+        <main v-auto-animate class="max-w-screen-xl mx-auto">
+            <TableHeader title="Jobs">
+                <template #actions>
+                    <TableCRUD />
+                </template>
+            </TableHeader>
 
-                <TableData
-                    :headers="headers"
-                    :data="jobsData"
-                    :actions="actions"
-                    primary-key="title"
-                />
-            </main>
-        </NuxtLayout>
+            <TableData
+                :headers="headers"
+                :data="jobsData"
+                :actions="actions"
+                primary-key="title"
+            />
+        </main>
     </div>
 </template>
 
 <script setup lang="ts">
 import { jobsPaginate } from '~/graphql/Job';
+
+definePageMeta({
+    layout: 'app-layout',
+});
 
 const jobsData = ref([]);
 

@@ -13,6 +13,8 @@ export default defineNuxtConfig({
         '@nuxt/icon',
         '@nuxt/eslint',
         '@formkit/auto-animate/nuxt',
+        '@pinia/nuxt',
+        'pinia-plugin-persistedstate/nuxt',
     ],
     eslint: {
         config: {
@@ -25,6 +27,10 @@ export default defineNuxtConfig({
     colorMode: {
         classSuffix: '',
     },
+    app: {
+        pageTransition: { name: 'page', mode: 'out-in' },
+        layoutTransition: { name: 'layout', mode: 'out-in' },
+    },
     postcss: {
         plugins: {
             tailwindcss: {},
@@ -34,11 +40,12 @@ export default defineNuxtConfig({
     apollo: {
         autoImports: true,
         clients: {
-            default: { httpEndpoint: 'http://localhost:8000/graphql' },
+            default: { httpEndpoint: import.meta.env.API_URL + '/graphql' },
         },
     },
-    app: {
-        pageTransition: { name: 'page', mode: 'out-in' },
-        layoutTransition: { name: 'layout', mode: 'out-in' },
+    runtimeConfig: {
+        public: {
+            API_URL: import.meta.env.API_URL,
+        },
     },
 });

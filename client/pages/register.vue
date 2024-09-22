@@ -6,9 +6,11 @@
         <div class="p-5 sm:w-auto max-w-xl m-auto">
             <Card class="w-full p-10 mt-40">
                 <NuxtLink to="/">
-                    <Button variant="destructive">Back</Button>
+                    <Button variant="destructive"> Back </Button>
                 </NuxtLink>
-                <p class="text-3xl font-bold text-center pb-8">Create Account</p>
+                <p class="text-3xl font-bold text-center pb-8">
+                    Create Account
+                </p>
                 <form @submit.prevent="submit">
                     <!-- Name -->
                     <div>
@@ -39,7 +41,9 @@
 
                     <!-- Password -->
                     <div class="mt-4">
-                        <Label class="text-gray-500" for="password">Password</Label>
+                        <Label class="text-gray-500" for="password"
+                            >Password</Label
+                        >
                         <Input
                             id="password"
                             v-model="data.password"
@@ -54,7 +58,7 @@
                     <!-- Confirm Password -->
                     <div class="mt-4">
                         <Label class="text-gray-500" for="password_confirmation"
-                        >Confirm Password</Label
+                            >Confirm Password</Label
                         >
                         <Input
                             id="password_confirmation"
@@ -74,9 +78,9 @@
                             Already registered?
                         </NuxtLink>
 
-                        <Button class="ml-3" :disabled="inProgress"
-                        >Register</Button
-                        >
+                        <Button class="ml-3" :disabled="inProgress">
+                            Register
+                        </Button>
                     </div>
                 </form>
             </Card>
@@ -85,20 +89,17 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from "~/components/ui/button";
-import { Label } from "~/components/ui/label";
-import { Input } from "~/components/ui/input";
-
-definePageMeta({ middleware: ["guest"] });
+import { Button } from '~/components/ui/button';
+import { Label } from '~/components/ui/label';
+import { Input } from '~/components/ui/input';
 
 const router = useRouter();
-const { register } = useAuth();
 
 const data = reactive({
-    name: "",
-    email: "",
-    password: "",
-    password_confirmation: "",
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
 });
 
 const {
@@ -106,6 +107,10 @@ const {
     inProgress,
     validationErrors: errors,
 } = useSubmit(() => register(data), {
-    onSuccess: () => router.push("/dashboard"),
+    onSuccess: () => router.push('/dashboard'),
+});
+
+definePageMeta({
+    middleware: ['guest'],
 });
 </script>

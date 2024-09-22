@@ -1,46 +1,48 @@
 <template>
     <div>
-        <NuxtLayout name="app-layout">
-            <Head>
-                <Title>{{ pageTitle }}</Title>
-            </Head>
-            <main class="max-w-screen-xl mx-auto">
-                <TableHeader :title="pageTitle" :icon="icon">
-                    <template #actions>
-                        <TableCRUD
-                            :on-create="openCreateModal"
-                            :on-refresh="
-                                () => fetchDataPaginate(numberPerPage, page)
-                            "
-                        />
-                    </template>
-                </TableHeader>
+        <Head>
+            <Title>{{ pageTitle }}</Title>
+        </Head>
+        <main v-auto-animate class="max-w-screen-xl mx-auto">
+            <TableHeader :title="pageTitle" :icon="icon">
+                <template #actions>
+                    <TableCRUD
+                        :on-create="openCreateModal"
+                        :on-refresh="
+                            () => fetchDataPaginate(numberPerPage, page)
+                        "
+                    />
+                </template>
+            </TableHeader>
 
-                <TableContent
-                    :headers="modelHeaders"
-                    :is-loading="isLoading"
-                    :data="modelData"
-                    :actions="actions"
-                />
+            <TableContent
+                :headers="modelHeaders"
+                :is-loading="isLoading"
+                :data="modelData"
+                :actions="actions"
+            />
 
-                <TableCrudModal
-                    v-if="showModal"
-                    :visible="showModal"
-                    :title="modalTitle"
-                    :fields="modalFields"
-                    :initial-values="selectedModel"
-                    :submit-button-text="modalButtonText"
-                    @submit="handleCrudSubmit"
-                    @close="closeCrudModal"
-                />
-            </main>
-        </NuxtLayout>
+            <TableCrudModal
+                v-if="showModal"
+                :visible="showModal"
+                :title="modalTitle"
+                :fields="modalFields"
+                :initial-values="selectedModel"
+                :submit-button-text="modalButtonText"
+                @submit="handleCrudSubmit"
+                @close="closeCrudModal"
+            />
+        </main>
     </div>
 </template>
 
 <script setup lang="ts">
 import type { Headers, CrudModalField } from '~/types';
 import { useModelCrud } from '~/composables/useModelCrud';
+
+definePageMeta({
+    layout: 'app-layout',
+});
 
 const modelName = 'order';
 const pageTitle = getPluralName(toTitleCase(modelName));

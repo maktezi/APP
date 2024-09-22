@@ -70,6 +70,26 @@
                         class="mt-1 mr-2 rounded-md border-none outline-none shadow-sm sm:text-sm"
                     />
 
+                    <!-- User Role Select - TODO: fix dynamic select -->
+                    <select
+                        v-if="field.type === 'userRoleSelect'"
+                        :id="field.name"
+                        v-model="form[field.name]"
+                        :required="field.required"
+                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300"
+                    >
+                        <option disabled value="">
+                            Select {{ field.model }}
+                        </option>
+                        <option
+                            v-for="option in roles || []"
+                            :key="option.id"
+                            :value="option.id"
+                        >
+                            {{ option.complete_name }}
+                        </option>
+                    </select>
+
                     <!-- Select Field - TODO: fix dynamic select -->
                     <select
                         v-if="field.type === 'select'"
@@ -172,6 +192,13 @@ const props = defineProps({
 const route = useRoute();
 const { data: productData } = await useAsyncQuery(productFilter);
 const { data: categoryData } = await useAsyncQuery(categoryFilter);
+
+const roles = [
+    { id: 0, complete_name: 'User' },
+    { id: 1, complete_name: 'Admin' },
+    { id: 2, complete_name: 'Staff' },
+    { id: 3, complete_name: 'Store Manager' },
+];
 
 const showPassword = ref<Record<string, boolean>>({});
 const emit = defineEmits(['submit', 'close']);

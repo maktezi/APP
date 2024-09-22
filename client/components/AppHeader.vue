@@ -15,8 +15,8 @@
                             <span
                                 class="flex items-center text-sm font-medium text-white hover:text-gray-700 focus:outline-none transition duration-250 ease-in-out"
                             >
-                                <!--                 <div>{{ user?.name }}</div> -->
-                                <div>Super User</div>
+                                <div>{{ auth.complete_name }}</div>
+                                <!--                                <div>Super User</div> -->
 
                                 <div class="ml-1">
                                     <svg
@@ -34,28 +34,17 @@
                             </span>
                         </template>
                         <!-- Authentication  -->
-                        <!--            <DropdownButton @click="logout"> -->
-                        <!--              Logout -->
-                        <!--            </DropdownButton> -->
                         <DropdownButton>
                             <span
                                 class="flex items-center gap-1 justify-center"
+                                @click.prevent="logout"
                             >
                                 <Icon name="ri:logout-circle-line" size="25" />
-                                <a href="/">Logout</a>
+                                Logout
                             </span>
                         </DropdownButton>
                     </Dropdown>
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger>
-                                <DisplayMode />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <p>Display Mode</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+                    <DisplayMode />
                 </div>
             </div>
         </div>
@@ -63,10 +52,23 @@
 </template>
 
 <script setup lang="ts">
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from '@/components/ui/tooltip';
+const auth = useAuth();
+const router = useRouter();
+
+const logout = () => {
+    try {
+        auth.logout();
+        toasts('Logging out.', {
+            type: 'info',
+            position: 'top-center',
+            autoClose: 1000,
+            transition: 'zoom',
+        });
+        setTimeout(() => {
+            router.push('/');
+        }, 2000);
+    } catch (error) {
+        console.log(error);
+    }
+};
 </script>

@@ -1,46 +1,47 @@
 <template>
     <div>
-        <NuxtLayout name="app-layout">
-            <Head>
-                <Title>{{ pageTitle }}</Title>
-            </Head>
-            <main class="max-w-screen-xl mx-auto">
-                <TableHeader :title="pageTitle" :icon="icon">
-                    <template #actions>
-                        <TableCRUD
-                            :on-create="openCreateModal"
-                            :on-refresh="
-                                () => fetchDataPaginate(numberPerPage, page)
-                            "
-                        />
-                    </template>
-                </TableHeader>
+        <Head>
+            <Title>{{ pageTitle }}</Title>
+        </Head>
+        <main v-auto-animate class="max-w-screen-xl mx-auto">
+            <TableHeader :title="pageTitle" :icon="icon">
+                <template #actions>
+                    <TableCRUD
+                        :on-create="openCreateModal"
+                        :on-refresh="
+                            () => fetchDataPaginate(numberPerPage, page)
+                        "
+                    />
+                </template>
+            </TableHeader>
 
-                <TableContent
-                    :headers="modelHeaders"
-                    :is-loading="isLoading"
-                    :data="modelData"
-                    :actions="actions"
-                />
+            <TableContent
+                :headers="modelHeaders"
+                :is-loading="isLoading"
+                :data="modelData"
+                :actions="actions"
+            />
 
-                <TableCrudModal
-                    v-if="showModal"
-                    :visible="showModal"
-                    :title="modalTitle"
-                    :fields="modalFields"
-                    :initial-values="selectedModel"
-                    :submit-button-text="modalButtonText"
-                    @submit="handleSubmit"
-                    @close="closeCrudModal"
-                />
-            </main>
-        </NuxtLayout>
+            <TableCrudModal
+                v-if="showModal"
+                :visible="showModal"
+                :title="modalTitle"
+                :fields="modalFields"
+                :initial-values="selectedModel"
+                :submit-button-text="modalButtonText"
+                @submit="handleCrudSubmit"
+                @close="closeCrudModal"
+            />
+        </main>
     </div>
 </template>
 
 <script setup lang="ts">
-import bcrypt from 'bcryptjs';
 import type { CrudModalField, Headers } from '~/types';
+
+definePageMeta({
+    layout: 'app-layout',
+});
 
 const modelName = 'user';
 const pageTitle = getPluralName(toTitleCase(modelName));
@@ -48,11 +49,29 @@ const icon = 'mdi:users';
 
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
+    {
+        key: (val) => {
+            switch (val.role) {
+                case 0:
+                    return 'User';
+                case 1:
+                    return 'Admin';
+                case 2:
+                    return 'Staff';
+                case 3:
+                    return 'Store Manager';
+                default:
+                    return 'Unknown';
+            }
+        },
+        label: 'Role',
+    },
     { key: 'complete_name', label: 'Name' },
     { key: 'email', label: 'Email' },
 ];
 
 const modelFields: CrudModalField[] = [
+    { name: 'role', label: 'Role', type: 'userRoleSelect' },
     { name: 'first_name', label: 'First Name', type: 'text', required: true },
     { name: 'middle_name', label: 'Middle Name', type: 'text' },
     { name: 'last_name', label: 'Last Name', type: 'text', required: true },
@@ -76,13 +95,6 @@ const {
     isLoading,
     actions,
 } = await useModelCrud(modelName, modelFields);
-
-const handleSubmit = async (formData: any) => {
-    if (formData.password) {
-        formData.password = await bcrypt.hash(formData.password, 10);
-    }
-    handleCrudSubmit(formData);
-};
 
 onMounted(() => {
     fetchDataPaginate(numberPerPage, page);
