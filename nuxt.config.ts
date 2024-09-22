@@ -14,6 +14,7 @@ export default defineNuxtConfig({
         '@nuxt/eslint',
         '@formkit/auto-animate/nuxt',
         '@pinia/nuxt',
+        'pinia-plugin-persistedstate/nuxt',
     ],
     eslint: {
         config: {
