@@ -56,6 +56,7 @@
                         </template>
                         <div
                             v-else
+                            v-auto-animate
                             class="flex-wrap flex gap-1 w-full overflow-y-auto max-h-[740px]"
                         >
                             <PosViewGrid

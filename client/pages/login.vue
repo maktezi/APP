@@ -3,7 +3,7 @@
         <Head>
             <Title>APP - Login</Title>
         </Head>
-        <div class="p-5 sm:w-auto max-w-xl m-auto">
+        <div v-auto-animate class="p-5 sm:w-auto max-w-xl m-auto">
             <Card class="w-full p-10 mt-32 rounded-2xl">
                 <!-- Session Status -->
                 <NuxtLink

@@ -47,16 +47,7 @@
                             </span>
                         </DropdownButton>
                     </Dropdown>
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger>
-                                <DisplayMode />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <p>Display Mode</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
+                    <DisplayMode />
                 </div>
             </div>
         </div>
@@ -64,13 +55,6 @@
 </template>
 
 <script setup lang="ts">
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from '@/components/ui/tooltip';
-
 const auth = useAuth();
 const router = useRouter();
 

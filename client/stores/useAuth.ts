@@ -32,7 +32,7 @@ export const useAuth = defineStore('auth', {
             this.$state.last_name = response.data[0].last_name;
             this.$state.complete_name = response.data[0].complete_name;
 
-            console.log(response.data[0]);
+            // console.log(response.data[0]);
         },
         async logout() {
             await $axios.post('/logout');

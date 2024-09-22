@@ -3,7 +3,7 @@
         <Head>
             <Title>APP</Title>
         </Head>
-        <div class="items-center justify-center p-6">
+        <div v-auto-animate class="items-center justify-center p-6">
             <!-- Logo  -->
             <div class="flex-shrink-0 flex items-center">
                 <NuxtLink to="/">

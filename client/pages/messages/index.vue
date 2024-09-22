@@ -3,7 +3,7 @@
         <Head>
             <Title>Messenger</Title>
         </Head>
-        <main class="max-w-screen-full mx-auto">
+        <main v-auto-animate class="max-w-screen-full mx-auto">
             <MessagesHeader />
             <div class="flex h-screen">
                 <div class="xl:w-1/4 w-1/2 border-r border-gray-300 p-2">

@@ -3,7 +3,7 @@
         <Head>
             <Title>{{ pageTitle }}</Title>
         </Head>
-        <main class="max-w-screen-xl mx-auto">
+        <main v-auto-animate class="max-w-screen-xl mx-auto">
             <TableHeader :title="pageTitle" :icon="icon">
                 <template #actions>
                     <TableCRUD

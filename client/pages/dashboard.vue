@@ -4,7 +4,7 @@
             <Title>{{ pageTitle }}</Title>
         </Head>
 
-        <main class="max-w-screen-xl mx-auto h-[780px]">
+        <main v-auto-animate class="max-w-screen-xl mx-auto h-[780px]">
             <TableHeader :title="pageTitle" :icon="icon" />
             <div
                 class="p-4 border-2 rounded-b w-full border-gray-100 dark:border-gray-900 h-full"

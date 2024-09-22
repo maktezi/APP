@@ -3,7 +3,7 @@
         <Head>
             <Title>{{ pageTitle }}</Title>
         </Head>
-        <main class="max-w-screen-xl mx-auto">
+        <main v-auto-animate class="max-w-screen-xl mx-auto">
             <TableHeader :title="pageTitle" :icon="icon" />
             <div class="flex flex-wrap gap-4 my-4 items-center justify-center">
                 <Button class="p-4 bg-gray-400 w-40 rounded-full">
