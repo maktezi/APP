@@ -57,7 +57,9 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <Button variant="default" class="ml-3"> Login </Button>
+                        <Button type="submit" variant="default" class="ml-3">
+                            Login
+                        </Button>
                     </div>
                 </form>
             </Card>
@@ -66,7 +68,6 @@
 </template>
 
 <script setup lang="ts">
-import axios from 'axios';
 import { Card } from '~/components/ui/card';
 import { Button } from '~/components/ui/button';
 import { Label } from '~/components/ui/label';
@@ -75,8 +76,8 @@ import { Input } from '~/components/ui/input';
 const { login } = useSanctumAuth();
 
 const credentials = reactive({
-    email: 'admin@email.com',
-    password: 'password',
+    email: 'admin@mail.com',
+    password: 'admin1234',
     remember: false,
 });
 
