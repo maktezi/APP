@@ -18,13 +18,14 @@ return [
     'paths' => [
         'api/*',
         '/login',
+        '/logout',
         'graphql',
         'sanctum/csrf-cookie'
     ],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('WEB_URL')],
+    'allowed_origins' => [env('WEB_URL', 'http://localhost:3000')],
 
     'allowed_origins_patterns' => [],
 

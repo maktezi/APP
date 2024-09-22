@@ -13,7 +13,7 @@ export default defineNuxtConfig({
         '@nuxt/icon',
         '@nuxt/eslint',
         '@formkit/auto-animate/nuxt',
-        'nuxt-auth-sanctum',
+        '@pinia/nuxt',
     ],
     eslint: {
         config: {
@@ -42,17 +42,9 @@ export default defineNuxtConfig({
             default: { httpEndpoint: import.meta.env.API_URL + '/graphql' },
         },
     },
-    sanctum: {
-        baseUrl: import.meta.env.API_URL,
-        redirect: {
-            onLogin: '/dashboard',
-            onLogout: '/',
-            onAuthOnly: '/login',
-            // onGuestOnly: '/profile',
-        },
-        globalMiddleware: {
-            enabled: true,
-            allow404WithoutAuth: false,
+    runtimeConfig: {
+        public: {
+            API_URL: import.meta.env.API_URL,
         },
     },
 });
