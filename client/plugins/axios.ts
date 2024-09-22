@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 export default defineNuxtPlugin((nuxtApp) => {
-    const config = useRuntimeConfig();
-
     axios.defaults.withCredentials = true;
-    axios.defaults.baseURL = config.public.API_URL as string;
+    // axios.defaults.baseURL = useRuntimeConfig().public.API_URL as string;
+    axios.defaults.baseURL = 'http://localhost:8000';
 
     return {
         provide: {

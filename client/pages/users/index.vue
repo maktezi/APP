@@ -48,11 +48,29 @@ const icon = 'mdi:users';
 
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
+    {
+        key: (val) => {
+            switch (val.role) {
+                case 0:
+                    return 'User';
+                case 1:
+                    return 'Admin';
+                case 2:
+                    return 'Staff';
+                case 3:
+                    return 'Store Manager';
+                default:
+                    return 'Unknown';
+            }
+        },
+        label: 'Role',
+    },
     { key: 'complete_name', label: 'Name' },
     { key: 'email', label: 'Email' },
 ];
 
 const modelFields: CrudModalField[] = [
+    { name: 'role', label: 'Role', type: 'userRoleSelect' },
     { name: 'first_name', label: 'First Name', type: 'text', required: true },
     { name: 'middle_name', label: 'Middle Name', type: 'text' },
     { name: 'last_name', label: 'Last Name', type: 'text', required: true },
