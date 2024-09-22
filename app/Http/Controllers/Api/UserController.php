@@ -12,7 +12,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function loggedInUser()
+    public function authenticatedUser()
     {
         try {
             $user = User::where('id', auth()->user()->id)->get();
