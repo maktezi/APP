@@ -52,7 +52,7 @@ import {
     SheetContent,
     SheetHeader,
     SheetTrigger,
-} from '@/components/ui/sheet';
+} from '~/components/ui/sheet';
 
 const { links } = useLinks();
 </script>

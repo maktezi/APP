@@ -34,9 +34,6 @@
                             </span>
                         </template>
                         <!-- Authentication  -->
-                        <!--            <DropdownButton @click="logout"> -->
-                        <!--              Logout -->
-                        <!--            </DropdownButton> -->
                         <DropdownButton>
                             <span
                                 class="flex items-center gap-1 justify-center"
@@ -61,12 +58,11 @@ const router = useRouter();
 const logout = () => {
     try {
         auth.logout();
-        toasts('Logging out...', {
-            type: 'loading',
+        toasts('Logging out.', {
+            type: 'info',
             position: 'top-center',
             autoClose: 1000,
             transition: 'zoom',
-            hideProgressBar: true,
         });
         setTimeout(() => {
             router.push('/');
