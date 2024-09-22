@@ -81,6 +81,7 @@ import { Button } from '~/components/ui/button';
 import { Label } from '~/components/ui/label';
 import { Input } from '~/components/ui/input';
 
+const auth = useAuth();
 const loading = ref(false);
 const errors = ref(null);
 const router = useRouter();
@@ -96,9 +97,9 @@ const login = async () => {
 
     try {
         loading.value = true;
-        await useUserStore().getTokens();
-        await useUserStore().login(credentials.email, credentials.password);
-        await useUserStore().getUser();
+        await auth.getTokens();
+        await auth.login(credentials.email, credentials.password);
+        await auth.getUser();
 
         loading.value = false;
         router.push('/dashboard');
@@ -115,4 +116,8 @@ const login = async () => {
         }, 3000);
     }
 };
+
+definePageMeta({
+    middleware: ['guest'],
+});
 </script>

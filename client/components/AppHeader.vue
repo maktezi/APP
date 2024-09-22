@@ -15,8 +15,8 @@
                             <span
                                 class="flex items-center text-sm font-medium text-white hover:text-gray-700 focus:outline-none transition duration-250 ease-in-out"
                             >
-                                <!--                 <div>{{ user?.name }}</div> -->
-                                <div>Super User</div>
+                                <div>{{ auth.complete_name }}</div>
+                                <!--                                <div>Super User</div> -->
 
                                 <div class="ml-1">
                                     <svg
@@ -71,11 +71,12 @@ import {
     TooltipTrigger,
 } from '@/components/ui/tooltip';
 
+const auth = useAuth();
 const router = useRouter();
 
 const logout = () => {
     try {
-        useUserStore().logout();
+        auth.logout();
         toasts('Logging out...', {
             type: 'loading',
             position: 'top-center',

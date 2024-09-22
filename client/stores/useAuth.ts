@@ -3,9 +3,9 @@ import axios from '~/plugins/axios';
 
 const $axios = axios().provide.axios;
 
-export const useUserStore = defineStore('user', {
+export const useAuth = defineStore('auth', {
     state: () => ({
-        id: '',
+        userId: '',
         role: '',
         first_name: '',
         middle_name: '',
@@ -23,9 +23,9 @@ export const useUserStore = defineStore('user', {
             });
         },
         async getUser() {
-            const response = await $axios.get('/api/logged-in-user');
+            const response = await $axios.get('/api/authenticated-user');
 
-            this.$state.id = response.data[0].id;
+            this.$state.userId = response.data[0].id;
             this.$state.role = response.data[0].role;
             this.$state.first_name = response.data[0].first_name;
             this.$state.middle_name = response.data[0].middle_name;
@@ -39,7 +39,7 @@ export const useUserStore = defineStore('user', {
             this.resetUser();
         },
         resetUser() {
-            this.$state.id = '';
+            this.$state.userId = '';
             this.$state.role = '';
             this.$state.first_name = '';
             this.$state.middle_name = '';
