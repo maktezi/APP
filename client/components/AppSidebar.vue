@@ -19,27 +19,25 @@
                     </div>
                 </div>
             </SheetHeader>
-            <div class="grow mt-3 w-full">
-                <div class="grid">
-                    <NuxtLink
-                        v-for="(link, index) in Object.values(links)"
-                        :key="index"
-                        :to="link.path"
-                        class="flex w-full items-center gap-4 px-4 py-3 transition rounded-md cursor-pointer hover:bg-red-400/80 dark:hover:bg-red-900/80"
+            <SheetClose class="w-full mt-4">
+                <NuxtLink
+                    v-for="(link, index) in Object.values(links)"
+                    :key="index"
+                    :to="link.path"
+                    class="flex w-full items-center gap-4 px-4 py-3 transition rounded-md cursor-pointer hover:bg-red-400/80 dark:hover:bg-red-900/80"
+                >
+                    <Icon
+                        size="20"
+                        :name="link.icon"
+                        :class="link.iconColor"
+                    />
+                    <span
+                        class="text-sm font-semibold"
+                        :class="link.textColor"
+                        >{{ link.title }}</span
                     >
-                        <Icon
-                            size="20"
-                            :name="link.icon"
-                            :class="link.iconColor"
-                        />
-                        <span
-                            class="text-sm font-semibold"
-                            :class="link.textColor"
-                            >{{ link.title }}</span
-                        >
-                    </NuxtLink>
-                </div>
-            </div>
+                </NuxtLink>
+            </SheetClose>
         </SheetContent>
     </Sheet>
 </template>
@@ -52,6 +50,7 @@ import {
     SheetContent,
     SheetHeader,
     SheetTrigger,
+    SheetClose,
 } from '~/components/ui/sheet';
 
 const { links } = useLinks();
