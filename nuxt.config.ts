@@ -16,6 +16,10 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         'pinia-plugin-persistedstate/nuxt',
     ],
+    shadcn: {
+        prefix: '',
+        componentDir: './client/components/ui',
+    },
     eslint: {
         config: {
             stylistic: {
