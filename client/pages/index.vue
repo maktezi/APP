@@ -66,7 +66,7 @@
 
       <!-- Copyright Notice -->
       <div class="copyright-notice">
-        &copy; 2024 Yawa Corporations. All Rights Reserved.
+        &copy; 2024 Your Company Name. All Rights Reserved.
       </div>
     </div>
   </div>
@@ -110,11 +110,14 @@ definePageMeta({
   overflow: hidden; /* Prevent scrolling */
 }
 
+/* Grid for features now 75% of the viewport */
 .sample-features {
-  display: flex; /* Use flex to create a single line */
-  overflow: hidden; /* Prevent overflow scrolling */
-  height: calc(100vh - 60px - 70px - 40px); /* Adjust height to fit features and login button */
-  width: 100%; /* Full width for responsiveness */
+  height: 75vh;
+  width: 75vw;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Single-line grid */
+  gap: 20px;
+  margin: auto; /* Center the grid */
 }
 
 .feature-section {
@@ -123,9 +126,7 @@ definePageMeta({
   justify-content: center;
   background-size: cover;
   background-position: center;
-  flex: 1; /* Allow sections to flex and fill space equally */
   transition: transform 0.3s ease; /* Add transition for smooth scaling */
-  min-width: 0; /* Prevent overflow from flex children */
 }
 
 .feature-section:hover {
@@ -141,7 +142,9 @@ definePageMeta({
 }
 
 .login-button-container {
-  margin: 20px; /* Add some margin for spacing */
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
   display: flex;
   justify-content: flex-end; /* Align the button to the right */
 }
@@ -151,5 +154,52 @@ definePageMeta({
   text-align: center;
   margin: 10px; /* Margin for spacing */
   color: white; /* Change color if needed */
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .sample-features {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for tablets */
+    height: 65vh;
+    width: 90vw; /* Slightly larger grid for smaller screens */
+  }
+
+  .feature-content h1 {
+    font-size: 1.5rem; /* Smaller font for smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .sample-features {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+    height: 60vh;
+    width: 90vw; /* Grid adjusted for mobile */
+  }
+
+  .login-button-container {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .feature-content h1 {
+    font-size: 1.25rem; /* Even smaller font for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .sample-features {
+    grid-template-columns: 1fr; /* Single column for very small devices */
+    height: 50vh;
+    width: 95vw;
+  }
+
+  .login-button-container {
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .feature-content h1 {
+    font-size: 1rem; /* Adjust font size for extra small devices */
+  }
 }
 </style>
