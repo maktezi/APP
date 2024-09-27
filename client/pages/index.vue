@@ -50,7 +50,7 @@
         <Button>Login</Button>
       </NuxtLink>
     </div>
-
+    
     <!-- Copyright Notice -->
     <div class="absolute bottom-0 text-center text-white py-4 w-full">
       &copy; 2024 Yawa Inc. All Rights Reserved.
