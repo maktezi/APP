@@ -38,16 +38,9 @@
         </div>
 
         <!-- Feature 4 -->
-        <div class="feature-section" style="background-image: url('https://i.imgur.com/LxjjfPI.png');">
-          <div class="feature-content">
-            <h1 class="text-2xl text-white">Feature 4: Customizable Dashboard</h1>
-          </div>
-        </div>
-
-        <!-- Feature 5 -->
         <div class="feature-section" style="background-image: url('https://i.imgur.com/nJ2qOhw.png');">
           <div class="feature-content">
-            <h1 class="text-2xl text-white">Feature 5: 24/7 Customer Support</h1>
+            <h1 class="text-2xl text-white">Feature 4: 24/7 Customer Support</h1>
           </div>
         </div>
       </div>
@@ -115,7 +108,7 @@ definePageMeta({
   height: 75vh;
   width: 75vw;
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Single-line grid */
+  grid-template-columns: repeat(4, 1fr); /* Four columns for remaining features */
   gap: 20px;
   margin: auto; /* Center the grid */
 }
@@ -159,7 +152,7 @@ definePageMeta({
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .sample-features {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns for tablets */
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
     height: 65vh;
     width: 90vw; /* Slightly larger grid for smaller screens */
   }
