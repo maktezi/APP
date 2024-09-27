@@ -1,13 +1,13 @@
 <template>
-  <div class="app-container">
+  <div class="h-screen w-screen relative">
     <Head>
       <Title>APP</Title>
     </Head>
 
     <!-- Container for logo, display mode, GIF, and content -->
-    <div class="content-container" :class="{'overflow-hidden': !showContent}">
+    <div class="flex flex-col justify-between h-full overflow-hidden">
       <!-- Logo and DisplayMode -->
-      <div class="flex-shrink-0 flex items-center mb-4">
+      <div class="flex items-center mb-4 p-4">
         <NuxtLink to="/">
           <Logo />
         </NuxtLink>
@@ -15,50 +15,50 @@
       </div>
 
       <!-- Content to show after GIF plays -->
-      <div v-if="showContent" class="sample-features">
+      <div v-if="showContent" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-[75vh] w-[90vw] mx-auto">
         <!-- Feature 1 -->
-        <div class="feature-section" style="background-image: url('https://i.imgur.com/UULsFJV.png');">
-          <div class="feature-content">
-            <h1 class="text-2xl text-white">Feature 1: Fast and Reliable</h1>
+        <div class="feature-section bg-cover bg-center hover:scale-105 transition-transform duration-300" style="background-image: url('https://i.imgur.com/UULsFJV.png');">
+          <div class="bg-black bg-opacity-60 p-5 rounded-lg text-center text-white">
+            <h1 class="text-xl lg:text-2xl">Feature 1: Fast and Reliable</h1>
           </div>
         </div>
 
         <!-- Feature 2 -->
-        <div class="feature-section" style="background-image: url('https://i.imgur.com/1tZB8Qw.png');">
-          <div class="feature-content">
-            <h1 class="text-2xl text-white">Feature 2: Easy-to-use Interface</h1>
+        <div class="feature-section bg-cover bg-center hover:scale-105 transition-transform duration-300" style="background-image: url('https://i.imgur.com/1tZB8Qw.png');">
+          <div class="bg-black bg-opacity-60 p-5 rounded-lg text-center text-white">
+            <h1 class="text-xl lg:text-2xl">Feature 2: Easy-to-use Interface</h1>
           </div>
         </div>
 
         <!-- Feature 3 -->
-        <div class="feature-section" style="background-image: url('https://i.imgur.com/mCSSn0K.png');">
-          <div class="feature-content">
-            <h1 class="text-2xl text-white">Feature 3: Secure and Encrypted</h1>
+        <div class="feature-section bg-cover bg-center hover:scale-105 transition-transform duration-300" style="background-image: url('https://i.imgur.com/mCSSn0K.png');">
+          <div class="bg-black bg-opacity-60 p-5 rounded-lg text-center text-white">
+            <h1 class="text-xl lg:text-2xl">Feature 3: Secure and Encrypted</h1>
           </div>
         </div>
 
-        <!-- Feature 4 -->
-        <div class="feature-section" style="background-image: url('https://i.imgur.com/nJ2qOhw.png');">
-          <div class="feature-content">
-            <h1 class="text-2xl text-white">Feature 4: 24/7 Customer Support</h1>
+        <!-- Feature 5 -->
+        <div class="feature-section bg-cover bg-center hover:scale-105 transition-transform duration-300" style="background-image: url('https://i.imgur.com/nJ2qOhw.png');">
+          <div class="bg-black bg-opacity-60 p-5 rounded-lg text-center text-white">
+            <h1 class="text-xl lg:text-2xl">Feature 5: 24/7 Customer Support</h1>
           </div>
         </div>
       </div>
 
       <!-- GIF placeholder (shows before the content) -->
-      <div v-else class="flex m-auto justify-center h-full w-full">
+      <div v-else class="flex justify-center items-center h-full w-full">
         <img alt="img" src="../assets/backg.gif" />
       </div>
 
       <!-- Login Button positioned on the right side below the features -->
-      <div class="login-button-container" v-if="showContent">
+      <div class="absolute bottom-5 right-5" v-if="showContent">
         <NuxtLink to="/login">
           <Button>Login</Button>
         </NuxtLink>
       </div>
 
       <!-- Copyright Notice -->
-      <div class="copyright-notice">
+      <div class="text-center text-white py-4">
         &copy; 2024 Your Company Name. All Rights Reserved.
       </div>
     </div>
@@ -87,112 +87,5 @@ definePageMeta({
 </script>
 
 <style scoped>
-/* Main container for the app */
-.app-container {
-  height: 100vh;
-  width: 100vw;
-  position: relative;
-}
-
-/* Prevent scrolling and make sure all features are displayed on the same screen */
-.content-container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Space between logo, features, and button */
-  overflow: hidden; /* Prevent scrolling */
-}
-
-/* Grid for features now 75% of the viewport */
-.sample-features {
-  height: 75vh;
-  width: 75vw;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Four columns for remaining features */
-  gap: 20px;
-  margin: auto; /* Center the grid */
-}
-
-.feature-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.3s ease; /* Add transition for smooth scaling */
-}
-
-.feature-section:hover {
-  transform: scale(1.05); /* Scale up on hover */
-}
-
-.feature-content {
-  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for readability */
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  color: white;
-}
-
-.login-button-container {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  justify-content: flex-end; /* Align the button to the right */
-}
-
-/* Copyright Notice */
-.copyright-notice {
-  text-align: center;
-  margin: 10px; /* Margin for spacing */
-  color: white; /* Change color if needed */
-}
-
-/* Responsive Styles */
-@media (max-width: 1024px) {
-  .sample-features {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
-    height: 65vh;
-    width: 90vw; /* Slightly larger grid for smaller screens */
-  }
-
-  .feature-content h1 {
-    font-size: 1.5rem; /* Smaller font for smaller screens */
-  }
-}
-
-@media (max-width: 768px) {
-  .sample-features {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
-    height: 60vh;
-    width: 90vw; /* Grid adjusted for mobile */
-  }
-
-  .login-button-container {
-    bottom: 10px;
-    right: 10px;
-  }
-
-  .feature-content h1 {
-    font-size: 1.25rem; /* Even smaller font for mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  .sample-features {
-    grid-template-columns: 1fr; /* Single column for very small devices */
-    height: 50vh;
-    width: 95vw;
-  }
-
-  .login-button-container {
-    bottom: 5px;
-    right: 5px;
-  }
-
-  .feature-content h1 {
-    font-size: 1rem; /* Adjust font size for extra small devices */
-  }
-}
+/* Custom styles for hover and animations are managed by Tailwind */
 </style>
