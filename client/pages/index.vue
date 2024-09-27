@@ -45,7 +45,7 @@
     </div>
 
     <!-- Login Button positioned on the right side below the features -->
-    <div class="absolute bottom-7 right-5" v-if="showContent">
+    <div class="absolute bottom-10 right-5" v-if="showContent">
       <NuxtLink to="/login">
         <Button>Login</Button>
       </NuxtLink>
