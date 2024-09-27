@@ -17,35 +17,35 @@
       <!-- Content to show after GIF plays -->
       <div v-if="showContent" class="sample-features">
         <!-- Feature 1 -->
-        <div class="feature-section" style="background-image: url('https://via.placeholder.com/300x200/ff7f7f/ffffff?text=Feature+1');">
+        <div class="feature-section" style="background-image: url('https://i.imgur.com/UULsFJV.png');">
           <div class="feature-content">
             <h1 class="text-2xl text-white">Feature 1: Fast and Reliable</h1>
           </div>
         </div>
 
         <!-- Feature 2 -->
-        <div class="feature-section" style="background-image: url('https://via.placeholder.com/300x200/7f7fff/ffffff?text=Feature+2');">
+        <div class="feature-section" style="background-image: url('https://i.imgur.com/1tZB8Qw.png');">
           <div class="feature-content">
             <h1 class="text-2xl text-white">Feature 2: Easy-to-use Interface</h1>
           </div>
         </div>
 
         <!-- Feature 3 -->
-        <div class="feature-section" style="background-image: url('https://via.placeholder.com/300x200/7fff7f/ffffff?text=Feature+3');">
+        <div class="feature-section" style="background-image: url('https://i.imgur.com/mCSSn0K.png');">
           <div class="feature-content">
             <h1 class="text-2xl text-white">Feature 3: Secure and Encrypted</h1>
           </div>
         </div>
 
         <!-- Feature 4 -->
-        <div class="feature-section" style="background-image: url('https://via.placeholder.com/300x200/ffff7f/ffffff?text=Feature+4');">
+        <div class="feature-section" style="background-image: url('https://i.imgur.com/LxjjfPI.png');">
           <div class="feature-content">
             <h1 class="text-2xl text-white">Feature 4: Customizable Dashboard</h1>
           </div>
         </div>
 
         <!-- Feature 5 -->
-        <div class="feature-section" style="background-image: url('https://via.placeholder.com/300x200/ff7fff/ffffff?text=Feature+5');">
+        <div class="feature-section" style="background-image: url('https://i.imgur.com/nJ2qOhw.png');">
           <div class="feature-content">
             <h1 class="text-2xl text-white">Feature 5: 24/7 Customer Support</h1>
           </div>
