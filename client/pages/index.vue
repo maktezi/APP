@@ -45,12 +45,12 @@
     </div>
 
     <!-- Login Button positioned on the right side below the features -->
-    <div class="absolute bottom-5 right-5" v-if="showContent">
+    <div class="absolute bottom-7 right-5" v-if="showContent">
       <NuxtLink to="/login">
         <Button>Login</Button>
       </NuxtLink>
     </div>
-    
+
     <!-- Copyright Notice -->
     <div class="absolute bottom-0 text-center text-white py-4 w-full">
       &copy; 2024 Yawa Inc. All Rights Reserved.
