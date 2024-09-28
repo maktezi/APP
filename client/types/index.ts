@@ -16,6 +16,13 @@ export type Product = {
     inventories?: Inventory[];
 };
 
+export type Stock = {
+    id?: string;
+    product_id?: string;
+    qty?: number | null;
+    location?: string;
+};
+
 export type CrudButton = {
     iconName: string;
     iconSize: number;
