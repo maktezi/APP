@@ -16,6 +16,12 @@ export const productsPaginate = gql`
             data {
                 ...product
             }
+            paginatorInfo {
+                currentPage
+                lastPage
+                perPage
+                total
+            }
         }
     }
     ${ProductFragment}

@@ -15,6 +15,12 @@ export const ordersPaginate = gql`
             data {
                 ...order
             }
+            paginatorInfo {
+                currentPage
+                lastPage
+                perPage
+                total
+            }
         }
     }
     ${OrderFragment}

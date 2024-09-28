@@ -16,6 +16,12 @@ export const categoriesPaginate = gql`
             data {
                 ...category
             }
+            paginatorInfo {
+                currentPage
+                lastPage
+                perPage
+                total
+            }
         }
     }
     ${CategoryFragment}

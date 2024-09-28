@@ -19,8 +19,10 @@ export const usersPaginate = gql`
                 ...user
             }
             paginatorInfo {
-                count
                 currentPage
+                lastPage
+                perPage
+                total
             }
         }
     }

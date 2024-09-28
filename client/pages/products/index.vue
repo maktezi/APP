@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Headers, CrudModalField } from '~/types';
+import type { Headers, CrudModalField, Stock } from '~/types';
 
 definePageMeta({
     layout: 'app-layout',
@@ -50,9 +50,21 @@ const icon = 'mdi:storefront';
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
     { key: 'name', label: 'Name' },
-    { key: 'category.name', label: 'Category' },
     { key: 'sku', label: 'SKU' },
-    { key: (item) => `₱ ${currencyFormat(item.price)}`, label: 'Price' },
+    { key: 'category.name', label: 'Category' },
+    {
+        key: (val) =>
+            val.inventories
+                ? val.inventories
+                      .map(
+                          (stock: Stock) =>
+                              `${stock.location} (${thousandSeparator(stock.qty ?? 0)})`,
+                      )
+                      .join(', ') || 'No Stocks Found!'
+                : 'Error Fetching Inventory!',
+        label: 'Stock',
+    },
+    { key: (item) => `₱${currencyFormat(item.price)}`, label: 'Price' },
     { key: 'description', label: 'Description' },
 ];
 

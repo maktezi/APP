@@ -17,6 +17,12 @@ export const inventoriesPaginate = gql`
             data {
                 ...inventory
             }
+            paginatorInfo {
+                currentPage
+                lastPage
+                perPage
+                total
+            }
         }
     }
     ${InventoryFragment}
