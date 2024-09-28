@@ -23,6 +23,7 @@
                         class="block mt-1 w-full rounded-xl"
                         required
                         auto-focus
+                        @keyup.enter="login"
                     />
                 </div>
 
@@ -36,6 +37,7 @@
                         class="block mt-1 w-full rounded-xl"
                         required
                         auto-complete="current-password"
+                        @keyup.enter="login"
                     />
                 </div>
 
