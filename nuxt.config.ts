@@ -15,10 +15,9 @@ export default defineNuxtConfig({
         '@formkit/auto-animate/nuxt',
         '@pinia/nuxt',
         'pinia-plugin-persistedstate/nuxt',
-        "@nuxt/image"
+        '@nuxt/image',
     ],
     shadcn: {
-        prefix: '',
         componentDir: './client/components/ui',
     },
     eslint: {
