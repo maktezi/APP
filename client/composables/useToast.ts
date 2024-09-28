@@ -10,6 +10,9 @@ export function toasts(message: string, options?: ToastOptions) {
         type: options?.type,
         hideProgressBar: true,
         transition: options?.transition || 'zoom',
+        limit: 3,
+        newestOnTop: true,
+        clearOnUrlChange: true,
         ...options,
     });
 }
