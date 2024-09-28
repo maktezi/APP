@@ -8,9 +8,7 @@
                 <template #actions>
                     <TableCRUD
                         :on-create="openCreateModal"
-                        :on-refresh="
-                            () => fetchDataPaginate(numberPerPage, page)
-                        "
+                        :on-refresh="() => fetchDataPaginate(perPage, page)"
                     />
                 </template>
             </TableHeader>
@@ -70,13 +68,13 @@ const {
     handleCrudSubmit,
     closeCrudModal,
     fetchDataPaginate,
-    numberPerPage,
+    perPage,
     page,
     isLoading,
     actions,
 } = await useModelCrud(modelName, modelFields);
 
 onMounted(() => {
-    fetchDataPaginate(numberPerPage, page);
+    fetchDataPaginate(perPage, page);
 });
 </script>

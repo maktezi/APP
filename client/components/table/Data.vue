@@ -125,6 +125,12 @@ import { Button } from '~/components/ui/button';
 // TODO: fix pagination
 const totalItems = ref(0);
 const currentPage = ref(1);
+const perPage = ref(10);
+
+provide('totalItems', totalItems);
+provide('currentPage', currentPage);
+provide('perPage', perPage);
+
 const onPageChange = (page: number) => {
     currentPage.value = page;
 };
