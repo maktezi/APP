@@ -64,6 +64,7 @@ const modelFields: CrudModalField[] = [
         required: true,
         model: 'Product',
         queryName: 'productFilter',
+        optionTitle: 'name',
     },
     { name: 'qty', label: 'Stocks *', type: 'number', required: true },
     { name: 'location', label: 'Location', type: 'text' },

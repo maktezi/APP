@@ -72,6 +72,7 @@ const modelFields: CrudModalField[] = [
         type: 'select',
         model: 'User',
         queryName: 'filterCustomer',
+        optionTitle: 'complete_name',
     },
     { name: 'phone', label: 'Phone', type: 'text' },
     { name: 'address', label: 'Address', type: 'text' },

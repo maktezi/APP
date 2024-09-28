@@ -72,7 +72,6 @@
                         class="mt-1 mr-2 rounded-md border-none outline-none shadow-sm sm:text-sm"
                     />
 
-                    <!-- Select Field - TODO: fix dynamic select -->
                     <select
                         v-if="field.type === 'select'"
                         :id="field.name"
@@ -80,37 +79,16 @@
                         :required="field.required"
                         class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300"
                     >
-                        <option disabled value="">
+                        <option selected disabled value="">
                             Select {{ field.model }}
                         </option>
-                        <template v-if="field.queryName === 'productFilter'">
-                            <option
-                                v-for="option in productData.products || []"
-                                :key="option.id"
-                                :value="option.id"
-                            >
-                                {{ option.name }}
-                            </option>
-                        </template>
-                        <template v-if="field.queryName === 'categoryFilter'">
-                            <option
-                                v-for="option in categoryData.categories || []"
-                                :key="option.id"
-                                :value="option.id"
-                            >
-                                {{ option.name }}
-                            </option>
-                        </template>
-                        <template v-if="field.queryName === 'filterCustomer'">
-                            <option
-                                v-for="option in customerData.filterCustomer ||
-                                []"
-                                :key="option.id"
-                                :value="option.id"
-                            >
-                                {{ option.complete_name }}
-                            </option>
-                        </template>
+                        <option
+                            v-for="option in getData(field.model as string)"
+                            :key="option.id"
+                            :value="option.id"
+                        >
+                            {{ option[field.optionTitle as string] }}
+                        </option>
                     </select>
 
                     <!-- User Role Select - TODO: fix dynamic select -->
@@ -175,9 +153,6 @@
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
 import type { CrudModalField, Field } from '~/types';
-import { productFilter } from '~/graphql/Product';
-import { categoryFilter } from '~/graphql/Category';
-import { filterCustomer } from '~/graphql/User';
 
 const props = defineProps({
     visible: Boolean,
@@ -186,7 +161,7 @@ const props = defineProps({
         default: 'Form',
     },
     fields: {
-        type: Array as () => CrudModalField[],
+        type: Array as PropType<CrudModalField[]>,
         default: () => [],
     },
     initialValues: {
@@ -197,14 +172,9 @@ const props = defineProps({
         type: String,
         default: 'Submit',
     },
-    modalFields: Array,
     form: Object,
+    model: String,
 });
-
-// TODO: fix dynamic select
-const { data: productData } = await useAsyncQuery(productFilter);
-const { data: categoryData } = await useAsyncQuery(categoryFilter);
-const { data: customerData } = await useAsyncQuery(filterCustomer);
 
 const roles = [
     { id: 0, name: 'User' },
@@ -246,4 +216,42 @@ const getInputType = (field: Field) => {
     }
     return field.type;
 };
+
+// TODO: fix types
+const data: any = ref({});
+onMounted(async () => {
+    if (Array.isArray(props.fields)) {
+        for (const field of props.fields) {
+            if (field.type === 'select' && field.model && field.queryName) {
+                try {
+                    const queryModule = await import(
+                        `~/graphql/${field.model}.ts`
+                    );
+                    const query = queryModule[field.queryName];
+                    if (query) {
+                        const result = await useAsyncQuery(query);
+                        const resultKey = Object.keys(result.data.value)[0];
+                        data.value[field.model.toLowerCase()] =
+                            result.data.value[resultKey] || [];
+                    } else {
+                        console.warn(
+                            `Query ${field.queryName} not found in ${field.model}.ts`,
+                        );
+                    }
+                } catch (error) {
+                    console.error(
+                        `Error fetching data for ${field.model}:`,
+                        error,
+                    );
+                }
+            }
+        }
+    } else {
+        console.warn('modelFields is not an array:', props.modelFields);
+    }
+});
+
+function getData(model: string) {
+    return data.value[model.toLowerCase()] || [];
+}
 </script>

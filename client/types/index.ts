@@ -87,6 +87,7 @@ export type CrudModalField = {
     min?: number;
     max?: number;
     step?: number;
+    optionTitle?: string;
 };
 
 export type Action = {
