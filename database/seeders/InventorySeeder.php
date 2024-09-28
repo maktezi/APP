@@ -56,7 +56,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 6,
                 'product_id' => 6,
-                'qty' => 4000,
+                'qty' => 10,
                 'location' => 'Manila',
                 'created_at' => now(),
                 'updated_at' => now(),
