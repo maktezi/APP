@@ -14,11 +14,11 @@ type Order {
 input OrderInput {
     id: ID
     customer_id: ID
-    total_amount: String
+    total_amount: Float
     payment: Int # TODO: PaymentStatus
     status: Int # TODO: OrderStatus
     order_items: [OrderItemInput]
-    customer: ConnectOrderRelation
+#    customer: ConnectOrderRelation
 }
 
 input ConnectOrderRelation {

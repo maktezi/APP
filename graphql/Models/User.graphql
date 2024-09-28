@@ -47,6 +47,9 @@ type Query {
     users(
         search: String @scope(name: "search")
     ): [User!]! @all
+    filterCustomer(
+        filter: String @scope(name: "filterCustomer")
+    ): [User!]! @all
     usersPaginate: [User!]! @paginate
 }
 

@@ -19,8 +19,8 @@ input OrderItemInput {
     price: Float
     qty: Int
     total_amount: Float
-    order: ConnectOrderItemRelation
-    product: ConnectOrderItemRelation
+#    order: ConnectOrderItemRelation
+#    product: ConnectOrderItemRelation
 }
 
 input ConnectOrderItemRelation {
