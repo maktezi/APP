@@ -17,6 +17,7 @@ export const useAuth = defineStore('auth', {
             await $axios.get('/sanctum/csrf-cookie');
         },
         async login(email: string, password: string) {
+            this.resetUser();
             await $axios.post('/login', {
                 email: email,
                 password: password,
@@ -31,7 +32,6 @@ export const useAuth = defineStore('auth', {
             this.$state.middle_name = response.data[0].middle_name;
             this.$state.last_name = response.data[0].last_name;
             this.$state.complete_name = response.data[0].complete_name;
-
             // console.log(response.data[0]);
         },
         async logout() {
