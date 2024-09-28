@@ -9,7 +9,16 @@ export const userFilter = gql`
             email
         }
     }
-    ${userFragment}
+`;
+
+export const filterCustomer = gql`
+    query filterCustomer {
+        filterCustomer(filter: "role = 0") {
+            id
+            complete_name
+            email
+        }
+    }
 `;
 
 export const usersPaginate = gql`

@@ -33,7 +33,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'name' => 'Ryzen 9 5900X',
-                'image' => 'https://dynaquestpc.com/cdn/shop/products/Ryzen95950X.jpg?v=1604675395&width=640',
+                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxkbCfM6Qp71WsX0pl4oVHhFKR4BPqqrT-tw&s',
                 'description' => NULL,
                 'sku' => '567567',
                 'price' => 35000.33,

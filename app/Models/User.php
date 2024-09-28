@@ -76,6 +76,11 @@ class User extends Authenticatable
 
     public function scopeSearch(Builder $query, ?string $search): Builder
     {
-        return empty($search) ? $query : $query->where('name', 'like', "%{$search}%");
+        return empty($search) ? $query : $query->where('complete_name', 'like', "%{$search}%");
+    }
+
+    public function scopeFilterCustomer(Builder $query, ?string $filter): Builder
+    {
+        return empty($filter) ? $query : $query->where('role', 0, "%{$filter}%");
     }
 }

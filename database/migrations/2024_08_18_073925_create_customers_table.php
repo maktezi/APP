@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->string('name')->nullable();
+            $table->foreignId('user_id')->nullable()->unique()->constrained()->cascadeOnDelete();
+            $table->string('name')->nullable()->comment('used for no account customers');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->decimal('points', 6, 2)->default(0.00);

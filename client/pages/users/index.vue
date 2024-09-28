@@ -71,7 +71,7 @@ const modelHeaders: Headers[] = [
 ];
 
 const modelFields: CrudModalField[] = [
-    { name: 'role', label: 'Role', type: 'userRoleSelect' },
+    { name: 'role', label: 'Role', type: 'roleSelect' },
     { name: 'first_name', label: 'First Name', type: 'text', required: true },
     { name: 'middle_name', label: 'Middle Name', type: 'text' },
     { name: 'last_name', label: 'Last Name', type: 'text', required: true },
