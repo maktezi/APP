@@ -223,31 +223,16 @@ onMounted(async () => {
     if (Array.isArray(props.fields)) {
         for (const field of props.fields) {
             if (field.type === 'select' && field.model && field.queryName) {
-                try {
-                    const queryModule = await import(
-                        `~/graphql/${field.model}.ts`
-                    );
-                    const query = queryModule[field.queryName];
-                    if (query) {
-                        const result = await useAsyncQuery(query);
-                        const resultKey = Object.keys(result.data.value)[0];
-                        data.value[field.model.toLowerCase()] =
-                            result.data.value[resultKey] || [];
-                    } else {
-                        console.warn(
-                            `Query ${field.queryName} not found in ${field.model}.ts`,
-                        );
-                    }
-                } catch (error) {
-                    console.error(
-                        `Error fetching data for ${field.model}:`,
-                        error,
-                    );
+                const queryModule = await import(`~/graphql/${field.model}.ts`);
+                const query = queryModule[field.queryName];
+                if (query) {
+                    const result = await useAsyncQuery(query);
+                    const resultKey = Object.keys(result.data.value)[0];
+                    data.value[field.model.toLowerCase()] =
+                        result.data.value[resultKey] || [];
                 }
             }
         }
-    } else {
-        console.warn('modelFields is not an array:', props.modelFields);
     }
 });
 
