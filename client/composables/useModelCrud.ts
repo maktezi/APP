@@ -13,13 +13,11 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     const modalFields = ref(fields);
     const isLoading = ref(false);
 
-    // Todo: dynamic pagination
-    const numberPerPage = 20;
-    const page = 1;
+    const page = inject('currentPage', 1);
+    const perPage = inject('perPage', 20);
 
     // Dynamically import GraphQL queries and mutations
     let PAGINATE_QUERY, UPSERT_MUTATION, DELETE_MUTATION;
-
     try {
         const graphqlModule = await import(`~/graphql/${capitalizedName}.ts`);
         PAGINATE_QUERY = graphqlModule[`${pluralName}Paginate`];
@@ -43,18 +41,18 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
         result,
         refetch,
         loading: queryLoading,
-    } = useQuery(PAGINATE_QUERY, { first: numberPerPage, page: page });
-
-    const { mutate: upsertMutation, loading: upsertLoading } =
-        useMutation(UPSERT_MUTATION);
-    const { mutate: deleteMutation, loading: deleteLoading } =
-        useMutation(DELETE_MUTATION);
+    } = useQuery(PAGINATE_QUERY, { first: perPage, page: page });
 
     const fetchDataPaginate = async (first: number, page: number) => {
         isLoading.value = true;
         await refetch({ first, page });
         isLoading.value = false;
     };
+
+    const { mutate: upsertMutation, loading: upsertLoading } =
+        useMutation(UPSERT_MUTATION);
+    const { mutate: deleteMutation, loading: deleteLoading } =
+        useMutation(DELETE_MUTATION);
 
     const openCreateModal = () => {
         selectedModel.value = null;
@@ -84,7 +82,7 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
                 { type: 'success' },
             );
             closeCrudModal();
-            fetchDataPaginate(numberPerPage, page);
+            fetchDataPaginate(perPage, page);
         } catch (err) {
             toasts(`Error updating ${toTitleCase(singularName)}.\n${err}`, {
                 type: 'error',
@@ -172,7 +170,7 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
         handleCrudSubmit,
         closeCrudModal,
         fetchDataPaginate,
-        numberPerPage,
+        perPage,
         page,
         isLoading,
         actions,

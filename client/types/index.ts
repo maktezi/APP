@@ -87,6 +87,7 @@ export type CrudModalField = {
     min?: number;
     max?: number;
     step?: number;
+    optionTitle?: string;
 };
 
 export type Action = {
@@ -147,4 +148,5 @@ export type LinkItem = {
     show?: boolean;
     items?: LinkItem[];
     model?: string;
+    roles?: number[];
 };

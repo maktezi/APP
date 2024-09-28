@@ -8,9 +8,7 @@
                 <template #actions>
                     <TableCRUD
                         :on-create="openCreateModal"
-                        :on-refresh="
-                            () => fetchDataPaginate(numberPerPage, page)
-                        "
+                        :on-refresh="() => fetchDataPaginate(perPage, page)"
                     />
                 </template>
             </TableHeader>
@@ -72,6 +70,7 @@ const modelFields: CrudModalField[] = [
         type: 'select',
         model: 'User',
         queryName: 'filterCustomer',
+        optionTitle: 'complete_name',
     },
     { name: 'phone', label: 'Phone', type: 'text' },
     { name: 'address', label: 'Address', type: 'text' },
@@ -89,13 +88,13 @@ const {
     handleCrudSubmit,
     closeCrudModal,
     fetchDataPaginate,
-    numberPerPage,
+    perPage,
     page,
     isLoading,
     actions,
 } = await useModelCrud(modelName, modelFields);
 
 onMounted(() => {
-    fetchDataPaginate(numberPerPage, page);
+    fetchDataPaginate(perPage, page);
 });
 </script>

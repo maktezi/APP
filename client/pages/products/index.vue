@@ -8,9 +8,7 @@
                 <template #actions>
                     <TableCRUD
                         :on-create="openCreateModal"
-                        :on-refresh="
-                            () => fetchDataPaginate(numberPerPage, page)
-                        "
+                        :on-refresh="() => fetchDataPaginate(perPage, page)"
                     />
                 </template>
             </TableHeader>
@@ -52,18 +50,18 @@ const modelHeaders: Headers[] = [
     { key: 'name', label: 'Name' },
     { key: 'sku', label: 'SKU' },
     { key: 'category.name', label: 'Category' },
-    {
-        key: (val) =>
-            val.inventories
-                ? val.inventories
-                      .map(
-                          (stock: Stock) =>
-                              `${stock.location} (${thousandSeparator(stock.qty ?? 0)})`,
-                      )
-                      .join(', ') || 'No Stocks Found!'
-                : 'Error Fetching Inventory!',
-        label: 'Stock',
-    },
+    // {
+    //     key: (val) =>
+    //         val.inventories
+    //             ? val.inventories
+    //                   .map(
+    //                       (stock: Stock) =>
+    //                           `${stock.location} (${thousandSeparator(stock.qty ?? 0)})`,
+    //                   )
+    //                   .join(', ') || 'No Stocks Found!'
+    //             : 'Error Fetching Inventory!',
+    //     label: 'Stock',
+    // },
     { key: (item) => `₱${currencyFormat(item.price)}`, label: 'Price' },
     { key: 'description', label: 'Description' },
 ];
@@ -75,6 +73,7 @@ const modelFields: CrudModalField[] = [
         type: 'select',
         model: 'Category',
         queryName: 'categoryFilter',
+        optionTitle: 'name',
     },
     { name: 'name', label: 'Name', type: 'text', required: true },
     { name: 'image', label: 'Image URL', type: 'text' },
@@ -94,7 +93,7 @@ const {
     handleCrudSubmit,
     closeCrudModal,
     fetchDataPaginate,
-    numberPerPage,
+    perPage,
     page,
     isLoading,
     actions,
@@ -108,6 +107,6 @@ const handleSubmit = async (formData: any) => {
 };
 
 onMounted(() => {
-    fetchDataPaginate(numberPerPage, page);
+    fetchDataPaginate(perPage, page);
 });
 </script>

@@ -16,8 +16,13 @@
                                 <span
                                     class="flex items-center text-sm font-medium text-white hover:text-gray-700 focus:outline-none transition duration-250 ease-in-out"
                                 >
-                                    <div>{{ auth.complete_name }}</div>
-                                    <!--                                <div>Super User</div> -->
+                                    <div>
+                                        {{
+                                            auth.complete_name
+                                                ? auth.complete_name
+                                                : 'Super Admin'
+                                        }}
+                                    </div>
 
                                     <div class="ml-1">
                                         <svg
