@@ -148,4 +148,5 @@ export type LinkItem = {
     show?: boolean;
     items?: LinkItem[];
     model?: string;
+    roles?: number[];
 };

@@ -2,7 +2,6 @@
     <div>
         <Sheet>
             <SheetTrigger class="flex items-center justify-center">
-                <!--            <Icon name="mdi:menu" size="30" class="text-gray-100" /> -->
                 <Icon name="mdi:menu" size="30" class="text-gray-100" />
             </SheetTrigger>
 
@@ -21,7 +20,7 @@
                     </div>
                     <SheetClose class="w-full mt-4">
                         <NuxtLink
-                            v-for="(link, index) in Object.values(links)"
+                            v-for="(link, index) in links"
                             :key="index"
                             :to="link.path"
                             class="flex w-full items-center gap-4 px-4 py-3 transition rounded-md cursor-pointer hover:bg-red-400/80 dark:hover:bg-red-900/80"
@@ -55,5 +54,8 @@ import {
     SheetClose,
 } from '~/components/ui/sheet';
 
-const { links } = useLinks();
+const auth = useAuth();
+const userRole = computed(() => auth.role); // Assuming 'role' is a number
+
+const { links } = useLinks(userRole.value);
 </script>
