@@ -17,9 +17,9 @@
                     size="25"
                 />
             </div>
-            <img
+            <NuxtImg
                 alt="prod-image"
-                :src="product.image ? product.image : '/assets/no-image.jpg'"
+                :src="product.image"
                 class="rounded-md h-20 md:h-32 w-auto"
             />
         </div>
