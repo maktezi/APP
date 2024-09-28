@@ -8,8 +8,10 @@ export const jobsPaginate = gql`
                 ...job
             }
             paginatorInfo {
-                count
                 currentPage
+                lastPage
+                perPage
+                total
             }
         }
     }
