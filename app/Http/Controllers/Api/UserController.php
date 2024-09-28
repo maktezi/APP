@@ -12,7 +12,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function authenticatedUser()
+    public function authenticatedUser(): \Illuminate\Http\JsonResponse
     {
         try {
             $user = User::where('id', auth()->user()->id)->get();
