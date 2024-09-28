@@ -83,7 +83,7 @@
                         <option disabled value="">
                             Select {{ field.model }}
                         </option>
-                        <template v-if="route.fullPath.includes('inventories')">
+                        <template v-if="field.queryName === 'productFilter'">
                             <option
                                 v-for="option in productData.products || []"
                                 :key="option.id"
@@ -92,7 +92,7 @@
                                 {{ option.name }}
                             </option>
                         </template>
-                        <template v-if="route.fullPath.includes('products')">
+                        <template v-if="field.queryName === 'categoryFilter'">
                             <option
                                 v-for="option in categoryData.categories || []"
                                 :key="option.id"
@@ -101,11 +101,21 @@
                                 {{ option.name }}
                             </option>
                         </template>
+                        <template v-if="field.queryName === 'filterCustomer'">
+                            <option
+                                v-for="option in customerData.filterCustomer ||
+                                []"
+                                :key="option.id"
+                                :value="option.id"
+                            >
+                                {{ option.complete_name }}
+                            </option>
+                        </template>
                     </select>
 
                     <!-- User Role Select - TODO: fix dynamic select -->
                     <select
-                        v-if="field.type === 'userRoleSelect'"
+                        v-if="field.type === 'roleSelect'"
                         :id="field.name"
                         v-model="form[field.name]"
                         :required="field.required"
@@ -119,7 +129,7 @@
                             :key="option.id"
                             :value="option.id"
                         >
-                            {{ option.complete_name }}
+                            {{ option.name }}
                         </option>
                     </select>
 
@@ -167,6 +177,7 @@ import { Button } from '~/components/ui/button';
 import type { CrudModalField, Field } from '~/types';
 import { productFilter } from '~/graphql/Product';
 import { categoryFilter } from '~/graphql/Category';
+import { filterCustomer } from '~/graphql/User';
 
 const props = defineProps({
     visible: Boolean,
@@ -191,15 +202,15 @@ const props = defineProps({
 });
 
 // TODO: fix dynamic select
-const route = useRoute();
 const { data: productData } = await useAsyncQuery(productFilter);
 const { data: categoryData } = await useAsyncQuery(categoryFilter);
+const { data: customerData } = await useAsyncQuery(filterCustomer);
 
 const roles = [
-    { id: 0, complete_name: 'User' },
-    { id: 1, complete_name: 'Admin' },
-    { id: 2, complete_name: 'Staff' },
-    { id: 3, complete_name: 'Store Manager' },
+    { id: 0, name: 'User' },
+    { id: 1, name: 'Admin' },
+    { id: 2, name: 'Staff' },
+    { id: 3, name: 'Store Manager' },
 ];
 
 const showPassword = ref<Record<string, boolean>>({});

@@ -61,7 +61,18 @@ const modelHeaders: Headers[] = [
 ];
 
 const modelFields: CrudModalField[] = [
-    { name: 'name', label: 'Name (for no account)', type: 'text' },
+    {
+        name: 'name',
+        label: 'Name (optional: for no customer account)',
+        type: 'text',
+    },
+    {
+        name: 'user_id',
+        label: 'Customer Account',
+        type: 'select',
+        model: 'User',
+        queryName: 'filterCustomer',
+    },
     { name: 'phone', label: 'Phone', type: 'text' },
     { name: 'address', label: 'Address', type: 'text' },
     { name: 'points', label: 'Points', type: 'text' },

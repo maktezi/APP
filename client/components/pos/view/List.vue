@@ -2,23 +2,42 @@
     <span
         v-for="product in products"
         :key="product.id"
-        :hidden="product.inventories[0]?.qty < 1"
+        :class="
+            !product.inventories[inventoryLocation]?.qty
+                ? 'cursor-not-allowed pointer-events-none'
+                : ''
+        "
         class="relative flex bg-gray-100 rounded dark:bg-gray-800 px-4 py-3 h-[70px] w-full font-medium overflow-hidden"
         @click="addProductToCart(product)"
     >
         <div
+            class="absolute top-3 right-14 flex items-center justify-center gap-1 text-white text-sm bg-red-500 dark:bg-red-800 p-2 rounded-full"
+            :class="
+                !product.inventories[inventoryLocation]?.qty ? '' : 'hidden'
+            "
+        >
+            <Icon name="mdi:warning" size="20" />
+            Out of stock
+        </div>
+        <div
+            :class="
+                !product.inventories[inventoryLocation]?.qty ? 'opacity-20' : ''
+            "
             class="flex items-center justify-between rounded-b-md w-full bg-gray-100 dark:bg-gray-800"
         >
             <div class="flex-1 overflow-hidden">
                 <div
                     :class="
-                        product.inventories[0]?.qty > 20 ? '' : 'animate-pulse'
+                        product.inventories[inventoryLocation]?.qty > restockQty
+                            ? ''
+                            : 'animate-pulse'
                     "
                     class="text-md flex items-center gap-1 font-medium whitespace-nowrap overflow-hidden text-ellipsis"
                 >
                     <Icon
                         :class="
-                            product.inventories[0]?.qty > 20
+                            product.inventories[inventoryLocation]?.qty >
+                            restockQty
                                 ? 'hidden'
                                 : 'animate-pulse text-red-500'
                         "
@@ -36,7 +55,7 @@
             <div
                 class="text-sm flex items-end justify-center"
                 :class="
-                    product.inventories[0]?.qty > 20
+                    product.inventories[inventoryLocation]?.qty > restockQty
                         ? ''
                         : 'text-red-500 animate-pulse'
                 "
@@ -47,7 +66,7 @@
                     class="-mb-1"
                 />
                 <span class="text-sm font-medium text-gray-500">{{
-                    product.inventories[0]?.qty
+                    product.inventories[inventoryLocation]?.qty
                 }}</span>
             </div>
         </div>
@@ -62,6 +81,10 @@
 </template>
 
 <script setup lang="ts">
+// TODO: fix types
+const restockQty: any = inject('restockQty');
+const inventoryLocation: any = inject('inventoryLocation');
+
 defineProps({
     products: Object,
 });

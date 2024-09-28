@@ -81,6 +81,10 @@ definePageMeta({
     layout: 'pos',
 });
 
+// TODO: dynamic input for restock qty and inventory location
+const restockQty = ref(20);
+const inventoryLocation = ref(0);
+
 const isMobile = ref(false);
 const checkIsMobile = () => {
     isMobile.value = window.innerWidth <= 768;
@@ -128,4 +132,7 @@ onMounted(() => {
     checkIsMobile();
     window.addEventListener('resize', checkIsMobile);
 });
+
+provide('restockQty', restockQty);
+provide('inventoryLocation', inventoryLocation);
 </script>

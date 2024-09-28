@@ -83,7 +83,7 @@ const modelHeaders: Headers[] = [
 ];
 
 const modelFields: CrudModalField[] = [
-    { name: 'customer_id', label: 'Customer', type: 'text' },
+    // { name: 'customer_id', label: 'Customer', type: 'text' },
     { name: 'total_amount', label: 'Total Amount', type: 'text' },
     { name: 'payment', label: 'Payment', type: 'number' },
     { name: 'status', label: 'Status', type: 'number' },
