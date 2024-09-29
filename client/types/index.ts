@@ -144,9 +144,9 @@ export type LinkItem = {
     icon: string;
     iconColor?: string;
     textColor?: string;
-    path?: string;
+    path: string;
     show?: boolean;
     items?: LinkItem[];
     model?: string;
-    roles?: number[];
+    roles?: number[] | null;
 };
