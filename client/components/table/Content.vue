@@ -16,7 +16,7 @@
             </div>
         </template>
 
-        <template v-else>
+        <template v-else-if="auth.role">
             <TableData
                 :headers="headers"
                 :data="data"
@@ -24,6 +24,20 @@
                 primary-key="id"
                 class="w-full"
             />
+        </template>
+
+        <template v-else>
+            <div class="relative">
+                <div
+                    class="absolute top-64 flex flex-col items-center justify-center w-full"
+                >
+                    <Icon
+                        name="mdi:account-alert"
+                        class="text-red-800 animate-pulse"
+                        size="70"
+                    />
+                </div>
+            </div>
         </template>
     </div>
 </template>
@@ -35,4 +49,6 @@ defineProps({
     headers: Array,
     actions: Array,
 });
+
+const auth = useAuth();
 </script>

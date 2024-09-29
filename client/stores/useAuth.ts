@@ -6,7 +6,7 @@ const $axios = axios().provide.axios;
 export const useAuth = defineStore('auth', {
     state: () => ({
         userId: '',
-        role: '',
+        role: null,
         first_name: '',
         middle_name: '',
         last_name: '',
@@ -40,7 +40,7 @@ export const useAuth = defineStore('auth', {
         },
         resetUser() {
             this.$state.userId = '';
-            this.$state.role = '';
+            this.$state.role = null;
             this.$state.first_name = '';
             this.$state.middle_name = '';
             this.$state.last_name = '';

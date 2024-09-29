@@ -73,7 +73,6 @@
 </template>
 
 <script setup lang="ts">
-// definePageMeta({ middleware: ["auth"] });
 import { useModelCrud } from '~/composables/useModelCrud';
 import testData from '~/pages/pos/testData.json';
 

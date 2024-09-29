@@ -28,6 +28,7 @@ export type CrudButton = {
     iconSize: number;
     iconClass: string;
     action?: Function;
+    roles?: number[];
 };
 
 export type CartProduct = {
