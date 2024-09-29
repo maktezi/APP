@@ -25,14 +25,14 @@ export const sidebarLinks: LinkItem[] = [
         title: 'Categories',
         path: '/categories',
         icon: 'mdi:folder-multiple-outline',
-        // roles: [1, 3],
+        // roles: [1, 2, 3],
         roles: null,
     },
     {
         title: 'Products',
         path: '/products',
         icon: 'mdi:storefront',
-        // roles: [1, 3],
+        // roles: [1, 2, 3],
         roles: null,
     },
     {
@@ -40,13 +40,6 @@ export const sidebarLinks: LinkItem[] = [
         path: '/inventories',
         icon: 'mdi:package-variant-closed',
         // roles: [1, 3],
-        roles: null,
-    },
-    {
-        title: 'Point of Sale',
-        path: '/pos',
-        icon: 'mdi:monitor-dashboard',
-        // roles: [1, 2, 3],
         roles: null,
     },
     {
@@ -64,17 +57,24 @@ export const sidebarLinks: LinkItem[] = [
         roles: null,
     },
     {
+        title: 'Point of Sale',
+        path: '/pos',
+        icon: 'mdi:monitor-dashboard',
+        // roles: [1, 2, 3],
+        roles: null,
+    },
+    {
         title: 'Jobs',
         path: '/jobs',
         icon: 'mdi:calendar-check',
-        // roles: [0, 1, 2, 3],
+        // roles: [0, 1, 3],
         roles: null,
     },
     {
         title: 'Online Forms',
         path: '/online-forms',
         icon: 'mdi:form-select',
-        // roles: [0, 1, 2, 3],
+        // roles: [0, 1, 3],
         roles: null,
     },
     {
@@ -88,7 +88,7 @@ export const sidebarLinks: LinkItem[] = [
         title: 'Settings',
         path: '#',
         icon: 'mdi:cog',
-        // roles: [1, 3],
+        // roles: [1],
         roles: null,
     },
 ];

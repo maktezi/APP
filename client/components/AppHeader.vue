@@ -20,7 +20,7 @@
                                         {{
                                             auth.complete_name
                                                 ? auth.complete_name
-                                                : 'Super Admin'
+                                                : 'Guest'
                                         }}
                                     </div>
 

@@ -5,6 +5,9 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     const singularName = getSingularName(model);
     const capitalizedName = getCapSingularName(model);
 
+    const auth = useAuth();
+    const permission = auth.role === 1 || auth.role === 3;
+
     const modelData = ref([]);
     const selectedModel = ref(null);
     const showModal = ref(false);
@@ -55,17 +58,29 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
         useMutation(DELETE_MUTATION);
 
     const openCreateModal = () => {
-        selectedModel.value = null;
-        modalTitle.value = `Create ${capitalizedName}`;
-        modalButtonText.value = 'Create';
-        showModal.value = true;
+        if (permission) {
+            selectedModel.value = null;
+            modalTitle.value = `Create ${capitalizedName}`;
+            modalButtonText.value = 'Create';
+            showModal.value = true;
+        } else {
+            toasts('You are not authorized to create.', {
+                type: 'warning',
+            });
+        }
     };
 
     const openEditModal = (model: any) => {
-        selectedModel.value = model;
-        modalTitle.value = `Edit ${capitalizedName}`;
-        modalButtonText.value = 'Update';
-        showModal.value = true;
+        if (permission) {
+            selectedModel.value = model;
+            modalTitle.value = `Edit ${capitalizedName}`;
+            modalButtonText.value = 'Update';
+            showModal.value = true;
+        } else {
+            toasts('You are not authorized to edit.', {
+                type: 'warning',
+            });
+        }
     };
 
     const handleCrudSubmit = async (formData: any) => {
@@ -98,12 +113,20 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
 
     const deleteModel = async (id: string) => {
         try {
-            isLoading.value = true;
-            await deleteMutation({ id: [id] });
-            modelData.value = modelData.value.filter((e: any) => e.id !== id);
-            toasts(`${toTitleCase(singularName)} deleted.`, {
-                type: 'success',
-            });
+            if (permission) {
+                isLoading.value = true;
+                await deleteMutation({ id: [id] });
+                modelData.value = modelData.value.filter(
+                    (e: any) => e.id !== id,
+                );
+                toasts(`${toTitleCase(singularName)} deleted.`, {
+                    type: 'success',
+                });
+            } else {
+                toasts('You are not authorized to delete.', {
+                    type: 'warning',
+                });
+            }
         } catch (err) {
             console.error(`Error deleting ${toTitleCase(singularName)}:`, err);
             toasts(
@@ -122,7 +145,7 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     ) => {
         return [
             {
-                icon: 'mdi:note-edit',
+                icon: 'mdi:edit',
                 handler: openEditModal,
                 class: 'text-blue-500',
             },
