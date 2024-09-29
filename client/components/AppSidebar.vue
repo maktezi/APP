@@ -55,7 +55,7 @@ import {
 } from '~/components/ui/sheet';
 
 const auth = useAuth();
-const userRole = computed(() => auth.role); // Assuming 'role' is a number
+const userRole: ComputedRef<any> = computed(() => auth.role);
 
 const { links } = useLinks(userRole.value);
 </script>
