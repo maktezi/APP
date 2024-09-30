@@ -1,19 +1,20 @@
-# Laravel Nuxt APP
+# Laravel Nuxt App
 
 ## Introduction
 
-Laravel framework and NuxtJS simple application. These instructions will guide you through setting up the project on your local development environment.
+This is a full-stack application combining the Laravel framework and Nuxt.js using Graphql and simple authentication with Laravel Sanctum. These instructions will help you set up the project on your local development environment.
 
 ### Prerequisites
 
-Ensure you have the following software installed on your system:
-
-- [Composer](https://getcomposer.org/)
-- [Node.js](https://nodejs.org/)
-- [XAMPP](https://www.apachefriends.org/index.html) or any other local server environment
+Make sure you have the following software installed on your system:
+- [Composer](https://getcomposer.org/) - PHP dependency manager
+- [Node.js](https://nodejs.org/) - JavaScript runtime environment
+- [XAMPP](https://www.apachefriends.org/index.html) or another local server environment
 - [PHP 8.2](https://www.php.net/) or a compatible version
 - [GitHub CLI](https://cli.github.com/) (optional)
 - [NVM (Node Version Manager)](https://github.com/nvm-sh/nvm) (optional)
+
+## Installation Steps
 
 ### 1. Clone the project
 ```
