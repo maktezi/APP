@@ -6,7 +6,7 @@
             <Title>APP</Title>
         </Head>
 
-        <div v-if="showContent" class="absolute top-8 left-8">
+        <div v-if="showContent" class="absolute top-6 left-6">
             <div class="flex items-center justify-center gap-2">
                 <DisplayMode />
                 <NuxtLink :to="auth.userId ? '/dashboard' : '/login'">
@@ -42,13 +42,6 @@
             <div v-else class="flex justify-center items-center h-full w-full">
                 <img alt="img" src="../assets/backg.gif" />
             </div>
-        </div>
-
-        <div
-            v-if="showContent"
-            class="absolute bottom-0 text-center py-4 w-full"
-        >
-            &copy; Potato Devs. {{ year }}
         </div>
     </div>
 </template>
