@@ -30,6 +30,7 @@ extend type Query {
         search: String @scope(name: "search")
     ): [Category!]! @all
     categoriesPaginate: [Category!]! @paginate
+    categoriesCount: Int! @count(model: "Category")
 }
 
 extend type Mutation {

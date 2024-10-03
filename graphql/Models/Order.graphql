@@ -47,6 +47,7 @@ extend type Query {
     ordersPaginate(
         search: String @scope(name: "search")
     ): [Order!]! @paginate #@can(ability: "read")
+    ordersCount: Int! @count(model: "Order")
 }
 
 extend type Mutation {

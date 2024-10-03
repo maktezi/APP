@@ -16,7 +16,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 1,
                 'product_id' => 1,
-                'qty' => 123,
+                'qty' => 19,
                 'location' => 'Manila',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -24,7 +24,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 2,
                 'product_id' => 2,
-                'qty' => 123,
+                'qty' => 16,
                 'location' => 'Warehouse',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -32,7 +32,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 3,
                 'product_id' => 3,
-                'qty' => 123,
+                'qty' => 13,
                 'location' => 'Manila',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -40,7 +40,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 4,
                 'product_id' => 4,
-                'qty' => 100,
+                'qty' => 24,
                 'location' => 'Manila',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -48,7 +48,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 5,
                 'product_id' => 5,
-                'qty' => 100,
+                'qty' => 11,
                 'location' => 'Warehouse',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -56,7 +56,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 6,
                 'product_id' => 6,
-                'qty' => 10,
+                'qty' => 12,
                 'location' => 'Manila',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -64,7 +64,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 7,
                 'product_id' => 7,
-                'qty' => 100,
+                'qty' => 16,
                 'location' => 'Warehouse',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -72,7 +72,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 8,
                 'product_id' => 8,
-                'qty' => 100,
+                'qty' => 20,
                 'location' => 'Warehouse',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -80,7 +80,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 9,
                 'product_id' => 9,
-                'qty' => 100,
+                'qty' => 60,
                 'location' => 'Warehouse',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -88,7 +88,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 10,
                 'product_id' => 10,
-                'qty' => 150,
+                'qty' => 15,
                 'location' => 'Leyte',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -96,7 +96,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 11,
                 'product_id' => 11,
-                'qty' => 1000,
+                'qty' => 14,
                 'location' => 'Cebu',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -104,7 +104,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 12,
                 'product_id' => 12,
-                'qty' => 100,
+                'qty' => 10,
                 'location' => 'Warehouse',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -120,7 +120,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 14,
                 'product_id' => 2,
-                'qty' => 100,
+                'qty' => 10,
                 'location' => 'Manila',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -128,7 +128,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 15,
                 'product_id' => 3,
-                'qty' => 3890,
+                'qty' => 5,
                 'location' => 'Warehouse',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -136,7 +136,7 @@ class InventorySeeder extends Seeder
             [
                 'id' => 16,
                 'product_id' => 4,
-                'qty' => 1000,
+                'qty' => 100,
                 'location' => 'Leyte',
                 'created_at' => now(),
                 'updated_at' => now(),

@@ -51,6 +51,7 @@ type Query {
         filter: String @scope(name: "filterCustomer")
     ): [User!]! @all
     usersPaginate: [User!]! @paginate
+    usersCount: Int! @count(model: "User")
 }
 
 extend type Mutation {
