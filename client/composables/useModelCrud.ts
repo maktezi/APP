@@ -47,9 +47,15 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     } = useQuery(PAGINATE_QUERY, { first: perPage, page: page });
 
     const fetchDataPaginate = async (first: number, page: number) => {
-        isLoading.value = true;
-        await refetch({ first, page });
-        isLoading.value = false;
+        if (permission) {
+            isLoading.value = true;
+            await refetch({ first, page });
+            isLoading.value = false;
+        } else {
+            toasts('You are not authorized to view.', {
+                type: 'warning',
+            });
+        }
     };
 
     const { mutate: upsertMutation, loading: upsertLoading } =
@@ -91,13 +97,19 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
         );
         try {
             isLoading.value = true;
-            await upsertMutation({ input });
-            toasts(
-                `${toTitleCase(singularName)} ${selectedModel.value ? 'updated' : 'created'}.`,
-                { type: 'success' },
-            );
-            closeCrudModal();
-            fetchDataPaginate(perPage, page);
+            if (permission) {
+                await upsertMutation({ input });
+                toasts(
+                    `${toTitleCase(singularName)} ${selectedModel.value ? 'updated' : 'created'}.`,
+                    { type: 'success' },
+                );
+                closeCrudModal();
+                fetchDataPaginate(perPage, page);
+            } else {
+                toasts('You are not authorized to create.', {
+                    type: 'warning',
+                });
+            }
         } catch (err) {
             toasts(`Error updating ${toTitleCase(singularName)}.\n${err}`, {
                 type: 'error',
