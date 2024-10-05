@@ -1,7 +1,7 @@
 <template>
     <div>
         <div
-            v-if="!cartProducts.length"
+            v-if="!cartStore.cartItems.length"
             class="text-center flex-col items-center absolute left-0 right-0 top-72"
         >
             <div>
@@ -36,7 +36,9 @@
                         <div class="flex items-center">
                             <span
                                 class="flex items-center"
-                                @click="() => deleteCartItem(product.item)"
+                                @click="
+                                    () => cartStore.deleteCartItem(product.item)
+                                "
                             >
                                 <Icon
                                     name="mdi-remove"
@@ -57,7 +59,9 @@
                             <span
                                 class="flex items-center"
                                 :class="{ hidden: product.qty <= 1 }"
-                                @click.prevent="() => reduceQuantity(product)"
+                                @click.prevent="
+                                    () => cartStore.reduceQuantity(product)
+                                "
                             >
                                 <Icon
                                     name="mdi-minus"
@@ -70,7 +74,9 @@
                             }}</span>
                             <span
                                 class="flex items-center"
-                                @click.prevent="() => addQuantity(product)"
+                                @click.prevent="
+                                    () => cartStore.addQuantity(product)
+                                "
                             >
                                 <Icon
                                     name="mdi-plus"
@@ -100,6 +106,9 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { currencyFormat, qtyFormat } from '~/utils/pos';
+import { useCart } from '~/stores/useCart';
+
+const cartStore = useCart();
 
 defineProps({
     products: Object,

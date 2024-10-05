@@ -5,7 +5,9 @@
         <span
             class="relative"
             :class="
-                cartProducts.length ? '' : 'opacity-0 disabled cursor-default'
+                cartStore.cartItems.length
+                    ? ''
+                    : 'opacity-0 disabled cursor-default'
             "
         >
             <Icon
@@ -25,7 +27,7 @@
                 <Button
                     class="rounded p-4 py-8 hover:bg-yellow-900 dark:hover:bg-yellow-900 bg-yellow-700"
                     :class="
-                        cartProducts.length
+                        cartStore.cartItems.length
                             ? ''
                             : 'opacity-0 disabled cursor-default'
                     "
@@ -37,7 +39,7 @@
                         class="text-white"
                     />
                     <p class="text-white dark:text-white text-xl">
-                        {{ cartProducts.length ? 'Hold' : '' }}
+                        {{ cartStore.cartItems.length ? 'Hold' : '' }}
                     </p>
                 </Button>
             </div>
@@ -45,12 +47,12 @@
             <Button
                 type="button"
                 class="rounded p-6 py-8 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
-                :disabled="!cartProducts.length"
+                :disabled="!cartStore.cartItems.length"
                 @click.prevent="openPosModal"
             >
                 <Icon
                     :name="
-                        cartProducts.length
+                        cartStore.cartItems.length
                             ? 'mdi:cash-register'
                             : 'mdi:cart-arrow-down'
                     "
@@ -58,7 +60,7 @@
                     class="text-white"
                 />
                 <p class="text-white dark:text-white text-xl">
-                    {{ cartProducts.length ? 'Pay' : '' }}
+                    {{ cartStore.cartItems.length ? 'Pay' : '' }}
                 </p>
             </Button>
         </div>
@@ -70,9 +72,11 @@
             :title="modalTitle"
             :initial-values="selectedEntity"
             :submit-button-text="modalButtonText"
-            :transaction-total="currencyFormat(totalAmountWithTaxAndDiscount)"
+            :transaction-total="
+                currencyFormat(cartStore.totalAmountWithTaxAndDiscount)
+            "
             :selected-payment-method="selectedPaymentMethod"
-            @submit="paymentSuccess"
+            @submit="useCart().paymentSuccess()"
             @close="closePosModal"
         />
     </main>
@@ -80,9 +84,10 @@
 
 <script setup lang="ts">
 import { Button } from '@/components/ui/button';
-import { cartProducts } from '~/composables/usePos';
+import { useCart } from '~/stores/useCart';
 
 const router = useRouter();
+const cartStore = useCart();
 
 const showModal = ref(false);
 const modalTitle = ref('');
@@ -103,7 +108,7 @@ const closePosModal = () => {
 
 // TODO: Hold Order
 const handleSubmit = () => {
-    const orderData = cartProducts.value.map((product) => {
+    const orderData = cartStore.cartItems.map((product) => {
         return {
             item: product.item,
             qty: product.qty,
@@ -111,7 +116,7 @@ const handleSubmit = () => {
             total_amount: product.amount,
         };
     });
-    holdOrder(customerName.value);
+    cartStore.holdOrder(customerName.value);
     if (customerName.value.length > 0) {
         console.log(`Order for ${customerName.value}:`, orderData);
         setTimeout(() => {
