@@ -50,23 +50,24 @@ const modelHeaders: Headers[] = [
     { key: 'name', label: 'Name' },
     { key: 'sku', label: 'SKU' },
     { key: 'category.name', label: 'Category' },
-    // {
-    //     key: (val) =>
-    //         val.inventories
-    //             ? val.inventories
-    //                   .map(
-    //                       (stock: Stock) =>
-    //                           `${stock.location} (${thousandSeparator(stock.qty ?? 0)})`,
-    //                   )
-    //                   .join(', ') || 'No Stocks Found!'
-    //             : 'Error Fetching Inventory!',
-    //     label: 'Stock',
-    // },
+    {
+        key: (val) =>
+            val.inventories
+                ? val.inventories
+                      .map(
+                          (stock: Stock) =>
+                              `${stock.location} (${thousandSeparator(stock.qty ?? 0)})`,
+                      )
+                      .join(', ') || 'No Stocks Found!'
+                : 'Error Fetching Inventory!',
+        label: 'Stock',
+    },
     { key: (item) => `₱${currencyFormat(item.price)}`, label: 'Price' },
     { key: 'description', label: 'Description' },
 ];
 
 const modelFields: CrudModalField[] = [
+    { name: 'name', label: 'Name', type: 'text', required: true },
     {
         name: 'category_id',
         label: 'Category',
@@ -75,7 +76,6 @@ const modelFields: CrudModalField[] = [
         queryName: 'categoryFilter',
         optionTitle: 'name',
     },
-    { name: 'name', label: 'Name', type: 'text', required: true },
     { name: 'image', label: 'Image URL', type: 'text' },
     { name: 'description', label: 'Description', type: 'textarea' },
     { name: 'sku', label: 'SKU', type: 'text' },
