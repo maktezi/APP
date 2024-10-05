@@ -19,9 +19,6 @@
                     <TableHead class="md:w-[480px]">
                         <strong>ITEM</strong>
                     </TableHead>
-                    <TableHead class="md:w-[150px]">
-                        <strong>PRICE</strong>
-                    </TableHead>
                     <TableHead class="md:w-[200px] text-center">
                         <strong>QTY</strong>
                     </TableHead>
@@ -33,47 +30,49 @@
             <TableBody v-auto-animate>
                 <TableRow v-for="product in products" :key="product.item">
                     <TableCell class="font-bold overflow-hidden">
-                        <div class="flex items-center">
+                        <div class="flex items-center gap-2">
                             <span
-                                class="flex items-center"
+                                class="flex items-center cursor-pointer"
                                 @click="
                                     () => cartStore.deleteCartItem(product.item)
                                 "
                             >
                                 <Icon
-                                    name="mdi-remove"
-                                    size="1.2rem"
+                                    name="mdi:remove-bold"
+                                    size="1.5rem"
                                     class="text-red-700 ml"
                                 />
                             </span>
-                            <span class="text-overflow-hidden">{{
-                                product.item
-                            }}</span>
+                            <div class="flex flex-col">
+                                <div class="text-overflow-hidden">
+                                    {{ product.item }}
+                                </div>
+                                <div class="font-medium">
+                                    ₱{{ currencyFormat(product.price) }}
+                                </div>
+                            </div>
                         </div>
                     </TableCell>
                     <TableCell>
-                        {{ currencyFormat(product.price) }}
-                    </TableCell>
-                    <TableCell>
-                        <div class="flex items-center gap-1 justify-center">
+                        <div class="flex items-center justify-end gap-1">
                             <span
-                                class="flex items-center"
+                                class="flex items-center cursor-pointer"
                                 :class="{ hidden: product.qty <= 1 }"
                                 @click.prevent="
                                     () => cartStore.reduceQuantity(product)
                                 "
                             >
                                 <Icon
-                                    name="mdi-minus"
+                                    name="mdi:minus"
                                     class="text-red-700"
-                                    size="1rem"
+                                    size="1.5rem"
                                 />
                             </span>
                             <span class="font-bold">{{
                                 qtyFormat(product.qty)
                             }}</span>
                             <span
-                                class="flex items-center"
+                                class="flex items-center cursor-pointer"
                                 @click.prevent="
                                     () => cartStore.addQuantity(product)
                                 "
@@ -81,7 +80,7 @@
                                 <Icon
                                     name="mdi-plus"
                                     class="text-blue-700"
-                                    size="1rem"
+                                    size="1.5rem"
                                 />
                             </span>
                         </div>

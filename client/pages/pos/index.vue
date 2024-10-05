@@ -11,26 +11,8 @@
                     class="relative h-[800px] block md:flex justify-center gap-1 w-full"
                 >
                     <!--        CART        -->
-                    <div
-                        class="max-w-7xl h-full flex-grow flex md:order-2 order-1 mb-0.5 border-2 rounded-md border-gray-300 dark:border-gray-800"
-                    >
-                        <div
-                            id="cart"
-                            class="relative w-full border-gray-300 p-0.5 md:min-w-[500px]"
-                        >
-                            <div>
-                                <PosCartHeader class="mb-0.5" />
-                                <PosCartTable
-                                    class="mb-0.5"
-                                    :products="cartStore.cartItems"
-                                />
-                            </div>
-                            <div class="absolute bottom-0 left-0 right-0">
-                                <PosCartTotal class="mb-0.5" />
-                                <PosCartAction />
-                            </div>
-                        </div>
-                    </div>
+                    <PosCart :class="{ hidden: isMobile }" />
+
                     <!--        Products        -->
                     <div
                         class="h-full max-w-7xl xl:min-w-[1000px] p-0.5 md:order-1 order-2 flex-grow overflow-y-hidden border-2 rounded-md border-gray-300 dark:border-gray-800"
@@ -74,10 +56,7 @@
 
 <script setup lang="ts">
 import { useModelCrud } from '~/composables/useModelCrud';
-import { useCart } from '~/stores/useCart';
 import testData from '~/pages/pos/testData.json';
-
-const cartStore = useCart();
 
 definePageMeta({
     layout: 'pos',
@@ -86,6 +65,8 @@ definePageMeta({
 // TODO: dynamic input for restock qty and inventory location
 const restockQty = ref(10);
 const inventoryLocation = ref(0);
+
+const customerName = ref('');
 
 const isMobile = ref(false);
 const checkIsMobile = () => {
@@ -137,4 +118,6 @@ onMounted(() => {
 
 provide('restockQty', restockQty);
 provide('inventoryLocation', inventoryLocation);
+provide('customerName', customerName);
+provide('isMobile', isMobile);
 </script>

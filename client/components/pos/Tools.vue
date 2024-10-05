@@ -2,38 +2,32 @@
     <div class="text-gray-500 m-auto flex justify-center items-center">
         <Drawer>
             <DrawerTrigger>
-                <span class="flex items-center gap-2">
-                    <Icon name="mdi:tools" size="30" />
-                </span>
+                <div class="relative flex items-center gap-2">
+                    <Icon
+                        name="mdi:cart"
+                        size="30"
+                        class="text-gray-900 dark:text-gray-300"
+                    />
+                    <span
+                        class="absolute rounded-full bg-white/80 dark:bg-black/80 px-2 -top-2 -right-2 text-black dark:text-white font-bold"
+                        :class="{ hidden: !cartStore.cartItems.length }"
+                    >
+                        {{ cartStore.cartItems.length }}
+                    </span>
+                </div>
             </DrawerTrigger>
-            <DrawerContent>
-                <DrawerHeader>
-                    <DrawerTitle>Toolbox</DrawerTitle>
-                    <DrawerDescription> Tools </DrawerDescription>
-                </DrawerHeader>
-                <DrawerFooter class="flex justify-center items-center gap-2">
-                    <!--                        <Button class="w-[100px]"> Save </Button> -->
-                    <!--                        <DrawerClose> -->
-                    <!--                            <Button class="w-[100px]" variant="outline"> -->
-                    <!--                                Cancel -->
-                    <!--                            </Button> -->
-                    <!--                        </DrawerClose> -->
-                </DrawerFooter>
+            <DrawerContent
+                class="h-[830px] rounded border-2 border-gray-300 dark:border-gray-800"
+            >
+                <PosCart />
             </DrawerContent>
         </Drawer>
     </div>
 </template>
 
 <script setup lang="ts">
-import { Button } from '~/components/ui/button';
-import {
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-} from '@/components/ui/drawer';
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer';
+import { useCart } from '~/stores/useCart';
+
+const cartStore = useCart();
 </script>
