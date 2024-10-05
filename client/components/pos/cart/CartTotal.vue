@@ -19,7 +19,7 @@
                 <div>{{ currencyFormat(cartStore.totalTax) }}</div>
             </div>
             <div
-                class="flex justify-between items-center text-2xl font-bold border-y-2 border-black dark:border-gray-300"
+                class="flex justify-between items-center text-2xl font-bold border-y-2 border-gray-300 dark:border-gray-800"
             >
                 <div>Total:</div>
                 <div>
