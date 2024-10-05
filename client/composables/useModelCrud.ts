@@ -95,6 +95,27 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
                 key === '__typename' ? undefined : value,
             ),
         );
+        Object.keys(input).forEach((key) => {
+            const value = input[key];
+
+            // TODO: improve graphql 'connect' relationships (e.g., user_id)
+            if (key.endsWith('_id') && value) {
+                const relationKey = key.replace('_id', '');
+                input[relationKey] = { connect: value };
+                delete input[key];
+            }
+
+            // TODO: improve 'upsert' relationships (e.g., users)
+            if (Array.isArray(value)) {
+                input[key] = {
+                    upsert: value.map((item: any) => ({
+                        id: item.id,
+                        ...item,
+                    })),
+                };
+            }
+        });
+
         try {
             isLoading.value = true;
             if (permission) {
