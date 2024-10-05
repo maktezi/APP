@@ -4,6 +4,7 @@
 ## PR Type
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] Feature (non-breaking change which adds functionality)
+- [ ] Refactor (non-breaking change which improves code structure)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
 - [ ] Documentation update
 
