@@ -22,7 +22,7 @@
                 /></span>
                 <input
                     placeholder="Search"
-                    class="pl-9 py-2 dark:bg-gray-700 text-gray-900 rounded-xl outline-none"
+                    class="pl-9 py-2 dark:text-gray-300 dark:bg-gray-700 text-gray-900 rounded-xl outline-none"
                 />
             </div>
         </div>

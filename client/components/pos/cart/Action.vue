@@ -1,31 +1,11 @@
 <template>
-    <main
-        class="flex m-auto items-center justify-between bg-gray-200 dark:bg-gray-900 px-3 py-1 rounded-b"
-    >
-        <span
-            class="relative"
-            :class="
-                cartStore.cartItems.length
-                    ? ''
-                    : 'opacity-0 disabled cursor-default'
-            "
-        >
-            <Icon
-                class="absolute top-2 left-1 text-black"
-                name="mdi-account-multiple"
-                size="25"
-            />
-            <input
-                v-model="customerName"
-                type="text"
-                placeholder="Customer name"
-                class="border w-[180px] md:w-[230px] pl-8 p-2 outline-0 border-none text-black rounded-xl"
-            />
-        </span>
-        <div class="flex items-center justify-between gap-1">
-            <div>
+    <main class="bg-gray-200 dark:bg-gray-900 px-3 py-1 rounded-b">
+        <div class="flex justify-between items-center gap-1">
+            <PosCartScanner />
+
+            <div class="flex gap-1">
                 <Button
-                    class="rounded p-4 py-8 hover:bg-yellow-900 dark:hover:bg-yellow-900 bg-yellow-700"
+                    class="rounded p-4 py-8 hover:bg-red-900 bg-red-800"
                     :class="
                         cartStore.cartItems.length
                             ? ''
@@ -42,27 +22,27 @@
                         {{ cartStore.cartItems.length ? 'Hold' : '' }}
                     </p>
                 </Button>
-            </div>
 
-            <Button
-                type="button"
-                class="rounded p-6 py-8 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700"
-                :disabled="!cartStore.cartItems.length"
-                @click.prevent="openPosModal"
-            >
-                <Icon
-                    :name="
-                        cartStore.cartItems.length
-                            ? 'mdi:cash-register'
-                            : 'mdi:cart-arrow-down'
-                    "
-                    size="30"
-                    class="text-white"
-                />
-                <p class="text-white dark:text-white text-xl">
-                    {{ cartStore.cartItems.length ? 'Pay' : '' }}
-                </p>
-            </Button>
+                <Button
+                    type="button"
+                    class="rounded p-6 py-8 hover:bg-blue-900 bg-blue-700"
+                    :disabled="!cartStore.cartItems.length"
+                    @click.prevent="openPosModal"
+                >
+                    <Icon
+                        :name="
+                            cartStore.cartItems.length
+                                ? 'mdi:cash-register'
+                                : 'mdi:cart-arrow-down'
+                        "
+                        size="30"
+                        class="text-white"
+                    />
+                    <p class="text-white dark:text-white text-xl">
+                        {{ cartStore.cartItems.length ? 'Pay' : '' }}
+                    </p>
+                </Button>
+            </div>
         </div>
 
         <!-- PosModal Component -->
@@ -94,7 +74,6 @@ const modalTitle = ref('');
 const modalButtonText = ref('');
 const selectedEntity = ref(null);
 const selectedPaymentMethod = ref('');
-const customerName = ref('');
 
 const openPosModal = () => {
     modalTitle.value = 'Checkout';
@@ -105,6 +84,8 @@ const openPosModal = () => {
 const closePosModal = () => {
     showModal.value = false;
 };
+
+const customerName: any = inject('customerName');
 
 // TODO: Hold Order
 const handleSubmit = () => {

@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex p-2 m-auto items-center justify-between bg-gray-200 dark:bg-gray-800/50 rounded-b mb-0.5"
+        class="flex p-2 px-4 m-auto items-center justify-between bg-gray-200 dark:bg-gray-800/50 rounded-b mb-0.5"
     >
         <div class="flex items-center gap-2 justify-center">
             <NuxtLink
@@ -14,7 +14,7 @@
             </NuxtLink>
         </div>
         <div>
-            <PosTools />
+            <PosTools :class="{ hidden: !isMobile }" />
         </div>
     </div>
 </template>
@@ -47,4 +47,6 @@ const posLinks = [
         icon: 'mdi:order-bool-ascending-variant',
     },
 ];
+
+const isMobile = inject('isMobile');
 </script>
