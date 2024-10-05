@@ -41,13 +41,13 @@
                     />
                 </div>
 
-                <div class="mb-4 px-4">
+                <div class="mb-1 px-4">
                     <label
                         class="block text-md font-medium text-gray-700 dark:text-gray-300"
                         >Select Payment Method</label
                     >
                     <div
-                        class="mt-2 flex m-auto justify-items-start items-center gap-2"
+                        class="mt-1 flex m-auto justify-items-start items-center gap-1"
                     >
                         <div
                             v-for="(payment, index) in Object.values(
@@ -59,7 +59,7 @@
                             <Button
                                 variant="outline"
                                 :disabled="payment.disabled"
-                                class="flex items-center justify-center py-8 gap-2"
+                                class="flex items-center justify-center py-6 gap-2"
                             >
                                 <Icon :name="payment.icon" size="23" />
                                 {{ payment.name }}
@@ -70,10 +70,10 @@
 
                 <div class="mb-1 px-4">
                     <label
-                        class="block text-md font-medium text-gray-700 dark:text-gray-300 mb-2"
+                        class="block text-md font-medium text-gray-700 dark:text-gray-300 mb-1"
                         >Transaction Summary</label
                     >
-                    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+                    <div class="bg-gray-100 dark:bg-gray-700 px-4 py-1 rounded">
                         <p class="text-gray-600 dark:text-gray-400 text-xl">
                             <!--                            Payment Method: {{ selectedPaymentMethod }} -->
                             Payment Method: <span class="font-bold">Cash</span>
@@ -94,7 +94,7 @@
                             v-model="cashTendered"
                             type="number"
                             placeholder="Enter Cash"
-                            class="pl-10 text-2xl font-bold py-8 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                            class="pl-10 text-2xl font-bold py-6 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
                         />
                         <span
                             class="absolute start-0 text-xl inset-y-0 flex items-center justify-center px-5"
@@ -110,7 +110,7 @@
                                     ? 'text-transparent'
                                     : 'text-green-500'
                             "
-                            class="pl-36 text-2xl font-bold py-8 border-b-black border-b-4 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                            class="pl-28 text-2xl font-bold py-6 border-b-black border-b-4 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
                             readonly
                         />
                         <span
@@ -118,7 +118,7 @@
                             >Change: ₱</span
                         >
                     </div>
-                    <div class="grid grid-cols-3 gap-1 mt-3">
+                    <div class="grid grid-cols-3 gap-1 mt-1">
                         <Button
                             v-for="n in numbers"
                             :key="n"
