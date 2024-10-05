@@ -2,8 +2,8 @@ type Product {
     id: ID!
     name: String!
     image: String
-    category: Category @belongsTo
     category_id: ID
+    category: Category @belongsTo
     inventories: [Inventory] @hasMany
     orderItems: [OrderItem] @hasMany
     description: String
@@ -19,28 +19,22 @@ input ProductInput {
     name: String!
     image: String
     category: ConnectCategoryRelation
-    category_id: ID
-    inventories: [InventoryInput]
-    orderItems: [OrderItemInput]
+    inventories: ConnectInventoriesRelation
+    orderItems: OrderItemInput
     description: String
     sku: String!
     price: Float
 }
 
 input ConnectProductRelation {
-    id: ID
-    name: String
     connect: ID
-    create: ProductInput
-    update: ProductInput
     upsert: ProductInput
-    delete: ID
+    disconnect: Boolean
+    delete: Boolean
 }
 
 input ConnectProductsRelation {
     connect: [ID]
-    create: [ProductInput]
-    update: [ProductInput]
     upsert: [ProductInput]
     delete: [ID]
 }

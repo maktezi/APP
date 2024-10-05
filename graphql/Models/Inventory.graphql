@@ -1,7 +1,7 @@
 type Inventory {
     id: ID!
-    product: Product @belongsTo
     product_id: ID
+    product: Product @belongsTo
     qty: Int!
     location: String
     created_at: DateTime
@@ -11,18 +11,16 @@ type Inventory {
 
 input InventoryInput {
     id: ID
-    product_id: ID
     product: ConnectProductRelation
     qty: Int!
     location: String
 }
 
-input ConnectInventoryRelation {
+input ConnectInventoriesRelation {
     connect: ID
-    create: [InventoryInput!]
-    update: [InventoryInput!]
-    upsert: [InventoryInput!]
-    delete: [ID]
+    upsert: [InventoryInput!]!
+    disconnect: Boolean
+    delete: Boolean
 }
 
 extend type Query {
