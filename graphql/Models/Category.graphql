@@ -16,13 +16,10 @@ input CategoryInput {
 }
 
 input ConnectCategoryRelation {
-    id: ID
-    name: String
     connect: ID
-    create: [CategoryInput!]
-    update: [CategoryInput!]
-    upsert: [CategoryInput!]
-    delete: [ID]
+    upsert: CategoryInput
+    disconnect: Boolean
+    delete: Boolean
 }
 
 extend type Query {

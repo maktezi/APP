@@ -14,18 +14,23 @@ type Customer {
 
 input CustomerInput {
     id: ID
-    user_id: ID
-    user: UserInput
-    name: String # used for no account customers
+    user: ConnectUserRelation
+    name: String # used for none account customers
     phone: String
     address: String
     points: String
-    orders: OrderInput
+    orders: ConnectOrdersRelation
+}
+
+input ConnectCustomerRelation {
+    connect: ID
+    upsert: CustomerInput
+    delete: ID
 }
 
 input ConnectCustomersRelation {
-    connect: ID
-    upsert: [CustomerInput!]
+    connect: [ID]
+    upsert: [CustomerInput!]!
     delete: [ID]
 }
 

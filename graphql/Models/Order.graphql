@@ -13,7 +13,7 @@ type Order {
 
 input OrderInput {
     id: ID
-    customer_id: ID
+    customer: ConnectCustomerRelation
     total_amount: Float
     payment: Int # TODO: PaymentStatus
     status: Int # TODO: OrderStatus
@@ -23,8 +23,13 @@ input OrderInput {
 
 input ConnectOrderRelation {
     connect: ID
-    create: [OrderInput!]
-    update: [OrderInput!]
+    upsert: OrderInput
+    delete: ID
+}
+
+input ConnectOrdersRelation {
+    connect: [ID]
+    upsert: [OrderInput]
     delete: [ID]
 }
 

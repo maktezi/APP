@@ -1,6 +1,5 @@
 type User {
     id: ID!
-    customers: [Customer!]! @hasMany
     first_name: String
     middle_name: String
     last_name: String
@@ -10,6 +9,7 @@ type User {
     email_verified_at: DateTime
     jobs(status: JobStatus): [Job!]! @hasMany(type: PAGINATOR, scopes: ["userType"])
     role: Int # TODO: use enum
+    customers: [Customer!]! @hasMany
     created_at: DateTime
     updated_at: DateTime
     deleted_at: DateTime
@@ -17,7 +17,6 @@ type User {
 
 input UserInput {
     id: ID
-    customers: [ConnectCustomersRelation!]
     first_name: String
     middle_name: String
     last_name: String
@@ -25,6 +24,7 @@ input UserInput {
     email: String
     password: String @hash
     role: Int # TODO: use enum
+    customers: ConnectCustomersRelation
 }
 
 input ConnectUserRelation {
