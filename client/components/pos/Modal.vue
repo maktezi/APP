@@ -1,7 +1,7 @@
 <template>
     <div
         v-if="visible"
-        class="fixed z-50 inset-0 bg-black bg-opacity-70 flex items-center justify-center"
+        class="fixed z-50 inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center"
     >
         <div
             class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-lg p-6 relative"

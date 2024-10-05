@@ -10,18 +10,13 @@
 <script lang="ts" setup>
 useHead({
     title: 'APP',
-    meta: [
-        { name: 'description', content: 'Nuxt Laravel' },
-        {
-            name: 'viewport',
-            content: 'width=device-width, initial-scale=1, maximum-scale=1',
-        },
-    ],
     script: [
         {
             children: `
                 if (window.innerWidth <= 768) {
-                    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=0.75, maximum-scale=1, user-scalable=no');
+                    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=0.75, maximum-scale=.75, user-scalable=no');
+                } else {
+                    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1');
                 }
             `,
         },
