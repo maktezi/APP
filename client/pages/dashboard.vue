@@ -39,6 +39,7 @@ import {
     totalOrders,
     totalInventoryStockValue,
 } from '~/graphql/Dashboard';
+import type { User, Order, Category, Product } from '~/types/graphql';
 
 const pageTitle = 'Dashboard';
 const icon = 'mdi:view-dashboard-outline';
@@ -49,10 +50,10 @@ const countProducts = await useAsyncQuery(totalProducts);
 const countOrders = await useAsyncQuery(totalOrders);
 const countInventoryStockValue = await useAsyncQuery(totalInventoryStockValue);
 
-const users: any = countUsers.data.value;
-const categories: any = countCategories.data.value;
-const products: any = countProducts.data.value;
-const orders: any = countOrders.data.value;
+const users: User[] = countUsers.data.value as User[];
+const categories: Category[] = countCategories.data.value as Category[];
+const products: Product[] = countProducts.data.value as Product[];
+const orders: Order[] = countOrders.data.value as Order[];
 
 const calculateTotalInventoryStockValue = (products: any) => {
     return products.reduce((totalValue: any, product: any) => {

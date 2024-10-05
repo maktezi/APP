@@ -8,7 +8,7 @@
                 : ''
         "
         class="relative rounded bg-gray-100/50 dark:bg-gray-800/50 p-3 flex-grow size-[130px] md:size-[190px] max-w-[250px] pb-1 font-medium overflow-hidden"
-        @click="addProductToCart(product)"
+        @click="cartStore.addProductToCart(product)"
     >
         <div
             class="absolute top-3 right-3 flex items-center justify-center gap-1 text-white text-sm bg-red-500 dark:bg-red-800 p-2 rounded-full"
@@ -90,6 +90,10 @@
 </template>
 
 <script setup lang="ts">
+import { useCart } from '~/stores/useCart';
+
+const cartStore = useCart();
+
 // TODO: fix types
 const restockQty: any = inject('restockQty');
 const inventoryLocation: any = inject('inventoryLocation');

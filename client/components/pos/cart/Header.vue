@@ -6,11 +6,11 @@
             <Icon name="mdi-cart" size="30" />
             <p class="text-2xl font-bold py-1">Cart</p>
         </div>
-        <div :class="cartProducts.length ? 'flex' : 'hidden'">
+        <div :class="cartStore.cartItems.length ? '' : 'opacity-0 disabled'">
             <Button
                 type="button"
                 class="flex p-2 rounded hover:bg-red-900 dark:hover:bg-red-700 bg-red-800 dark:bg-red-900"
-                @click="cartClear"
+                @click="cartStore.clearCart()"
             >
                 <Icon
                     name="mdi-cart-remove"
@@ -24,4 +24,7 @@
 
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
+import { useCart } from '~/stores/useCart';
+
+const cartStore = useCart();
 </script>

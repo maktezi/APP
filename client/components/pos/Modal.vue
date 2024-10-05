@@ -115,7 +115,7 @@
                         />
                         <span
                             class="absolute start-0 inset-y-0 flex items-center justify-center px-4"
-                            >CHANGE: ₱</span
+                            >Change: ₱</span
                         >
                     </div>
                     <div class="grid grid-cols-3 gap-1 mt-3">
@@ -183,6 +183,9 @@ import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { paymentMethods } from '~/composables/usePos';
 import type { ModalField } from '~/types';
+import { useCart } from '~/stores/useCart';
+
+const cartStore = useCart();
 
 const emit = defineEmits(['close']);
 defineProps({
@@ -218,7 +221,9 @@ const form = ref<Record<string, any>>({});
 const cashTendered: Ref<any> = ref('');
 const change: ComputedRef<number> = computed(() =>
     parseFloat(
-        (cashTendered.value - totalAmountWithTaxAndDiscount.value).toFixed(2),
+        (cashTendered.value - cartStore.totalAmountWithTaxAndDiscount).toFixed(
+            2,
+        ),
     ),
 );
 
@@ -246,7 +251,7 @@ const closeModal = () => {
 
 // TODO: Handle submit
 const handleSubmit = () => {
-    const orderData = cartProducts.value.map((product) => {
+    const orderData = cartStore.cartItems.map((product) => {
         return {
             item: product.item,
             qty: product.qty,
@@ -255,7 +260,7 @@ const handleSubmit = () => {
         };
     });
     emit('close');
-    paymentSuccess();
+    cartStore.paymentSuccess();
     console.log('Orders Completed', orderData);
     console.log('Status', status.value);
 };

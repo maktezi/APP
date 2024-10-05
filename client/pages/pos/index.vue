@@ -22,7 +22,7 @@
                                 <PosCartHeader class="mb-0.5" />
                                 <PosCartTable
                                     class="mb-0.5"
-                                    :products="cartProducts"
+                                    :products="cartStore.cartItems"
                                 />
                             </div>
                             <div class="absolute bottom-0 left-0 right-0">
@@ -74,14 +74,17 @@
 
 <script setup lang="ts">
 import { useModelCrud } from '~/composables/useModelCrud';
+import { useCart } from '~/stores/useCart';
 import testData from '~/pages/pos/testData.json';
+
+const cartStore = useCart();
 
 definePageMeta({
     layout: 'pos',
 });
 
 // TODO: dynamic input for restock qty and inventory location
-const restockQty = ref(20);
+const restockQty = ref(10);
 const inventoryLocation = ref(0);
 
 const isMobile = ref(false);

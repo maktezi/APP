@@ -8,7 +8,7 @@
                 : ''
         "
         class="relative flex bg-gray-100 rounded dark:bg-gray-800 px-4 py-3 h-[70px] w-full font-medium overflow-hidden"
-        @click="addProductToCart(product)"
+        @click="cartStore.addProductToCart(product)"
     >
         <div
             class="absolute top-3 right-14 flex items-center justify-center gap-1 text-white text-sm bg-red-500 dark:bg-red-800 p-2 rounded-full"
@@ -81,6 +81,10 @@
 </template>
 
 <script setup lang="ts">
+import { useCart } from '~/stores/useCart';
+
+const cartStore = useCart();
+
 // TODO: fix types
 const restockQty: any = inject('restockQty');
 const inventoryLocation: any = inject('inventoryLocation');
