@@ -14,7 +14,7 @@ useHead({
         {
             children: `
                 if (window.innerWidth <= 768) {
-                    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=0.75, maximum-scale=.75, user-scalable=no');
+                    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=0.9, maximum-scale=.9, user-scalable=no');
                 } else {
                     document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1');
                 }
