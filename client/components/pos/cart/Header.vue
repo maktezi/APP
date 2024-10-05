@@ -16,7 +16,7 @@
         </div>
         <div
             class="flex gap-2"
-            :class="cartStore.cartItems.length ? '' : 'opacity-0 disabled'"
+            :class="{ hidden: !cartStore.cartItems.length }"
         >
             <span
                 class="relative"
