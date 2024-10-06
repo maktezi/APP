@@ -58,6 +58,7 @@
 <script setup lang="ts">
 import { Sheet, SheetContent, SheetTrigger } from '~/components/ui/sheet';
 import { useModelCrud } from '~/composables/useModelCrud';
+import testData from '~/pages/pos/testData.json';
 
 const modelName = 'category';
 const modelFields = ['name'].map((name) => ({
@@ -66,7 +67,7 @@ const modelFields = ['name'].map((name) => ({
 
 const { modelData } = await useModelCrud(modelName, modelFields);
 const selectedCategory: any = inject('selectedCategory');
-const fallbackData = inject('fallbackData');
+const fallbackData: any = testData.categories;
 
 const resetFilter = () => {
     selectedCategory.value = null;
