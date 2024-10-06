@@ -1,6 +1,8 @@
 <template>
-    <div class="w-full rounded-b-lg">
-        <div class="w-full border dark:border-gray-900 rounded-b-lg">
+    <div class="w-full rounded-b-lg h-[690px]">
+        <div
+            class="w-full border dark:border-gray-900 rounded-b-lg h-full overflow-y-scroll"
+        >
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -50,7 +52,7 @@
         </div>
 
         <!-- Pagination -->
-        <div class="flex justify-end items-center p-2">
+        <div class="flex justify-start items-center p-2">
             <Pagination
                 v-slot="{ page }"
                 :total="totalItems"
@@ -129,7 +131,7 @@ defineProps<{
 }>();
 
 // TODO: fix pagination
-const totalItems = ref(0);
+const totalItems = ref(100);
 const currentPage = ref(1);
 const perPage = ref(10);
 

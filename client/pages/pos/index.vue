@@ -100,7 +100,7 @@ const filteredItems = computed(() => {
     return modelData.value.filter((item: any) => {
         const matchCategory =
             !selectedCategory.value ||
-            item.category.name === selectedCategory.value;
+            (item.category && item.category.name === selectedCategory.value);
         const matchSearch = item.name
             .toLowerCase()
             .includes(search.value.toLowerCase());

@@ -2,7 +2,7 @@
     <div
         class="flex m-auto items-center justify-between bg-gray-300 dark:bg-gray-800 p-1 rounded"
     >
-        <div class="flex items-center gap-1 text-black dark:text-gray-300">
+        <div class="flex items-center gap-1 text-gray-900 dark:text-gray-300">
             <Icon name="mdi:storefront" size="30" />
             <p class="text-2xl font-bold py-1">Products</p>
         </div>
@@ -22,7 +22,7 @@
                 />
             </div>
             <span
-                class="flex items-center bg-gray-300 dark:bg-gray-800 p-1 hover:bg-gray-500 justify-center rounded-full"
+                class="flex items-center bg-gray-300 dark:bg-gray-800 p-1 hover:bg-gray-500 justify-center rounded-full cursor-pointer"
                 @click="toggleView()"
             >
                 <Icon :name="name" class="toggle-icon" size="30" />

@@ -3,10 +3,11 @@
         class="flex p-2 px-4 m-auto items-center justify-between bg-gray-200 dark:bg-gray-800/50 rounded-b mb-0.5"
     >
         <div class="flex items-center gap-2 justify-center">
+            <PosProductFilter />
             <NuxtLink
                 v-for="(link, index) in posLinks"
                 :key="index"
-                class="p-1 justify-center text-white bg-gray-800 dark:bg-gray-800 flex items-center gap-1 hover:bg-red-800/80 dark:hover:bg-red-900/80 rounded-full md:rounded-xl md:p-2"
+                class="p-1 justify-center flex items-center gap-2 hover:bg-red-800/80 dark:hover:bg-red-900/80 rounded md:p-2"
                 :to="link.path"
             >
                 <Icon :name="link.icon" size="25" />
@@ -21,11 +22,6 @@
 
 <script setup lang="ts">
 const posLinks = [
-    {
-        title: 'Categories',
-        path: '/categories',
-        icon: 'mdi:folder-multiple-outline',
-    },
     {
         title: 'Products',
         path: '/products',
