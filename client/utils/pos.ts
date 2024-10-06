@@ -1,10 +1,8 @@
-import { ref } from 'vue';
-
-export const currencyFormat = (number: any) => {
-    return number.toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-    });
+export const currencyFormat = (value) => {
+    return new Intl.NumberFormat('en-PH', {
+        style: 'currency',
+        currency: 'PHP',
+    }).format(value);
 };
 
 export const qtyFormat = (number: any) => {

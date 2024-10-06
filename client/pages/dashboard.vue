@@ -50,10 +50,10 @@ const countProducts = await useAsyncQuery(totalProducts);
 const countOrders = await useAsyncQuery(totalOrders);
 const countInventoryStockValue = await useAsyncQuery(totalInventoryStockValue);
 
-const users: User[] = countUsers.data.value as User[];
-const categories: Category[] = countCategories.data.value as Category[];
-const products: Product[] = countProducts.data.value as Product[];
-const orders: Order[] = countOrders.data.value as Order[];
+const users: User[] = (countUsers.data.value as User[]) || [];
+const categories: Category[] = (countCategories.data.value as Category[]) || [];
+const products: Product[] = (countProducts.data.value as Product[]) || [];
+const orders: Order[] = (countOrders.data.value as Order[]) || [];
 
 const calculateTotalInventoryStockValue = (products: any) => {
     return products.reduce((totalValue: any, product: any) => {
@@ -81,7 +81,7 @@ const totalInventoryStockValues = computed(() => {
 const charts = [
     {
         title: 'Total Users',
-        value: users.usersCount || 0,
+        value: users.usersCount,
         icon: 'mdi:account-multiple',
         color: 'bg-blue-100/80 dark:bg-blue-900/50',
         borderColor: 'border-blue-300/80 dark:border-blue-500/50',
@@ -109,7 +109,7 @@ const charts = [
     },
     {
         title: 'Inventory Stock Value',
-        value: `₱${formatPrice(totalInventoryStockValues.value)}` || 0,
+        value: `₱${formatPrice(totalInventoryStockValues.value)}`,
         icon: 'mdi:cash-multiple',
         color: 'bg-purple-100/80 dark:bg-purple-900/50',
         borderColor: 'border-purple-300/80 dark:border-purple-500/50',

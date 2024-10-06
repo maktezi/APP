@@ -28,7 +28,7 @@ export const sidebarLinks: LinkItem[] = [
     {
         title: 'Categories',
         path: '/categories',
-        icon: 'mdi:folder-multiple-outline',
+        icon: 'mdi:category',
         textColor: 'text-foreground',
         iconColor: 'text-foreground',
         // roles: [1, 2, 3],

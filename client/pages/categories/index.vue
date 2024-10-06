@@ -44,7 +44,7 @@ definePageMeta({
 
 const modelName = 'category';
 const pageTitle = getPluralName(toTitleCase(modelName));
-const icon = 'mdi:package-variant-closed';
+const icon = 'mdi:category';
 
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },

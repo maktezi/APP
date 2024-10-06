@@ -41,7 +41,7 @@
             <Button
                 type="button"
                 class="flex p-2 rounded hover:bg-red-900 dark:hover:bg-red-700 bg-red-800 dark:bg-red-900"
-                @click="cartStore.clearCart()"
+                @click="clearCart()"
             >
                 <Icon
                     name="mdi-cart-remove"
@@ -56,7 +56,13 @@
 <script setup lang="ts">
 import { Button } from '~/components/ui/button';
 import { useCart } from '~/stores/useCart';
+import { toasts } from '~/composables/useToast';
 
 const cartStore = useCart();
 const customerName = inject('customerName');
+
+const clearCart = () => {
+    cartStore.clearCart();
+    toasts('Cart cleared!', { type: 'success' });
+};
 </script>

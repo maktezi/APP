@@ -7,7 +7,11 @@
       "price": 1290.99,
       "inventories": [
         {"qty": 7}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "2",
@@ -16,7 +20,11 @@
       "price": 3989.99,
       "inventories": [
         {"qty": 45}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "3",
@@ -25,7 +33,11 @@
       "price": 1229.99,
       "inventories": [
         {"qty": 78}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "4",
@@ -34,7 +46,11 @@
       "price": 2129.99,
       "inventories": [
         {"qty": 0}
-      ]
+      ],
+      "category": {
+        "id": "2",
+        "name": "Keyboards"
+      }
     },
     {
       "id": "5",
@@ -43,7 +59,11 @@
       "price": 3199.99,
       "inventories": [
         {"qty": 12}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "6",
@@ -52,7 +72,11 @@
       "price": 120199.99,
       "inventories": [
         {"qty": 3}
-      ]
+      ],
+      "category": {
+        "id": "3",
+        "name": "Laptops"
+      }
     },
     {
       "id": "7",
@@ -61,7 +85,11 @@
       "price": 8999.99,
       "inventories": [
         {"qty": 39}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "8",
@@ -70,7 +98,11 @@
       "price": 1599.99,
       "inventories": [
         {"qty": 47}
-      ]
+      ],
+      "category": {
+        "id": "5",
+        "name": "Mouse"
+      }
     },
     {
       "id": "9",
@@ -79,7 +111,11 @@
       "price": 25999.99,
       "inventories": [
         {"qty": 8}
-      ]
+      ],
+      "category": {
+        "id": "6",
+        "name": "Monitors"
+      }
     },
     {
       "id": "10",
@@ -88,7 +124,11 @@
       "price": 499.99,
       "inventories": [
         {"qty": 72}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "11",
@@ -97,7 +137,11 @@
       "price": 3499.99,
       "inventories": [
         {"qty": 122}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "12",
@@ -106,7 +150,11 @@
       "price": 1299.99,
       "inventories": [
         {"qty": 112}
-      ]
+      ],
+      "category": {
+        "id": "3",
+        "name": "Laptops"
+      }
     },
     {
       "id": "13",
@@ -115,7 +163,11 @@
       "price": 78999.99,
       "inventories": [
         {"qty": 55}
-      ]
+      ],
+      "category": {
+        "id": "9",
+        "name": "Computers"
+      }
     },
     {
       "id": "14",
@@ -124,7 +176,11 @@
       "price": 599.99,
       "inventories": [
         {"qty": 88}
-      ]
+      ],
+      "category": {
+        "id": "9",
+        "name": "Computers"
+      }
     },
     {
       "id": "15",
@@ -133,7 +189,11 @@
       "price": 4899.99,
       "inventories": [
         {"qty": 14}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "16",
@@ -142,7 +202,11 @@
       "price": 899.99,
       "inventories": [
         {"qty": 16}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "17",
@@ -151,7 +215,11 @@
       "price": 6299.99,
       "inventories": [
         {"qty": 29}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "18",
@@ -160,7 +228,11 @@
       "price": 4999.99,
       "inventories": [
         {"qty": 23}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "19",
@@ -169,7 +241,11 @@
       "price": 2599.99,
       "inventories": [
         {"qty": 51}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "20",
@@ -178,7 +254,11 @@
       "price": 3499.99,
       "inventories": [
         {"qty": 9}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "21",
@@ -187,7 +267,11 @@
       "price": 1490.99,
       "inventories": [
         {"qty": 91}
-      ]
+      ],
+      "category": {
+        "id": "5",
+        "name": "Mouse"
+      }
     },
     {
       "id": "22",
@@ -196,7 +280,11 @@
       "price": 3189.99,
       "inventories": [
         {"qty": 43}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "23",
@@ -205,7 +293,11 @@
       "price": 829.99,
       "inventories": [
         {"qty": 73}
-      ]
+      ],
+      "category": {
+        "id": "5",
+        "name": "Mouse"
+      }
     },
     {
       "id": "24",
@@ -214,7 +306,11 @@
       "price": 1129.99,
       "inventories": [
         {"qty": 49}
-      ]
+      ],
+      "category": {
+        "id": "2",
+        "name": "Keyboards"
+      }
     },
     {
       "id": "25",
@@ -223,7 +319,11 @@
       "price": 2199.99,
       "inventories": [
         {"qty": 30}
-      ]
+      ],
+      "category": {
+        "id": "1",
+        "name": "Gaming"
+      }
     },
     {
       "id": "26",
@@ -232,7 +332,12 @@
       "price": 150199.99,
       "inventories": [
         {"qty": 12}
-      ]
+      ],
+      "category_id": "3",
+      "category": {
+        "id": "3",
+        "name": "Laptops"
+      }
     }
   ]
 }

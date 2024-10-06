@@ -6,7 +6,7 @@
         >
             <div class="flex justify-between items-center font-bold">
                 <div>Sub Total:</div>
-                <div>₱{{ currencyFormat(cartStore.totalAmount) }}</div>
+                <div>{{ currencyFormat(cartStore.totalAmount) }}</div>
             </div>
             <div
                 class="flex justify-between items-center text-green-600 dark:text-green-400"
@@ -23,7 +23,7 @@
             >
                 <div>Total:</div>
                 <div>
-                    ₱{{
+                    {{
                         currencyFormat(cartStore.totalAmountWithTaxAndDiscount)
                     }}
                 </div>
@@ -36,12 +36,4 @@
 import { useCart } from '~/stores/useCart';
 
 const cartStore = useCart();
-
-// TODO: for testing
-// watch(totalAmountWithTaxAndDiscount, () => {
-//     console.log(
-//         'Cart Total:',
-//         currencyFormat(totalAmountWithTaxAndDiscount.value),
-//     );
-// });
 </script>

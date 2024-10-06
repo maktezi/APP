@@ -1,6 +1,8 @@
 <template>
-    <div class="w-full rounded-b-lg">
-        <div class="w-full border dark:border-gray-900 rounded-b-lg">
+    <div class="w-full rounded-b-lg h-[690px]">
+        <div
+            class="w-full border dark:border-gray-900 rounded-b-lg h-full overflow-y-scroll"
+        >
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -21,7 +23,6 @@
                         <TableCell
                             v-for="header in headers"
                             :key="header.label"
-                            class="font-medium"
                         >
                             {{
                                 typeof header.key === 'function'
@@ -51,7 +52,7 @@
         </div>
 
         <!-- Pagination -->
-        <div class="flex justify-end items-center p-2">
+        <div class="flex justify-start items-center p-2">
             <Pagination
                 v-slot="{ page }"
                 :total="totalItems"
@@ -122,8 +123,15 @@ import {
 } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
 
+defineProps<{
+    headers: { key: string; label: string; class?: string }[];
+    data: Record<string, any>[];
+    actions?: { icon: string; handler: (item: any) => void; class?: string }[];
+    primaryKey: string;
+}>();
+
 // TODO: fix pagination
-const totalItems = ref(0);
+const totalItems = ref(100);
 const currentPage = ref(1);
 const perPage = ref(10);
 
@@ -134,11 +142,4 @@ provide('perPage', perPage);
 const onPageChange = (page: number) => {
     currentPage.value = page;
 };
-
-defineProps<{
-    headers: { key: string; label: string; class?: string }[];
-    data: Record<string, any>[];
-    actions?: { icon: string; handler: (item: any) => void; class?: string }[];
-    primaryKey: string;
-}>();
 </script>

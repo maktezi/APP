@@ -83,7 +83,6 @@ export const useCart = defineStore('cart', {
         },
         clearCart() {
             this.cartItems = [];
-            toasts('Cart cleared!', { type: 'success' });
         },
         holdOrder(name: string) {
             if (name.length > 0) {
