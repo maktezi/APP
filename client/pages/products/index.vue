@@ -62,7 +62,7 @@ const modelHeaders: Headers[] = [
                 : 'Error Fetching Inventory!',
         label: 'Stock',
     },
-    { key: (item) => `₱${currencyFormat(item.price)}`, label: 'Price' },
+    { key: (item) => `${currencyFormat(item.price)}`, label: 'Price' },
     { key: 'description', label: 'Description' },
 ];
 

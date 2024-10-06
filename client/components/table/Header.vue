@@ -18,8 +18,10 @@
                             size="25"
                     /></span>
                     <input
+                        v-model="search"
+                        type="text"
                         placeholder="Search"
-                        class="pl-9 py-2 dark:bg-gray-900 text-gray-900 rounded-xl outline-none"
+                        class="pl-9 py-2 dark:text-gray-300 dark:bg-gray-700 text-gray-900 rounded-xl outline-none"
                     />
                 </div>
             </div>
@@ -63,4 +65,6 @@ defineProps({
         default: '35',
     },
 });
+
+const search = inject('search');
 </script>

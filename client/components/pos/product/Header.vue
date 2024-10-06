@@ -7,12 +7,6 @@
             <p class="text-2xl font-bold py-1">Products</p>
         </div>
         <div class="flex items-center gap-1">
-            <span
-                class="flex items-center bg-gray-300 dark:bg-gray-800 p-1 hover:bg-gray-500 justify-center rounded-full"
-                @click="toggleView()"
-            >
-                <Icon :name="name" class="toggle-icon" size="30" />
-            </span>
             <div class="flex items-center relative">
                 <span
                     ><Icon
@@ -21,17 +15,23 @@
                         size="25"
                 /></span>
                 <input
+                    v-model="search"
+                    type="text"
                     placeholder="Search"
                     class="pl-9 py-2 dark:text-gray-300 dark:bg-gray-700 text-gray-900 rounded-xl outline-none"
                 />
             </div>
+            <span
+                class="flex items-center bg-gray-300 dark:bg-gray-800 p-1 hover:bg-gray-500 justify-center rounded-full"
+                @click="toggleView()"
+            >
+                <Icon :name="name" class="toggle-icon" size="30" />
+            </span>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { Button } from '~/components/ui/button';
-
 defineProps({
     toggleView: {
         type: Function,
@@ -44,4 +44,6 @@ defineProps({
         default: '',
     },
 });
+
+const search = inject('search');
 </script>

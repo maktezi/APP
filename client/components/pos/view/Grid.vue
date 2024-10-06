@@ -1,6 +1,6 @@
 <template>
-    <span
-        v-for="product in products"
+    <div
+        v-for="product in filteredItems"
         :key="product.id"
         :class="
             !product.inventories[inventoryLocation]?.qty
@@ -11,13 +11,13 @@
         @click="cartStore.addProductToCart(product)"
     >
         <div
-            class="absolute top-3 right-3 flex items-center justify-center gap-1 text-white text-sm bg-red-500 dark:bg-red-800 p-2 rounded-full"
+            class="flex items-center justify-center gap-1 text-white text-sm bg-red-500 dark:bg-red-800 p-2 rounded-full"
             :class="
                 !product.inventories[inventoryLocation]?.qty ? '' : 'hidden'
             "
         >
             <Icon name="mdi:warning" size="20" />
-            Out of stock
+            Not in stock
         </div>
         <div
             :class="
@@ -57,7 +57,7 @@
                     <div
                         class="text-sm md:text-[1rem] text-green-600 dark:text-green-400"
                     >
-                        ₱{{ formatPrice(product.price) }}
+                        {{ currencyFormat(product.price) }}
                     </div>
                 </div>
                 <div
@@ -86,7 +86,7 @@
                 />
             </div>
         </div>
-    </span>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -98,7 +98,5 @@ const cartStore = useCart();
 const restockQty: any = inject('restockQty');
 const inventoryLocation: any = inject('inventoryLocation');
 
-defineProps({
-    products: Object,
-});
+const filteredItems = inject('filteredItems');
 </script>

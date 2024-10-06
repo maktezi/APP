@@ -81,7 +81,7 @@
                         <p
                             class="text-gray-800 dark:text-gray-200 text-2xl font-bold"
                         >
-                            Total: ₱ {{ transactionTotal }}
+                            Total: {{ transactionTotal }}
                         </p>
                     </div>
                 </div>

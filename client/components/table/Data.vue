@@ -21,7 +21,6 @@
                         <TableCell
                             v-for="header in headers"
                             :key="header.label"
-                            class="font-medium"
                         >
                             {{
                                 typeof header.key === 'function'
@@ -122,6 +121,13 @@ import {
 } from '~/components/ui/table';
 import { Button } from '~/components/ui/button';
 
+defineProps<{
+    headers: { key: string; label: string; class?: string }[];
+    data: Record<string, any>[];
+    actions?: { icon: string; handler: (item: any) => void; class?: string }[];
+    primaryKey: string;
+}>();
+
 // TODO: fix pagination
 const totalItems = ref(0);
 const currentPage = ref(1);
@@ -134,11 +140,4 @@ provide('perPage', perPage);
 const onPageChange = (page: number) => {
     currentPage.value = page;
 };
-
-defineProps<{
-    headers: { key: string; label: string; class?: string }[];
-    data: Record<string, any>[];
-    actions?: { icon: string; handler: (item: any) => void; class?: string }[];
-    primaryKey: string;
-}>();
 </script>

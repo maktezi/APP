@@ -66,6 +66,9 @@ definePageMeta({
 const restockQty = ref(10);
 const inventoryLocation = ref(0);
 
+const search = ref('');
+const selectedCategory = ref('');
+
 const customerName = ref('');
 
 const isMobile = ref(false);
@@ -90,9 +93,24 @@ const { modelData, fetchDataPaginate, isLoading } = await useModelCrud(
 const fallbackData = testData.products;
 const products = ref(fallbackData);
 
+const filteredItems = computed(() => {
+    if (!modelData.value || modelData.value.length === 0) {
+        return [];
+    }
+    return modelData.value.filter((item: any) => {
+        const matchCategory =
+            !selectedCategory.value ||
+            item.category.name === selectedCategory.value;
+        const matchSearch = item.name
+            .toLowerCase()
+            .includes(search.value.toLowerCase());
+        return matchCategory && matchSearch;
+    });
+});
+
 onMounted(async () => {
     try {
-        await fetchDataPaginate(50, 1);
+        await fetchDataPaginate(100, 1);
         if (modelData.value.length > 0) {
             products.value = modelData.value;
         } else {
@@ -120,4 +138,7 @@ provide('restockQty', restockQty);
 provide('inventoryLocation', inventoryLocation);
 provide('customerName', customerName);
 provide('isMobile', isMobile);
+provide('search', search);
+provide('selectedCategory', selectedCategory);
+provide('filteredItems', filteredItems);
 </script>

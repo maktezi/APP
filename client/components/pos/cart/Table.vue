@@ -48,7 +48,7 @@
                                     {{ product.item }}
                                 </div>
                                 <div class="font-medium">
-                                    ₱{{ currencyFormat(product.price) }}
+                                    {{ currencyFormat(product.price) }}
                                 </div>
                             </div>
                         </div>
@@ -86,9 +86,9 @@
                         </div>
                     </TableCell>
                     <TableCell class="text-right">
-                        <span class="font-bold"
-                            >₱{{ currencyFormat(product.amount) }}</span
-                        >
+                        <span class="font-bold">{{
+                            currencyFormat(product.amount)
+                        }}</span>
                     </TableCell>
                 </TableRow>
             </TableBody>
