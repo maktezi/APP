@@ -1,4 +1,42 @@
 {
+  "categories": [
+    {
+      "id": "1",
+      "name": "Gaming"
+    },
+    {
+      "id": "2",
+      "name": "Keyboards"
+    },
+    {
+      "id": "3",
+      "name": "Laptops"
+    },
+    {
+      "id": "4",
+      "name": "Mouse"
+    },
+    {
+      "id": "5",
+      "name": "Monitor"
+    },
+    {
+      "id": "6",
+      "name": "Mouse Pad"
+    },
+    {
+      "id": "7",
+      "name": "Headset"
+    },
+    {
+      "id": "8",
+      "name": "Speakers"
+    },
+    {
+      "id": "9",
+      "name": "Controller"
+    }
+  ],
   "products": [
     {
       "id": "1",
