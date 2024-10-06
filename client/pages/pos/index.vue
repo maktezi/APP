@@ -143,4 +143,5 @@ provide('isMobile', isMobile);
 provide('search', search);
 provide('selectedCategory', selectedCategory);
 provide('filteredItems', filteredItems);
+provide('fallbackData', fallbackData);
 </script>
