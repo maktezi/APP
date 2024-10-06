@@ -81,28 +81,28 @@ const totalInventoryStockValues = computed(() => {
 const charts = [
     {
         title: 'Total Users',
-        value: users.usersCount || 0,
+        value: users.usersCount ? users.usersCount : 0,
         icon: 'mdi:account-multiple',
         color: 'bg-blue-100/80 dark:bg-blue-900/50',
         borderColor: 'border-blue-300/80 dark:border-blue-500/50',
     },
     {
         title: 'Categories',
-        value: categories.categoriesCount,
+        value: categories.categoriesCount ? categories.categoriesCount : 0,
         icon: 'mdi:folder-multiple-outline',
         color: 'bg-green-100/80 dark:bg-green-900/50',
         borderColor: 'border-green-300/80 dark:border-green-500/50',
     },
     {
         title: 'Products',
-        value: products.productsCount,
+        value: products.productsCount ? products.productsCount : 0,
         icon: 'mdi:cube-outline',
         color: 'bg-red-100/80 dark:bg-red-900/50',
         borderColor: 'border-red-300/80 dark:border-red-500/50',
     },
     {
         title: 'Orders',
-        value: orders.ordersCount,
+        value: orders.ordersCount ? orders.ordersCount : 0,
         icon: 'mdi:cart-outline',
         color: 'bg-yellow-100/80 dark:bg-yellow-900/50',
         borderColor: 'border-yellow-300/80 dark:border-yellow-500/50',

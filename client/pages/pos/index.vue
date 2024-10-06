@@ -94,10 +94,12 @@ const fallbackData = testData.products;
 const products = ref(fallbackData);
 
 const filteredItems = computed(() => {
-    if (!modelData.value || modelData.value.length === 0) {
-        return [];
-    }
-    return modelData.value.filter((item: any) => {
+    const itemsToFilter =
+        modelData.value && modelData.value.length > 0
+            ? modelData.value
+            : fallbackData;
+
+    return itemsToFilter.filter((item: any) => {
         const matchCategory =
             !selectedCategory.value ||
             (item.category && item.category.name === selectedCategory.value);

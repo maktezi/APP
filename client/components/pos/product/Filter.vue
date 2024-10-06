@@ -35,7 +35,7 @@
                         class="flex items-center justify-center flex-wrap gap-2 h-auto"
                     >
                         <Button
-                            v-for="category in modelData"
+                            v-for="category in categories"
                             :key="category.id"
                             :class="{
                                 'bg-red-900 text-white':
@@ -66,8 +66,15 @@ const modelFields = ['name'].map((name) => ({
 
 const { modelData } = await useModelCrud(modelName, modelFields);
 const selectedCategory: any = inject('selectedCategory');
+const fallbackData = inject('fallbackData');
 
 const resetFilter = () => {
     selectedCategory.value = null;
 };
+
+const categories = computed(() => {
+    return modelData.value && modelData.value.length > 0
+        ? modelData.value
+        : fallbackData;
+});
 </script>
