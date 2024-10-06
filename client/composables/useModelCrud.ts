@@ -17,7 +17,7 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     const isLoading = ref(false);
 
     const page = inject('currentPage', 1);
-    const perPage = inject('perPage', 20);
+    const perPage = inject('perPage', 50);
 
     // Dynamically import GraphQL queries and mutations
     let PAGINATE_QUERY, UPSERT_MUTATION, DELETE_MUTATION;
@@ -47,15 +47,11 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     } = useQuery(PAGINATE_QUERY, { first: perPage, page: page });
 
     const fetchDataPaginate = async (first: number, page: number) => {
-        if (permission) {
-            isLoading.value = true;
-            await refetch({ first, page });
-            isLoading.value = false;
-        } else {
-            toasts('You are not authorized to view.', {
-                type: 'warning',
-            });
-        }
+        permission
+            ? ((isLoading.value = true),
+              await refetch({ first, page }),
+              (isLoading.value = false))
+            : toasts('You are not authorized to view.', { type: 'warning' });
     };
 
     const { mutate: upsertMutation, loading: upsertLoading } =
@@ -64,29 +60,21 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
         useMutation(DELETE_MUTATION);
 
     const openCreateModal = () => {
-        if (permission) {
-            selectedModel.value = null;
-            modalTitle.value = `Create ${capitalizedName}`;
-            modalButtonText.value = 'Create';
-            showModal.value = true;
-        } else {
-            toasts('You are not authorized to create.', {
-                type: 'warning',
-            });
-        }
+        permission
+            ? ((selectedModel.value = null),
+              (modalTitle.value = `Create ${capitalizedName}`),
+              (modalButtonText.value = 'Create'),
+              (showModal.value = true))
+            : toasts('You are not authorized to create.', { type: 'warning' });
     };
 
     const openEditModal = (model: any) => {
-        if (permission) {
-            selectedModel.value = model;
-            modalTitle.value = `Edit ${capitalizedName}`;
-            modalButtonText.value = 'Update';
-            showModal.value = true;
-        } else {
-            toasts('You are not authorized to edit.', {
-                type: 'warning',
-            });
-        }
+        permission
+            ? ((selectedModel.value = model),
+              (modalTitle.value = `Edit ${capitalizedName}`),
+              (modalButtonText.value = 'Update'),
+              (showModal.value = true))
+            : toasts('You are not authorized to edit.', { type: 'warning' });
     };
 
     const handleCrudSubmit = async (formData: any) => {
@@ -95,42 +83,40 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
                 key === '__typename' ? undefined : value,
             ),
         );
+
         Object.keys(input).forEach((key) => {
             const value = input[key];
 
             // TODO: improve graphql 'connect' relationships (e.g., user_id)
-            if (key.endsWith('_id') && value) {
-                const relationKey = key.replace('_id', '');
-                input[relationKey] = { connect: value };
-                delete input[key];
-            }
+            key.endsWith('_id')
+                ? ((input[key.replace('_id', '')] = { connect: value }),
+                  delete input[key])
+                : null;
 
             // TODO: improve 'upsert' relationships (e.g., users)
-            if (Array.isArray(value)) {
-                input[key] = {
-                    upsert: value.map((item: any) => ({
-                        id: item.id,
-                        ...item,
-                    })),
-                };
-            }
+            Array.isArray(value)
+                ? (input[key] = {
+                      upsert: value.map((item: any) => ({
+                          id: item.id,
+                          ...item,
+                      })),
+                  })
+                : null;
         });
 
         try {
             isLoading.value = true;
-            if (permission) {
-                await upsertMutation({ input });
-                toasts(
-                    `${toTitleCase(singularName)} ${selectedModel.value ? 'updated' : 'created'}.`,
-                    { type: 'success' },
-                );
-                closeCrudModal();
-                fetchDataPaginate(perPage, page);
-            } else {
-                toasts('You are not authorized to create.', {
-                    type: 'warning',
-                });
-            }
+            permission
+                ? (await upsertMutation({ input }),
+                  toasts(
+                      `${toTitleCase(singularName)} ${selectedModel.value ? 'updated' : 'created'}.`,
+                      { type: 'success' },
+                  ),
+                  closeCrudModal(),
+                  fetchDataPaginate(perPage, page))
+                : toasts('You are not authorized to create.', {
+                      type: 'warning',
+                  });
         } catch (err) {
             toasts(`Error updating ${toTitleCase(singularName)}.\n${err}`, {
                 type: 'error',
@@ -146,20 +132,18 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
 
     const deleteModel = async (id: string) => {
         try {
-            if (permission) {
-                isLoading.value = true;
-                await deleteMutation({ id: [id] });
-                modelData.value = modelData.value.filter(
-                    (e: any) => e.id !== id,
-                );
-                toasts(`${toTitleCase(singularName)} deleted.`, {
-                    type: 'success',
-                });
-            } else {
-                toasts('You are not authorized to delete.', {
-                    type: 'warning',
-                });
-            }
+            permission
+                ? ((isLoading.value = true),
+                  await deleteMutation({ id: [id] }),
+                  (modelData.value = modelData.value.filter(
+                      (e: any) => e.id !== id,
+                  )),
+                  toasts(`${toTitleCase(singularName)} deleted.`, {
+                      type: 'success',
+                  }))
+                : toasts('You are not authorized to delete.', {
+                      type: 'warning',
+                  });
         } catch (err) {
             console.error(`Error deleting ${toTitleCase(singularName)}:`, err);
             toasts(
