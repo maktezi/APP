@@ -35,7 +35,11 @@
     {
       "id": "9",
       "name": "Controller"
-    }
+    },
+    {
+      "id": "10",
+      "name": "Racing Parts"
+    },
   ],
   "products": [
     {
@@ -375,6 +379,34 @@
       "category": {
         "id": "3",
         "name": "Laptops"
+      }
+    },
+    {
+      "id": "27",
+      "name": "UMA Racing Gear",
+      "image": "https://ph-live-01.slatic.net/p/b9f4d57c107a1ed8491f00b959ea39b6.jpg",
+      "price": 40199.99,
+      "inventories": [
+        {"qty": 12}
+      ],
+      "category_id": "10",
+      "category": {
+        "id": "10",
+        "name": "Racing Parts"
+      }
+    },
+    {
+      "id": "28",
+      "name": "UMA Racing Carb",
+      "image": "https://down-ph.img.susercontent.com/file/ph-11134207-7r98o-lzagltq54femc5",
+      "price": 4199.99,
+      "inventories": [
+        {"qty": 22}
+      ],
+      "category_id": "10",
+      "category": {
+        "id": "10",
+        "name": "Racing Parts"
       }
     }
   ]
