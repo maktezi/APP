@@ -33,7 +33,6 @@ export const OrderItemFragment = gql`
             name
         }
         qty
-        price
         total_amount
     }
 `;
@@ -111,26 +110,29 @@ export const CustomerFragment = gql`
 export const OrderFragment = gql`
     fragment order on Order {
         id
-        customer_id
-        customer {
-            id
-            name
-            user {
-                id
-                first_name
-                middle_name
-                last_name
-                complete_name
-            }
-        }
+        cash_tendered
+        change
+        date
+        payment
+        status
+        total_amount
+        #        customer_id
+        #        customer {
+        #            id
+        #            name
+        #            user {
+        #                id
+        #                first_name
+        #                middle_name
+        #                last_name
+        #                complete_name
+        #            }
+        #        }
         #        order_items {
         #            product_id
         #            price
         #            qty
         #            total_amount
         #        }
-        total_amount
-        payment
-        status
     }
 `;

@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->nullable()->constrained()->onDelete('cascade');
             $table->decimal('total_amount', 10, 2)->nullable();
+            $table->decimal('cash_tendered', 10, 2)->nullable();
+            $table->decimal('change', 10, 2)->nullable();
+            $table->string('date')->nullable();
             $table->tinyInteger('payment')->default(0)->nullable()->comment('0: cash, 1: gcash, 2: bank');
             $table->tinyInteger('status')->default(1)->nullable()->comment('0: completed, 1: on-hold, 2: cancelled');
             $table->timestamps();

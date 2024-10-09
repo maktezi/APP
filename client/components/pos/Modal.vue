@@ -154,10 +154,12 @@
                     <Button
                         type="submit"
                         class="p-8 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700 w-full"
-                        :disabled="change < 0"
+                        :disabled="change < 0 || loading"
                         @click.prevent="handleSubmit"
                     >
-                        <template v-if="change < 0 || change == null">
+                        <template
+                            v-if="change < 0 || change == null || loading"
+                        >
                             <SpinnerTadpole class="size-10 text-white" />
                         </template>
                         <template v-else>
@@ -183,9 +185,6 @@ import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { paymentMethods } from '~/composables/usePos';
 import type { ModalField } from '~/types';
-import { useCart } from '~/stores/useCart';
-
-const cartStore = useCart();
 
 const emit = defineEmits(['close']);
 defineProps({
@@ -216,15 +215,18 @@ defineProps({
     },
 });
 
-const status = ref(0);
+const router = useRouter();
 const form = ref<Record<string, any>>({});
+const loading = ref(false);
+
+const status = ref(0);
+const paymentMethod = ref(0);
+const cartStore = useCart();
+
+const totalAmount = cartStore.totalAmountWithTaxAndDiscount;
 const cashTendered: Ref<any> = ref('');
 const change: ComputedRef<number> = computed(() =>
-    parseFloat(
-        (cashTendered.value - cartStore.totalAmountWithTaxAndDiscount).toFixed(
-            2,
-        ),
-    ),
+    parseFloat((cashTendered.value - totalAmount).toFixed(2)),
 );
 
 const numbers: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -249,19 +251,42 @@ const closeModal = () => {
     emit('close');
 };
 
-// TODO: Handle submit
-const handleSubmit = () => {
-    const orderData = cartStore.cartItems.map((product) => {
+// TODO: test mutation
+const handleSubmit = async () => {
+    const { upsertOrder } = await import('~/graphql/Order');
+
+    const orderDetails = {
+        date: new Date().toISOString(),
+        payment: paymentMethod.value,
+        total_amount: totalAmount,
+        cash_tendered: cashTendered.value,
+        change: change.value,
+        status: status.value,
+    };
+    const cartItems = cartStore.cartItems.map((product) => {
         return {
             item: product.item,
             qty: product.qty,
             price: product.price,
-            total_amount: product.amount,
+            total: product.amount,
         };
     });
-    emit('close');
-    cartStore.paymentSuccess();
-    console.log('Orders Completed', orderData);
-    console.log('Status', status.value);
+
+    try {
+        loading.value = true;
+        const { mutate } = useMutation(upsertOrder);
+        await mutate({ input: orderDetails });
+        emit('close');
+        cartStore.paymentSuccess();
+
+        loading.value = false;
+        setTimeout(() => {
+            router.push('/orders');
+        }, 2000);
+
+        console.log('Items!', cartItems);
+    } catch (error) {
+        console.error('Error completing order:', error);
+    }
 };
 </script>

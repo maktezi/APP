@@ -98,5 +98,5 @@ const cartStore = useCart();
 const restockQty: any = inject('restockQty');
 const inventoryLocation: any = inject('inventoryLocation');
 
-const filteredItems = inject('filteredItems');
+const filteredItems: any = inject('filteredItems');
 </script>
