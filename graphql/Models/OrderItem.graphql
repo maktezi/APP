@@ -1,12 +1,12 @@
 type OrderItem {
     id: ID
     order_id: ID
-    product_id: Int
+    product_id: ID
+    order: Order @belongsTo
+    item: Product @belongsTo
     price: Float
     qty: Int
-    total_amount: Float
-    order: Order @belongsTo
-    product: Product @belongsTo
+    total: Float
     created_at: DateTime
     updated_at: DateTime
     deleted_at: DateTime
@@ -14,20 +14,18 @@ type OrderItem {
 
 input OrderItemInput {
     id: ID
-    order_id: ID
-    product_id: ID
     price: Float
     qty: Int
-    total_amount: Float
-#    order: ConnectOrderItemRelation
-#    product: ConnectOrderItemRelation
+    total: Float
+    item: ConnectProductRelation
+    order: ConnectOrderRelation
 }
 
-input ConnectOrderItemRelation {
+input ConnectOrderItemsRelation {
     connect: ID
-    create: [OrderItemInput!]
-    update: [OrderItemInput!]
-    delete: [ID]
+    upsert: [OrderItemInput!]
+    disconnect: Boolean
+    delete: Boolean
 }
 
 extend type Query {
