@@ -8,10 +8,10 @@
                 <Icon
                     name="mdi-cart-off"
                     size="50"
-                    class="text-black dark:text-white px-6 mt-4"
+                    class="text-foreground px-6 mt-4"
                 />
             </div>
-            <span class="font-bold text-xl">Cart is empty.</span>
+            <span class="font-bold text-xl">Add items to cart</span>
         </div>
         <PosTable>
             <TableHeader>
@@ -64,7 +64,7 @@
                             >
                                 <Icon
                                     name="mdi:minus"
-                                    class="text-red-700"
+                                    class="text-destructive"
                                     size="1.5rem"
                                 />
                             </span>
@@ -79,7 +79,7 @@
                             >
                                 <Icon
                                     name="mdi-plus"
-                                    class="text-blue-700"
+                                    class="text-primary dark:text-accent"
                                     size="1.5rem"
                                 />
                             </span>

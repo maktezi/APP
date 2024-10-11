@@ -1,11 +1,11 @@
 <template>
-    <main class="bg-gray-200 dark:bg-gray-900 px-3 py-1 rounded-b">
+    <main class="bg-secondary px-3 py-1 rounded-b">
         <div class="flex justify-between items-center gap-1">
             <PosCartScanner />
 
             <div class="flex gap-1">
                 <Button
-                    class="rounded p-4 py-8 hover:bg-red-900 bg-red-800"
+                    class="rounded p-4 py-8 bg-primary hover:bg-accent"
                     :class="
                         cartStore.cartItems.length
                             ? ''
@@ -18,14 +18,14 @@
                         size="30"
                         class="text-white"
                     />
-                    <p class="text-white dark:text-white text-xl">
+                    <p class="text-secondary dark:text-foreground text-xl">
                         {{ cartStore.cartItems.length ? 'Hold' : '' }}
                     </p>
                 </Button>
 
                 <Button
                     type="button"
-                    class="rounded p-6 py-8 hover:bg-blue-900 bg-blue-700"
+                    class="rounded p-6 py-8 bg-primary hover:bg-accent"
                     :disabled="!cartStore.cartItems.length"
                     @click.prevent="openPosModal"
                 >
@@ -38,7 +38,7 @@
                         size="30"
                         class="text-white"
                     />
-                    <p class="text-white dark:text-white text-xl">
+                    <p class="text-secondary dark:text-foreground text-xl">
                         {{ cartStore.cartItems.length ? 'Pay' : '' }}
                     </p>
                 </Button>

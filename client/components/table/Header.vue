@@ -1,12 +1,12 @@
 <template>
-    <main class="px-4 pt-4 pb-1 bg-gray-100 dark:bg-gray-900 rounded-t">
-        <div class="flex-col m-auto items-center dark:bg-gray-900 rounded-md">
+    <main class="px-4 py-4 pb-1 bg-secondary dark:bg-primary rounded-t">
+        <div class="flex-col m-auto items-center rounded-md">
             <div
-                class="flex items-center justify-between bg-gray-200 dark:bg-gray-800 px-2 py-3 rounded-md w-full"
+                class="flex items-center justify-between bg-background dark:bg-secondary px-2 py-3 rounded-md w-full"
             >
                 <div class="flex items-center justify-between gap-1">
                     <Icon :name="icon" :size="size" />
-                    <p class="text-black dark:text-gray-300 text-xl font-bold">
+                    <p class="text-foreground text-xl font-bold">
                         {{ title }}
                     </p>
                 </div>
@@ -14,14 +14,14 @@
                     <span
                         ><Icon
                             name="mdi-search"
-                            class="absolute left-2 top-2 text-gray-900 dark:text-gray-300"
+                            class="absolute left-2 top-2 text-foreground"
                             size="25"
                     /></span>
-                    <input
+                    <Input
                         v-model="tableSearch"
                         type="text"
                         placeholder="Search"
-                        class="pl-9 py-2 dark:text-gray-300 dark:bg-gray-700 text-gray-900 rounded-xl outline-none"
+                        class="pl-9 py-2 rounded-xl outline-none bg-card"
                     />
                 </div>
             </div>

@@ -10,7 +10,7 @@
             <div class="flex items-center justify-center gap-2">
                 <DisplayMode />
                 <NuxtLink :to="auth.userId ? '/dashboard' : '/login'">
-                    <Button class="w-[100px] rounded-xl">
+                    <Button class="w-[100px] bg-primary dark:bg-secondary">
                         {{ auth.userId ? 'Dashboard' : 'Login' }}
                     </Button>
                 </NuxtLink>
@@ -50,13 +50,12 @@
 import { Button } from '~/components/ui/button';
 
 const auth = useAuth();
-const year = new Date().getFullYear();
 const showContent = ref(false);
 
 onMounted(() => {
     setTimeout(() => {
         showContent.value = true;
-    }, 3000);
+    }, 2000);
 });
 
 const items = [

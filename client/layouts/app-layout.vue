@@ -3,7 +3,7 @@ import AppHeader from '~/components/AppHeader.vue';
 </script>
 
 <template>
-    <div>
+    <div class="h-dvh">
         <AppHeader />
         <div class="grid items-start">
             <div class="p-2">

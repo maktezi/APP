@@ -103,7 +103,7 @@ export const useCart = defineStore('cart', {
             this.clearCart();
             toasts('Order Completed!', {
                 type: 'success',
-                position: 'top-center',
+                position: 'top-right',
                 theme: 'colored',
                 transition: 'bounce',
                 autoClose: 3000,

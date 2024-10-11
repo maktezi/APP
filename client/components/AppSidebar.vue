@@ -23,7 +23,7 @@
                             v-for="(link, index) in links"
                             :key="index"
                             :to="link.path"
-                            class="flex w-full items-center gap-4 px-4 py-3 transition rounded-md cursor-pointer hover:bg-red-400/80 dark:hover:bg-red-900/80"
+                            class="flex w-full items-center gap-4 px-4 py-3 transition rounded-md cursor-pointer hover:bg-accent"
                             @click="openAppSidebar = false"
                         >
                             <Icon

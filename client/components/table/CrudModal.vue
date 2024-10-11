@@ -1,13 +1,11 @@
 <template>
     <div
         v-if="visible"
-        class="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center"
+        class="fixed inset-0 bg-primary/10 backdrop-blur-sm flex items-center justify-center"
     >
-        <div
-            class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-lg p-6 relative"
-        >
+        <div class="bg-card rounded-lg shadow-lg w-full max-w-lg p-6 relative">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-200">
+                <h3 class="text-xl font-bold text-foreground">
                     {{ title }}
                 </h3>
                 <Button
@@ -28,7 +26,7 @@
                 >
                     <label
                         :for="field.name"
-                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                        class="block text-sm font-medium text-foreground"
                     >
                         {{ field.label }}
                     </label>
@@ -49,7 +47,7 @@
                         :min="field.min"
                         :max="field.max"
                         :step="field.step"
-                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300"
+                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-secondary text-foreground"
                         @keyup.enter="handleSubmit"
                     />
 
@@ -58,7 +56,7 @@
                         :id="field.name"
                         v-model="form[field.name]"
                         :required="field.required"
-                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300"
+                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-secondary text-foreground"
                         @keyup.enter="handleSubmit"
                     />
 
@@ -77,7 +75,7 @@
                         :id="field.name"
                         v-model="form[field.name]"
                         :required="field.required"
-                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300"
+                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-secondary text-foreground"
                     >
                         <option selected disabled value="">
                             Select {{ field.model }}
@@ -97,7 +95,7 @@
                         :id="field.name"
                         v-model="form[field.name]"
                         :required="field.required"
-                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 dark:bg-gray-700 dark:text-gray-300"
+                        class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-gray-200 bg-secondary text-foreground"
                     >
                         <option disabled value="">
                             Select {{ field.model }}
@@ -115,7 +113,7 @@
                     <button
                         v-if="field.type === 'password' && form[field.name]"
                         type="button"
-                        class="absolute top-5 right-3 mt-3 mr-4 text-gray-500 dark:text-gray-300"
+                        class="absolute top-5 right-3 mt-3 mr-4 text-foreground"
                         @click="togglePasswordVisibility(field.name)"
                     >
                         <Icon
@@ -138,10 +136,7 @@
                     <Button variant="ghost" @click="closeModal">
                         Cancel
                     </Button>
-                    <Button
-                        type="submit"
-                        class="bg-green-700 hover:bg-green-500"
-                    >
+                    <Button type="submit" class="bg-primary dark:bg-secondary">
                         {{ submitButtonText }}
                     </Button>
                 </div>

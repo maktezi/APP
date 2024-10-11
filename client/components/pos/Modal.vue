@@ -1,13 +1,11 @@
 <template>
     <div
         v-if="visible"
-        class="fixed z-50 inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center"
+        class="fixed z-50 inset-0 bg-primary/10 backdrop-blur-sm flex items-center justify-center text-foreground"
     >
-        <div
-            class="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-lg p-6 relative"
-        >
+        <div class="bg-card rounded-lg shadow-lg w-full max-w-lg p-6 relative">
             <div class="flex justify-between items-center mb-2 px-4">
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-gray-200">
+                <h3 class="text-2xl font-bold">
                     {{ title }}
                 </h3>
                 <Button
@@ -27,23 +25,19 @@
                     :key="index"
                     class="relative mb-2 px-4"
                 >
-                    <label
-                        :for="field.name"
-                        class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                    >
+                    <label :for="field.name" class="block text-sm font-medium">
                         {{ field.label }}
                     </label>
                     <input
                         :id="field.name"
                         v-model="form[field.name]"
                         :type="field.type"
-                        class="mt-1 block w-full dark:bg-gray-700 dark:border-gray-600 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        class="mt-1 block w-full bg-card rounded-md shadow-sm sm:text-sm"
                     />
                 </div>
 
                 <div class="mb-1 px-4">
-                    <label
-                        class="block text-md font-medium text-gray-700 dark:text-gray-300"
+                    <label class="block text-md font-medium"
                         >Select Payment Method</label
                     >
                     <div
@@ -69,12 +63,13 @@
                 </div>
 
                 <div class="mb-1 px-4">
-                    <label
-                        class="block text-md font-medium text-gray-700 dark:text-gray-300 mb-1"
+                    <label class="block text-md font-medium mb-1"
                         >Transaction Summary</label
                     >
-                    <div class="bg-gray-100 dark:bg-gray-700 px-4 py-1 rounded">
-                        <p class="text-gray-600 dark:text-gray-400 text-xl">
+                    <div
+                        class="bg-card rounded-md px-4 py-1 rounded border-2 border-secondary"
+                    >
+                        <p class="text-xl">
                             <!--                            Payment Method: {{ selectedPaymentMethod }} -->
                             Payment Method: <span class="font-bold">Cash</span>
                         </p>
@@ -94,7 +89,7 @@
                             v-model="cashTendered"
                             type="number"
                             placeholder="Enter Cash"
-                            class="pl-10 text-2xl font-bold py-6 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                            class="pl-10 text-2xl font-bold py-6"
                         />
                         <span
                             class="absolute start-0 text-xl inset-y-0 flex items-center justify-center px-5"
@@ -110,7 +105,7 @@
                                     ? 'text-transparent'
                                     : 'text-green-500'
                             "
-                            class="pl-28 text-2xl font-bold py-6 border-b-black border-b-4 focus-visible:ring-0 focus-visible:ring-ring focus-visible:ring-offset-0"
+                            class="pl-28 text-2xl font-bold py-6 border-b-secondary border-b-4"
                             readonly
                         />
                         <span
@@ -142,7 +137,7 @@
                             0
                         </Button>
                         <Button
-                            class="bg-red-500 text-xl font-bold py-7 rounded-md"
+                            class="bg-destructive/70 text-xl font-bold py-7 rounded-md"
                             @click.prevent="clearInput()"
                         >
                             C
@@ -153,7 +148,7 @@
                 <div class="flex justify-center space-x-2 px-4">
                     <Button
                         type="submit"
-                        class="p-8 hover:bg-blue-900 dark:hover:bg-blue-700 bg-blue-700 dark:bg-blue-700 w-full"
+                        class="p-8 hover:bg-primary/80 bg-primary dark:bg-secondary dark:hover:bg-accent w-full"
                         :disabled="change < 0 || loading"
                         @click.prevent="handleSubmit"
                     >
@@ -163,15 +158,10 @@
                             <SpinnerTadpole class="size-10 text-white" />
                         </template>
                         <template v-else>
-                            <Icon
-                                name="mdi:cart-arrow-up"
-                                class="text-white dark:text-white"
-                                size="30"
-                            />
-                            <span
-                                class="ml-2 text-xl font-bold text-white dark:text-white"
-                                >{{ submitButtonText }}</span
-                            >
+                            <Icon name="mdi:cart-arrow-up" size="30" />
+                            <span class="ml-2 text-xl font-bold">{{
+                                submitButtonText
+                            }}</span>
                         </template>
                     </Button>
                 </div>
