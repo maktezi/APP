@@ -15,7 +15,7 @@
 
                     <!--        Products        -->
                     <div
-                        class="h-full max-w-7xl xl:min-w-[1000px] p-0.5 md:order-1 order-2 flex-grow overflow-y-hidden border-2 rounded-md border-gray-300 dark:border-gray-800"
+                        class="h-full max-w-7xl xl:min-w-[1000px] p-0.5 md:order-1 order-2 flex-grow overflow-y-hidden border-2 rounded-md border-secondary dark:border-primary"
                     >
                         <PosProductHeader
                             class="mb-0.5"
@@ -30,7 +30,7 @@
                             >
                                 <SpinnerBlocksWave class="size-20" />
                                 <p
-                                    class="animate-pulse text-gray-500 dark:text-gray-300 mt-2 text-xl"
+                                    class="animate-pulse text-foreground mt-2 text-xl"
                                 >
                                     Fetching products
                                 </p>

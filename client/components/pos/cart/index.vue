@@ -1,11 +1,8 @@
 <template>
     <div
-        class="max-w-7xl h-full flex-grow flex md:order-2 order-1 mb-0.5 border-2 rounded-md border-gray-300 dark:border-gray-800"
+        class="max-w-7xl h-full flex-grow flex md:order-2 order-1 mb-0.5 border-2 rounded-md border-secondary dark:border-primary"
     >
-        <div
-            id="cart"
-            class="relative w-full border-gray-300 p-0.5 md:min-w-[500px]"
-        >
+        <div id="cart" class="relative w-full p-0.5 md:min-w-[500px]">
             <div>
                 <PosCartHeader class="mb-0.5" />
                 <PosCartTable class="mb-0.5" :products="cartStore.cartItems" />

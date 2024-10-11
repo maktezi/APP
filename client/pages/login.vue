@@ -4,23 +4,23 @@
             <Title>APP - Login</Title>
         </Head>
         <div v-auto-animate class="p-5 sm:w-auto max-w-xl m-auto">
-            <Card class="w-full p-10 mt-32 rounded-2xl">
+            <Card class="w-full p-10 mt-32">
                 <!-- Session Status -->
                 <NuxtLink
                     to="/"
-                    class="rounded-full py-2 bg-red-500 flex items-center justify-center w-10"
+                    class="rounded-full py-2 bg-destructive flex items-center justify-center w-10"
                 >
                     <Icon name="mdi:arrow-left" size="20" />
                 </NuxtLink>
                 <p class="text-3xl font-bold text-center my-4">Sign In</p>
                 <!-- Email Address -->
                 <div>
-                    <Label class="text-gray-500" for="email">Email</Label>
+                    <Label class="text-foreground" for="email">Email</Label>
                     <Input
                         id="email"
                         v-model="credentials.email"
                         type="email"
-                        class="block mt-1 w-full rounded-xl"
+                        class="block mt-1 w-full"
                         required
                         auto-focus
                         @keyup.enter="login"
@@ -29,12 +29,14 @@
 
                 <!-- Password -->
                 <div class="mt-2">
-                    <Label class="text-gray-500" for="password">Password</Label>
+                    <Label class="text-foreground" for="password"
+                        >Password</Label
+                    >
                     <Input
                         id="password"
                         v-model="credentials.password"
                         type="password"
-                        class="block mt-1 w-full rounded-xl"
+                        class="block mt-1 w-full"
                         required
                         auto-complete="current-password"
                         @keyup.enter="login"
@@ -49,9 +51,9 @@
                             v-model="credentials.remember"
                             type="checkbox"
                             name="remember"
-                            class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            class="border-accent-foreground text-primary shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
                         />
-                        <span class="ml-2 text-sm text-gray-600">
+                        <span class="ml-2 text-sm text-foreground">
                             Remember me
                         </span>
                     </label>
@@ -59,12 +61,12 @@
 
                 <Button
                     :disabled="loading"
-                    class="w-full mt-6 rounded-xl"
+                    class="w-full mt-6"
                     @click.prevent="login"
                 >
                     <SpinnerTadpole
                         :class="{ hidden: !loading }"
-                        class="size-7 text-white dark:text-black mx-1"
+                        class="size-7 text-secondary mx-1"
                     />
                     <span
                         class="font-bold"

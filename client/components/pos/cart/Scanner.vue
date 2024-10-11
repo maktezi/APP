@@ -1,7 +1,7 @@
 <template>
-    <Card class="w-auto px-4 py-5">
+    <div class="w-auto px-4 py-5 bg-primary/50 rounded">
         <p>Scanner</p>
-    </Card>
+    </div>
 </template>
 
 <script setup lang="ts">

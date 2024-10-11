@@ -1,6 +1,6 @@
 <template>
     <Body class="antialiased">
-        <NuxtLoadingIndicator :height="height" color="maroon" />
+        <NuxtLoadingIndicator :height="height" />
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>

@@ -2,7 +2,7 @@
     <div>
         <DropdownMenu>
             <DropdownMenuTrigger as-child>
-                <Button variant="secondary" class="rounded-full p-3">
+                <Button variant="outline" class="rounded-full p-3">
                     <Icon
                         icon="tdesign:mode-light"
                         class="h-[1rem] w-[1rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"

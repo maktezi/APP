@@ -1,16 +1,14 @@
 <template>
-    <div class="m-auto bg-gray-200 dark:bg-gray-900 px-4 py-1">
+    <div class="m-auto bg-secondary px-4 py-1">
         <div
-            class="flex flex-col text-black dark:text-gray-300 text-sm font-medium"
+            class="flex flex-col text-foreground text-sm font-medium"
             :class="{ 'opacity-5': !cartStore.totalAmount }"
         >
             <div class="flex justify-between items-center font-bold">
                 <div>Sub Total:</div>
                 <div>{{ currencyFormat(cartStore.totalAmount) }}</div>
             </div>
-            <div
-                class="flex justify-between items-center text-green-600 dark:text-green-400"
-            >
+            <div class="flex justify-between items-center text-foreground">
                 <div>Discount(10%):</div>
                 <div>- {{ currencyFormat(cartStore.promotionAmount) }}</div>
             </div>
@@ -19,7 +17,7 @@
                 <div>{{ currencyFormat(cartStore.totalTax) }}</div>
             </div>
             <div
-                class="flex justify-between items-center text-2xl font-bold border-y-2 border-gray-300 dark:border-gray-800"
+                class="flex justify-between items-center text-2xl font-bold border-y-2 border-primary"
             >
                 <div>Total:</div>
                 <div>

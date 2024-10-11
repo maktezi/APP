@@ -1,5 +1,5 @@
 <template>
-    <grid
+    <div
         v-for="product in filteredItems"
         :key="product.id"
         :class="
@@ -7,7 +7,7 @@
                 ? 'cursor-not-allowed pointer-events-none'
                 : ''
         "
-        class="relative flex bg-gray-100 rounded dark:bg-gray-800 px-4 py-3 h-[70px] w-full font-medium overflow-hidden"
+        class="relative flex rounded bg-card border-2 border-secondary px-4 py-3 h-[60px] w-full font-medium overflow-hidden"
         @click="cartStore.addProductToCart(product)"
     >
         <div
@@ -23,7 +23,7 @@
             :class="
                 !product.inventories[inventoryLocation]?.qty ? 'opacity-20' : ''
             "
-            class="flex items-center justify-between rounded-b-md w-full bg-gray-100 dark:bg-gray-800"
+            class="flex items-center justify-between rounded-b-md w-full bg-card"
         >
             <div class="flex-1 overflow-hidden">
                 <div
@@ -77,7 +77,7 @@
         >
             <Icon name="mdi:cart-arrow-down" size="30" class="text-green-600" />
         </div>
-    </grid>
+    </div>
 </template>
 
 <script setup lang="ts">

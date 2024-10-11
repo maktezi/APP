@@ -7,11 +7,11 @@
                 ? 'cursor-not-allowed pointer-events-none'
                 : ''
         "
-        class="relative rounded bg-gray-100/50 dark:bg-gray-800/50 p-3 flex-grow size-[130px] md:size-[190px] max-w-[250px] pb-1 font-medium overflow-hidden"
+        class="relative rounded bg-card border-2 border-secondary p-3 flex-grow size-[130px] md:size-[190px] max-w-[250px] pb-1 font-medium overflow-hidden"
         @click="cartStore.addProductToCart(product)"
     >
         <div
-            class="flex items-center justify-center gap-1 text-white text-sm bg-red-500 dark:bg-red-800 p-2 rounded-full"
+            class="flex items-center justify-center gap-1 text-white text-sm bg-destructive/70 p-2 rounded-full"
             :class="
                 !product.inventories[inventoryLocation]?.qty ? '' : 'hidden'
             "
@@ -30,7 +30,7 @@
                         product.inventories[inventoryLocation]?.qty < 1 ||
                         product.inventories[inventoryLocation]?.qty > restockQty
                     "
-                    class="text-red-500"
+                    class="text-destructive"
                 >
                     <Icon
                         name="mdi:warning-circle"
@@ -46,7 +46,7 @@
             </div>
 
             <div
-                class="flex items-center justify-between absolute bottom-0 left-0 rounded-b-md w-full py-1 px-3 bg-gray-100 dark:bg-gray-800"
+                class="flex items-center justify-between absolute bottom-0 left-0 rounded-b-md w-full py-1 px-3 bg-card"
             >
                 <div class="flex-1 overflow-hidden">
                     <div
@@ -69,7 +69,7 @@
                     "
                 >
                     <Icon name="mdi:package-variant-closed" size="20" />
-                    <span class="text-xs font-medium text-gray-500">{{
+                    <span class="text-xs font-medium text-foreground/70">{{
                         product.inventories[inventoryLocation]?.qty
                     }}</span>
                 </div>
@@ -77,7 +77,7 @@
 
             <!-- Cart icon (hidden by default) -->
             <div
-                class="absolute cursor-pointer inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity hover:bg-black/50 rounded"
+                class="absolute cursor-pointer inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity hover:bg-primary/50 rounded"
             >
                 <Icon
                     name="mdi:cart-arrow-down"

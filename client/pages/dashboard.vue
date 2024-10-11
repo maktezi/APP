@@ -7,12 +7,8 @@
         <main v-auto-animate class="max-w-screen-xl mx-auto h-[780px]">
             <TableHeader :title="pageTitle" :icon="icon" />
             <div
-                class="p-4 border-2 rounded-b w-full border-gray-100 dark:border-gray-900 h-full"
+                class="p-4 border-2 rounded-b w-full border-secondary dark:border-primary h-full"
             >
-                <span
-                    class="items-center text-xl font-bold mb-6 flex m-auto pl-6"
-                    >Minimalist Charts</span
-                >
                 <div
                     class="flex gap-4 flex-wrap items-center m-auto justify-evenly"
                 >

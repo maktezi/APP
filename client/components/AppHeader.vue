@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="bg-red-900 dark:bg-red-950 m-0">
+        <nav class="bg-primary m-0">
             <!-- Primary Navigation Menu  -->
             <div class="max-w-full mx-auto">
                 <div class="flex items-center justify-between h-14">
@@ -9,12 +9,12 @@
                     </div>
                     <!-- Settings Dropdown  -->
                     <div
-                        class="flex items-center h-full bg-red-700 dark:bg-red-900 pl-6 pr-4 rounded-l-2xl"
+                        class="flex items-center h-full bg-secondary pl-6 pr-4 rounded-l-2xl"
                     >
                         <Dropdown class="mr-3" align="right">
                             <template #trigger>
                                 <span
-                                    class="flex items-center text-sm font-medium text-white hover:text-gray-700 focus:outline-none transition duration-250 ease-in-out"
+                                    class="flex items-center text-sm font-medium text-foreground focus:outline-none transition duration-250 ease-in-out"
                                 >
                                     <div>
                                         {{
@@ -24,23 +24,15 @@
                                         }}
                                     </div>
 
-                                    <div class="ml-1">
-                                        <svg
-                                            class="fill-current h-4 w-4"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20"
-                                        >
-                                            <path
-                                                fillRule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clipRule="evenodd"
-                                            />
-                                        </svg>
-                                    </div>
+                                    <Icon
+                                        name="mdi:arrow-down-drop"
+                                        size="18"
+                                        class="ml-0.5"
+                                    />
                                 </span>
                             </template>
                             <!-- Authentication  -->
-                            <DropdownButton>
+                            <DropdownButton class="hover:bg-transparent">
                                 <span
                                     class="flex items-center gap-1 justify-center"
                                     @click.prevent="logout"
@@ -70,7 +62,7 @@ const logout = () => {
         auth.logout();
         toasts('Logging out.', {
             type: 'info',
-            position: 'top-center',
+            position: 'bottom-right',
             autoClose: 1000,
             transition: 'zoom',
         });
