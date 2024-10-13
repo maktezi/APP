@@ -4,7 +4,7 @@
     >
         <div class="flex items-center gap-1 text-foreground">
             <Icon name="mdi:storefront" size="30" />
-            <p class="text-2xl font-bold py-1">Products</p>
+            <p class="text-2xl font-bold py-1">Items</p>
         </div>
         <div class="flex items-center gap-1">
             <div class="flex items-center relative">
