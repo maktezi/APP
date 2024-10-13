@@ -29,7 +29,9 @@
             </TableHeader>
             <TableBody v-auto-animate>
                 <TableRow v-for="product in products" :key="product.item">
-                    <TableCell class="font-bold overflow-hidden">
+                    <TableCell
+                        class="font-bold overflow-hidden transition duration-300"
+                    >
                         <div class="flex items-center gap-2">
                             <span
                                 class="flex items-center cursor-pointer"

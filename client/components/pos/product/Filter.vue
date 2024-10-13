@@ -19,7 +19,7 @@
             <SheetContent side="top" class="rounded border-2 border-secondary">
                 <div class="flex mt-4">
                     <Button
-                        class="text-sm px-2.5 gap-2 hover:bg-destructive focus:outline-none rounded-full md:rounded"
+                        class="text-sm px-2.5 gap-2 hover:bg-destructive transition duration-300 focus:outline-none rounded-full md:rounded"
                         @click="resetFilter"
                     >
                         <Icon name="mdi:filter-remove" size="20" />
@@ -40,7 +40,7 @@
                                 'bg-transparent':
                                     selectedCategory !== category.name,
                             }"
-                            class="text-sm p-6 shadow-sm hover:bg-accent hover:text-foreground text-foreground focus:outline-none whitespace-nowrap"
+                            class="text-sm p-6 shadow-sm hover:bg-accent transition duration-300 hover:text-foreground text-foreground focus:outline-none whitespace-nowrap"
                             @click="selectedCategory = category.name"
                         >
                             {{ category.name }}

@@ -105,7 +105,7 @@
                                     ? 'text-transparent'
                                     : 'text-green-500'
                             "
-                            class="pl-28 text-2xl font-bold py-6 border-b-secondary border-b-4"
+                            class="pl-32 text-2xl font-bold py-6 border-b-secondary border-b-4"
                             readonly
                         />
                         <span
@@ -118,26 +118,26 @@
                             v-for="n in numbers"
                             :key="n"
                             variant="outline"
-                            class="text-xl font-bold py-7 rounded-md"
+                            class="text-xl font-bold py-7 rounded-md hover:bg-accent transition duration-300"
                             @click.prevent="appendNumber(n)"
                         >
                             {{ n }}
                         </Button>
                         <Button
-                            class="text-xl font-bold py-7 rounded-md"
+                            class="text-xl font-bold py-7 rounded-md hover:bg-accent transition duration-300"
                             @click.prevent="appendDot()"
                         >
                             .
                         </Button>
                         <Button
                             variant="outline"
-                            class="text-xl font-bold py-7 rounded-md"
+                            class="text-xl font-bold py-7 rounded-md hover:bg-accent transition duration-300"
                             @click.prevent="appendZero()"
                         >
                             0
                         </Button>
                         <Button
-                            class="bg-destructive/70 text-xl font-bold py-7 rounded-md"
+                            class="bg-destructive/70 text-xl font-bold py-7 rounded-md hover:bg-destructive transition duration-300"
                             @click.prevent="clearInput()"
                         >
                             C
@@ -148,7 +148,7 @@
                 <div class="flex justify-center space-x-2 px-4">
                     <Button
                         type="submit"
-                        class="p-8 hover:bg-primary/80 bg-primary dark:bg-secondary dark:hover:bg-accent w-full"
+                        class="p-8 hover:bg-primary/80 bg-primary transition duration-300 dark:bg-secondary dark:hover:bg-accent w-full"
                         :disabled="change < 0 || loading"
                         @click.prevent="handleSubmit"
                     >

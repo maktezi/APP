@@ -16,6 +16,7 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         'pinia-plugin-persistedstate/nuxt',
         '@nuxt/image',
+        "@nuxt/fonts"
     ],
     shadcn: {
         componentDir: './client/components/ui',

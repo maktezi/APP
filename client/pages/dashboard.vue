@@ -5,7 +5,7 @@
         </Head>
 
         <main v-auto-animate class="max-w-screen-xl mx-auto h-[780px]">
-            <TableHeader :title="pageTitle" :icon="icon" />
+            <TableHeader :title="pageTitle" :icon="icon" :search-bar="false" />
             <div
                 class="p-4 border-2 rounded-b w-full border-secondary dark:border-primary h-full"
             >

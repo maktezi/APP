@@ -77,7 +77,7 @@
 
             <!-- Cart icon (hidden by default) -->
             <div
-                class="absolute cursor-pointer inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity hover:bg-primary/50 rounded"
+                class="absolute cursor-pointer inset-0 flex justify-center items-center opacity-0 hover:opacity-100 transition-opacity transition duration-300 hover:bg-primary/50 rounded"
             >
                 <Icon
                     name="mdi:cart-arrow-down"
