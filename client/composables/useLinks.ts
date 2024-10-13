@@ -108,7 +108,7 @@ export const sidebarLinks: LinkItem[] = [
     },
     {
         title: 'Settings',
-        path: '#',
+        path: '/settings',
         icon: 'mdi:cog',
         textColor: 'text-foreground',
         iconColor: 'text-foreground',

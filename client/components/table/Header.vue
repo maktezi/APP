@@ -10,7 +10,7 @@
                         {{ title }}
                     </p>
                 </div>
-                <div class="flex items-center relative">
+                <div v-if="searchBar" class="flex items-center relative">
                     <span
                         ><Icon
                             name="mdi-search"
@@ -63,6 +63,11 @@ defineProps({
         type: String,
         required: false,
         default: '35',
+    },
+    searchBar: {
+        type: Boolean,
+        required: false,
+        default: true,
     },
 });
 

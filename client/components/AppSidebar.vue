@@ -23,16 +23,16 @@
                             v-for="(link, index) in links"
                             :key="index"
                             :to="link.path"
-                            class="flex w-full items-center gap-4 px-4 py-3 transition rounded-md cursor-pointer hover:bg-accent"
+                            class="flex w-full items-center gap-4 px-4 py-3 transition duration-300 rounded-md cursor-pointer hover:bg-accent"
                             @click="openAppSidebar = false"
                         >
                             <Icon
-                                size="20"
+                                size="25"
                                 :name="link.icon"
                                 :class="link.iconColor"
                             />
                             <span
-                                class="text-sm font-semibold"
+                                class="text-sm font-medium"
                                 :class="link.textColor"
                                 >{{ link.title }}</span
                             >
