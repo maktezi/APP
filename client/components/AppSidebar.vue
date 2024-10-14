@@ -1,46 +1,48 @@
 <template>
     <div>
-        <Sheet v-model:open="openAppSidebar">
-            <SheetTrigger class="flex items-center justify-center">
-                <Icon name="mdi:menu" size="30" class="text-gray-100" />
-            </SheetTrigger>
+        <ClientOnly>
+            <Sheet v-model:open="openAppSidebar">
+                <SheetTrigger class="flex items-center justify-center">
+                    <Icon name="mdi:menu" size="30" class="text-gray-100" />
+                </SheetTrigger>
 
-            <SheetContent
-                side="left"
-                class="sm:w-80 w-full border-transparent sm:border-0 rounded-none md:rounded-r-lg"
-            >
-                <SheetHeader>
-                    <SheetTitle>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-end gap-2">
-                                <Logo />
-                                <p class="font-bold text-xl">APP</p>
+                <SheetContent
+                    side="left"
+                    class="sm:w-80 w-full border-transparent sm:border-0 rounded-none md:rounded-r-lg"
+                >
+                    <SheetHeader>
+                        <SheetTitle>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-end gap-2">
+                                    <Logo />
+                                    <p class="font-bold text-xl">APP</p>
+                                </div>
                             </div>
-                        </div>
-                    </SheetTitle>
-                    <SheetDescription>
-                        <NuxtLink
-                            v-for="(link, index) in links"
-                            :key="index"
-                            :to="link.path"
-                            class="flex w-full items-center gap-4 px-4 py-3 transition duration-300 rounded-md cursor-pointer hover:bg-accent"
-                            @click="openAppSidebar = false"
-                        >
-                            <Icon
-                                size="25"
-                                :name="link.icon"
-                                :class="link.iconColor"
-                            />
-                            <span
-                                class="text-sm font-medium"
-                                :class="link.textColor"
-                                >{{ link.title }}</span
+                        </SheetTitle>
+                        <SheetDescription>
+                            <NuxtLink
+                                v-for="(link, index) in links"
+                                :key="index"
+                                :to="link.path"
+                                class="flex w-full items-center gap-4 px-4 py-3 transition duration-300 rounded-md cursor-pointer hover:bg-accent"
+                                @click="openAppSidebar = false"
                             >
-                        </NuxtLink>
-                    </SheetDescription>
-                </SheetHeader>
-            </SheetContent>
-        </Sheet>
+                                <Icon
+                                    size="25"
+                                    :name="link.icon"
+                                    :class="link.iconColor"
+                                />
+                                <span
+                                    class="text-sm font-medium"
+                                    :class="link.textColor"
+                                    >{{ link.title }}</span
+                                >
+                            </NuxtLink>
+                        </SheetDescription>
+                    </SheetHeader>
+                </SheetContent>
+            </Sheet>
+        </ClientOnly>
     </div>
 </template>
 

@@ -71,5 +71,5 @@ defineProps({
     },
 });
 
-const tableSearch = inject('tableSearch') || '';
+const tableSearch = ref('');
 </script>
