@@ -45,7 +45,9 @@
                                 </span>
                             </DropdownButton>
                         </Dropdown>
-                        <DisplayMode />
+                        <ClientOnly>
+                            <DisplayMode />
+                        </ClientOnly>
                     </div>
                 </div>
             </div>

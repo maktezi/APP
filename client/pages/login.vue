@@ -101,12 +101,13 @@ const login = async () => {
 
     try {
         loading.value = true;
+
         await auth.getTokens();
         await auth.login(credentials.email, credentials.password);
         await auth.getUser();
 
-        loading.value = false;
         router.push('/dashboard');
+        loading.value = false;
     } catch (error: any) {
         toasts(error.response.data.message, {
             type: 'error',

@@ -73,8 +73,8 @@ const modelHeaders: Headers[] = [
     {
         key: (val) => {
             const statusTypes: Record<number, string> = {
-                0: 'Pending',
-                1: 'Completed',
+                0: 'Completed',
+                1: 'On-Hold',
                 2: 'Cancelled',
             };
             return statusTypes[val.status];
