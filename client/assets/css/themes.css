@@ -1,0 +1,93 @@
+.iris {
+    --gradient: #000C40;
+    --background: 243 100% 98.26%;
+    --foreground: 243 10% 0.52%;
+    --muted: 243 10% 91.3%;
+    --muted-foreground: 243 5% 41.3%;
+    --popover: 243 10% 91.3%;
+    --popover-foreground: 243 10% 0.65%;
+    --card: 243 10% 91.3%;
+    --card-foreground: 243 10% 0.65%;
+    --border: 243 15% 89.52%;
+    --input: 243 15% 89.52%;
+    --primary: 243 100% 13%;
+    --primary-foreground: 243 2% 91.3%;
+    --secondary: 243 5% 95.65%;
+    --secondary-foreground: 243 7% 11.3%;
+    --accent: 243 5% 95.65%;
+    --accent-foreground: 243 7% 11.3%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 243 100% 13%;
+    --radius: 0.5rem;
+}
+
+.iris-dark {
+    --gradient: #5433FF;
+    --background: 265 65% 4.8%;
+    --foreground: 265 10% 98%;
+    --muted: 265 50% 18%;
+    --muted-foreground: 265 10% 56%;
+    --popover: 265 45% 7.8%;
+    --popover-foreground: 265 10% 98%;
+    --card: 265 45% 7.8%;
+    --card-foreground: 265 10% 98%;
+    --border: 265 50% 18%;
+    --input: 265 50% 18%;
+    --primary: 265 100% 60%;
+    --primary-foreground: 265 10% 6%;
+    --secondary: 265 50% 18%;
+    --secondary-foreground: 265 10% 98%;
+    --accent: 265 50% 18%;
+    --accent-foreground: 265 10% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 265 10% 98%;
+    --ring: 265 100% 60%;
+}
+
+.bubblegum {
+    --gradient: #800080;
+    --background: -64 100% 98.5%;
+    --foreground: -64 10% 1%;
+    --muted: -64 10% 92.5%;
+    --muted-foreground: -64 5% 42.5%;
+    --popover: -64 10% 92.5%;
+    --popover-foreground: -64 10% 1.25%;
+    --card: -64 10% 92.5%;
+    --card-foreground: -64 10% 1.25%;
+    --border: -64 15% 90%;
+    --input: -64 15% 90%;
+    --primary: -64 100% 25%;
+    --primary-foreground: -64 2% 92.5%;
+    --secondary: -64 5% 96.25%;
+    --secondary-foreground: -64 7% 12.5%;
+    --accent: -64 5% 96.25%;
+    --accent-foreground: -64 7% 12.5%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: -64 100% 25%;
+    --radius: 0.5rem;
+}
+
+.bubblegum-dark {
+    --gradient: #9400D3;
+    --background: 300 65% 3.36%;
+    --foreground: 300 10% 97.1%;
+    --muted: 300 50% 12.6%;
+    --muted-foreground: 300 10% 54.2%;
+    --popover: 300 45% 5.46%;
+    --popover-foreground: 300 10% 97.1%;
+    --card: 300 45% 5.46%;
+    --card-foreground: 300 10% 97.1%;
+    --border: 300 50% 12.6%;
+    --input: 300 50% 12.6%;
+    --primary: 300 100% 42%;
+    --primary-foreground: 300 10% 97.1%;
+    --secondary: 300 50% 12.6%;
+    --secondary-foreground: 300 10% 97.1%;
+    --accent: 300 50% 12.6%;
+    --accent-foreground: 300 10% 97.1%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 300 10% 97.1%;
+    --ring: 300 100% 42%;
+}

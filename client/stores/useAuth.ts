@@ -11,6 +11,7 @@ export const useAuth = defineStore('auth', {
         middle_name: '',
         last_name: '',
         complete_name: '',
+        theme: '',
     }),
     actions: {
         async getTokens() {
