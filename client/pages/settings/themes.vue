@@ -11,9 +11,8 @@
                 <Button
                     v-for="item in themeOptions"
                     :key="item.id"
-                    variant="outline"
                     class="p-6 w-[150px]"
-                    @click="auth.theme = item.value"
+                    @click="theme.name = item.value"
                 >
                     {{ item.label }}
                 </Button>
@@ -27,7 +26,7 @@ definePageMeta({
     layout: 'app-layout',
 });
 
-const auth = useAuth();
+const theme = useTheme();
 const themeOptions = [
     { id: 1, label: 'Default', value: 'default' },
     { id: 2, label: 'Iris', value: 'iris' },

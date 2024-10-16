@@ -1,6 +1,6 @@
 <template>
     <Body class="antialiased">
-        <NuxtLoadingIndicator :height="height" />
+        <NuxtLoadingIndicator :height="5" />
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>
@@ -8,6 +8,9 @@
 </template>
 
 <script lang="ts" setup>
+const theme = useTheme();
+const themeName = computed(() => theme.name);
+
 useHead({
     title: 'APP',
     script: [
@@ -21,20 +24,6 @@ useHead({
             `,
         },
     ],
+    bodyAttrs: { class: [themeName], id: 'app' },
 });
-
-const height = 5;
 </script>
-
-<style>
-.page-leave-active {
-    transition: all 0.5s;
-}
-.page-leave-to {
-    opacity: 0;
-    filter: blur(0.3rem);
-}
-* {
-    font-family: 'Poppins', sans-serif;
-}
-</style>
