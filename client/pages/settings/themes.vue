@@ -11,7 +11,7 @@
                 <Button
                     v-for="item in themeOptions"
                     :key="item.id"
-                    class="p-6 w-[150px]"
+                    class="p-6 w-[150px] hover:bg-accent"
                     @click="theme.name = item.value"
                 >
                     {{ item.label }}
@@ -31,6 +31,8 @@ const themeOptions = [
     { id: 1, label: 'Default', value: 'default' },
     { id: 2, label: 'Iris', value: 'iris' },
     { id: 3, label: 'Bubblegum', value: 'bubblegum' },
+    { id: 4, label: 'Azure', value: 'azure' },
+    { id: 5, label: 'Crimson', value: 'crimson' },
 ];
 const pageTitle = 'Themes';
 const icon = 'mdi:theme-light-dark';
