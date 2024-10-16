@@ -1,3 +1,15 @@
+@import './themes.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.page-leave-active {
+    transition: all 0.5s;
+}
+.page-leave-to {
+    opacity: 0;
+    filter: blur(0.3rem);
+}
+* {
+    font-family: 'Poppins', sans-serif;
+}

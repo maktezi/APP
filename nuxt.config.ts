@@ -16,11 +16,13 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         'pinia-plugin-persistedstate/nuxt',
         '@nuxt/image',
-        "@nuxt/fonts"
+        '@nuxt/fonts',
     ],
     shadcn: {
+        prefix: '',
         componentDir: './client/components/ui',
     },
+    tailwindcss: { cssPath: '~/assets/css/main.css' },
     eslint: {
         config: {
             stylistic: {
