@@ -29,10 +29,11 @@ definePageMeta({
 const theme = useTheme();
 const themeOptions = [
     { id: 1, label: 'Default', value: 'default' },
-    { id: 2, label: 'Iris', value: 'iris' },
+    { id: 2, label: 'Azure', value: 'azure' },
     { id: 3, label: 'Bubblegum', value: 'bubblegum' },
-    { id: 4, label: 'Azure', value: 'azure' },
-    { id: 5, label: 'Crimson', value: 'crimson' },
+    { id: 4, label: 'Crimson', value: 'crimson' },
+    { id: 5, label: 'Iris', value: 'iris' },
+    { id: 6, label: 'Mustard', value: 'mustard' },
 ];
 const pageTitle = 'Themes';
 const icon = 'mdi:theme-light-dark';
