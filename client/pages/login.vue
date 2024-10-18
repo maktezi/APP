@@ -61,12 +61,12 @@
 
                 <Button
                     :disabled="loading"
-                    class="w-full mt-6"
+                    class="w-full bg-primary mt-6"
                     @click.prevent="login"
                 >
                     <SpinnerTadpole
                         :class="{ hidden: !loading }"
-                        class="size-7 text-secondary mx-1"
+                        class="size-7 text-card dark:text-card-foreground mx-1"
                     />
                     <span
                         class="font-bold"

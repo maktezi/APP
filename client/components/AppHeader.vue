@@ -69,7 +69,7 @@ const logout = () => {
             transition: 'zoom',
         });
         setTimeout(() => {
-            router.push('/');
+            router.push('/login');
         }, 2000);
     } catch (error) {
         console.log(error);

@@ -53,25 +53,20 @@ const categories: Category[] = (countCategories.data.value as Category[]) || [];
 const products: Product[] = (countProducts.data.value as Product[]) || [];
 const orders: Order[] = (countOrders.data.value as Order[]) || [];
 
-const calculateTotalInventoryStockValue = (products: any) => {
-    return products.reduce((totalValue: any, product: any) => {
-        const productTotal = product.inventories.reduce(
-            (total: any, inventory: any) => {
-                return total + inventory.qty * product.price;
-            },
-            0,
-        );
-        return totalValue + productTotal;
-    }, 0);
-};
-const stocksResult = computed(() => {
-    return inventoryStockValue.data.value;
-});
+const stocksResult = computed(() => inventoryStockValue.data.value);
+const calculateTotalInventoryStockValue = (products: any[]) =>
+    products.reduce(
+        (totalValue, product) =>
+            totalValue +
+            product.inventories.reduce(
+                (sum, inventory) => sum + inventory.qty * product.price,
+                0,
+            ),
+        0,
+    );
 const totalInventoryStockValues = computed(() => {
-    if (stocksResult.value) {
-        return calculateTotalInventoryStockValue(stocksResult.value.products);
-    }
-    return 0;
+    const products = stocksResult.value?.products || [];
+    return calculateTotalInventoryStockValue(products);
 });
 
 const calculateTotalSalesValue = (totalSalesValue: any) => {
@@ -80,12 +75,11 @@ const calculateTotalSalesValue = (totalSalesValue: any) => {
         return totalValue + order.total_amount;
     }, 0);
 };
-
 const totalSalesValues = computed(() => {
     return calculateTotalSalesValue(totalSalesValue);
 });
 
-const charts = [
+const charts = computed(() => [
     {
         title: 'Total Users',
         value: users.usersCount,
@@ -128,7 +122,7 @@ const charts = [
         color: 'bg-card dark:bg-black/50',
         borderColor: 'border-pink-300/80 dark:border-pink-500/50',
     },
-];
+]);
 
 definePageMeta({
     layout: 'app-layout',
