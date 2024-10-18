@@ -11,7 +11,9 @@
                     :icon="icon"
                     :search-bar="false"
                 />
-                <div class="mt-2 flex flex-wrap gap-2 p-4">
+                <div
+                    class="mt-2 flex items-center justify-center flex-wrap gap-2 p-4"
+                >
                     <div v-for="item in itemLinks" :key="item.title">
                         <NuxtLink
                             :to="item.path"
@@ -49,23 +51,23 @@ const itemLinks = [
         iconColor: 'text-foreground',
     },
     {
-        title: 'Roles',
-        path: '#',
-        icon: 'mdi:person-multiple',
-        textColor: 'text-foreground',
-        iconColor: 'text-foreground',
-    },
-    {
         title: 'Promotions',
-        path: '#',
+        path: '/settings/promotions',
         icon: 'mdi:currency-usd',
         textColor: 'text-foreground',
         iconColor: 'text-foreground',
     },
     {
         title: 'Tax Rules',
-        path: '#',
+        path: '/settings/tax-rules',
         icon: 'mdi:percent',
+        textColor: 'text-foreground',
+        iconColor: 'text-foreground',
+    },
+    {
+        title: 'Recycle Bin',
+        path: '/settings/recycle-bin',
+        icon: 'mdi:trash-can-outline',
         textColor: 'text-foreground',
         iconColor: 'text-foreground',
     },

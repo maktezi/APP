@@ -5,12 +5,14 @@ const $axios = axios().provide.axios;
 
 export const useAuth = defineStore('auth', {
     state: () => ({
-        userId: '',
-        role: null,
-        first_name: '',
-        middle_name: '',
-        last_name: '',
-        complete_name: '',
+        user: {
+            id: '',
+            role: null,
+            first_name: '',
+            middle_name: '',
+            last_name: '',
+            complete_name: '',
+        },
     }),
     actions: {
         async getTokens() {
@@ -26,25 +28,25 @@ export const useAuth = defineStore('auth', {
         async getUser() {
             const response = await $axios.get('/api/authenticated-user');
 
-            this.$state.userId = response.data[0].id;
-            this.$state.role = response.data[0].role;
-            this.$state.first_name = response.data[0].first_name;
-            this.$state.middle_name = response.data[0].middle_name;
-            this.$state.last_name = response.data[0].last_name;
-            this.$state.complete_name = response.data[0].complete_name;
+            this.$state.user.id = response.data[0].id;
+            this.$state.user.role = response.data[0].role;
+            this.$state.user.first_name = response.data[0].first_name;
+            this.$state.user.middle_name = response.data[0].middle_name;
+            this.$state.user.last_name = response.data[0].last_name;
+            this.$state.user.complete_name = response.data[0].complete_name;
             // console.log(response.data[0]);
         },
         async logout() {
-            await $axios.post('/logout');
             this.resetUser();
+            await $axios.post('/logout');
         },
         resetUser() {
-            this.$state.userId = '';
-            this.$state.role = null;
-            this.$state.first_name = '';
-            this.$state.middle_name = '';
-            this.$state.last_name = '';
-            this.$state.complete_name = '';
+            this.$state.user.id = '';
+            this.$state.user.role = null;
+            this.$state.user.first_name = '';
+            this.$state.user.middle_name = '';
+            this.$state.user.last_name = '';
+            this.$state.user.complete_name = '';
         },
     },
     persist: true,

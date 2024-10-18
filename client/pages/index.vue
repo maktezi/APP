@@ -9,9 +9,9 @@
         <div v-if="showContent" class="absolute top-6 left-6">
             <div class="flex items-center justify-center gap-2">
                 <DisplayMode />
-                <NuxtLink :to="auth.userId ? '/dashboard' : '/login'">
+                <NuxtLink :to="auth.user.id ? '/dashboard' : '/login'">
                     <Button class="w-[100px] bg-primary dark:bg-secondary">
-                        {{ auth.userId ? 'Dashboard' : 'Login' }}
+                        {{ auth.user.id ? 'Dashboard' : 'Login' }}
                     </Button>
                 </NuxtLink>
             </div>

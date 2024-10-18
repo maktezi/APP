@@ -5,10 +5,10 @@
     >
         <div class="flex items-start justify-between">
             <div>
-                <div class="text-sm font-medium">
+                <div class="text-sm text-foreground font-medium">
                     {{ title }}
                 </div>
-                <div class="text-xl xl:text-3xl font-black">
+                <div class="text-xl xl:text-3xl font-bold">
                     {{ value }}
                 </div>
             </div>

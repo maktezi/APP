@@ -6,12 +6,12 @@
 
         <main v-auto-animate class="max-w-screen-xl mx-auto h-[780px]">
             <TableHeader :title="pageTitle" :icon="icon" :search-bar="false" />
-            <div class="flex w-[300px] flex-col items-center gap-2 p-4">
-                <Label class="text-md mb-4">Choose a theme</Label>
+            <div class="flex w-[300px] flex-col items-center gap-0.5 p-4">
+                <Label class="text-md font-bold mb-4">Choose a theme</Label>
                 <Button
                     v-for="item in themeOptions"
                     :key="item.id"
-                    class="p-6 w-[150px] hover:bg-accent"
+                    class="p-6 w-[250px] hover:bg-accent"
                     @click="theme.name = item.value"
                 >
                     {{ item.label }}
@@ -32,8 +32,9 @@ const themeOptions = [
     { id: 2, label: 'Azure', value: 'azure' },
     { id: 3, label: 'Bubblegum', value: 'bubblegum' },
     { id: 4, label: 'Crimson', value: 'crimson' },
-    { id: 5, label: 'Iris', value: 'iris' },
-    { id: 6, label: 'Mustard', value: 'mustard' },
+    { id: 5, label: 'Emerald', value: 'emerald' },
+    { id: 6, label: 'Iris', value: 'iris' },
+    { id: 7, label: 'Mustard', value: 'mustard' },
 ];
 const pageTitle = 'Themes';
 const icon = 'mdi:theme-light-dark';

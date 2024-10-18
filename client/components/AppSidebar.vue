@@ -59,7 +59,7 @@ import {
 const openAppSidebar = ref(false);
 
 const auth = useAuth();
-const userRole: ComputedRef<any> = computed(() => auth.role);
+const userRole: ComputedRef<any> = computed(() => auth.user.role);
 
 const { links } = useLinks(userRole.value);
 </script>

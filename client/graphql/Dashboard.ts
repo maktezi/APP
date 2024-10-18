@@ -27,11 +27,20 @@ export const totalOrders = gql`
 export const totalInventoryStockValue = gql`
     query {
         products {
+            id
             name
             price
             inventories {
                 qty
             }
+        }
+    }
+`;
+
+export const totalSales = gql`
+    query {
+        orders {
+            total_amount
         }
     }
 `;

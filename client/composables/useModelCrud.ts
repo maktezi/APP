@@ -6,7 +6,7 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     const capitalizedName = getCapSingularName(model);
 
     const auth = useAuth();
-    const permission = auth.role === 1 || auth.role === 3;
+    const permission = auth.user.role === 1 || auth.user.role === 3;
 
     const modelData = ref([]);
     const selectedModel = ref(null);

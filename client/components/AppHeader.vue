@@ -18,8 +18,8 @@
                                 >
                                     <div>
                                         {{
-                                            auth.complete_name
-                                                ? auth.complete_name
+                                            auth.user.complete_name
+                                                ? auth.user.complete_name
                                                 : 'Guest'
                                         }}
                                     </div>
@@ -69,7 +69,7 @@ const logout = () => {
             transition: 'zoom',
         });
         setTimeout(() => {
-            router.push('/');
+            router.push('/login');
         }, 2000);
     } catch (error) {
         console.log(error);
