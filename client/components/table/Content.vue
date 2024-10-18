@@ -16,7 +16,7 @@
             </div>
         </template>
 
-        <template v-else-if="auth.role">
+        <template v-else-if="auth.user.role">
             <TableData
                 :headers="headers"
                 :data="data"

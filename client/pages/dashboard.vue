@@ -29,6 +29,7 @@
 
 <script setup lang="ts">
 import {
+    totalSales,
     totalUsers,
     totalCategories,
     totalProducts,
@@ -44,7 +45,8 @@ const countUsers = await useAsyncQuery(totalUsers);
 const countCategories = await useAsyncQuery(totalCategories);
 const countProducts = await useAsyncQuery(totalProducts);
 const countOrders = await useAsyncQuery(totalOrders);
-const countInventoryStockValue = await useAsyncQuery(totalInventoryStockValue);
+const inventoryStockValue = await useAsyncQuery(totalInventoryStockValue);
+const totalSalesValue = await useAsyncQuery(totalSales);
 
 const users: User[] = (countUsers.data.value as User[]) || [];
 const categories: Category[] = (countCategories.data.value as Category[]) || [];
@@ -62,16 +64,25 @@ const calculateTotalInventoryStockValue = (products: any) => {
         return totalValue + productTotal;
     }, 0);
 };
-
-const result = computed(() => {
-    return countInventoryStockValue.data.value;
+const stocksResult = computed(() => {
+    return inventoryStockValue.data.value;
 });
-
 const totalInventoryStockValues = computed(() => {
-    if (result.value) {
-        return calculateTotalInventoryStockValue(result.value.products);
+    if (stocksResult.value) {
+        return calculateTotalInventoryStockValue(stocksResult.value.products);
     }
     return 0;
+});
+
+const calculateTotalSalesValue = (totalSalesValue: any) => {
+    const orders = totalSalesValue.data.value?.orders || [];
+    return orders.reduce((totalValue: number, order: any) => {
+        return totalValue + order.total_amount;
+    }, 0);
+};
+
+const totalSalesValues = computed(() => {
+    return calculateTotalSalesValue(totalSalesValue);
 });
 
 const charts = [
@@ -79,42 +90,42 @@ const charts = [
         title: 'Total Users',
         value: users.usersCount,
         icon: 'mdi:account-multiple',
-        color: 'bg-blue-100/80 dark:bg-blue-900/50',
+        color: 'bg-card dark:bg-black/50',
         borderColor: 'border-blue-300/80 dark:border-blue-500/50',
     },
     {
         title: 'Categories',
         value: categories.categoriesCount,
         icon: 'mdi:folder-multiple-outline',
-        color: 'bg-green-100/80 dark:bg-green-900/50',
+        color: 'bg-card dark:bg-black/50',
         borderColor: 'border-green-300/80 dark:border-green-500/50',
     },
     {
         title: 'Products',
         value: products.productsCount,
         icon: 'mdi:cube-outline',
-        color: 'bg-red-100/80 dark:bg-red-900/50',
+        color: 'bg-card dark:bg-black/50',
         borderColor: 'border-red-300/80 dark:border-red-500/50',
     },
     {
-        title: 'Orders',
-        value: orders.ordersCount,
-        icon: 'mdi:cart-outline',
-        color: 'bg-yellow-100/80 dark:bg-yellow-900/50',
-        borderColor: 'border-yellow-300/80 dark:border-yellow-500/50',
-    },
-    {
         title: 'Inventory Stock Value',
-        value: `₱${formatPrice(totalInventoryStockValues.value)}`,
+        value: currencyFormat(totalInventoryStockValues.value),
         icon: 'mdi:cash-multiple',
-        color: 'bg-purple-100/80 dark:bg-purple-900/50',
+        color: 'bg-card dark:bg-black/50',
         borderColor: 'border-purple-300/80 dark:border-purple-500/50',
     },
     {
-        title: 'Sales',
-        value: 0,
+        title: 'Total Orders',
+        value: orders.ordersCount,
+        icon: 'mdi:cart-outline',
+        color: 'bg-card dark:bg-black/50',
+        borderColor: 'border-yellow-300/80 dark:border-yellow-500/50',
+    },
+    {
+        title: 'Overall Sales',
+        value: currencyFormat(totalSalesValues.value),
         icon: 'mdi:currency-usd',
-        color: 'bg-pink-100/80 dark:bg-pink-900/50',
+        color: 'bg-card dark:bg-black/50',
         borderColor: 'border-pink-300/80 dark:border-pink-500/50',
     },
 ];

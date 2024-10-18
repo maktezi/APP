@@ -49,13 +49,6 @@ const itemLinks = [
         iconColor: 'text-foreground',
     },
     {
-        title: 'Roles',
-        path: '#',
-        icon: 'mdi:person-multiple',
-        textColor: 'text-foreground',
-        iconColor: 'text-foreground',
-    },
-    {
         title: 'Promotions',
         path: '#',
         icon: 'mdi:currency-usd',

@@ -18,8 +18,8 @@
                                 >
                                     <div>
                                         {{
-                                            auth.complete_name
-                                                ? auth.complete_name
+                                            auth.user.complete_name
+                                                ? auth.user.complete_name
                                                 : 'Guest'
                                         }}
                                     </div>

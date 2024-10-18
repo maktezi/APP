@@ -5,7 +5,7 @@ export default defineNuxtRouteMiddleware((to) => {
     // const noAuthRoutes = ['index', 'login', 'register'];
     // const currentRoute = to?.name?.toString();
     //
-    // if (!auth.userId) {
+    // if (!auth.user.id) {
     //     if (!noAuthRoutes.includes(currentRoute ?? '')) {
     //         return navigateTo('/login');
     //     }
@@ -13,14 +13,14 @@ export default defineNuxtRouteMiddleware((to) => {
     //     if (noAuthRoutes.includes(currentRoute ?? '')) {
     //         return navigateTo('/dashboard');
     //     }
-    //     const roleAccess = sidebarLinks.reduce((acc, link) => {
+    //     const roleAccess = sidebarLinks.reduce((acc: any, link) => {
     //         acc[link.path] = link.roles;
     //         return acc;
     //     }, {});
     //
     //     const requiredRoles = roleAccess[to.path];
     //
-    //     if (requiredRoles && !requiredRoles.includes(auth.role)) {
+    //     if (requiredRoles && !requiredRoles.includes(auth.user.role)) {
     //         return navigateTo('/unauthorized');
     //     }
     // }
