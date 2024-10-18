@@ -118,7 +118,7 @@ const login = async () => {
         });
         setTimeout(() => {
             loading.value = false;
-        }, 3000);
+        }, 5000);
     }
 };
 

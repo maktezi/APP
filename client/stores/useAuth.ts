@@ -37,8 +37,8 @@ export const useAuth = defineStore('auth', {
             // console.log(response.data[0]);
         },
         async logout() {
-            await $axios.post('/logout');
             this.resetUser();
+            await $axios.post('/logout');
         },
         resetUser() {
             this.$state.user.id = '';
