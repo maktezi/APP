@@ -14,7 +14,7 @@
                     v-for="item in themeOptions"
                     :key="item.id"
                     class="p-6 w-full md:w-1/2 hover:bg-accent"
-                    @click="theme.name = item.value"
+                    @click="changeTheme(item.value)"
                 >
                     {{ item.label }}
                 </Button>
@@ -29,6 +29,14 @@ definePageMeta({
 });
 
 const theme = useTheme();
+const changeTheme = (item: string) => {
+    theme.name = item;
+
+    toasts('Theme changed to ' + toTitleCase(item), {
+        type: 'success',
+        autoClose: 3000,
+    });
+};
 const themeOptions = [
     { id: 1, label: 'Default', value: 'default' },
     { id: 2, label: 'Azure', value: 'azure' },
@@ -38,6 +46,7 @@ const themeOptions = [
     { id: 6, label: 'Iris', value: 'iris' },
     { id: 7, label: 'Mustard', value: 'mustard' },
 ];
+
 const pageTitle = 'Themes';
 const icon = 'mdi:theme-light-dark';
 </script>
