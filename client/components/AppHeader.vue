@@ -9,9 +9,9 @@
                     </div>
                     <!-- Settings Dropdown  -->
                     <div
-                        class="flex items-center h-full bg-secondary pl-6 pr-4 rounded-l-2xl"
+                        class="flex items-center h-full bg-secondary pl-6 pr-4 rounded-l-2xl gap-3"
                     >
-                        <Dropdown class="mr-3" align="right">
+                        <Dropdown align="right">
                             <template #trigger>
                                 <span
                                     class="flex items-center text-sm font-medium text-foreground focus:outline-none transition duration-250 ease-in-out"
