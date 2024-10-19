@@ -48,14 +48,11 @@ const icon = 'mdi:cart-outline';
 
 const modelHeaders: Headers[] = [
     { key: 'id', label: 'ID' },
-    // {
-    //     key: (val) =>
-    //         val.customer.user?.complete_name
-    //             ? val.customer.user.complete_name
-    //             : val.customer.name,
-    //     label: 'Customer',
-    // },
-    { key: 'date', label: 'Date' },
+    { key: (val) => convertToBasicDateTime(val.date), label: 'Date' },
+    {
+        key: 'customer_guest',
+        label: 'Customer',
+    },
     {
         key: (val) => {
             const paymentTypes: Record<number, string> = {
@@ -68,8 +65,8 @@ const modelHeaders: Headers[] = [
         label: 'Payment',
     },
     { key: (val) => currencyFormat(val.total_amount), label: 'Total Amount' },
-    { key: (val) => currencyFormat(val.cash_tendered), label: 'Cash Tendered' },
-    { key: (val) => currencyFormat(val.change), label: 'Change' },
+    // { key: (val) => currencyFormat(val.cash_tendered), label: 'Cash Tendered' },
+    // { key: (val) => currencyFormat(val.change), label: 'Change' },
     {
         key: (val) => {
             const statusTypes: Record<number, string> = {
@@ -83,12 +80,7 @@ const modelHeaders: Headers[] = [
     },
 ];
 
-const modelFields: CrudModalField[] = [
-    // { name: 'customer_id', label: 'Customer', type: 'text' },
-    // { name: 'total_amount', label: 'Total Amount', type: 'text' },
-    // { name: 'payment', label: 'Payment', type: 'number' },
-    // { name: 'status', label: 'Status', type: 'number' },
-];
+const modelFields: CrudModalField[] = [];
 
 const {
     modelData,

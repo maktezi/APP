@@ -116,6 +116,7 @@ export const OrderFragment = gql`
         payment
         status
         total_amount
+        customer_guest
         #        customer_id
         #        customer {
         #            id

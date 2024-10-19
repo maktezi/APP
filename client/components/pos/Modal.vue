@@ -9,7 +9,12 @@
         >
             <div class="flex justify-between items-center mb-2 px-4">
                 <h3 class="text-2xl font-bold">
-                    {{ title }}
+                    <template v-if="customerName">
+                        {{ `Order for: ${customerName}` }}
+                    </template>
+                    <template v-else>
+                        {{ title }}
+                    </template>
                 </h3>
                 <Button
                     variant="destructive"
@@ -70,7 +75,7 @@
                         >Transaction Summary</label
                     >
                     <div
-                        class="bg-card rounded-md px-4 py-1 rounded border-2 border-secondary"
+                        class="bg-card px-4 py-1 rounded border-2 border-secondary"
                     >
                         <p class="text-xl">
                             <!--                            Payment Method: {{ selectedPaymentMethod }} -->
@@ -251,9 +256,10 @@ const handleSubmit = async () => {
 
     const orderDetails = {
         date: new Date().toISOString(),
+        customer_guest: customerName.value,
         payment: paymentMethod.value,
         total_amount: totalAmount,
-        cash_tendered: cashTendered.value,
+        cash_tendered: cashTendered.value.toString(),
         change: change.value,
         status: status.value,
     };
@@ -283,4 +289,6 @@ const handleSubmit = async () => {
         console.error('Error completing order:', error);
     }
 };
+
+const customerName: any = inject('customerName');
 </script>
