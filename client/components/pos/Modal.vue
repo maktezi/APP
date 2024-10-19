@@ -26,7 +26,6 @@
                 </Button>
             </div>
 
-            <!--            <form @submit.prevent="handleSubmit"> -->
             <div>
                 <div
                     v-for="(field, index) in fields"
@@ -59,9 +58,17 @@
                             class="flex items-center justify-center"
                         >
                             <Button
+                                v-model="paymentMethod"
                                 variant="outline"
                                 :disabled="payment.disabled"
+                                :class="{
+                                    'bg-accent':
+                                        paymentMethod === payment.value,
+                                    'bg-black/80':
+                                        paymentMethod !== payment.value,
+                                }"
                                 class="flex items-center justify-center py-6 gap-2"
+                                @click="paymentMethod = payment.value"
                             >
                                 <Icon :name="payment.icon" size="23" />
                                 {{ payment.name }}
@@ -78,7 +85,6 @@
                         class="bg-card px-4 py-1 rounded border-2 border-secondary"
                     >
                         <p class="text-xl">
-                            <!--                            Payment Method: {{ selectedPaymentMethod }} -->
                             Payment Method: <span class="font-bold">Cash</span>
                         </p>
                         <p
@@ -291,4 +297,6 @@ const handleSubmit = async () => {
 };
 
 const customerName: any = inject('customerName');
+
+console.log(paymentMethod.value);
 </script>

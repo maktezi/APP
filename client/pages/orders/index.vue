@@ -4,14 +4,7 @@
             <Title>{{ pageTitle }}</Title>
         </Head>
         <main v-auto-animate class="max-w-screen-xl mx-auto">
-            <TableHeader :title="pageTitle" :icon="icon">
-                <template #actions>
-                    <TableCRUD
-                        :on-create="openCreateModal"
-                        :on-refresh="() => fetchDataPaginate(perPage, page)"
-                    />
-                </template>
-            </TableHeader>
+            <TableHeader :title="pageTitle" :icon="icon" />
 
             <TableContent
                 :headers="modelHeaders"
@@ -47,7 +40,7 @@ const pageTitle = getPluralName(toTitleCase(modelName));
 const icon = 'mdi:cart-outline';
 
 const modelHeaders: Headers[] = [
-    { key: 'id', label: 'ID' },
+    // { key: 'id', label: 'ID' },
     { key: (val) => convertToBasicDateTime(val.date), label: 'Date' },
     {
         key: 'customer_guest',
@@ -58,7 +51,7 @@ const modelHeaders: Headers[] = [
             const paymentTypes: Record<number, string> = {
                 0: 'Cash',
                 1: 'Gcash',
-                2: 'Bank',
+                2: 'Bank Transfer',
             };
             return paymentTypes[val.payment];
         },

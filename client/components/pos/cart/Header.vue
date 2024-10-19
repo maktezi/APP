@@ -62,10 +62,11 @@ import { useCart } from '~/stores/useCart';
 import { toasts } from '~/composables/useToast';
 
 const cartStore = useCart();
-const customerName = inject('customerName');
+const customerName: any = inject('customerName');
 
 const clearCart = () => {
     cartStore.clearCart();
+    customerName.value = '';
     toasts('Cart cleared!', { type: 'success' });
 };
 </script>
