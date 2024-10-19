@@ -6,13 +6,15 @@
 
         <main v-auto-animate class="max-w-screen-xl mx-auto h-[780px]">
             <TableHeader :title="pageTitle" :icon="icon" :search-bar="false" />
-            <div class="flex w-[300px] flex-col items-center gap-0.5 p-4">
-                <Label class="text-md font-bold mb-4">Choose a theme</Label>
+            <div
+                class="flex w-full justify-start flex-col items-center gap-1 p-4 border-2 border-secondary dark:border-primary min-h-[750px]"
+            >
+                <Label class="text-md font-bold mb-4">Select a theme</Label>
                 <Button
                     v-for="item in themeOptions"
                     :key="item.id"
-                    class="p-6 w-[250px] hover:bg-accent"
-                    @click="theme.name = item.value"
+                    class="p-6 w-full md:w-1/2 hover:bg-accent"
+                    @click="changeTheme(item.value)"
                 >
                     {{ item.label }}
                 </Button>
@@ -27,6 +29,14 @@ definePageMeta({
 });
 
 const theme = useTheme();
+const changeTheme = (item: string) => {
+    theme.name = item;
+
+    toasts('Theme changed to ' + toTitleCase(item), {
+        type: 'success',
+        autoClose: 3000,
+    });
+};
 const themeOptions = [
     { id: 1, label: 'Default', value: 'default' },
     { id: 2, label: 'Azure', value: 'azure' },
@@ -36,6 +46,7 @@ const themeOptions = [
     { id: 6, label: 'Iris', value: 'iris' },
     { id: 7, label: 'Mustard', value: 'mustard' },
 ];
+
 const pageTitle = 'Themes';
 const icon = 'mdi:theme-light-dark';
 </script>

@@ -1,11 +1,11 @@
 <template>
-    <main class="bg-secondary px-3 py-1 rounded-b">
+    <div v-auto-animate class="bg-secondary px-3 py-1 rounded-b">
         <div class="flex justify-between items-center gap-1">
             <PosCartScanner />
 
             <div class="flex gap-1">
                 <Button
-                    class="rounded p-4 py-8 bg-primary hover:bg-accent"
+                    class="rounded p-4 py-8 bg-primary hover:bg-primary hover:scale-105 transition ease-in-out delay-150"
                     :class="
                         cartStore.cartItems.length
                             ? ''
@@ -25,7 +25,7 @@
 
                 <Button
                     type="button"
-                    class="rounded p-6 py-8 bg-primary hover:bg-accent"
+                    class="rounded p-6 py-8 bg-primary hover:bg-primary hover:scale-105 transition ease-in-out delay-150"
                     :disabled="!cartStore.cartItems.length"
                     @click.prevent="openPosModal"
                 >
@@ -59,7 +59,7 @@
             @submit="useCart().paymentSuccess()"
             @close="closePosModal"
         />
-    </main>
+    </div>
 </template>
 
 <script setup lang="ts">

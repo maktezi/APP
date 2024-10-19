@@ -4,10 +4,10 @@
             <Title>{{ pageTitle }}</Title>
         </Head>
 
-        <main v-auto-animate class="max-w-screen-xl mx-auto h-[780px]">
+        <main v-auto-animate class="max-w-screen-xl mx-auto">
             <TableHeader :title="pageTitle" :icon="icon" :search-bar="false" />
             <div
-                class="p-4 border-2 rounded-b w-full border-secondary dark:border-primary h-full"
+                class="p-4 border-2 rounded-b w-full border-secondary dark:border-primary h-full min-h-[780px]"
             >
                 <div
                     class="flex gap-4 flex-wrap items-center m-auto justify-evenly"

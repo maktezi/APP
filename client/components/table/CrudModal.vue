@@ -3,7 +3,10 @@
         v-if="visible"
         class="fixed inset-0 bg-primary/10 backdrop-blur-sm flex items-center justify-center"
     >
-        <div class="bg-card rounded-lg shadow-lg w-full max-w-lg p-6 relative">
+        <div
+            v-on-click-outside="closeModal"
+            class="bg-card rounded-lg shadow-lg w-full max-w-lg p-6 relative"
+        >
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-xl font-bold text-foreground">
                     {{ title }}
@@ -77,7 +80,7 @@
                         :required="field.required"
                         class="mt-1 block w-full rounded-md border-none outline-none px-3 p-2 shadow-sm sm:text-sm bg-secondary text-foreground"
                     >
-                        <option selected disabled value="">
+                        <option selected value="">
                             Select {{ field.model }}
                         </option>
                         <option
@@ -146,6 +149,7 @@
 </template>
 
 <script setup lang="ts">
+import { vOnClickOutside } from '@vueuse/components';
 import { Button } from '~/components/ui/button';
 import type { CrudModalField, Field } from '~/types';
 

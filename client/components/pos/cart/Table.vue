@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class="relative">
         <div
             v-if="!cartStore.cartItems.length"
-            class="text-center flex-col items-center absolute left-0 right-0 top-72"
+            class="text-center flex-col items-center absolute left-0 right-0 top-64"
         >
             <div>
                 <Icon
@@ -13,6 +13,7 @@
             </div>
             <span class="font-bold text-xl">Add items to cart</span>
         </div>
+
         <PosTable>
             <TableHeader>
                 <TableRow>

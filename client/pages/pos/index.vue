@@ -1,56 +1,13 @@
 <template>
-    <div>
-        <Head>
-            <Title>POS</Title>
-        </Head>
-        <main class="flex-col m-auto items-center justify-center">
-            <div>
-                <PosHeader />
-                <PosLinks />
-                <div
-                    class="relative h-[800px] block md:flex justify-center gap-1 w-full"
-                >
-                    <!--        CART        -->
-                    <PosCart :class="{ hidden: isMobile }" />
-
-                    <!--        Products        -->
-                    <div
-                        class="h-full max-w-7xl xl:min-w-[1000px] p-0.5 md:order-1 order-2 flex-grow overflow-y-hidden border-2 rounded-md border-secondary dark:border-primary"
-                    >
-                        <PosProductHeader
-                            class="mb-0.5"
-                            :toggle-view="toggleView"
-                            :name="
-                                isGridView ? 'mdi:view-list' : 'mdi:view-grid'
-                            "
-                        />
-                        <template v-if="isLoading">
-                            <div
-                                class="flex-col flex mt-80 justify-center items-center"
-                            >
-                                <SpinnerBlocksWave class="size-20" />
-                                <p
-                                    class="animate-pulse text-foreground mt-2 text-xl"
-                                >
-                                    Fetching products
-                                </p>
-                            </div>
-                        </template>
-                        <div
-                            v-else
-                            v-auto-animate
-                            class="flex-wrap flex gap-1 w-full overflow-y-auto max-h-[740px]"
-                        >
-                            <PosViewGrid
-                                v-if="isGridView"
-                                :products="products"
-                            />
-                            <PosViewList v-else :products="products" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
+    <div class="h-dvh w-full flex flex-col p-0.5">
+        <div>
+            <PosHeader />
+            <PosLinks />
+        </div>
+        <div class="flex-1 flex justify-center gap-0.5">
+            <PosProduct />
+            <PosCart :class="{ hidden: isMobile }" />
+        </div>
     </div>
 </template>
 
@@ -74,10 +31,6 @@ const customerName = ref('');
 const isMobile = ref(false);
 const checkIsMobile = () => {
     isMobile.value = window.innerWidth <= 768;
-};
-const isGridView = ref(true);
-const toggleView = () => {
-    isGridView.value = !isGridView.value;
 };
 
 const modelName = 'product';
@@ -110,9 +63,8 @@ const filteredItems = computed(() => {
     });
 });
 
-onMounted(async () => {
+onMounted(() => {
     try {
-        await fetchDataPaginate(100, 1);
         if (modelData.value.length > 0) {
             products.value = modelData.value;
         } else {
@@ -143,4 +95,6 @@ provide('isMobile', isMobile);
 provide('search', search);
 provide('selectedCategory', selectedCategory);
 provide('filteredItems', filteredItems);
+provide('products', products);
+provide('isLoading', isLoading);
 </script>

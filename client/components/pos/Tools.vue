@@ -4,7 +4,7 @@
             <DrawerTrigger>
                 <div class="relative flex items-center gap-2">
                     <Icon
-                        name="mdi:cart"
+                        name="solar:cart-bold"
                         size="30"
                         class="text-gray-900 dark:text-gray-300"
                     />
