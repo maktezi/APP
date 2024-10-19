@@ -2,7 +2,7 @@
     <div
         class="w-full rounded-b-lg h-[690px] p-2 bg-card border border-secondary dark:border-primary"
     >
-        <div class="w-full rounded-b-lg h-full overflow-y-scroll">
+        <div class="w-full rounded-b-lg h-full overflow-y-auto">
             <Table>
                 <TableHeader>
                     <TableRow>

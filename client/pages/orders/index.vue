@@ -4,14 +4,7 @@
             <Title>{{ pageTitle }}</Title>
         </Head>
         <main v-auto-animate class="max-w-screen-xl mx-auto">
-            <TableHeader :title="pageTitle" :icon="icon">
-                <template #actions>
-                    <TableCRUD
-                        :on-create="openCreateModal"
-                        :on-refresh="() => fetchDataPaginate(perPage, page)"
-                    />
-                </template>
-            </TableHeader>
+            <TableHeader :title="pageTitle" :icon="icon" />
 
             <TableContent
                 :headers="modelHeaders"
@@ -47,29 +40,26 @@ const pageTitle = getPluralName(toTitleCase(modelName));
 const icon = 'mdi:cart-outline';
 
 const modelHeaders: Headers[] = [
-    { key: 'id', label: 'ID' },
-    // {
-    //     key: (val) =>
-    //         val.customer.user?.complete_name
-    //             ? val.customer.user.complete_name
-    //             : val.customer.name,
-    //     label: 'Customer',
-    // },
-    { key: 'date', label: 'Date' },
+    // { key: 'id', label: 'ID' },
+    { key: (val) => convertToBasicDateTime(val.date), label: 'Date' },
+    {
+        key: 'customer_guest',
+        label: 'Customer',
+    },
     {
         key: (val) => {
             const paymentTypes: Record<number, string> = {
                 0: 'Cash',
                 1: 'Gcash',
-                2: 'Bank',
+                2: 'Bank Transfer',
             };
             return paymentTypes[val.payment];
         },
         label: 'Payment',
     },
     { key: (val) => currencyFormat(val.total_amount), label: 'Total Amount' },
-    { key: (val) => currencyFormat(val.cash_tendered), label: 'Cash Tendered' },
-    { key: (val) => currencyFormat(val.change), label: 'Change' },
+    // { key: (val) => currencyFormat(val.cash_tendered), label: 'Cash Tendered' },
+    // { key: (val) => currencyFormat(val.change), label: 'Change' },
     {
         key: (val) => {
             const statusTypes: Record<number, string> = {
@@ -83,12 +73,7 @@ const modelHeaders: Headers[] = [
     },
 ];
 
-const modelFields: CrudModalField[] = [
-    // { name: 'customer_id', label: 'Customer', type: 'text' },
-    // { name: 'total_amount', label: 'Total Amount', type: 'text' },
-    // { name: 'payment', label: 'Payment', type: 'number' },
-    // { name: 'status', label: 'Status', type: 'number' },
-];
+const modelFields: CrudModalField[] = [];
 
 const {
     modelData,

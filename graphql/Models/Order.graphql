@@ -8,6 +8,7 @@ type Order {
     status: Int # TODO: OrderStatus
     total_amount: Float
     customer: Customer @belongsTo
+    customer_guest: String
     order_items: [OrderItem] @hasMany
     created_at: DateTime
     updated_at: DateTime
@@ -23,6 +24,7 @@ input OrderInput {
     status: Int # TODO: OrderStatus
     total_amount: Float
     customer: ConnectCustomerRelation
+    customer_guest: String
     order_items: ConnectOrderItemsRelation
 }
 
