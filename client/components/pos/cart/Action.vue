@@ -1,5 +1,5 @@
 <template>
-    <main class="bg-secondary px-3 py-1 rounded-b">
+    <div v-auto-animate class="bg-secondary px-3 py-1 rounded-b">
         <div class="flex justify-between items-center gap-1">
             <PosCartScanner />
 
@@ -59,7 +59,7 @@
             @submit="useCart().paymentSuccess()"
             @close="closePosModal"
         />
-    </main>
+    </div>
 </template>
 
 <script setup lang="ts">

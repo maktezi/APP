@@ -3,7 +3,10 @@
         v-if="visible"
         class="fixed z-50 inset-0 bg-primary/10 backdrop-blur-sm flex items-center justify-center text-foreground"
     >
-        <div class="bg-card rounded-lg shadow-lg w-full max-w-lg p-6 relative">
+        <div
+            v-on-click-outside="closeModal"
+            class="bg-card rounded-lg shadow-lg w-full max-w-lg p-6 relative"
+        >
             <div class="flex justify-between items-center mb-2 px-4">
                 <h3 class="text-2xl font-bold">
                     {{ title }}
@@ -171,6 +174,7 @@
 </template>
 
 <script setup lang="ts">
+import { vOnClickOutside } from '@vueuse/components';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import { paymentMethods } from '~/composables/usePos';

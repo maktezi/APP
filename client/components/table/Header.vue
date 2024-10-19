@@ -2,7 +2,7 @@
     <main class="px-4 py-4 pb-1 bg-secondary dark:bg-primary rounded-t">
         <div class="flex-col m-auto items-center rounded-md">
             <div
-                class="flex items-center justify-between bg-background dark:bg-secondary px-2 py-3 rounded-md w-full"
+                class="flex items-center justify-between bg-card px-2 py-3 rounded-md w-full"
             >
                 <div class="flex items-center justify-between gap-1">
                     <Icon :name="icon" :size="size" />
@@ -21,7 +21,7 @@
                         v-model="tableSearch"
                         type="text"
                         placeholder="Search"
-                        class="pl-9 py-2 rounded-xl outline-none bg-card"
+                        class="pl-9 py-2 rounded-xl outline-none bg-secondary dark:bg-primary"
                     />
                 </div>
             </div>
