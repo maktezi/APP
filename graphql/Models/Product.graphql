@@ -5,7 +5,7 @@ type Product {
     category_id: ID
     category: Category @belongsTo
     inventories: [Inventory] @hasMany
-    orderItems: [OrderItem] @hasMany
+    order_items: [OrderItem] @hasMany
     description: String
     sku: String!
     price: Float
@@ -20,7 +20,7 @@ input ProductInput {
     image: String
     category: ConnectCategoryRelation
     inventories: ConnectInventoriesRelation
-    orderItems: OrderItemInput
+    order_items: OrderItemInput
     description: String
     sku: String!
     price: Float

@@ -3,10 +3,10 @@ type OrderItem {
     order_id: ID
     product_id: ID
     order: Order @belongsTo
-    item: Product @belongsTo
+    product: Product @belongsTo
     price: Float
     qty: Int
-    total: Float
+    total_amount: Float
     created_at: DateTime
     updated_at: DateTime
     deleted_at: DateTime
@@ -16,13 +16,15 @@ input OrderItemInput {
     id: ID
     price: Float
     qty: Int
-    total: Float
-    item: ConnectProductRelation
+    total_amount: Float
+    order_id: ID
+    product_id: ID
+    product: ConnectProductRelation
     order: ConnectOrderRelation
 }
 
 input ConnectOrderItemsRelation {
-    connect: ID
+    connect: [ID]
     upsert: [OrderItemInput!]
     disconnect: Boolean
     delete: Boolean

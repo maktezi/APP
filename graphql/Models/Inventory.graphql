@@ -33,4 +33,5 @@ extend type Query {
 extend type Mutation {
     upsertInventory(input: InventoryInput! @spread): Inventory @upsert #@can(ability: "upsert")
     deleteInventory(id: [ID!] @eq): [Inventory] @delete #@can(ability: "delete", find: "id")
+    reduceInventory(product_id: ID!, qty: Int!): Inventory @field(resolver: "InventoryResolver@reduceInventory")
 }

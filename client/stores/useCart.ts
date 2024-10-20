@@ -25,22 +25,22 @@ export const useCart = defineStore('cart', {
     },
     actions: {
         addProductToCart(product: Product) {
-            const existingProductIndex = this.cartItems.findIndex(
+            const itemIndex = this.cartItems.findIndex(
                 (item) => item.item === product.name,
             );
 
-            if (existingProductIndex !== -1) {
-                const existingProduct: any =
-                    this.cartItems[existingProductIndex];
+            if (itemIndex !== -1) {
+                const existingProduct: any = this.cartItems[itemIndex];
                 existingProduct.qty += 1;
                 existingProduct.amount =
                     existingProduct.qty * existingProduct.price;
 
-                this.cartItems.splice(existingProductIndex, 1);
+                this.cartItems.splice(itemIndex, 1);
                 this.cartItems.unshift(existingProduct);
             } else {
                 this.cartItems.unshift({
                     qty: 1,
+                    id: product.id,
                     item: product.name,
                     price: product.price,
                     amount: product.price,

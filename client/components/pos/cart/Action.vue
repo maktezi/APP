@@ -5,7 +5,7 @@
 
             <div class="flex gap-1">
                 <Button
-                    class="rounded p-4 py-8 bg-primary hover:bg-primary hover:scale-105 transition ease-in-out delay-150"
+                    class="rounded p-4 py-8 bg-primary/70 hover:bg-primary hover:scale-105 transition ease-in-out delay-150"
                     :class="
                         cartStore.cartItems.length
                             ? ''
@@ -25,7 +25,7 @@
 
                 <Button
                     type="button"
-                    class="rounded p-6 py-8 bg-primary hover:bg-primary hover:scale-105 transition ease-in-out delay-150"
+                    class="rounded p-6 py-8 bg-emerald-700 hover:scale-105 transition ease-in-out delay-150"
                     :disabled="!cartStore.cartItems.length"
                     @click.prevent="openPosModal"
                 >

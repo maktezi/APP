@@ -66,7 +66,7 @@ const customerName: any = inject('customerName');
 
 const clearCart = () => {
     cartStore.clearCart();
-    customerName.value = '';
+    customerName.value = 'Guest';
     toasts('Cart cleared!', { type: 'success' });
 };
 </script>

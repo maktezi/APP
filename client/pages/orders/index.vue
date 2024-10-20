@@ -47,6 +47,13 @@ const modelHeaders: Headers[] = [
         label: 'Customer',
     },
     {
+        key: (val) =>
+            val.order_items
+                .map((item: any) => `${item.product.name}(${item.qty})`)
+                .join(', '),
+        label: 'Items (Qty)',
+    },
+    {
         key: (val) => {
             const paymentTypes: Record<number, string> = {
                 0: 'Cash',
@@ -58,8 +65,8 @@ const modelHeaders: Headers[] = [
         label: 'Payment',
     },
     { key: (val) => currencyFormat(val.total_amount), label: 'Total Amount' },
-    // { key: (val) => currencyFormat(val.cash_tendered), label: 'Cash Tendered' },
-    // { key: (val) => currencyFormat(val.change), label: 'Change' },
+    { key: (val) => currencyFormat(val.cash_tendered), label: 'Cash Tendered' },
+    { key: (val) => currencyFormat(val.change), label: 'Change' },
     {
         key: (val) => {
             const statusTypes: Record<number, string> = {
@@ -82,7 +89,6 @@ const {
     modalTitle,
     modalButtonText,
     modalFields,
-    openCreateModal,
     handleCrudSubmit,
     closeCrudModal,
     fetchDataPaginate,
