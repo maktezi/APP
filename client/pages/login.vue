@@ -1,11 +1,11 @@
 <template>
   <div class="min-h-screen flex flex-col justify-center bg-gray-900">
-    <div class="container mx-auto flex items-center justify-between p-10">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-center p-6 md:p-10 space-y-10 md:space-y-0">
       <!-- Logo and Welcome Text Section -->
-      <div class="flex-1 text-center">
-        <img src="../assets/backg.gif" alt="Logo" class="mx-auto mb-8" />
-        <h1 class="text-3xl font-bold text-white mb-4">Buang POS</h1>
-        <p class="text-gray-400 max-w-md mx-auto">
+      <div class="md:flex-1 flex flex-col items-center text-center md:text-left px-4">
+        <img src="../assets/no-image.jpg" alt="Logo" class="mb-8 w-48 md:w-64" />
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Buang POS</h1>
+        <p class="text-gray-400 max-w-md">
           Welcome to Buang POS System! Please log in to streamline your
           <span class="text-yellow-500">sales, manage inventory,</span>
           and enhance your <span class="text-yellow-500">customer experience.</span> Let's get started!
@@ -13,7 +13,7 @@
       </div>
 
       <!-- Login Card Section -->
-      <div class="flex-1 max-w-sm bg-gray-800 p-8 rounded-lg shadow-lg">
+      <div class="md:flex-1 max-w-full md:max-w-sm bg-gray-800 p-6 md:p-8 rounded-lg shadow-lg mx-4 md:mx-0">
         <h2 class="text-2xl font-semibold text-center text-white mb-6">Sign In</h2>
         <form @submit.prevent="login">
           <!-- Username Field -->
@@ -23,7 +23,7 @@
               id="email"
               v-model="credentials.email"
               type="email"
-              class="block w-full mt-1 p-4 bg-gray-700 text-white border-none rounded-md focus:ring-yellow-500 focus:ring-2 text-lg placeholder-gray-400"
+              class="block w-full mt-1 p-3 md:p-4 bg-gray-700 text-white border-none rounded-md focus:ring-yellow-500 focus:ring-2 text-base md:text-lg placeholder-gray-400"
               placeholder="Enter your username"
               required
               autofocus
@@ -37,7 +37,7 @@
               id="password"
               v-model="credentials.password"
               type="password"
-              class="block w-full mt-1 p-4 bg-gray-700 text-white border-none rounded-md focus:ring-yellow-500 focus:ring-2 text-lg placeholder-gray-400"
+              class="block w-full mt-1 p-3 md:p-4 bg-gray-700 text-white border-none rounded-md focus:ring-yellow-500 focus:ring-2 text-base md:text-lg placeholder-gray-400"
               placeholder="Enter your password"
               required
             />
@@ -57,23 +57,20 @@
           </div>
 
           <!-- Submit Button -->
-         
-
-                <Button
-                    :disabled="loading"
-                    class="w-full bg-primary mt-6"
-                    @click.prevent="login"
-                >
-                    <SpinnerTadpole
-                        :class="{ hidden: !loading }"
-                        class="size-7 text-card dark:text-card-foreground mx-1"
-                    />
-                    <span
-                        class="font-bold"
-                        :class="{ 'animate-pulse ml-2': loading }"
-                        >{{ loading ? 'Logging in' : 'Login' }}</span
-                    >
-                </Button>
+          <Button
+            :disabled="loading"
+            class="w-full bg-primary mt-6"
+            @click.prevent="login"
+          >
+            <SpinnerTadpole
+              :class="{ hidden: !loading }"
+              class="size-7 text-card dark:text-card-foreground mx-1"
+            />
+            <span
+              class="font-bold"
+              :class="{ 'animate-pulse ml-2': loading }"
+            >{{ loading ? 'Logging in' : 'Login' }}</span>
+          </Button>
         </form>
       </div>
     </div>
@@ -83,10 +80,6 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import { Card } from '~/components/ui/card';
-import { Button } from '~/components/ui/button';
-import { Label } from '~/components/ui/label';
-import { Input } from '~/components/ui/input';
 
 const auth = useAuth();
 const loading = ref(false);
@@ -126,5 +119,4 @@ const login = async () => {
 definePageMeta({
     middleware: ['guest'],
 });
-
 </script>
