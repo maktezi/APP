@@ -13,6 +13,7 @@ export function toasts(message: string, options?: ToastOptions) {
         limit: 3,
         newestOnTop: true,
         clearOnUrlChange: true,
+        // multiple: false,
         ...options,
     });
 }

@@ -31,12 +31,22 @@ export const useCart = defineStore('cart', {
 
             if (itemIndex !== -1) {
                 const existingProduct: any = this.cartItems[itemIndex];
-                existingProduct.qty += 1;
-                existingProduct.amount =
-                    existingProduct.qty * existingProduct.price;
 
-                this.cartItems.splice(itemIndex, 1);
-                this.cartItems.unshift(existingProduct);
+                if (existingProduct) {
+                    toasts(
+                        'Product already in cart! You can add quantity in cart.',
+                        {
+                            type: 'warning',
+                            position: 'top-left',
+                        },
+                    );
+                }
+                // existingProduct.qty += 1;
+                // existingProduct.amount =
+                //     existingProduct.qty * existingProduct.price;
+                //
+                // this.cartItems.splice(itemIndex, 1);
+                // this.cartItems.unshift(existingProduct);
             } else {
                 this.cartItems.unshift({
                     qty: 1,
@@ -44,13 +54,14 @@ export const useCart = defineStore('cart', {
                     item: product.name,
                     price: product.price,
                     amount: product.price,
+                    stock: product.inventories[0].qty, // TODO: test only, get stock dynamically
+                });
+
+                toasts(`${product.name} added to cart!`, {
+                    type: 'success',
+                    position: 'top-left',
                 });
             }
-
-            toasts(`${product.name} added to Cart!`, {
-                type: 'success',
-                position: 'top-left',
-            });
         },
         deleteCartItem(productToDelete: string) {
             const index = this.cartItems.findIndex(
@@ -58,7 +69,7 @@ export const useCart = defineStore('cart', {
             );
             if (index > -1) {
                 this.cartItems.splice(index, 1);
-                toasts('Item Removed!', { type: 'success' });
+                toasts('Item removed!', { type: 'success' });
             } else {
                 toasts('Item not found in cart!', { type: 'warning' });
             }
@@ -87,7 +98,7 @@ export const useCart = defineStore('cart', {
         holdOrder(name: string) {
             if (name.length > 0) {
                 this.clearCart();
-                toasts(`Order Placed for ${name}!`, {
+                toasts(`Order placed for ${name}!`, {
                     type: 'success',
                     position: 'top-center',
                     autoClose: 3000,
@@ -101,7 +112,7 @@ export const useCart = defineStore('cart', {
         },
         paymentSuccess() {
             this.clearCart();
-            toasts('Order Completed!', {
+            toasts('Order completed!', {
                 type: 'success',
                 position: 'top-right',
                 theme: 'colored',

@@ -13,7 +13,7 @@ export type Product = {
     sku?: string;
     price?: number;
     item?: string;
-    inventories?: Inventory[];
+    inventories?: Inventory[] | any;
 };
 
 export type Stock = {
@@ -37,7 +37,7 @@ export type CartProduct = {
     price?: number | undefined;
     qty?: number | undefined;
     amount?: number | undefined;
-    stock?: Stock[] | undefined;
+    stock?: Stock[] | any;
 };
 
 export type Order = {
