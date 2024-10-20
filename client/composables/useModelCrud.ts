@@ -117,10 +117,16 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
                 : toasts('You are not authorized to create.', {
                       type: 'warning',
                   });
-        } catch (err) {
-            toasts(`Error updating ${toTitleCase(singularName)}.\n${err}`, {
+        } catch (error: any) {
+            const graphQLError = error?.graphQLErrors?.[0];
+            const errorMessage =
+                graphQLError?.extensions?.debugMessage ||
+                graphQLError?.message ||
+                'An error occurred';
+            toasts(`Failed: ${errorMessage}`, {
                 type: 'error',
             });
+            console.error('Something went wrong, Please try again.', error);
         } finally {
             isLoading.value = false;
         }
@@ -144,12 +150,19 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
                 : toasts('You are not authorized to delete.', {
                       type: 'warning',
                   });
-        } catch (err) {
-            console.error(`Error deleting ${toTitleCase(singularName)}:`, err);
+        } catch (error: any) {
+            const graphQLError = error?.graphQLErrors?.[0];
+            const errorMessage =
+                graphQLError?.extensions?.debugMessage ||
+                graphQLError?.message ||
+                'An error occurred';
             toasts(
-                `Failed to delete ${toTitleCase(singularName)}. Please try again.\n${err}`,
-                { type: 'error' },
+                `Failed to delete ${toTitleCase(singularName)}: ${errorMessage}`,
+                {
+                    type: 'error',
+                },
             );
+            console.error('Something went wrong, Please try again.', error);
         } finally {
             isLoading.value = false;
         }
