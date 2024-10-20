@@ -307,8 +307,17 @@ const completeOrder = async () => {
         } else {
             toasts('Please enter a customer name!', { type: 'error' });
         }
-    } catch (error) {
-        toasts('Error completing order!', { type: 'error' });
+    } catch (error: any) {
+        const graphQLError = error?.graphQLErrors?.[0];
+        const errorMessage =
+            graphQLError?.extensions?.debugMessage ||
+            graphQLError?.message ||
+            'An error occurred';
+
+        toasts(`Error completing order: ${errorMessage}!`, {
+            type: 'error',
+        });
+
         console.error('Error completing order:', error);
     }
 };
