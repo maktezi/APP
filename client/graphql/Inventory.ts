@@ -46,8 +46,8 @@ export const deleteInventory = gql`
 `;
 
 export const reduceInventory = gql`
-    mutation reduceInventory($product_id: ID!, $qty: Int!) {
-        reduceInventory(product_id: $product_id, qty: $qty) {
+    mutation reduceInventory($products: [CartProductQuantityInput!]!) {
+        reduceInventory(products: $products) {
             id
             product {
                 id
