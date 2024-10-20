@@ -47,7 +47,7 @@
                                 "
                             >
                                 <Icon
-                                    name="mdi:remove-bold"
+                                    name="mdi:remove"
                                     size="1.5rem"
                                     class="text-red-700 ml"
                                 />
@@ -83,12 +83,12 @@
                             <span
                                 class="flex items-center cursor-pointer"
                                 @click.prevent="
-                                    () => cartStore.addQuantity(product)
+                                    () => addQuantityWithStockCheck(product)
                                 "
                             >
                                 <Icon
                                     name="mdi-plus"
-                                    class="text-primary dark:text-accent"
+                                    class="text-emerald-700"
                                     size="1.5rem"
                                 />
                             </span>
@@ -118,7 +118,17 @@ import { useCart } from '~/stores/useCart';
 
 const cartStore = useCart();
 
-defineProps({
+const props = defineProps({
     products: Object,
 });
+
+const addQuantityWithStockCheck = (product: any) => {
+    if (product.qty < product.stock) {
+        cartStore.addQuantity(product);
+    } else {
+        toasts('Sorry, that is the maximum quantity available!', {
+            type: 'warning',
+        });
+    }
+};
 </script>

@@ -107,7 +107,9 @@ const login = async () => {
         await auth.getUser();
 
         router.push('/dashboard');
-        loading.value = false;
+        setTimeout(() => {
+            loading.value = false;
+        }, 5000);
     } catch (error: any) {
         toasts(error.response.data.message, {
             type: 'error',
@@ -116,9 +118,7 @@ const login = async () => {
             transition: 'zoom',
             hideProgressBar: true,
         });
-        setTimeout(() => {
-            loading.value = false;
-        }, 5000);
+        loading.value = false;
     }
 };
 
