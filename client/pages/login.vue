@@ -4,9 +4,9 @@
       <!-- Logo and Welcome Text Section -->
       <div class="md:flex-1 flex flex-col items-center text-center md:text-left px-4">
         <img src="../assets/no-image.jpg" alt="Logo" class="mb-8 w-48 md:w-64" />
-        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">Buang POS</h1>
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">POS SYSTEM</h1>
         <p class="text-gray-400 max-w-md">
-          Welcome to Buang POS System! Please log in to streamline your
+          Welcome to POS System! Please log in to streamline your
           <span class="text-yellow-500">sales, manage inventory,</span>
           and enhance your <span class="text-yellow-500">customer experience.</span> Let's get started!
         </p>
