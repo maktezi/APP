@@ -285,17 +285,20 @@ const completeOrder = async () => {
     try {
         if (customerName.value) {
             loading.value = true;
+
             const { mutate } = useMutation(upsertOrder);
             await mutate({ input: orderDetails });
 
+            const itemsToReduce = cartStore.cartItems.map((product) => ({
+                product_id: product.id,
+                qty: product.qty,
+            }));
+
             const { mutate: subtractInventoryMutate } =
                 useMutation(reduceInventory);
-            for (const product of cartStore.cartItems) {
-                await subtractInventoryMutate({
-                    product_id: product.id,
-                    qty: product.qty,
-                });
-            }
+            await subtractInventoryMutate({
+                products: itemsToReduce,
+            });
 
             emit('close');
             cartStore.paymentSuccess();

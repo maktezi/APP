@@ -18,25 +18,30 @@ class InventoryResolver
      * @param array $args
      * @param GraphQLContext $context
      * @param ResolveInfo $resolveInfo
-     * @return Inventory
+     * @return array
      * @throws Exception
      */
-    public function reduceInventory($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+    public function reduceInventory(null $rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo): array
     {
-        $inventory = Inventory::where('product_id', $args['product_id'])->first();
+        $updatedInventories = [];
 
-        if (!$inventory) {
-            throw new \Exception('Inventory not found for this product');
+        foreach ($args['products'] as $product) {
+            $inventory = Inventory::where('product_id', $product['product_id'])->first();
+
+            if (!$inventory) {
+                throw new \Exception('Inventory not found for product ID: ' . $product['product_id']);
+            }
+
+            $inventory->qty -= $product['qty'];
+
+            if ($inventory->qty < 0) {
+                throw new \Exception('Not enough stock available for product ID: ' . $product['product_id']);
+            }
+
+            $inventory->save();
+            $updatedInventories[] = $inventory;
         }
 
-        $inventory->qty -= $args['qty'];
-
-        if ($inventory->qty < 0) {
-            throw new \Exception('Not enough stock available');
-        }
-
-        $inventory->save();
-
-        return $inventory;
+        return $updatedInventories;
     }
 }
