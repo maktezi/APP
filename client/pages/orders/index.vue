@@ -48,8 +48,10 @@ const modelHeaders: Headers[] = [
     },
     {
         key: (val) =>
-            val.order_items.map((item: any) => item.product.name).join(', '),
-        label: 'Items',
+            val.order_items
+                .map((item: any) => `${item.product.name}(${item.qty})`)
+                .join(', '),
+        label: 'Items (Qty)',
     },
     {
         key: (val) => {
@@ -63,8 +65,8 @@ const modelHeaders: Headers[] = [
         label: 'Payment',
     },
     { key: (val) => currencyFormat(val.total_amount), label: 'Total Amount' },
-    // { key: (val) => currencyFormat(val.cash_tendered), label: 'Cash Tendered' },
-    // { key: (val) => currencyFormat(val.change), label: 'Change' },
+    { key: (val) => currencyFormat(val.cash_tendered), label: 'Cash Tendered' },
+    { key: (val) => currencyFormat(val.change), label: 'Change' },
     {
         key: (val) => {
             const statusTypes: Record<number, string> = {

@@ -261,6 +261,7 @@ const closeModal = () => {
 
 const completeOrder = async () => {
     const { upsertOrder } = await import('~/graphql/Order');
+    const { reduceInventory } = await import('~/graphql/Inventory');
 
     const orderItems = cartStore.cartItems.map((product) => {
         return {
@@ -286,6 +287,16 @@ const completeOrder = async () => {
             loading.value = true;
             const { mutate } = useMutation(upsertOrder);
             await mutate({ input: orderDetails });
+
+            const { mutate: subtractInventoryMutate } =
+                useMutation(reduceInventory);
+            for (const product of cartStore.cartItems) {
+                await subtractInventoryMutate({
+                    product_id: product.id,
+                    qty: product.qty,
+                });
+            }
+
             emit('close');
             cartStore.paymentSuccess();
 

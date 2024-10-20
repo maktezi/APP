@@ -44,3 +44,18 @@ export const deleteInventory = gql`
         }
     }
 `;
+
+export const reduceInventory = gql`
+    mutation reduceInventory($product_id: ID!, $qty: Int!) {
+        reduceInventory(product_id: $product_id, qty: $qty) {
+            id
+            product {
+                id
+                name
+                inventories {
+                    qty
+                }
+            }
+        }
+    }
+`;

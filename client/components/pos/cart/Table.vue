@@ -17,9 +17,9 @@
         <PosTable>
             <TableHeader>
                 <TableRow>
-                    <TableHead class="md:w-[50px]">
-                        <strong>ID</strong>
-                    </TableHead>
+                    <!--                    <TableHead class="md:w-[50px]"> -->
+                    <!--                        <strong>ID</strong> -->
+                    <!--                    </TableHead> -->
                     <TableHead class="md:w-[480px]">
                         <strong>ITEM</strong>
                     </TableHead>
@@ -33,9 +33,9 @@
             </TableHeader>
             <TableBody v-auto-animate>
                 <TableRow v-for="product in products" :key="product.item">
-                    <TableCell class="md:w-[50px]">
-                        {{ product.id }}
-                    </TableCell>
+                    <!--                    <TableCell class="md:w-[50px]"> -->
+                    <!--                        {{ product.id }} -->
+                    <!--                    </TableCell> -->
                     <TableCell
                         class="font-bold overflow-hidden transition duration-300"
                     >

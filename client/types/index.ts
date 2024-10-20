@@ -37,6 +37,7 @@ export type CartProduct = {
     price?: number | undefined;
     qty?: number | undefined;
     amount?: number | undefined;
+    stock?: Stock[] | undefined;
 };
 
 export type Order = {
