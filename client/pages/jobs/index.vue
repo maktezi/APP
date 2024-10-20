@@ -3,7 +3,7 @@
         <Head>
             <Title>Jobs</Title>
         </Head>
-        <main v-auto-animate class="max-w-screen-xl mx-auto">
+        <main v-auto-animate class="max-w-screen-2xl mx-auto">
             <TableHeader title="Jobs">
                 <template #actions>
                     <TableCRUD />
