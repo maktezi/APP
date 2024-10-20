@@ -23,11 +23,8 @@ export const jobFragment = gql`
 export const OrderItemFragment = gql`
     fragment orderItem on OrderItem {
         id
-        order {
-            id
-            status
-            total_amount
-        }
+        order_id
+        product_id
         product {
             id
             name
@@ -63,9 +60,9 @@ export const ProductFragment = gql`
             qty
             location
         }
-        #        orderItems {
-        #            ...orderItem
-        #        }
+        #                order_items {
+        #                    ...orderItem
+        #                }
     }
 `;
 
@@ -117,6 +114,9 @@ export const OrderFragment = gql`
         status
         total_amount
         customer_guest
+        order_items {
+            ...orderItem
+        }
         #        customer_id
         #        customer {
         #            id
@@ -136,4 +136,5 @@ export const OrderFragment = gql`
         #            total_amount
         #        }
     }
+    ${OrderItemFragment}
 `;

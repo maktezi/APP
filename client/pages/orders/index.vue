@@ -47,6 +47,11 @@ const modelHeaders: Headers[] = [
         label: 'Customer',
     },
     {
+        key: (val) =>
+            val.order_items.map((item: any) => item.product.name).join(', '),
+        label: 'Items',
+    },
+    {
         key: (val) => {
             const paymentTypes: Record<number, string> = {
                 0: 'Cash',
@@ -82,7 +87,6 @@ const {
     modalTitle,
     modalButtonText,
     modalFields,
-    openCreateModal,
     handleCrudSubmit,
     closeCrudModal,
     fetchDataPaginate,

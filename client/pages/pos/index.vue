@@ -26,7 +26,10 @@ const inventoryLocation = ref(0);
 const search = ref('');
 const selectedCategory = ref('');
 
-const customerName = ref('');
+const customerName: Ref<string> = ref('Guest');
+const cashTendered: Ref<string> = ref('');
+const paymentMethod: Ref<number> = ref(0);
+const status: Ref<number> = ref(0);
 
 const isMobile = ref(false);
 const checkIsMobile = () => {
@@ -38,10 +41,7 @@ const modelFields = ['name', 'image', 'price', 'qty'].map((name) => ({
     name,
 }));
 
-const { modelData, fetchDataPaginate, isLoading } = await useModelCrud(
-    modelName,
-    modelFields,
-);
+const { modelData, isLoading } = await useModelCrud(modelName, modelFields);
 
 const fallbackData = testData.products;
 const products = ref(fallbackData);
@@ -97,4 +97,7 @@ provide('selectedCategory', selectedCategory);
 provide('filteredItems', filteredItems);
 provide('products', products);
 provide('isLoading', isLoading);
+provide('cashTendered', cashTendered);
+provide('status', status);
+provide('paymentMethod', paymentMethod);
 </script>

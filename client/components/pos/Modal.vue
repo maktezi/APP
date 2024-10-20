@@ -132,26 +132,28 @@
                             v-for="n in numbers"
                             :key="n"
                             variant="outline"
-                            class="text-xl font-bold py-7 rounded-md hover:bg-accent transition duration-300"
+                            class="text-xl font-bold py-6 rounded-md hover:bg-accent transition duration-300"
                             @click.prevent="appendNumber(n)"
                         >
                             {{ n }}
                         </Button>
                         <Button
-                            class="text-xl font-bold py-7 rounded-md hover:bg-accent transition duration-300"
+                            variant="outline"
+                            class="bg-accent text-xl font-bold py-6 rounded-md hover:bg-accent transition duration-300"
                             @click.prevent="appendDot()"
                         >
                             .
                         </Button>
                         <Button
                             variant="outline"
-                            class="text-xl font-bold py-7 rounded-md hover:bg-accent transition duration-300"
+                            class="text-xl font-bold py-6 rounded-md hover:bg-accent transition duration-300"
                             @click.prevent="appendZero()"
                         >
                             0
                         </Button>
                         <Button
-                            class="bg-destructive/70 text-xl font-bold py-7 rounded-md hover:bg-destructive transition duration-300"
+                            variant="outline"
+                            class="bg-destructive/70 text-xl font-bold py-6 rounded-md hover:bg-destructive transition duration-300"
                             @click.prevent="clearInput()"
                         >
                             C
@@ -162,9 +164,9 @@
                 <div class="flex justify-center space-x-2 px-4">
                     <Button
                         type="submit"
-                        class="p-8 hover:bg-primary/80 bg-primary transition duration-300 dark:bg-secondary dark:hover:bg-accent w-full"
+                        class="p-8 hover:bg-primary/80 transition duration-300 bg-emerald-700 dark:hover:bg-accent w-full"
                         :disabled="change < 0 || loading"
-                        @click.prevent="handleSubmit"
+                        @click.prevent="completeOrder"
                     >
                         <template
                             v-if="change < 0 || change == null || loading"
@@ -172,7 +174,6 @@
                             <SpinnerTadpole class="size-10 text-white" />
                         </template>
                         <template v-else>
-                            <Icon name="mdi:cart-arrow-up" size="30" />
                             <span class="ml-2 text-xl font-bold">{{
                                 submitButtonText
                             }}</span>
@@ -224,15 +225,17 @@ const router = useRouter();
 const form = ref<Record<string, any>>({});
 const loading = ref(false);
 
-const status = ref(0);
-const paymentMethod = ref(0);
 const cartStore = useCart();
-
 const totalAmount = cartStore.totalAmountWithTaxAndDiscount;
-const cashTendered: Ref<any> = ref('');
+
 const change: ComputedRef<number> = computed(() =>
     parseFloat((cashTendered.value - totalAmount).toFixed(2)),
 );
+
+const customerName: any = inject('customerName');
+const cashTendered: any = inject('cashTendered');
+const paymentMethod: any = inject('paymentMethod');
+const status: any = inject('status');
 
 const numbers: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const appendZero = () => {
@@ -256,47 +259,46 @@ const closeModal = () => {
     emit('close');
 };
 
-// TODO: test mutation
-const handleSubmit = async () => {
+const completeOrder = async () => {
     const { upsertOrder } = await import('~/graphql/Order');
 
+    const orderItems = cartStore.cartItems.map((product) => {
+        return {
+            product_id: product.id,
+            qty: product.qty,
+            price: product.price,
+            total_amount: product.amount,
+        };
+    });
     const orderDetails = {
         date: new Date().toISOString(),
         customer_guest: customerName.value,
         payment: paymentMethod.value,
         total_amount: totalAmount,
         cash_tendered: cashTendered.value.toString(),
+        order_items: { upsert: orderItems },
         change: change.value,
         status: status.value,
     };
-    const cartItems = cartStore.cartItems.map((product) => {
-        return {
-            item: product.item,
-            qty: product.qty,
-            price: product.price,
-            total: product.amount,
-        };
-    });
 
     try {
-        loading.value = true;
-        const { mutate } = useMutation(upsertOrder);
-        await mutate({ input: orderDetails });
-        emit('close');
-        cartStore.paymentSuccess();
+        if (customerName.value) {
+            loading.value = true;
+            const { mutate } = useMutation(upsertOrder);
+            await mutate({ input: orderDetails });
+            emit('close');
+            cartStore.paymentSuccess();
 
-        loading.value = false;
-        setTimeout(() => {
-            router.push('/orders');
-        }, 2000);
-
-        console.log('Items!', cartItems);
+            loading.value = false;
+            setTimeout(() => {
+                router.push('/orders');
+            }, 1500);
+        } else {
+            toasts('Please enter a customer name!', { type: 'error' });
+        }
     } catch (error) {
+        toasts('Error completing order!', { type: 'error' });
         console.error('Error completing order:', error);
     }
 };
-
-const customerName: any = inject('customerName');
-
-console.log(paymentMethod.value);
 </script>
