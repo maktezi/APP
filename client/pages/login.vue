@@ -26,7 +26,7 @@
             </div>
 
             <div
-                class="md:flex-1 max-w-full w-[400px] md:max-w-lg bg-gray-900/50 p-12 rounded-lg shadow-lg mx-4 md:mx-0"
+                class="md:flex-1 max-w-full w-[400px] md:max-w-lg bg-gray-800 md:bg-gray-900/50 p-12 rounded-lg shadow-lg mx-4 md:mx-0"
             >
                 <h2 class="text-2xl font-semibold text-center text-white mb-6">
                     Sign In
