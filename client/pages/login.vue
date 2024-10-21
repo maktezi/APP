@@ -1,67 +1,78 @@
 <template>
-    <div>
-        <Head>
-            <Title>APP - Login</Title>
-        </Head>
-        <div v-auto-animate class="p-5 sm:w-auto max-w-xl m-auto">
-            <Card class="w-full p-10 mt-32">
-                <!-- Session Status -->
-                <NuxtLink
-                    to="/"
-                    class="rounded-full py-2 bg-destructive flex items-center justify-center w-10"
-                >
-                    <Icon name="mdi:arrow-left" size="20" />
-                </NuxtLink>
-                <p class="text-3xl font-bold text-center my-4">Sign In</p>
-                <!-- Email Address -->
-                <div>
-                    <Label class="text-foreground" for="email">Email</Label>
-                    <Input
+    <div class="min-h-screen flex flex-col justify-center bg-gray-900/20">
+        <div
+            class="container bg-transparent md:bg-gray-800/70 rounded-xl mx-auto flex flex-col md:flex-row items-center justify-center p-6 md:p-36 md:space-y-0"
+        >
+            <div
+                class="md:flex-1 flex flex-col items-center text-center md:text-left p-2 mb-4"
+            >
+                <img
+                    src="../assets/application_logo.svg"
+                    alt="Logo"
+                    class="mb-2 w-24 md:w-48"
+                />
+                <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
+                    POS SYSTEM
+                </h1>
+                <p class="text-gray-200 max-w-md">
+                    Welcome to POS System! Please log in to streamline your
+                    <span class="text-emerald-400"
+                        >sales, manage inventory,</span
+                    >
+                    and enhance your
+                    <span class="text-emerald-400">customer experience.</span>
+                    Let's get started!
+                </p>
+            </div>
+
+            <div
+                class="md:flex-1 max-w-full w-[400px] md:max-w-lg bg-gray-800 md:bg-gray-900/50 p-12 rounded-lg shadow-lg mx-4 md:mx-0"
+            >
+                <h2 class="text-2xl font-semibold text-center text-white mb-6">
+                    Sign In
+                </h2>
+                <div class="mb-4">
+                    <label for="email" class="text-gray-300">Username</label>
+                    <input
                         id="email"
                         v-model="credentials.email"
                         type="email"
-                        class="block mt-1 w-full"
+                        class="block w-full mt-1 p-2 px-3 bg-gray-700 text-white border-none rounded-md focus:ring-yellow-500 focus:ring-2 text-base placeholder-gray-400"
+                        placeholder="Enter your username"
                         required
-                        auto-focus
-                        @keyup.enter="login"
+                        autofocus
                     />
                 </div>
 
-                <!-- Password -->
-                <div class="mt-2">
-                    <Label class="text-foreground" for="password"
-                        >Password</Label
-                    >
-                    <Input
+                <div class="mb-6">
+                    <label for="password" class="text-gray-300">Password</label>
+                    <input
                         id="password"
                         v-model="credentials.password"
                         type="password"
-                        class="block mt-1 w-full"
+                        class="block w-full mt-1 p-2 bg-gray-700 px-3 text-white border-none rounded-md focus:ring-yellow-500 focus:ring-2 text-base placeholder-gray-400"
+                        placeholder="Enter your password"
                         required
-                        auto-complete="current-password"
-                        @keyup.enter="login"
                     />
                 </div>
 
-                <!-- Remember Me -->
-                <div class="block mt-2">
+                <div class="flex items-center justify-between mb-6">
                     <label for="remember" class="inline-flex items-center">
                         <input
                             id="remember"
                             v-model="credentials.remember"
                             type="checkbox"
-                            name="remember"
-                            class="border-accent-foreground text-primary shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+                            class="text-yellow-500 border-gray-300 rounded focus:ring-yellow-500"
                         />
-                        <span class="ml-2 text-sm text-foreground">
-                            Remember me
-                        </span>
+                        <span class="ml-2 text-sm text-gray-400"
+                            >Remember me</span
+                        >
                     </label>
                 </div>
 
                 <Button
                     :disabled="loading"
-                    class="w-full bg-primary mt-6"
+                    class="w-full bg-emerald-700"
                     @click.prevent="login"
                 >
                     <SpinnerTadpole
@@ -74,17 +85,12 @@
                         >{{ loading ? 'Logging in' : 'Login' }}</span
                     >
                 </Button>
-            </Card>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { Card } from '~/components/ui/card';
-import { Button } from '~/components/ui/button';
-import { Label } from '~/components/ui/label';
-import { Input } from '~/components/ui/input';
-
 const auth = useAuth();
 const loading = ref(false);
 const errors = ref(null);
@@ -98,27 +104,27 @@ const credentials = reactive({
 
 const login = async () => {
     errors.value = null;
+    loading.value = true;
 
     try {
-        loading.value = true;
-
         await auth.getTokens();
         await auth.login(credentials.email, credentials.password);
         await auth.getUser();
-
         router.push('/dashboard');
-        setTimeout(() => {
-            loading.value = false;
-        }, 5000);
     } catch (error: any) {
-        toasts(error.response.data.message, {
+        console.error(error);
+        const message =
+            error.response?.data?.message ||
+            'An error occurred. Please try again.';
+        toasts(message, {
             type: 'error',
             position: 'top-center',
             autoClose: 3000,
             transition: 'zoom',
             hideProgressBar: true,
         });
-        loading.value = false;
+    } finally {
+        loading.value = true;
     }
 };
 
