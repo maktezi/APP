@@ -70,7 +70,10 @@
                                 class="flex items-center justify-center py-6 gap-2"
                                 @click="paymentMethod = payment.value"
                             >
-                                <Icon :name="payment.icon" size="23" />
+                                <Icon
+                                    :name="payment.icon"
+                                    :size="payment.iconSize"
+                                />
                                 {{ payment.name }}
                             </Button>
                         </div>
@@ -85,7 +88,10 @@
                         class="bg-card px-4 py-1 rounded border-2 border-secondary"
                     >
                         <p class="text-xl">
-                            Payment Method: <span class="font-bold">Cash</span>
+                            Payment Method:
+                            <span class="font-bold">{{
+                                getPaymentMethod(paymentMethod)
+                            }}</span>
                         </p>
                         <p
                             class="text-gray-800 dark:text-gray-200 text-2xl font-bold"
@@ -189,7 +195,7 @@
 import { vOnClickOutside } from '@vueuse/components';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
-import { paymentMethods } from '~/composables/usePos';
+import { getPaymentMethod, paymentMethods } from '~/composables/usePos';
 import type { ModalField } from '~/types';
 
 const emit = defineEmits(['close']);
