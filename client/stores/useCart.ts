@@ -28,25 +28,20 @@ export const useCart = defineStore('cart', {
             const itemIndex = this.cartItems.findIndex(
                 (item) => item.item === product.name,
             );
+            const stocks = product.inventories[0].qty; // TODO: fix dynamic stocks checker
 
             if (itemIndex !== -1) {
                 const existingProduct: any = this.cartItems[itemIndex];
 
-                if (existingProduct) {
-                    toasts(
-                        'Product already in cart! You can add quantity in cart.',
-                        {
-                            type: 'warning',
-                            position: 'top-left',
-                        },
-                    );
-                }
-                // existingProduct.qty += 1;
-                // existingProduct.amount =
-                //     existingProduct.qty * existingProduct.price;
-                //
-                // this.cartItems.splice(itemIndex, 1);
-                // this.cartItems.unshift(existingProduct);
+                existingProduct.qty < stocks
+                    ? ((existingProduct.qty += 1),
+                      (existingProduct.amount =
+                          existingProduct.qty * existingProduct.price),
+                      this.cartItems.splice(itemIndex, 1),
+                      this.cartItems.unshift(existingProduct))
+                    : toasts('Sorry, that is the maximum quantity available!', {
+                          type: 'warning',
+                      });
             } else {
                 this.cartItems.unshift({
                     qty: 1,

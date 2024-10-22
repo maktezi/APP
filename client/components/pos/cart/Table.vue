@@ -63,36 +63,21 @@
                         </div>
                     </TableCell>
                     <TableCell>
-                        <div class="flex items-center justify-end gap-1">
-                            <span
-                                class="flex items-center cursor-pointer"
-                                :class="{ hidden: product.qty <= 1 }"
-                                @click.prevent="
-                                    () => cartStore.reduceQuantity(product)
-                                "
-                            >
-                                <Icon
-                                    name="mdi:minus"
-                                    class="text-destructive"
-                                    size="1.5rem"
+                        <NumberField :default-value="product.qty" :min="0">
+                            <NumberFieldContent>
+                                <NumberFieldDecrement
+                                    @click.prevent="
+                                        () => cartStore.reduceQuantity(product)
+                                    "
                                 />
-                            </span>
-                            <span class="font-bold">{{
-                                qtyFormat(product.qty)
-                            }}</span>
-                            <span
-                                class="flex items-center cursor-pointer"
-                                @click.prevent="
-                                    () => addQuantityWithStockCheck(product)
-                                "
-                            >
-                                <Icon
-                                    name="mdi-plus"
-                                    class="text-emerald-700"
-                                    size="1.5rem"
+                                <NumberFieldInput :value="product.qty" />
+                                <NumberFieldIncrement
+                                    @click.prevent="
+                                        () => addQuantityWithStockCheck(product)
+                                    "
                                 />
-                            </span>
-                        </div>
+                            </NumberFieldContent>
+                        </NumberField>
                     </TableCell>
                     <TableCell class="text-right">
                         <span class="font-bold">{{
@@ -113,12 +98,12 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { currencyFormat, qtyFormat } from '~/utils/pos';
+import { currencyFormat } from '~/utils/pos';
 import { useCart } from '~/stores/useCart';
 
 const cartStore = useCart();
 
-const props = defineProps({
+defineProps({
     products: Object,
 });
 
