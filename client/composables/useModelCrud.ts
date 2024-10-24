@@ -1,12 +1,12 @@
-import type { CrudModalField } from '~/types';
+import type { AuthState, CrudModalField } from '~/types';
 
 export async function useModelCrud(model: string, fields: CrudModalField[]) {
     const pluralName = getPluralName(model);
     const singularName = getSingularName(model);
     const capitalizedName = getCapSingularName(model);
 
-    const auth = useAuth();
-    const permission = auth.user.role === 1 || auth.user.role === 3;
+    const auth: AuthState | any = useAuth();
+    const permission = [1, 3].includes(auth.user.role);
 
     const modelData = ref([]);
     const selectedModel = ref(null);
@@ -15,9 +15,10 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
     const modalButtonText = ref('Create');
     const modalFields = ref(fields);
     const isLoading = ref(false);
+    const paginatorInfo = ref<any>(null);
 
     const page = inject('currentPage', 1);
-    const perPage = inject('perPage', 50);
+    const perPage = inject('perPage', 10);
 
     // Dynamically import GraphQL queries and mutations
     let PAGINATE_QUERY, UPSERT_MUTATION, DELETE_MUTATION;
@@ -198,7 +199,9 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
         () => result.value,
         (newResult) => {
             if (newResult) {
-                modelData.value = newResult[`${pluralName}Paginate`].data;
+                const queryResult = newResult[`${pluralName}Paginate`];
+                modelData.value = queryResult.data;
+                paginatorInfo.value = queryResult.paginatorInfo;
             }
         },
         { immediate: true },
@@ -227,5 +230,6 @@ export async function useModelCrud(model: string, fields: CrudModalField[]) {
         page,
         isLoading,
         actions,
+        paginatorInfo,
     };
 }
